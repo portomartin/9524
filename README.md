@@ -15,6 +15,7 @@ Proyecto universitario para diseñar un MVP de una plataforma donde las personas
 - [Decisiones del proyecto](docs/decisiones/)
 - [Skill para WBS por entregables](skills/wbs-por-entregables/SKILL.md)
 - [Skill para User Story Mapping](skills/user-story-mapping/SKILL.md)
+- [Skill coordinador del grafo de planificación](skills/actualizar-planificacion/SKILL.md)
 
 ## Recursos
 
@@ -32,4 +33,4 @@ Una misma persona puede desempeñar ambos roles.
 
 Las skills de la carpeta `skills/` ayudan a transformar la especificación en backlog, historias de usuario y documentación revisable.
 
-El flujo de planificación actual es: `docs/mvp.md` → `docs/wbs.md`. El backlog se definirá en una etapa posterior.
+El flujo de planificación parte de `docs/mvp.md` y tiene tres ramas independientes: WBS, USM y backlog. Cada una deriva su contenido directamente del mismo MVP. El skill `actualizar-planificacion` coordina las tres y presenta sus resultados; el backlog se guardará cuando se ejecute y apruebe su generación.

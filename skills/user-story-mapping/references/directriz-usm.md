@@ -38,4 +38,4 @@ El mapa debe identificar el rol, las actividades, las tareas del usuario y los d
 
 El mapa debe contemplar los recorridos de Docente y Alumno. Como una persona puede cumplir ambos roles, algunas actividades pueden ser compartidas y otras pueden mostrar acciones específicas para cada rol.
 
-Para el MVP actual, el flujo debe concentrarse en sesiones individuales 1 a 1. Las clases grupales, los equipos docentes y los intercambios no 1 a 1 deben quedar fuera del release slice del MVP y ubicarse en cortes posteriores.
+Para el MVP actual, el flujo debe concentrarse en sesiones individuales 1 a 1. No agregar clases grupales, equipos docentes ni intercambios no 1 a 1 al release slice. Solo desarrollar cortes posteriores si el MVP vigente describe explícitamente esas ampliaciones.

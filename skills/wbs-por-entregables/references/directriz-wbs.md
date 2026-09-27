@@ -56,4 +56,4 @@ Representan resultados específicos que pueden describirse y verificarse, por ej
 
 Para la plataforma de intercambio de aprendizajes, los bloques principales pueden organizarse alrededor de entregables como cuentas y perfiles, enseñanza y aprendizaje, clases e intercambios, créditos y sesiones, seguridad y administración, e inteligencia artificial. Los nombres definitivos deben surgir del MVP vigente.
 
-El bloque de administración y control puede contener directamente entregables de gestión, como documentación, backlog, informes de avance e informes de riesgos, aunque no tengan un nivel intermedio de módulo.
+Si el MVP los incluye, el bloque de administración y control puede contener directamente entregables de gestión, como documentación, backlog, informes de avance e informes de riesgos, aunque no tengan un nivel intermedio de módulo. Estos ejemplos no agregan alcance al MVP.

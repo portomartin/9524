@@ -1,6 +1,6 @@
 ---
 name: user-story-mapping
-description: Crear o actualizar un User Story Map a partir del MVP y la WBS, organizando actividades, tareas, historias y cortes de producto para los roles Docente y Alumno.
+description: Crear o actualizar un User Story Map directamente desde el MVP, independiente de la WBS y del backlog, organizando el recorrido de Docente y Alumno.
 ---
 
 # User Story Mapping
@@ -13,9 +13,9 @@ Leer primero:
 
 - `AGENTS.md` para las reglas generales del proyecto.
 - `docs/mvp.md` como única fuente de verdad del alcance actual.
-- `docs/wbs.md` para ordenar los entregables y capacidades del MVP.
-- `docs/alcance-futuro.md` para evitar incluir funcionalidades fuera del MVP.
 - `references/directriz-usm.md` para aplicar la estructura conceptual del mapa.
+
+Derivar el contenido únicamente del MVP. No leer la WBS ni el backlog como entradas. Las reglas y referencias orientan el método y el formato, no agregan requisitos. Si existe `docs/usm.md`, consultarlo solo para preservar identificadores y formato compatibles con el MVP; no usarlo como fuente de alcance.
 
 ## Modelo del mapa
 
@@ -47,13 +47,13 @@ El mapa debe representar el recorrido de los roles principales:
 
 - Basar el mapa en `docs/mvp.md`, no en ideas no aprobadas.
 - Mantener el MVP limitado a intercambios y sesiones individuales 1 a 1.
-- Dejar fuera del corte MVP las clases grupales, equipos docentes e intercambios no 1 a 1; registrarlos como alcance futuro cuando corresponda.
+- No proponer funcionalidades futuras que no estén descritas como tales en el MVP; señalar exclusiones sin inventar historias para otros cortes.
 - No convertir el mapa en una lista de tareas técnicas.
 - Cada historia debe expresar una acción y un beneficio para un rol.
 - Evitar duplicar historias cuando una misma acción pueda ser realizada por Docente y Alumno.
 - Mantener el flujo narrativo de la experiencia, desde el ingreso hasta la finalización y evaluación de una sesión.
 - Usar el release slice para separar el MVP del alcance futuro, no para crear una lista independiente de prioridades.
-- Mantener trazabilidad hacia secciones del MVP y elementos de la WBS.
+- Mantener trazabilidad directa hacia secciones del MVP.
 - Señalar ambigüedades, dependencias y funcionalidades que no tengan respaldo en la especificación.
 
 ## Resultado esperado
@@ -64,7 +64,7 @@ Presentar:
 2. La identificación del backbone, actividades, tareas, detalles e historias.
 3. El flujo narrativo del usuario.
 4. El release slice del MVP y los elementos posteriores.
-5. Una tabla de trazabilidad hacia `docs/mvp.md` y `docs/wbs.md`.
+5. Una tabla de trazabilidad hacia secciones de `docs/mvp.md`.
 6. Supuestos y puntos pendientes de confirmar.
 
 No modificar `docs/mvp.md` ni `docs/wbs.md` automáticamente. Si el mapa se aprueba, guardarlo en `docs/usm.md` y registrar el cambio cuando corresponda.
