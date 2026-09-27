@@ -8,6 +8,8 @@ Proyecto universitario para diseñar un MVP de una plataforma donde las personas
 - [WBS del MVP](docs/wbs.md)
 - [User Story Map del MVP](docs/usm.md)
 - [Metodología de planificación](docs/metodologia.md)
+- [Ejemplo básico de graph de skills](docs/graph-de-skills.md)
+- [Ejemplo básico de loop](docs/loop-basico.md)
 - [Alcance futuro](docs/alcance-futuro.md)
 - [Registro de cambios](docs/cambios.md)
 - [Decisiones del proyecto](docs/decisiones/)
