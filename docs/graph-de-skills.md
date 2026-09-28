@@ -32,4 +32,4 @@ Este grafo no tiene ciclos. El [ejemplo de loop](loop-basico.md) muestra por sep
 
 > Usá skills/actualizar-planificacion/SKILL.md para preparar WBS, USM y backlog desde el mismo MVP. Mostrá cada rama y presentá los tres borradores con su trazabilidad y pendientes en el chat, sin editar archivos.
 
-Esta versión reemplaza el ejemplo anterior en el que el mapa dependía de la WBS. El ejemplo Python en `ejemplos/graph-basico/` se conserva como ejercicio separado.
+Esta versión reemplaza el ejemplo anterior en el que el mapa dependía de la WBS. El ejemplo Python anterior fue eliminado; este documento y el skill coordinador son la referencia vigente.

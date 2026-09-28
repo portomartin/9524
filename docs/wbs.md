@@ -1,13 +1,13 @@
 # WBS del MVP
 
 **Proyecto:** Plataforma de intercambio de aprendizajes  
-**Versión:** 1.0 — primera propuesta para revisión
+**Versión:** 1.1 — derivada del MVP aprobado
 
-La WBS (*Work Breakdown Structure*) descompone el trabajo del MVP en entregables y componentes progresivamente más pequeños, estimables y verificables. La estructura se organiza únicamente a partir de la especificación del MVP, por capacidades y resultados del producto, no por tecnologías específicas ni por un backlog previo.
+La WBS descompone el producto en entregables y capacidades verificables. Se deriva exclusivamente de `docs/mvp.md`.
 
 ## 0. Plataforma de intercambio de aprendizajes
 
-### 1. Gestión de cuentas y perfiles
+### 1. Cuentas y perfiles
 
 #### 1.1. Acceso a la plataforma
 
@@ -15,145 +15,131 @@ La WBS (*Work Breakdown Structure*) descompone el trabajo del MVP en entregables
 - **1.1.2. Inicio de sesión**
 - **1.1.3. Cierre de sesión**
 
-#### 1.2. Perfil y roles de usuario
+#### 1.2. Perfil y participación
 
 - **1.2.1. Información personal y ubicación general**
 - **1.2.2. Rol de Docente**
 - **1.2.3. Rol de Alumno**
-- **1.2.4. Edición del perfil**
-- **1.2.5. Nivel de conocimiento por tema**
+- **1.2.4. Conocimientos ofrecidos y buscados**
+- **1.2.5. Nivel y objetivos por tema**
 - **1.2.6. Disponibilidad y modalidad preferida**
 - **1.2.7. Reputación y créditos disponibles**
 
-Una misma persona podrá utilizar los roles de Docente y Alumno según la actividad que realice.
-
-### 2. Gestión de propuestas y solicitudes de aprendizaje
+### 2. Propuestas y solicitudes de aprendizaje
 
 #### 2.1. Propuestas de enseñanza
 
-- **2.1.1. Publicación de una propuesta de enseñanza**
-- **2.1.2. Clasificación por categoría y nivel**
-- **2.1.3. Definición de modalidad, duración y créditos**
-- **2.1.4. Configuración de sesión individual**
+- **2.1.1. Nombre, categoría y descripción**
+- **2.1.2. Nivel requerido y nivel alcanzable**
+- **2.1.3. Modalidad y duración estimada**
+- **2.1.4. Cantidad de créditos**
+- **2.1.5. Configuración de sesión individual**
+- **2.1.6. Validación y advertencia antes de publicar**
 
 #### 2.2. Solicitudes de aprendizaje
 
-- **2.2.1. Publicación del conocimiento que se desea aprender**
-- **2.2.2. Descripción libre del objetivo de aprendizaje**
-- **2.2.3. Indicación del nivel actual**
-- **2.2.4. Indicación de modalidad y disponibilidad**
+- **2.2.1. Conocimiento que se desea aprender**
+- **2.2.2. Objetivo de aprendizaje libre**
+- **2.2.3. Nivel actual**
+- **2.2.4. Modalidad y disponibilidad**
 
-#### 2.3. Búsqueda y filtros
+### 3. Búsqueda, compatibilidad y recomendaciones
 
-- **2.3.1. Búsqueda por conocimiento o habilidad**
-- **2.3.2. Filtro por categoría y nivel**
-- **2.3.3. Filtro por modalidad y ubicación**
-- **2.3.4. Filtro por disponibilidad**
-- **2.3.5. Filtro por tipo de intercambio y créditos**
+#### 3.1. Búsqueda y filtros
 
-### 3. Compatibilidad e intercambios
+- **3.1.1. Búsqueda por conocimiento o habilidad**
+- **3.1.2. Filtros por categoría y nivel**
+- **3.1.3. Filtros por modalidad y ubicación**
+- **3.1.4. Filtros por disponibilidad**
+- **3.1.5. Filtros por tipo de intercambio y créditos**
 
-#### 3.1. Compatibilidad entre usuarios
+#### 3.2. Compatibilidad basada en reglas
 
-- **3.1.1. Coincidencia entre conocimientos ofrecidos y buscados**
-- **3.1.2. Compatibilidad de niveles y objetivos**
-- **3.1.3. Compatibilidad de modalidad y horarios**
-- **3.1.4. Presentación de resultados compatibles**
+- **3.2.1. Coincidencia de conocimientos**
+- **3.2.2. Compatibilidad de niveles y objetivos**
+- **3.2.3. Compatibilidad de modalidad y horarios**
+- **3.2.4. Presentación de resultados compatibles**
+- **3.2.5. Detección de intercambios recíprocos**
 
-#### 3.2. Intercambios directos y equivalentes
+#### 3.3. Recomendaciones mediante IA
 
-- **3.2.1. Intercambio recíproco entre Docente y Alumno**
-- **3.2.2. Registro del acuerdo entre las partes**
+- **3.3.1. Interpretación de intereses y objetivos**
+- **3.3.2. Recomendación de clases y personas**
+- **3.3.3. Priorización por nivel, modalidad y disponibilidad**
 
-### 4. Sesiones y créditos
+### 4. Intercambios y sesiones
 
 #### 4.1. Solicitudes y reservas
 
-- **4.1.1. Solicitud de una sesión individual**
-- **4.1.2. Propuesta de fecha y horario**
-- **4.1.3. Aceptación o rechazo de la solicitud**
-- **4.1.4. Modificación o cancelación de la reserva**
-- **4.1.5. Estados de la solicitud**
+- **4.1.1. Solicitud de sesión individual**
+- **4.1.2. Datos de la solicitud**
+- **4.1.3. Aceptación o rechazo**
+- **4.1.4. Propuesta de fecha y horario**
+- **4.1.5. Reserva de sesión**
+- **4.1.6. Modificación o cancelación**
+- **4.1.7. Estados pendiente, aceptada, rechazada, cancelada y completada**
 
-#### 4.2. Créditos virtuales
+#### 4.2. Intercambio recíproco y créditos
 
-- **4.2.1. Asignación de créditos iniciales**
-- **4.2.2. Transferencia de créditos al completar una sesión**
-- **4.2.3. Uso de créditos para aprender**
-- **4.2.4. Consulta de saldo**
-- **4.2.5. Historial de movimientos**
-- **4.2.6. Estimación orientativa mediante LLM**
+- **4.2.1. Acuerdo de intercambio recíproco**
+- **4.2.2. Créditos iniciales**
+- **4.2.3. Transferencia de créditos al completar**
+- **4.2.4. Uso y consulta de créditos**
+- **4.2.5. Registro de movimientos**
+- **4.2.6. Estimación orientativa de créditos mediante LLM**
 
 #### 4.3. Finalización e historial
 
 - **4.3.1. Confirmación de sesión completada**
-- **4.3.2. Registro de temas enseñados y aprendidos**
-- **4.3.3. Consulta de sesiones realizadas**
-- **4.3.4. Consulta de intercambios y créditos**
+- **4.3.2. Historial de sesiones**
+- **4.3.3. Historial de temas enseñados y aprendidos**
+- **4.3.4. Historial de intercambios y créditos**
 
-### 5. Confianza, reputación y seguridad
+### 5. Reputación, seguridad y administración
 
-#### 5.1. Calificaciones y reputación
+#### 5.1. Calificaciones
 
-- **5.1.1. Calificación posterior a una sesión completada**
+- **5.1.1. Puntuación de 1 a 5**
 - **5.1.2. Comentario opcional**
-- **5.1.3. Cálculo de calificación promedio**
+- **5.1.3. Cálculo y visualización del promedio**
 
-#### 5.2. Contenidos permitidos y denuncias
+#### 5.2. Contenidos y denuncias
 
-- **5.2.1. Categorías de aprendizaje permitidas**
-- **5.2.2. Validación de publicaciones**
-- **5.2.3. Detección de palabras o expresiones prohibidas**
-- **5.2.4. Denuncia de usuarios o publicaciones**
-- **5.2.5. Revisión administrativa de denuncias**
-- **5.2.6. Suspensión de cuentas o publicaciones**
+- **5.2.1. Categorías permitidas**
+- **5.2.2. Lista de palabras y expresiones prohibidas**
+- **5.2.3. Validación de publicaciones**
+- **5.2.4. Advertencias antes de publicar**
+- **5.2.5. Denuncia de usuarios o publicaciones**
 
-#### 5.3. Validación de conocimientos y estudios
+#### 5.3. Panel de administración
 
-- **5.3.1. Carga de títulos o certificados**
-- **5.3.2. Registro de referencias o experiencia**
-- **5.3.3. Revisión administrativa de documentación**
-- **5.3.4. Visualización del nivel de verificación**
+- **5.3.1. Consulta de usuarios y publicaciones**
+- **5.3.2. Revisión de denuncias**
+- **5.3.3. Ocultamiento de publicaciones**
+- **5.3.4. Suspensión o reactivación de cuentas**
+- **5.3.5. Administración de categorías y expresiones prohibidas**
+- **5.3.6. Revisión humana de sanciones definitivas**
 
-### 6. Recomendaciones mediante inteligencia artificial
+#### 5.4. Validación de conocimientos y estudios
 
-#### 6.1. Recomendaciones de aprendizaje
+- **5.4.1. Carga de títulos, certificados o referencias**
+- **5.4.2. Revisión administrativa**
+- **5.4.3. Nivel de verificación visible en el perfil**
 
-- **6.1.1. Interpretación de intereses y objetivos escritos libremente**
-- **6.1.2. Recomendación de clases**
-- **6.1.3. Recomendación de usuarios compatibles**
-- **6.1.4. Priorización por nivel, modalidad y disponibilidad**
+## Trazabilidad con el MVP
 
-#### 6.2. Asistencia inteligente
-
-- **6.2.1. Sugerencia de categorías para publicaciones**
-- **6.2.2. Apoyo para estimar créditos**
-- **6.2.3. Señalización de contenido potencialmente prohibido**
-
-### 7. Administración y control del proyecto
-
-- **7.1. Documentación del proyecto**
-- **7.2. Informe de avances**
-- **7.3. Informe de riesgos**
-- **7.4. Gestión de decisiones y cambios**
-
-## Tabla de trazabilidad con el MVP
-
-| Entregable WBS | Secciones del MVP que lo respaldan |
+| Entregable WBS | Secciones del MVP |
 |---|---|
-| 1. Gestión de cuentas y perfiles | Conceptos principales; Perfiles de usuario |
-| 2. Gestión de propuestas y solicitudes | Descripción general; Publicación de propuestas; Disponibilidad horaria; Búsqueda y filtros |
-| 3. Compatibilidad e intercambios | Sistema de compatibilidad; Intercambios recíprocos y créditos virtuales |
-| 4. Clases, sesiones y créditos | Publicación de propuestas; Solicitudes y reservas; Disponibilidad horaria; Historial de actividades |
-| 5. Confianza, reputación y seguridad | Calificaciones y reputación; Contenidos no permitidos y seguridad; Panel de administración |
-| 6. Recomendaciones mediante IA | Descripción general; Objetivos de aprendizaje; Publicación de propuestas |
-| 7. Administración y control del proyecto | Objetivo del MVP; alcance documental y seguimiento del trabajo práctico |
+| 1. Cuentas y perfiles | Conceptos principales; Perfiles de usuario |
+| 2. Propuestas y solicitudes | Publicación de propuestas; Descripción general; Perfiles de usuario |
+| 3. Búsqueda, compatibilidad y recomendaciones | Sistema de compatibilidad; Búsqueda y filtros; Descripción general |
+| 4. Intercambios y sesiones | Intercambios recíprocos y créditos virtuales; Solicitudes y reservas; Disponibilidad horaria; Historial de actividades |
+| 5. Reputación, seguridad y administración | Calificaciones y reputación; Contenidos no permitidos y seguridad; Panel de administración |
 
-## Supuestos y puntos a confirmar
+## Supuestos y pendientes
 
-- La WBS mezcla entregables del producto con entregables académicos de administración del proyecto, siguiendo la directriz de referencia.
-- El backlog se podrá generar en una etapa posterior y no se utilizó para definir esta WBS.
-- La publicación de solicitudes de aprendizaje se considera una funcionalidad explícita del MVP, aunque debe mantenerse alineada con la redacción final de `docs/mvp.md`.
-- La IA y el cálculo de créditos mediante LLM aparecen como componentes del MVP; conviene definir qué parte será demostrable en la primera versión.
-- La validación de títulos y estudios requiere definir qué documentos se aceptarán y quién realizará la revisión.
-- Las funcionalidades grupales y los intercambios no 1 a 1 se documentan en `docs/alcance-futuro.md` y no forman parte de esta WBS del MVP.
+- El MVP mantiene sesiones individuales 1 a 1.
+- Los límites y reglas del cálculo de créditos mediante LLM están pendientes de definición.
+- Deben definirse los documentos aceptados para validar conocimientos y estudios.
+- La WBS no incorpora documentación académica ni tareas técnicas sin respaldo explícito en el MVP.
+- Clases grupales, equipos docentes e intercambios no 1 a 1 quedan fuera del MVP.
