@@ -44,6 +44,8 @@ Cada pendiente de decisión debe incluir, cuando sea posible, una `Recomendació
 
 La recomendación debe ser concreta y accionable: debe responder cada punto planteado en el pendiente, no limitarse a describir una buena práctica general. Cuando el pendiente solicite campos, valores permitidos, estados, límites, condiciones o reglas, enumerar una propuesta específica para cada uno. Distinguir explícitamente qué parte se deriva del MVP y qué parte es una sugerencia nueva de la IA; no incorporar la sugerencia como requisito aprobado.
 
+El contenido de `Refinamiento aplicado`, `Pendientes de decisión` y `Recomendación de IA` debe escribirse siempre como listas Markdown con viñetas atómicas. Cada viñeta debe expresar una sola acción, decisión, campo, valor, estado, límite o regla; no agrupar varias ideas con comas, punto y coma o frases coordinadas. No usar párrafos corridos en esas secciones. En `Recomendación de IA`, usar una viñeta rotulada para `Recomendación`, `Motivo`, `Alternativas`, `Impacto` y `Estado`, con subviñetas atómicas cuando haya varios elementos.
+
 ## Refinamiento informado por prácticas actuales
 
 Cuando el usuario solicite más profundidad o cuando una definición pendiente afecte de forma importante la calidad del producto, la IA puede proponer alternativas basadas en prácticas actuales, productos comparables, estándares y patrones habituales del mercado.
