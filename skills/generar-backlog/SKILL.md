@@ -46,6 +46,8 @@ La recomendación debe ser concreta y accionable: debe responder cada punto plan
 
 El contenido de `Refinamiento aplicado`, `Pendientes de decisión` y `Recomendación de IA` debe escribirse siempre como listas Markdown con viñetas atómicas. Cada viñeta debe expresar una sola acción, decisión, campo, valor, estado, límite o regla; no agrupar varias ideas con comas, punto y coma o frases coordinadas. No usar párrafos corridos en esas secciones. En `Recomendación de IA`, usar una viñeta rotulada para `Recomendación`, `Motivo`, `Alternativas`, `Impacto` y `Estado`, con subviñetas atómicas cuando haya varios elementos.
 
+Para facilitar la lectura, usar emojis semánticos relacionados con el contenido de cada subviñeta, no repetir automáticamente el mismo emoji en todas. Por ejemplo: `✉️` para correo, `🔐` para contraseñas o seguridad, `📍` para ubicación, `👤` para perfil, `📚` para temas de aprendizaje, `🗓️` para disponibilidad, `🪙` para créditos, `🔎` para búsqueda, `🤝` para compatibilidad, `⭐` para calificaciones y `🛡️` para moderación. Las etiquetas principales (`Recomendación`, `Motivo`, `Alternativas`, `Impacto` y `Estado`) no deben llevar emoji; usar emojis solo en las viñetas de contenido debajo de ellas.
+
 ## Refinamiento informado por prácticas actuales
 
 Cuando el usuario solicite más profundidad o cuando una definición pendiente afecte de forma importante la calidad del producto, la IA puede proponer alternativas basadas en prácticas actuales, productos comparables, estándares y patrones habituales del mercado.
