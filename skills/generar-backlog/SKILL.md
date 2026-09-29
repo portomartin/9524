@@ -38,6 +38,12 @@ La IA puede enriquecer el backlog, pero debe distinguir el origen y el estado de
 - **Pendiente de decisión:** definición necesaria que el MVP todavía no resuelve.
 - **Fuera de alcance:** funcionalidad o regla que no debe incorporarse al MVP.
 
+Los refinamientos y pendientes específicos deben quedar dentro de la HU correspondiente, después de sus criterios de aceptación y trazabilidad. Solo las decisiones o recomendaciones transversales pueden quedar en una sección general.
+
+Cada pendiente de decisión debe incluir, cuando sea posible, una `Recomendación de IA` basada en prácticas actuales, junto con su motivo, alternativas, impacto y estado `pendiente de aprobación`. La recomendación no se considera una decisión aprobada hasta que el usuario la confirme.
+
+La recomendación debe ser concreta y accionable: debe responder cada punto planteado en el pendiente, no limitarse a describir una buena práctica general. Cuando el pendiente solicite campos, valores permitidos, estados, límites, condiciones o reglas, enumerar una propuesta específica para cada uno. Distinguir explícitamente qué parte se deriva del MVP y qué parte es una sugerencia nueva de la IA; no incorporar la sugerencia como requisito aprobado.
+
 ## Refinamiento informado por prácticas actuales
 
 Cuando el usuario solicite más profundidad o cuando una definición pendiente afecte de forma importante la calidad del producto, la IA puede proponer alternativas basadas en prácticas actuales, productos comparables, estándares y patrones habituales del mercado.
