@@ -72,6 +72,10 @@ Cuando una decisión aprobada modifique el alcance o una regla de negocio del MV
 
 Las historias de usuario deben aparecer después del contenido introductorio de su épica para conservar la trazabilidad del documento. No crear una sección redundante llamada “Subítems”: cuando el backlog se traslade a una herramienta de gestión, las historias podrán representarse como subítems de la épica.
 
+Cuando una HU use conceptos relevantes del negocio, agregar una sección `#### Objetos de dominio involucrados`. Identificar cada objeto con nombre, definición breve, atributos o relaciones relevantes y, cuando aplique, sus estados principales. No inventar objetos ajenos al MVP: si el concepto es ambiguo, presentarlo como propuesta pendiente de validación humana. Diferenciar objetos de dominio —por ejemplo, Sesión, Solicitud, Propuesta, Crédito o Calificación— de pantallas, botones o tareas técnicas.
+
+El detalle completo de los objetos debe mantenerse en `docs/modelo-dominio.md`. Cada objeto mencionado en el backlog debe enlazar a su definición mediante un enlace relativo, por ejemplo `[Sesión](modelo-dominio.md#sesión)`. El modelo de dominio debe derivarse del MVP, documentar definición, atributos, relaciones, estados y reglas, y marcar como `Propuesta pendiente de aprobación` cualquier detalle que el MVP no resuelva. No duplicar definiciones extensas dentro del backlog.
+
 Antes de conservar un storytelling, verificar que cada nodo pertenezca al alcance de la épica, que el resultado final no requiera otra épica y que no aparezcan términos o acciones propios de capacidades posteriores. Si el flujo conduce a otra épica, terminar con un resultado neutral como “Perfil listo”, “Propuesta publicada” o “Sesión completada”.
 
 Presentar el borrador en Markdown. Si se aprueba, guardarlo en `docs/backlog.md`, salvo que el usuario indique otra ubicación o formato. No modificar el MVP, la WBS ni el USM desde esta rama.

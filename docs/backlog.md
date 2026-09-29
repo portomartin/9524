@@ -88,6 +88,12 @@ Como usuario, quiero registrarme para crear una cuenta y utilizar la plataforma.
 - **Aceptación:** se completan los datos básicos y se crea la cuenta.
 - **MVP:** Funcionalidades principales del MVP; Perfiles de usuario.
 
+#### Objetos de dominio involucrados
+
+- 👤 **[Cuenta](modelo-dominio.md#cuenta):** identidad básica de una persona registrada.
+- ✉️ **[Correo](modelo-dominio.md#correo):** dirección usada para identificar y confirmar la cuenta.
+- 🔐 **[Credencial](modelo-dominio.md#credencial):** contraseña protegida asociada a la cuenta.
+
 ### HU-02 — Iniciar y cerrar sesión
 
 #### Refinamiento informado por prácticas actuales
@@ -129,6 +135,12 @@ Como usuario, quiero iniciar y cerrar sesión para acceder a mis actividades y p
 
 - **Aceptación:** el usuario puede iniciar sesión con sus credenciales y cerrar la sesión activa.
 - **MVP:** Funcionalidades principales del MVP.
+
+#### Objetos de dominio involucrados
+
+- 👤 **[Cuenta](modelo-dominio.md#cuenta):** identidad que accede a la plataforma.
+- 🔐 **[Credencial](modelo-dominio.md#credencial):** datos usados para autenticar.
+- 🔑 **Sesión de autenticación:** acceso activo que puede iniciarse, renovarse y cerrarse.
 
 ### HU-03 — Completar el perfil
 
@@ -173,6 +185,12 @@ Como usuario, quiero completar mi nombre, descripción y ubicación general para
 - **Aceptación:** el perfil permite guardar esos datos y editarlos.
 - **MVP:** Perfiles de usuario.
 
+#### Objetos de dominio involucrados
+
+- 👤 **[Perfil](modelo-dominio.md#perfil):** información visible de una persona.
+- 📍 **[Ubicación general](modelo-dominio.md#perfil):** zona aproximada asociada al perfil.
+- 👁️ **[Visibilidad del perfil](modelo-dominio.md#perfil):** regla que determina qué información pueden ver otros usuarios.
+
 ### HU-04 — Definir roles y preferencias
 
 #### Refinamiento informado por prácticas actuales
@@ -212,6 +230,14 @@ Como usuario, quiero indicar mis roles, niveles, objetivos, modalidad y disponib
 
 - **Aceptación:** se pueden configurar Docente y Alumno, niveles por tema, modalidad y franjas horarias.
 - **MVP:** Conceptos principales; Perfiles de usuario; Disponibilidad horaria.
+
+#### Objetos de dominio involucrados
+
+- 👤 **[Usuario](modelo-dominio.md#cuenta):** persona que puede actuar como Docente, Alumno o ambos.
+- 🎭 **[Rol](modelo-dominio.md#cuenta):** forma de participación de un usuario en una actividad.
+- 📚 **[Tema](modelo-dominio.md#tema):** conocimiento que se puede enseñar o aprender.
+- 🗓️ **[Disponibilidad](modelo-dominio.md#disponibilidad):** franjas horarias declaradas por el usuario.
+- ⚙️ **[Preferencia](modelo-dominio.md#perfil):** configuración de modalidad, nivel y objetivos.
 
 ## Épica E2. Propuestas de enseñanza
 
@@ -298,6 +324,14 @@ Como Docente, quiero publicar un conocimiento o habilidad para que otros usuario
 - **Aceptación:** la propuesta incluye nombre, categoría, descripción, niveles, modalidad, duración y créditos.
 - **MVP:** Publicación de propuestas.
 
+#### Objetos de dominio involucrados
+
+- 📝 **[Propuesta de enseñanza](modelo-dominio.md#propuesta):** oferta publicada por un Docente.
+- 📚 **[Tema](modelo-dominio.md#tema):** conocimiento o habilidad de la propuesta.
+- 🗂️ **[Categoría](modelo-dominio.md#categoría):** clasificación definida por la plataforma.
+- 🪙 **[Costo en créditos](modelo-dominio.md#crédito):** cantidad asociada a la propuesta.
+- 🔄 **[Estado de propuesta](modelo-dominio.md#propuesta):** borrador, publicada u oculta.
+
 ### HU-06 — Publicar una sesión individual
 
 #### Refinamiento informado por prácticas actuales
@@ -336,6 +370,13 @@ Como Docente, quiero indicar que mi propuesta es individual para mantener el alc
 
 - **Aceptación:** la propuesta no permite configurar más de un Docente o Alumno en la misma sesión.
 - **MVP:** Publicación de propuestas.
+
+#### Objetos de dominio involucrados
+
+- 📝 **[Propuesta individual](modelo-dominio.md#propuesta):** propuesta destinada a una única persona por sesión.
+- 🗓️ **[Disponibilidad](modelo-dominio.md#disponibilidad):** horarios posibles para realizarla.
+- 👤 **Docente:** usuario responsable de enseñar.
+- 📅 **Duración:** tiempo estimado de la sesión.
 
 ## Épica E3. Solicitudes de aprendizaje
 
@@ -416,6 +457,13 @@ Como Alumno, quiero indicar qué conocimiento deseo aprender para encontrar prop
 - **Aceptación:** la solicitud permite describir el objetivo libremente, indicar nivel, modalidad y disponibilidad.
 - **MVP:** Descripción general; Perfiles de usuario; Disponibilidad horaria.
 
+#### Objetos de dominio involucrados
+
+- 📚 **[Necesidad de aprendizaje](modelo-dominio.md#necesidad-de-aprendizaje):** descripción de lo que una persona desea aprender.
+- 👤 **Alumno:** usuario que declara la necesidad.
+- 🎯 **[Objetivo de aprendizaje](modelo-dominio.md#necesidad-de-aprendizaje):** resultado que espera alcanzar.
+- 🗓️ **[Disponibilidad](modelo-dominio.md#disponibilidad):** momentos en que puede aprender.
+
 ## Épica E4. Búsqueda y compatibilidad
 
 ### Introducción
@@ -495,6 +543,13 @@ Como usuario, quiero buscar conocimientos, propuestas y solicitudes para encontr
 - **Aceptación:** se muestran resultados relacionados con el conocimiento o habilidad buscada.
 - **MVP:** Búsqueda y filtros.
 
+#### Objetos de dominio involucrados
+
+- 🔎 **[Búsqueda](modelo-dominio.md#búsqueda):** consulta realizada sobre propuestas y necesidades.
+- 📝 **[Resultado](modelo-dominio.md#resultado):** propuesta o necesidad que coincide con la consulta.
+- 📚 **[Tema](modelo-dominio.md#tema):** criterio principal de coincidencia.
+- 👤 **[Perfil](modelo-dominio.md#perfil):** información resumida de la persona relacionada.
+
 ### HU-09 — Aplicar filtros
 
 #### Refinamiento informado por prácticas actuales
@@ -537,6 +592,13 @@ Como usuario, quiero filtrar resultados por conocimiento, categoría, nivel, mod
 
 - **Aceptación:** cada filtro puede aplicarse a los resultados y combinarse con otros.
 - **MVP:** Búsqueda y filtros.
+
+#### Objetos de dominio involucrados
+
+- 🧰 **[Filtro](modelo-dominio.md#filtro):** condición aplicada a los resultados.
+- 📚 **[Tema y nivel](modelo-dominio.md#tema):** criterios de conocimiento.
+- 💻 **[Modalidad](modelo-dominio.md#perfil):** presencial o virtual.
+- 🪙 **[Rango de créditos](modelo-dominio.md#crédito):** mínimo y máximo aceptable.
 
 ### HU-10 — Encontrar compatibilidades
 
@@ -582,6 +644,13 @@ Como usuario, quiero encontrar personas compatibles según conocimientos, nivele
 - **Aceptación:** los resultados muestran coincidencias y la información principal de cada usuario.
 - **MVP:** Sistema de compatibilidad.
 
+#### Objetos de dominio involucrados
+
+- 🤝 **[Compatibilidad](modelo-dominio.md#compatibilidad):** coincidencia calculada entre enseñar y aprender.
+- 📚 **[Criterio de compatibilidad](modelo-dominio.md#compatibilidad):** tema, nivel, modalidad o disponibilidad comparados.
+- 📊 **[Puntaje](modelo-dominio.md#compatibilidad):** valor orientativo de la coincidencia.
+- 👤 **[Datos de usuario](modelo-dominio.md#cuenta):** información usada por las reglas.
+
 ### HU-11 — Recibir recomendaciones
 
 #### Refinamiento informado por prácticas actuales
@@ -625,6 +694,13 @@ Como usuario, quiero recibir recomendaciones de clases y personas compatibles se
 
 - **Aceptación:** las recomendaciones consideran objetivos libres, nivel, modalidad y disponibilidad.
 - **MVP:** Descripción general; Sistema de compatibilidad.
+
+#### Objetos de dominio involucrados
+
+- 💡 **[Recomendación](modelo-dominio.md#recomendación):** propuesta de compatibilidad presentada al usuario.
+- 🤝 **[Coincidencia](modelo-dominio.md#compatibilidad):** relación entre una necesidad y una propuesta.
+- 👤 **[Preferencia](modelo-dominio.md#perfil):** configuración que influye en la recomendación.
+- 📈 **[Evento de interacción](modelo-dominio.md#recomendación):** visualización, descarte o solicitud.
 
 ## Épica E5. Intercambios y sesiones
 
@@ -706,6 +782,14 @@ Como Alumno, quiero solicitar una sesión desde una propuesta para comenzar el i
 - **Aceptación:** la solicitud identifica participantes, tema, fecha, horario, duración, modalidad y tipo de intercambio.
 - **MVP:** Solicitudes y reservas.
 
+#### Objetos de dominio involucrados
+
+- 📩 **[Solicitud de sesión](modelo-dominio.md#solicitud):** pedido de un Alumno a un Docente.
+- 📅 **[Sesión](modelo-dominio.md#sesión):** encuentro de aprendizaje que puede surgir de una solicitud aceptada.
+- 👤 **[Participantes](modelo-dominio.md#cuenta):** personas que enseñan y aprenden.
+- 🗓️ **[Horario solicitado](modelo-dominio.md#solicitud):** fecha y franja propuestas.
+- 🔄 **[Estado de solicitud](modelo-dominio.md#solicitud):** pendiente, aceptada, rechazada, cancelada o completada.
+
 ### HU-13 — Elegir el tipo de intercambio
 
 #### Refinamiento informado por prácticas actuales
@@ -743,6 +827,13 @@ Como Docente y Alumno, quiero acordar si el intercambio será recíproco o media
 
 - **Aceptación:** se registra el tipo elegido y, si corresponde, el conocimiento ofrecido o la cantidad de créditos.
 - **MVP:** Intercambios recíprocos y créditos virtuales.
+
+#### Objetos de dominio involucrados
+
+- 🤝 **[Acuerdo de intercambio](modelo-dominio.md#acuerdo-de-intercambio):** condiciones aceptadas por las partes.
+- 🔄 **[Tipo de intercambio](modelo-dominio.md#acuerdo-de-intercambio):** recíproco o mediante créditos.
+- 🪙 **[Valor del intercambio](modelo-dominio.md#acuerdo-de-intercambio):** cantidad de créditos cuando corresponde.
+- 👤 **[Participantes](modelo-dominio.md#cuenta):** usuarios que confirman el acuerdo.
 
 ### HU-14 — Gestionar una solicitud
 
@@ -785,6 +876,13 @@ Como Docente, quiero aceptar o rechazar una solicitud para confirmar si realizar
 
 - **Aceptación:** la solicitud cambia a aceptada o rechazada y conserva su estado.
 - **MVP:** Solicitudes y reservas.
+
+#### Objetos de dominio involucrados
+
+- 📩 **[Solicitud](modelo-dominio.md#solicitud):** pedido que puede ser aceptado, rechazado o cancelado.
+- 🔄 **[Estado de solicitud](modelo-dominio.md#solicitud):** estado actual y transiciones permitidas.
+- 🧾 **[Motivo de decisión](modelo-dominio.md#solicitud):** explicación asociada a un rechazo o cambio.
+- 🔔 **[Notificación](modelo-dominio.md#solicitud):** aviso generado por una modificación relevante.
 
 ### HU-15 — Reservar o cancelar
 
@@ -830,6 +928,13 @@ Como participante, quiero reservar, modificar o cancelar una sesión antes de re
 - **Aceptación:** se aplican los estados y reglas de cancelación definidos por el MVP.
 - **MVP:** Solicitudes y reservas; Disponibilidad horaria.
 
+#### Objetos de dominio involucrados
+
+- 📅 **[Reserva](modelo-dominio.md#reserva):** horario confirmado para una sesión.
+- 🛑 **[Cancelación](modelo-dominio.md#reserva):** acción que interrumpe una solicitud o reserva.
+- 🗓️ **[Horario](modelo-dominio.md#reserva):** fecha y franja acordadas.
+- 🪙 **[Movimiento de créditos](modelo-dominio.md#transferencia):** ajuste asociado a una cancelación aprobada.
+
 ### HU-16 — Completar una sesión
 
 #### Refinamiento informado por prácticas actuales
@@ -869,6 +974,13 @@ Como participante, quiero marcar la sesión como completada para registrar el re
 
 - **Aceptación:** una sesión finalizada queda disponible para historial, créditos y calificación.
 - **MVP:** Solicitudes y reservas; Historial de actividades.
+
+#### Objetos de dominio involucrados
+
+- 📅 **[Sesión](modelo-dominio.md#sesión):** encuentro de aprendizaje reservado.
+- ✅ **[Cierre de sesión](modelo-dominio.md#sesión):** confirmación de que el encuentro ocurrió.
+- ⚠️ **[Disputa](modelo-dominio.md#sesión):** reporte de que la sesión no ocurrió o no fue válida.
+- 🪙 **[Transferencia de créditos](modelo-dominio.md#transferencia):** movimiento posterior a la finalización.
 
 ## Épica E6. Créditos e historial
 
@@ -962,6 +1074,13 @@ Como plataforma, quiero transferir créditos al Docente cuando una sesión media
 - **Aceptación:** el Alumno entrega los créditos, el Docente los recibe y el movimiento queda registrado.
 - **MVP:** Intercambios recíprocos y créditos virtuales.
 
+#### Objetos de dominio involucrados
+
+- 🪙 **[Crédito](modelo-dominio.md#crédito):** unidad interna para facilitar intercambios indirectos.
+- 📒 **[Libro de movimientos](modelo-dominio.md#transferencia):** registro inmutable de entradas y salidas.
+- 🔁 **[Transferencia](modelo-dominio.md#transferencia):** movimiento de créditos entre participantes.
+- 👤 **[Saldo de usuario](modelo-dominio.md#cuenta):** cantidad disponible en una cuenta.
+
 ### HU-18 — Consultar historial
 
 #### Refinamiento informado por prácticas actuales
@@ -1007,6 +1126,13 @@ Como usuario, quiero consultar mis sesiones, aprendizajes, intercambios y movimi
 
 - **Aceptación:** se muestran sesiones solicitadas, aceptadas, canceladas y completadas, además de créditos y temas.
 - **MVP:** Historial de actividades.
+
+#### Objetos de dominio involucrados
+
+- 📜 **[Historial](modelo-dominio.md#historial):** conjunto de actividades registradas de un usuario.
+- 📅 **[Registro de sesión](modelo-dominio.md#sesión):** evento de una sesión y su estado.
+- 🪙 **[Movimiento de crédito](modelo-dominio.md#transferencia):** entrada o salida registrada.
+- ⭐ **[Registro de calificación](modelo-dominio.md#calificación):** valoración emitida o recibida.
 
 ## Épica E7. Calificaciones y reputación
 
@@ -1085,6 +1211,13 @@ Como participante, quiero calificar a la otra persona después de completar una 
 
 - **Aceptación:** solo se puede calificar una sesión completada, con puntuación de 1 a 5 y comentario opcional.
 - **MVP:** Calificaciones y reputación.
+
+#### Objetos de dominio involucrados
+
+- ⭐ **[Calificación](modelo-dominio.md#calificación):** puntuación de 1 a 5 sobre una experiencia completada.
+- 💬 **[Comentario](modelo-dominio.md#calificación):** texto opcional asociado a la calificación.
+- 👤 **[Calificador y calificado](modelo-dominio.md#calificación):** participantes relacionados con la experiencia.
+- 🛡️ **[Denuncia de calificación](modelo-dominio.md#denuncia):** reporte de contenido abusivo.
 
 ## Épica E8. Seguridad y administración
 
@@ -1170,6 +1303,13 @@ Como plataforma, quiero validar publicaciones y permitir denuncias para limitar 
 - **Aceptación:** se aplican categorías y expresiones prohibidas, se muestran advertencias y se pueden denunciar publicaciones o cuentas.
 - **MVP:** Contenidos no permitidos y seguridad.
 
+#### Objetos de dominio involucrados
+
+- 📝 **[Contenido](modelo-dominio.md#denuncia):** propuesta, perfil, comentario u otro material publicado.
+- 🛡️ **[Denuncia](modelo-dominio.md#denuncia):** reporte de contenido o conducta inapropiada.
+- 🗂️ **[Categoría de denuncia](modelo-dominio.md#denuncia):** motivo seleccionado por quien denuncia.
+- 🔄 **[Estado de revisión](modelo-dominio.md#caso-de-moderación):** recibida, en revisión, resuelta o descartada.
+
 ### HU-21 — Administrar denuncias y cuentas
 
 #### Refinamiento informado por prácticas actuales
@@ -1218,6 +1358,14 @@ Como Administrador, quiero revisar denuncias, ocultar publicaciones y suspender 
 
 - **Aceptación:** las sanciones definitivas requieren revisión humana y quedan registradas.
 - **MVP:** Panel de administración; Contenidos no permitidos y seguridad.
+
+#### Objetos de dominio involucrados
+
+- 🛡️ **[Caso de moderación](modelo-dominio.md#caso-de-moderación):** denuncia y decisión asociada.
+- 👤 **[Cuenta](modelo-dominio.md#cuenta):** usuario alcanzado por una medida administrativa.
+- ⚙️ **[Acción administrativa](modelo-dominio.md#caso-de-moderación):** advertencia, ocultamiento o suspensión.
+- 📜 **[Auditoría](modelo-dominio.md#caso-de-moderación):** registro de actor, fecha, motivo y decisión.
+- 🔁 **[Apelación](modelo-dominio.md#caso-de-moderación):** solicitud de revisión de una medida.
 
 ### HU-22 — Validar conocimientos y estudios
 
@@ -1294,3 +1442,11 @@ Como Docente, quiero cargar títulos, certificados o referencias para aumentar l
 - Equipos docentes.
 - Intercambios 2×1 u otras equivalencias.
 - Sesiones con más de un Docente o más de un Alumno.
+
+#### Objetos de dominio involucrados
+
+- 📄 **[Documento de respaldo](modelo-dominio.md#documento-de-respaldo):** archivo presentado para verificar conocimientos o estudios.
+- ✅ **[Solicitud de verificación](modelo-dominio.md#solicitud-de-verificación):** pedido de revisión del documento.
+- 🔄 **[Estado de verificación](modelo-dominio.md#solicitud-de-verificación):** pendiente, verificado o rechazado.
+- 🏅 **[Insignia de verificación](modelo-dominio.md#solicitud-de-verificación):** señal visible del resultado sin exponer el documento.
+- 🧑‍💼 **[Revisor](modelo-dominio.md#revisor):** persona autorizada para evaluar la documentación.
