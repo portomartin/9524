@@ -76,6 +76,20 @@ Cuando una HU use conceptos relevantes del negocio, agregar una sección `#### O
 
 El detalle completo de los objetos debe mantenerse en `docs/modelo-dominio.md`. Cada objeto mencionado en el backlog debe enlazar a su definición mediante un enlace relativo, por ejemplo `[Sesión](modelo-dominio.md#sesión)`. El modelo de dominio debe derivarse del MVP, documentar definición, atributos, relaciones, estados y reglas, y marcar como `Propuesta pendiente de aprobación` cualquier detalle que el MVP no resuelva. No duplicar definiciones extensas dentro del backlog.
 
+Al ejecutar `generar-backlog`, esta revisión de dominio es obligatoria: leer o crear `docs/modelo-dominio.md`, detectar los objetos de negocio relevantes de cada HU, agregar en la HU una referencia breve enlazada y sincronizar en el modelo de dominio su definición completa. La ejecución debe preservar las definiciones y decisiones humanas existentes, actualizar solo lo que se derive del MVP o esté marcado como propuesta, y verificar que cada enlace del backlog apunte a una definición existente.
+
+Para documentar profesionalmente cada objeto en `docs/modelo-dominio.md`, usar cuando corresponda esta estructura:
+
+- `Definición`: qué representa el objeto dentro del negocio.
+- `Identidad`: identificador o criterio que lo distingue.
+- `Atributos`: tabla con nombre, descripción, tipo conceptual y obligatoriedad cuando esté definido.
+- `Relaciones`: vínculos con otros objetos y cardinalidad cuando pueda determinarse.
+- `Estados propuestos`: ciclo de vida y transiciones válidas.
+- `Reglas de negocio`: invariantes y comportamientos que debe respetar.
+- `Decisiones pendientes`: aspectos que requieren aprobación humana.
+
+No definir un objeto circularmente. Diferenciar relaciones —por ejemplo, “una Reserva corresponde a una Sesión”— de reglas de negocio —por ejemplo, “una Reserva confirmada puede cancelarse antes del inicio”—. No inventar tipos técnicos, cardinalidades o estados como hechos aprobados: marcarlos como propuestas cuando el MVP no los establezca.
+
 Antes de conservar un storytelling, verificar que cada nodo pertenezca al alcance de la épica, que el resultado final no requiera otra épica y que no aparezcan términos o acciones propios de capacidades posteriores. Si el flujo conduce a otra épica, terminar con un resultado neutral como “Perfil listo”, “Propuesta publicada” o “Sesión completada”.
 
 Presentar el borrador en Markdown. Si se aprueba, guardarlo en `docs/backlog.md`, salvo que el usuario indique otra ubicación o formato. No modificar el MVP, la WBS ni el USM desde esta rama.
