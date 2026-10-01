@@ -11,6 +11,11 @@ Proyecto universitario para diseñar un MVP de una plataforma donde las personas
 - [Metodología de planificación](docs/metodologia.md)
 - [Alcance futuro](docs/alcance-futuro.md)
 
+## Enlaces externos
+
+- [Tablero Jira BH95](https://martinporto.atlassian.net/jira/software/projects/BH95/boards/2)
+- [Repositorio GitHub](https://github.com/portomartin/9524)
+
 ## Recursos
 
 - Los diagramas vigentes están en `docs/assets/`.
@@ -23,8 +28,6 @@ Proyecto universitario para diseñar un MVP de una plataforma donde las personas
 
 Una misma persona puede desempeñar ambos roles.
 
-## Skills del proyecto
+## Flujo de planificación
 
-Las skills de la carpeta `skills/` ayudan a transformar la especificación en backlog, historias de usuario y documentación revisable.
-
-El flujo de planificación parte de `docs/mvp.md` y tiene tres ramas independientes: WBS, USM y backlog. Cada una deriva su contenido directamente del mismo MVP. El skill `coordinar-planificacion` coordina las tres y presenta sus resultados; el backlog se guardará cuando se ejecute y apruebe su generación.
+El flujo parte de `docs/mvp.md` y produce tres salidas independientes: WBS, USM y backlog. Cada una deriva su contenido directamente del mismo MVP. `coordinar-planificacion` coordina las tres y `refinar-backlog` puede revisar el backlog de forma opcional antes de aprobarlo.
