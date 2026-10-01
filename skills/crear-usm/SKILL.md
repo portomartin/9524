@@ -1,5 +1,5 @@
 ---
-name: user-story-mapping
+name: crear-usm
 description: Crear o actualizar un User Story Map directamente desde el MVP, independiente de la WBS y del backlog, organizando el recorrido de Docente y Alumno.
 ---
 

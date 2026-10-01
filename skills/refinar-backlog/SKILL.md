@@ -1,6 +1,6 @@
 ---
-name: refinar-historias
-description: Revisar y dividir historias de usuario del backlog para que sean claras, comprobables y abordables dentro del MVP.
+name: refinar-backlog
+description: Revisar y dividir las historias de usuario del backlog para que sean claras, comprobables y abordables dentro del MVP.
 ---
 
 # Refinar historias

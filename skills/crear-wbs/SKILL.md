@@ -1,5 +1,5 @@
 ---
-name: wbs-por-entregables
+name: crear-wbs
 description: Crear o actualizar una WBS orientada a entregables a partir de la especificación del MVP, usando una jerarquía numerada de proyecto, bloques principales, módulos y funcionalidades.
 ---
 

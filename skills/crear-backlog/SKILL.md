@@ -1,5 +1,5 @@
 ---
-name: generar-backlog
+name: crear-backlog
 description: Transformar la especificación vigente del MVP en épicas e historias de usuario trazables. Usar cuando se solicite crear o actualizar el backlog del proyecto.
 ---
 
@@ -76,7 +76,7 @@ Cuando una HU use conceptos relevantes del negocio, agregar una sección `#### O
 
 El detalle completo de los objetos debe mantenerse en `docs/modelo-dominio.md`. Cada objeto mencionado en el backlog debe enlazar a su definición mediante un enlace relativo, por ejemplo `[Sesión](modelo-dominio.md#sesión)`. El modelo de dominio debe derivarse del MVP, documentar definición, atributos, relaciones, estados y reglas, y marcar como `Propuesta pendiente de aprobación` cualquier detalle que el MVP no resuelva. No duplicar definiciones extensas dentro del backlog.
 
-Al ejecutar `generar-backlog`, esta revisión de dominio es obligatoria: leer o crear `docs/modelo-dominio.md`, detectar los objetos de negocio relevantes de cada HU, agregar en la HU una referencia breve enlazada y sincronizar en el modelo de dominio su definición completa. La ejecución debe preservar las definiciones y decisiones humanas existentes, actualizar solo lo que se derive del MVP o esté marcado como propuesta, y verificar que cada enlace del backlog apunte a una definición existente.
+Al ejecutar `crear-backlog`, esta revisión de dominio es obligatoria: leer o crear `docs/modelo-dominio.md`, detectar los objetos de negocio relevantes de cada HU, agregar en la HU una referencia breve enlazada y sincronizar en el modelo de dominio su definición completa. La ejecución debe preservar las definiciones y decisiones humanas existentes, actualizar solo lo que se derive del MVP o esté marcado como propuesta, y verificar que cada enlace del backlog apunte a una definición existente.
 
 Para documentar profesionalmente cada objeto en `docs/modelo-dominio.md`, usar cuando corresponda esta estructura:
 
