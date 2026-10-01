@@ -9,14 +9,7 @@ Proyecto universitario para diseñar un MVP de una plataforma donde las personas
 - [USM del MVP](docs/usm.md)
 - [Backlog del MVP](docs/backlog.md)
 - [Metodología de planificación](docs/metodologia.md)
-- [Ejemplo básico de graph de skills](docs/graph-de-skills.md)
-- [Ejemplo básico de loop](docs/loop-basico.md)
 - [Alcance futuro](docs/alcance-futuro.md)
-- [Registro de cambios](docs/cambios.md)
-- [Skill para crear WBS](skills/crear-wbs/SKILL.md)
-- [Skill para crear USM](skills/crear-usm/SKILL.md)
-- [Skill para crear épicas](skills/crear-epicas/SKILL.md)
-- [Skill coordinador del grafo de planificación](skills/coordinar-planificacion/SKILL.md)
 
 ## Recursos
 
