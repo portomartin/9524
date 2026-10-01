@@ -13,8 +13,9 @@ Proyecto universitario para diseñar un MVP de una plataforma donde las personas
 
 ## Enlaces externos
 
-- [Tablero Jira BH95](https://martinporto.atlassian.net/jira/software/projects/BH95/boards/2)
+- [Cronograma Jira BH95](https://martinporto.atlassian.net/jira/software/projects/BH95/boards/2/timeline)
 - [Repositorio GitHub](https://github.com/portomartin/9524)
+- [Carpeta de Google Drive](https://drive.google.com/drive/folders/1yT3fRMZmn2E0MRizzJtzh7e1q5G1IJOz)
 
 ## Recursos
 

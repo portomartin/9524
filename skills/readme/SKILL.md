@@ -29,6 +29,7 @@ El README debe contener estas secciones, en este orden:
 3. `## Enlaces externos`, con:
    - el tablero Jira del proyecto, si puede verificarse;
    - el repositorio GitHub canónico, obtenido del remoto o de una redirección verificada.
+   - la carpeta de Google Drive del proyecto: `https://drive.google.com/drive/folders/1yT3fRMZmn2E0MRizzJtzh7e1q5G1IJOz`.
 4. `## Recursos`, solo si existen recursos vigentes que el usuario quiera destacar.
 5. `## Roles principales`, usando la terminología Docente, Alumno y Administrador cuando corresponda.
 6. Una sección breve sobre el flujo de planificación, indicando que WBS, USM y backlog parten del MVP.
