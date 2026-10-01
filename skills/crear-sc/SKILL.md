@@ -58,7 +58,7 @@ Presentar:
 Generar o actualizar automáticamente estos dos documentos cuando se ejecute la skill:
 
 - `docs/sc.md`: versión canónica y editable en Markdown.
-- `docs/sc-visual.html`: versión visual del canvas, organizada con tarjetas y preparada para imprimir o exportar manualmente a PDF.
+- `docs/sc-visual.png`: versión visual del canvas, organizada con tarjetas y preparada para presentar o insertar en entregas.
 
 Ambos archivos deben expresar el mismo alcance. Presentar también en el chat un resumen del contenido creado o actualizado.
 
