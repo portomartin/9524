@@ -25,6 +25,7 @@ El README debe contener estas secciones, en este orden:
    - `docs/usm.md` — USM del MVP.
    - `docs/backlog.md` — Backlog del MVP.
    - `docs/sc.md` — SC del MVP.
+   - `docs/sc-visual.html` — SC visual del MVP en formato de tarjetas.
    - `docs/metodologia.md` — Metodología de planificación.
    - `docs/alcance-futuro.md` — Alcance futuro.
 3. `## Enlaces externos`, con:

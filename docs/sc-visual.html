@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SC — Scope Canvas del MVP</title>
+  <style>
+    :root {
+      --ink: #17324d;
+      --muted: #5b7186;
+      --paper: #f7f3ea;
+      --line: #d8cdbd;
+      --user: #f4b183;
+      --business: #9dc3e6;
+      --action: #a9d18e;
+      --metric: #ffd966;
+      --note: #fffdf7;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #dfe7ec;
+      font: 15px/1.4 "Segoe UI", Arial, sans-serif;
+    }
+    .canvas {
+      max-width: 1500px;
+      margin: 24px auto;
+      padding: 28px;
+      background: var(--paper);
+      box-shadow: 0 12px 35px #17324d22;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 22px;
+      border-bottom: 3px solid var(--ink);
+      padding-bottom: 14px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 4px; font-size: clamp(28px, 4vw, 48px); letter-spacing: -.04em; }
+    header p { margin-bottom: 0; color: var(--muted); }
+    .legend { display: flex; flex-wrap: wrap; gap: 8px; justify-content: end; color: var(--muted); font-size: 12px; }
+    .legend span { padding: 5px 9px; border: 1px solid var(--line); border-radius: 999px; }
+    .legend .u { background: var(--user); }
+    .legend .b { background: var(--business); }
+    .legend .a { background: var(--action); }
+    .legend .m { background: var(--metric); }
+
+    .group { margin-bottom: 18px; }
+    .group-title {
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 5px 13px;
+      border-radius: 7px 7px 0 0;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .users .group-title { background: var(--user); }
+    .business .group-title { background: var(--business); }
+    .behavior .group-title { background: var(--action); }
+    .grid { display: grid; gap: 12px; }
+    .two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .behavior-grid { grid-template-columns: 1.2fr .8fr; }
+    .block {
+      min-height: 190px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-top: 7px solid var(--ink);
+      background: #fffaf0;
+    }
+    .users .block { border-top-color: #d98548; }
+    .business .block { border-top-color: #4e86b7; }
+    .behavior .block { border-top-color: #60924f; }
+    .metrics { border-top-color: #c4a400 !important; }
+    h2 { margin-bottom: 10px; font-size: 20px; }
+    .cards { display: grid; gap: 8px; }
+    .card {
+      margin: 0;
+      padding: 9px 11px;
+      border: 1px solid #00000018;
+      border-radius: 3px;
+      background: var(--note);
+      box-shadow: 2px 3px 0 #17324d12;
+    }
+    .users .card { background: #fff0e4; }
+    .business .card { background: #edf6ff; }
+    .behavior .card { background: #eff8e9; }
+    .metrics .card { background: #fff8ce; }
+    .card strong { display: block; margin-bottom: 2px; }
+    .compact .card { padding: 7px 9px; font-size: 13px; }
+    .note { color: var(--muted); font-size: 12px; }
+    footer { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    @media (max-width: 850px) {
+      header { display: block; }
+      .legend { justify-content: start; margin-top: 12px; }
+      .two, .three, .behavior-grid { grid-template-columns: 1fr; }
+    }
+    @media print {
+      @page { size: A4 landscape; margin: 10mm; }
+      body { background: white; }
+      .canvas { max-width: none; margin: 0; padding: 0; box-shadow: none; }
+      .block { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <header>
+      <div>
+        <h1>SC — Scope Canvas</h1>
+        <p>Plataforma de intercambio de aprendizajes · alcance del MVP</p>
+      </div>
+      <div class="legend" aria-label="Leyenda de bloques">
+        <span class="u">Usuarios</span><span class="b">Negocio</span><span class="a">Acciones</span><span class="m">Métricas</span>
+      </div>
+    </header>
+
+    <section class="group users">
+      <div class="group-title">Usuarios</div>
+      <div class="grid two">
+        <article class="block">
+          <h2>Necesidades</h2>
+          <div class="cards">
+            <p class="card"><strong>Enseñar y aprender</strong>Compartir conocimientos o habilidades en un entorno educativo, lícito y seguro.</p>
+            <p class="card"><strong>Encontrar compatibilidades</strong>Conectar objetivos, niveles, modalidades y disponibilidad.</p>
+            <p class="card"><strong>Coordinar intercambios</strong>Gestionar sesiones individuales 1 a 1, historial y señales de confianza.</p>
+          </div>
+        </article>
+        <article class="block">
+          <h2>Motivadores</h2>
+          <div class="cards">
+            <p class="card">Aprender lo que se necesita.</p>
+            <p class="card">Enseñar lo que se sabe.</p>
+            <p class="card">Conseguir intercambios recíprocos.</p>
+            <p class="card">Usar créditos internos cuando no existe reciprocidad directa.</p>
+            <p class="card">Participar en una comunidad educativa confiable.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="group business">
+      <div class="group-title">Negocio</div>
+      <div class="grid three">
+        <article class="block">
+          <h2>Propósito</h2>
+          <p class="card">Facilitar el intercambio de aprendizajes entre personas, permitiendo enseñar lo que se sabe y aprender lo que se necesita sin utilizar dinero.</p>
+        </article>
+        <article class="block">
+          <h2>Impacto</h2>
+          <div class="cards">
+            <p class="card">Organizar intercambios de conocimiento dentro de una comunidad.</p>
+            <p class="card">Facilitar el aprendizaje mediante intercambios directos o créditos virtuales.</p>
+            <p class="card">Aumentar la confianza mediante reputación, denuncias y validaciones.</p>
+          </div>
+        </article>
+        <article class="block compact">
+          <h2>Objetivos del MVP</h2>
+          <div class="cards">
+            <p class="card">Validar una plataforma funcional de intercambio.</p>
+            <p class="card">Registrar usuarios y configurar perfiles.</p>
+            <p class="card">Publicar, buscar y filtrar propuestas compatibles.</p>
+            <p class="card">Coordinar, completar y calificar sesiones.</p>
+            <p class="card">Administrar créditos, historial y denuncias.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="group behavior">
+      <div class="group-title">Comportamiento y medición</div>
+      <div class="grid behavior-grid">
+        <article class="block">
+          <h2>Acciones</h2>
+          <div class="cards compact">
+            <p class="card">Registrarse e iniciar sesión.</p>
+            <p class="card">Configurar perfil, conocimientos, objetivos y disponibilidad.</p>
+            <p class="card">Publicar, buscar, filtrar y detectar compatibilidades.</p>
+            <p class="card">Solicitar, aceptar, rechazar o cancelar sesiones.</p>
+            <p class="card">Acordar intercambios directos o mediante créditos internos.</p>
+            <p class="card">Completar sesiones, consultar historial y calificar.</p>
+            <p class="card">Denunciar usuarios o publicaciones cuando sea necesario.</p>
+          </div>
+        </article>
+        <article class="block metrics">
+          <h2>Métricas propuestas</h2>
+          <div class="cards compact">
+            <p class="card">Usuarios registrados y perfiles completos.</p>
+            <p class="card">Propuestas publicadas y coincidencias detectadas.</p>
+            <p class="card">Solicitudes aceptadas y sesiones completadas.</p>
+            <p class="card">Intercambios recíprocos y transferencias de créditos.</p>
+            <p class="card">Calificaciones emitidas y promedio de reputación.</p>
+            <p class="card">Denuncias recibidas/resueltas y cuentas suspendidas/reactivadas.</p>
+          </div>
+          <p class="note">No hay metas numéricas aprobadas en el MVP.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      Documento visual derivado de <code>docs/sc.md</code>. El Markdown es la versión canónica. Este archivo no incorpora storytelling ni amplía el alcance del MVP.
+    </footer>
+  </main>
+</body>
+</html>
