@@ -8,6 +8,7 @@ Proyecto universitario para diseñar un MVP de una plataforma donde las personas
 - [WBS del MVP](docs/wbs.md)
 - [USM del MVP](docs/usm.md)
 - [Backlog del MVP](docs/backlog.md)
+- [SC del MVP](docs/sc.md)
 - [Metodología de planificación](docs/metodologia.md)
 - [Alcance futuro](docs/alcance-futuro.md)
 
