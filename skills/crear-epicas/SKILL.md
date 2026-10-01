@@ -1,6 +1,6 @@
 ---
 name: crear-epicas
-description: Crear o actualizar las épicas del backlog a partir del MVP aprobado, manteniendo trazabilidad, alcance y compatibilidad con Jira.
+description: Crear o actualizar las épicas del backlog a partir del MVP aprobado, manteniendo alcance y compatibilidad con Jira.
 ---
 
 # Crear épicas del backlog
@@ -34,7 +34,6 @@ Para cada épica presentar:
 - ID y nombre.
 - Objetivo o capacidad que agrupa.
 - Historias incluidas, si ya existen.
-- Secciones del MVP que la respaldan.
 - Pendientes o límites relevantes.
 
 Ejemplo de estructura:
@@ -44,9 +43,7 @@ Ejemplo de estructura:
 
 **Objetivo:** permitir encontrar propuestas, solicitudes y personas compatibles.
 
-**Historias:** HU-08, HU-09, HU-10, HU-11.
-
-**Trazabilidad:** Búsqueda y filtros; Sistema de compatibilidad; Descripción general.
+**Historias:** HU08, HU09, HU10, HU11.
 ```
 
 ## Conservación del backlog
@@ -58,7 +55,7 @@ Ejemplo de estructura:
 
 ## Salida
 
-Presentar primero el borrador de épicas y una tabla de trazabilidad. Incluir un apartado de duplicados, cambios y pendientes.
+Presentar primero el borrador de épicas. Incluir un apartado de duplicados, cambios y pendientes.
 
 Por defecto, no guardar archivos ni crear issues externos. Para guardar el resultado, requerir aprobación explícita y escribir en `docs/backlog.md` sin sobrescribir historias no relacionadas.
 

@@ -24,6 +24,14 @@ Dato protegido utilizado para autenticar una Cuenta.
 - **Relaciones:** pertenece a una Cuenta.
 - **Reglas:** nunca se almacena en texto plano.
 
+## Sesión de autenticación
+
+Acceso temporal de una Cuenta autenticada a la plataforma.
+
+- **Relaciones:** pertenece a una Cuenta y se valida mediante su Credencial.
+- **Estados derivados:** activa o cerrada.
+- **Pendiente:** duración, renovación y cierre simultáneo de todas las sesiones.
+
 ## Perfil
 
 Información de una persona que la comunidad puede consultar según las reglas de visibilidad.
@@ -58,9 +66,9 @@ Clasificación definida por la plataforma para organizar Temas y Propuestas.
 
 Franjas horarias en las que una persona puede participar.
 
-- **Atributos:** días, horarios y zona horaria.
+- **Atributos derivados del MVP:** días y horarios.
 - **Relaciones:** pertenece a un Perfil y se compara en una Compatibilidad.
-- **Pendiente:** formato exacto y reglas de actualización.
+- **Pendiente:** formato exacto, zona horaria y reglas de actualización.
 
 ## Propuesta
 
@@ -68,7 +76,8 @@ Oferta publicada por un Docente sobre aquello que desea enseñar.
 
 - **Atributos:** Tema, Categoría, descripción, nivel requerido, nivel alcanzable, modalidad, duración, créditos y tipo de clase.
 - **Relaciones:** pertenece a un Perfil y puede recibir Solicitudes.
-- **Estados:** borrador, publicada u oculta.
+- **Estados derivados del MVP:** publicada u oculta.
+- **Propuesta pendiente de aprobación:** estado borrador.
 
 ## Necesidad de aprendizaje
 
@@ -82,8 +91,9 @@ Declaración de aquello que un Alumno desea aprender.
 
 Consulta realizada sobre Propuestas o Necesidades de aprendizaje.
 
-- **Atributos:** texto, filtros, orden y paginación.
+- **Atributos derivados del MVP:** texto y filtros.
 - **Relaciones:** produce Resultados.
+- **Pendiente:** orden y paginación.
 
 ## Resultado
 
@@ -126,9 +136,10 @@ Pedido realizado por un Alumno a un Docente para coordinar una Sesión.
 Encuentro de aprendizaje entre un Docente y un Alumno.
 
 - **Atributos:** participantes, Tema, fecha, horario, modalidad, duración, tipo de intercambio y Créditos.
-- **Estados:** reservada, completada, cancelada y disputada.
+- **Estados derivados del MVP:** reservada, completada y cancelada.
 - **Relaciones:** surge de una Solicitud aceptada y puede generar una Transferencia y Calificaciones.
-- **Pendiente:** confirmación de participantes y ventana de disputa.
+- **Propuesta pendiente de aprobación:** estado disputada.
+- **Pendiente:** confirmación de participantes y tratamiento de desacuerdos.
 
 ## Acuerdo de intercambio
 
@@ -156,7 +167,8 @@ Unidad interna de la plataforma para facilitar intercambios indirectos.
 Movimiento de Créditos entre participantes asociado a una Sesión completada.
 
 - **Atributos:** origen, destino, cantidad, fecha, motivo y referencia de Sesión.
-- **Reglas:** debe ser atómica, idempotente y no producir saldos negativos.
+- **Regla derivada del MVP:** se realiza al completar una Sesión mediante Créditos y queda registrada para ambas personas.
+- **Propuesta técnica pendiente de aprobación:** ejecutar la operación de forma atómica e idempotente e impedir saldos negativos.
 
 ## Historial
 
@@ -192,6 +204,8 @@ Registro de la revisión y decisión asociada a una Denuncia.
 
 Archivo presentado para validar conocimientos o estudios.
 
+- **Estado de alcance:** concepto candidato; su incorporación a la primera versión requiere confirmación.
+
 - **Atributos:** tipo, formato, tamaño, propietario y estado de revisión.
 - **Estados:** pendiente, verificado o rechazado.
 - **Relaciones:** pertenece a una Solicitud de verificación.
@@ -201,12 +215,16 @@ Archivo presentado para validar conocimientos o estudios.
 
 Pedido para que un Documento de respaldo sea revisado.
 
+- **Estado de alcance:** concepto candidato; su incorporación a la primera versión requiere confirmación.
+
 - **Relaciones:** pertenece a una Cuenta y es atendida por un Revisor.
 - **Estados:** pendiente, verificada o rechazada.
 
 ## Revisor
 
 Persona autorizada para evaluar Solicitudes de verificación.
+
+- **Estado de alcance:** concepto candidato; su incorporación a la primera versión requiere confirmación.
 
 - **Relaciones:** revisa Documentos de respaldo y registra decisiones.
 - **Pendiente:** permisos y responsabilidades exactas.
