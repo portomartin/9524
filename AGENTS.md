@@ -8,8 +8,8 @@
 
 ## Dominio
 
-- Los roles principales son **Docente** y **Alumno**.
-- Una misma persona puede actuar como Docente o Alumno según la actividad.
+- El rol de la plataforma es **USER**.
+- Una misma persona puede enseñar o aprender según la actividad, sin cambiar de rol técnico.
 - Los créditos son internos de la plataforma: no son dinero ni pueden convertirse en dinero.
 
 ## Forma de trabajo

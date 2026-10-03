@@ -4,12 +4,11 @@
 
 ### Conceptos principales
 
-Dentro de la plataforma existirán dos roles principales:
+Dentro de la plataforma existirá un único rol técnico:
 
-- **Docente:** usuario que ofrece un conocimiento o habilidad y participa como responsable de una clase o sesión de enseñanza.
-- **Alumno:** usuario que solicita o participa en una clase o sesión para aprender un conocimiento o habilidad.
+- **USER:** usuario autenticado que puede ofrecer conocimientos o habilidades y solicitar o participar en sesiones de aprendizaje.
 
-Estos roles no serán tipos de cuenta separados. Una misma persona podrá actuar como docente en una propuesta de enseñanza y como alumno en una solicitud de aprendizaje diferente.
+La participación como persona que enseña o aprende se determina por cada actividad y no constituye un tipo de cuenta separado.
 
 ### Descripción general
 El MVP consistirá en una aplicación web que permita a las personas enseñar lo que saben y aprender de otros usuarios sin utilizar dinero.

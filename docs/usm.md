@@ -7,13 +7,10 @@
 
 `Acceder → Configurar perfil → Ofrecer o buscar aprendizajes → Encontrar compatibilidades → Acordar intercambio → Coordinar sesión → Completar sesión → Consultar historial y calificar`
 
-## Roles
+## Rol y participantes
 
-- **Docente:** ofrece conocimientos y participa como responsable de una sesión.
-- **Alumno:** busca aprendizajes y participa como aprendiz.
-- **Administrador:** revisa denuncias, contenidos y cuentas.
-
-Una misma persona puede actuar como Docente o Alumno según la actividad.
+- **USER:** puede ofrecer conocimientos, buscar aprendizajes y participar en sesiones.
+- **Administrador:** revisa denuncias, contenidos y cuentas mediante permisos administrativos.
 
 ## Mapa de historias
 
@@ -26,7 +23,7 @@ Una misma persona puede actuar como Docente o Alumno según la actividad.
 ### 2. Configurar el perfil
 
 - Completar nombre, descripción y ubicación general.
-- Definir participación como Docente, Alumno o ambos según la actividad.
+- Definir conocimientos que puede ofrecer y aprendizajes que desea buscar según la actividad.
 - Indicar conocimientos ofrecidos y buscados.
 - Informar nivel y objetivos por tema.
 - Configurar disponibilidad y modalidad presencial o virtual.
@@ -34,13 +31,13 @@ Una misma persona puede actuar como Docente o Alumno según la actividad.
 
 ### 3. Ofrecer o buscar aprendizajes
 
-#### Docente
+#### Persona que ofrece un aprendizaje
 
 - Publicar una propuesta con conocimiento, categoría y descripción.
 - Informar nivel requerido, nivel alcanzable, modalidad y duración.
 - Definir créditos y publicar solo sesiones individuales.
 
-#### Alumno
+#### Persona que busca un aprendizaje
 
 - Indicar qué conocimiento desea aprender.
 - Describir libremente su objetivo.
@@ -90,9 +87,9 @@ Una misma persona puede actuar como Docente o Alumno según la actividad.
 
 ## Release slice
 
-El MVP incluye las historias anteriores para intercambios y sesiones individuales 1 a 1 entre un Docente y un Alumno.
+El MVP incluye las historias anteriores para intercambios y sesiones individuales 1 a 1 entre dos usuarios.
 
-Fuera del MVP quedan las clases grupales, los equipos docentes, los intercambios 2×1 y cualquier sesión con más de un Docente o Alumno.
+Fuera del MVP quedan las clases grupales, los equipos de enseñanza, los intercambios 2×1 y cualquier sesión con más de dos usuarios.
 
 ## Trazabilidad
 

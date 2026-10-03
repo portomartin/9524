@@ -7,8 +7,8 @@ Este documento define los conceptos principales del producto y sus relaciones. S
 Identidad de una persona registrada en la plataforma.
 
 - **Atributos:** correo, credencial y estado de acceso.
-- **Relaciones:** tiene un Perfil, puede asumir los roles Docente y Alumno y posee un saldo de Créditos.
-- **Reglas:** una misma persona puede actuar con ambos roles.
+- **Relaciones:** tiene un Perfil, posee el rol técnico `USER` y posee un saldo de Créditos.
+- **Reglas:** la capacidad de enseñar o aprender se determina por la actividad, no por roles de cuenta separados.
 
 ## Correo
 
@@ -40,13 +40,6 @@ Información de una persona que la comunidad puede consultar según las reglas d
 - **Relaciones:** pertenece a una Cuenta y participa en Propuestas, Solicitudes, Sesiones y Calificaciones.
 - **Pendiente:** campos obligatorios y visibilidad de cada dato.
 
-## Rol
-
-Forma de participación de una persona como Docente, Alumno o ambos.
-
-- **Relaciones:** se configura en el Perfil y se aplica a una Sesión o Solicitud.
-- **Reglas:** Docente enseña; Alumno aprende.
-
 ## Tema
 
 Conocimiento o habilidad que puede enseñarse o aprenderse.
@@ -72,7 +65,7 @@ Franjas horarias en las que una persona puede participar.
 
 ## Propuesta
 
-Oferta publicada por un Docente sobre aquello que desea enseñar.
+Oferta publicada por un USER sobre aquello que desea enseñar.
 
 - **Atributos:** Tema, Categoría, descripción, nivel requerido, nivel alcanzable, modalidad, duración, créditos y tipo de clase.
 - **Relaciones:** pertenece a un Perfil y puede recibir Solicitudes.
@@ -81,7 +74,7 @@ Oferta publicada por un Docente sobre aquello que desea enseñar.
 
 ## Necesidad de aprendizaje
 
-Declaración de aquello que un Alumno desea aprender.
+Declaración de aquello que un USER desea aprender.
 
 - **Atributos:** Tema, nivel, objetivo, modalidad y Disponibilidad.
 - **Relaciones:** pertenece a un Perfil y participa en una Compatibilidad.
@@ -125,7 +118,7 @@ Compatibilidad presentada al usuario como una opción especialmente relevante.
 
 ## Solicitud
 
-Pedido realizado por un Alumno a un Docente para coordinar una Sesión.
+Pedido realizado por un USER a otro USER para coordinar una Sesión.
 
 - **Atributos:** participantes, Propuesta, horario, modalidad, tipo de intercambio y Créditos.
 - **Estados:** pendiente, aceptada, rechazada, cancelada y completada.
@@ -133,7 +126,7 @@ Pedido realizado por un Alumno a un Docente para coordinar una Sesión.
 
 ## Sesión
 
-Encuentro de aprendizaje entre un Docente y un Alumno.
+Encuentro de aprendizaje entre dos USER.
 
 - **Atributos:** participantes, Tema, fecha, horario, modalidad, duración, tipo de intercambio y Créditos.
 - **Estados derivados del MVP:** reservada, completada y cancelada.

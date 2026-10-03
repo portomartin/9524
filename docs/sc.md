@@ -4,9 +4,8 @@
 
 ### Necesidades
 
-- **Docente:** enseñar conocimientos o habilidades en un entorno educativo, lícito y seguro.
-- **Alumno:** encontrar personas compatibles para aprender conocimientos o habilidades.
-- **Docente y Alumno:** describir objetivos de aprendizaje, nivel, modalidad y disponibilidad.
+- **USER:** enseñar conocimientos o habilidades y encontrar personas compatibles para aprender.
+- **USER:** describir objetivos de aprendizaje, nivel, modalidad y disponibilidad según cada actividad.
 - Encontrar intercambios recíprocos o alternativas mediante créditos virtuales.
 - Coordinar sesiones individuales 1 a 1 y consultar el historial de actividad.
 - Contar con señales de confianza mediante calificaciones, reputación y validación opcional de estudios.
@@ -64,7 +63,7 @@ Los dos primeros puntos se desprenden del objetivo del MVP. El impacto de largo 
 Se espera que los usuarios:
 
 1. Se registren e inicien sesión.
-2. Configuren su perfil como Docente, Alumno o ambos según la actividad.
+2. Configuren su perfil como USER e indiquen qué pueden enseñar y qué desean aprender.
 3. Indiquen qué pueden enseñar y qué desean aprender.
 4. Definan nivel, objetivos, modalidad y disponibilidad.
 5. Publiquen propuestas de enseñanza.
@@ -137,4 +136,4 @@ Consultar historial y calificar
 Medir adopción, sesiones y resultados
 ```
 
-El SC se mantiene dentro del MVP: aprendizaje entre personas, intercambios directos o mediante créditos internos y sesiones individuales 1 a 1. No incorpora storytelling, clases grupales ni sesiones con más de un Docente o Alumno.
+El SC se mantiene dentro del MVP: aprendizaje entre personas, intercambios directos o mediante créditos internos y sesiones individuales 1 a 1. No incorpora storytelling, clases grupales ni sesiones con más de dos usuarios.

@@ -81,26 +81,26 @@ En cada subtarea de Backend se incluyen endpoints REST sugeridos con sus paráme
 - Diferenciar información visible para el propio usuario y para otros.
 - Cubrir carga inicial, edición y error de guardado.
 
-### HU04 — Definir roles y preferencias
+### HU04 — Definir preferencias de participación
 
 #### Backend/API REST — Implementar preferencias de participación
 
-- Crear modelo y endpoints para roles Docente y Alumno.
+- Crear el rol técnico `USER` y los datos de participación como persona que enseña o aprende.
 - Endpoints sugeridos: `GET /api/v1/me/preferences` y `PUT /api/v1/me/preferences`.
-- Body de `PUT` sugerido: `{ roles, teachingTopics[{ topicId, level }], learningTopics[{ topicId, level, objective }], preferredModality, availability[{ dayOfWeek, startTime, endTime }] }`.
+- Body de `PUT` sugerido: `{ teachingTopics[{ topicId, level }], learningTopics[{ topicId, level, objective }], preferredModality, availability[{ dayOfWeek, startTime, endTime }] }`.
 - Persistir conocimientos ofrecidos y buscados, nivel, objetivos, modalidad y disponibilidad.
 - Validar valores permitidos y consistencia por tema.
 - Permitir modificar preferencias sin perder datos existentes.
 - Exponer la información faltante para mejorar la compatibilidad.
 
-#### Frontend — Crear pantalla de roles y preferencias
+#### Frontend — Crear pantalla de preferencias de participación
 
-- Permitir seleccionar uno o ambos roles.
+- Permitir indicar conocimientos ofrecidos y aprendizajes buscados en la misma cuenta `USER`.
 - Consultar y aplicar el skill `convenciones-frontend`.
 - Crear formularios para temas, niveles, objetivos, modalidad y franjas horarias.
 - Mostrar qué información está incompleta.
 - Permitir editar y conservar la configuración.
-- Cubrir combinaciones de Docente, Alumno y ambos roles.
+- Cubrir la configuración de conocimientos ofrecidos y aprendizajes buscados en una misma cuenta `USER`.
 
 ## Épica E2. Propuestas de enseñanza
 
@@ -129,7 +129,7 @@ En cada subtarea de Backend se incluyen endpoints REST sugeridos con sus paráme
 
 #### Backend/API REST — Aplicar regla de sesión individual
 
-- Garantizar que una propuesta tenga un solo Docente y un solo Alumno.
+- Garantizar que una propuesta origine sesiones individuales con exactamente dos USER.
 - Endpoint sugerido: `GET /api/v1/teaching-offers/{offerId}/session-configuration`.
 - Path: `offerId`; sin body. Devuelve la configuración individual de la propuesta.
 - Rechazar configuraciones grupales o con múltiples participantes.
@@ -365,7 +365,7 @@ En cada subtarea de Backend se incluyen endpoints REST sugeridos con sus paráme
 
 #### Backend/API REST — Implementar transferencia consistente de créditos
 
-- Crear operación transaccional de débito al Alumno y crédito al Docente.
+- Crear operación transaccional de débito al USER que aprende y crédito al USER que ofrece el aprendizaje.
 - Endpoint sugerido: `POST /api/v1/sessions/{sessionId}/credit-transfer`.
 - Path: `sessionId`; la cantidad y los participantes deben derivarse de la sesión. Body opcional: `{ confirmed: true }`. Aceptar header `Idempotency-Key` para evitar duplicados.
 - Validar saldo suficiente y evitar saldos negativos.

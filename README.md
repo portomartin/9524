@@ -26,10 +26,9 @@ Proyecto universitario para diseñar un MVP de una plataforma donde las personas
 
 ## Roles principales
 
-- **Docente:** ofrece conocimientos o habilidades.
-- **Alumno:** solicita o participa en actividades de aprendizaje.
+- **USER:** puede ofrecer conocimientos o habilidades y también solicitar o participar en actividades de aprendizaje.
 
-Una misma persona puede desempeñar ambos roles.
+Una misma persona puede enseñar o aprender según la actividad, sin cambiar su rol técnico.
 
 ## Flujo de planificación
 

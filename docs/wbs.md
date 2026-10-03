@@ -18,8 +18,8 @@ La WBS descompone el producto en entregables y capacidades verificables. Se deri
 #### 1.2. Perfil y participación
 
 - **1.2.1. Información personal y ubicación general**
-- **1.2.2. Rol de Docente**
-- **1.2.3. Rol de Alumno**
+- **1.2.2. Participación como persona que enseña**
+- **1.2.3. Participación como persona que aprende**
 - **1.2.4. Conocimientos ofrecidos y buscados**
 - **1.2.5. Nivel y objetivos por tema**
 - **1.2.6. Disponibilidad y modalidad preferida**
@@ -142,4 +142,4 @@ La WBS descompone el producto en entregables y capacidades verificables. Se deri
 - Los límites y reglas del cálculo de créditos mediante LLM están pendientes de definición.
 - Deben definirse los documentos aceptados para validar conocimientos y estudios.
 - La WBS no incorpora documentación académica ni tareas técnicas sin respaldo explícito en el MVP.
-- Clases grupales, equipos docentes e intercambios no 1 a 1 quedan fuera del MVP.
+- Clases grupales, equipos de enseñanza e intercambios no 1 a 1 quedan fuera del MVP.

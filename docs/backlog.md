@@ -9,7 +9,7 @@ Las historias se derivan exclusivamente de `docs/mvp.md`. No se asignan priorida
 
 ### Introducción
 
-Esta épica permite que una persona ingrese a la plataforma y configure la información necesaria para participar como Docente, Alumno o ambas cosas.
+Esta épica permite que una persona ingrese a la plataforma y configure la información necesaria para ofrecer o buscar aprendizajes.
 
 Construir una identidad básica y unas preferencias que permitan encontrar aprendizajes y personas compatibles.
 
@@ -74,15 +74,15 @@ Como usuario, quiero completar mi nombre, descripción y ubicación general para
 - Visibilidad de ubicación
 - Posibilidad de ocultar el perfil y reglas para eliminar o cambiar información.
 
-### HU04 Definir roles y preferencias
+### HU04 Definir preferencias de participación
 
-Como usuario, quiero indicar mis roles, niveles, objetivos, modalidad y disponibilidad para encontrar aprendizajes compatibles.
+Como usuario, quiero indicar mis conocimientos ofrecidos, aprendizajes buscados, niveles, objetivos, modalidad y disponibilidad para encontrar aprendizajes compatibles.
 
-- **✅ Aceptación:** Se pueden configurar Docente y Alumno, niveles por tema, modalidad y franjas horarias.
+- **✅ Aceptación:** Se pueden configurar conocimientos ofrecidos y aprendizajes buscados, niveles por tema, modalidad y franjas horarias.
 
 #### 🛠️ Refinamiento aplicado
 
-- Permitir que una persona actúe como Docente y Alumno
+- Permitir que una persona ofrezca y busque aprendizajes sin cambiar su rol técnico `USER`.
 - Configurar nivel por tema
 - Conservar las preferencias al editarlas
 - Mostrar qué información falta para mejorar la compatibilidad.
@@ -96,15 +96,15 @@ Como usuario, quiero indicar mis roles, niveles, objetivos, modalidad y disponib
 
 ### Introducción
 
-Esta épica permite que un Docente publique un conocimiento o habilidad para que otras personas puedan encontrarlo y solicitar una sesión individual.
+Esta épica permite que un USER publique un conocimiento o habilidad para que otras personas puedan encontrarlo y solicitar una sesión individual.
 
 Convertir los conocimientos ofrecidos por la comunidad en propuestas claras, comparables y utilizables dentro del MVP.
 
-Una propuesta publicada contiene la información necesaria para que un Alumno evalúe si desea solicitarla.
+Una propuesta publicada contiene la información necesaria para que otro USER evalúe si desea solicitarla.
 
 ### HU05 Publicar una propuesta
 
-Como Docente, quiero publicar un conocimiento o habilidad para que otros usuarios puedan encontrarlo.
+Como USER, quiero publicar un conocimiento o habilidad para que otros usuarios puedan encontrarlo.
 
 - **✅ Aceptación:** La propuesta incluye nombre, categoría, descripción, niveles, modalidad, duración y créditos.
 
@@ -126,25 +126,25 @@ Como Docente, quiero publicar un conocimiento o habilidad para que otros usuario
 
 ### HU06 Publicar una sesión individual
 
-Como Docente, quiero indicar que mi propuesta es individual para mantener el alcance del MVP.
+Como USER, quiero indicar que mi propuesta es individual para mantener el alcance del MVP.
 
-- **✅ Aceptación:** La propuesta no permite configurar más de un Docente o Alumno en la misma sesión.
+- **✅ Aceptación:** La propuesta no permite configurar más de dos USER en la misma sesión.
 
 #### 🛠️ Refinamiento aplicado
 
-- Validar que cada sesión tenga un solo Docente y un solo Alumno
+- Validar que cada sesión tenga exactamente dos USER
 - Rechazar configuraciones grupales
 - Comunicar la restricción antes de guardar.
 
 #### ❓ Pendientes de decisión
 
-- Si una propuesta puede tener múltiples horarios disponibles y si el Docente puede publicar varias propuestas sobre el mismo tema.
+- Si una propuesta puede tener múltiples horarios disponibles y si un USER puede publicar varias propuestas sobre el mismo tema.
 
 ## Épica E3. Solicitudes de aprendizaje
 
 ### Introducción
 
-Esta épica permite que un Alumno exprese qué desea aprender y con qué objetivo, sin limitarse a opciones predeterminadas.
+Esta épica permite que un USER exprese qué desea aprender y con qué objetivo, sin limitarse a opciones predeterminadas.
 
 Representar necesidades de aprendizaje reales para mejorar la búsqueda y la compatibilidad entre personas.
 
@@ -152,7 +152,7 @@ El sistema dispone de una solicitud de aprendizaje suficientemente clara para bu
 
 ### HU07 Indicar qué aprender
 
-Como Alumno, quiero indicar qué conocimiento deseo aprender para encontrar propuestas adecuadas.
+Como USER, quiero indicar qué conocimiento deseo aprender para encontrar propuestas adecuadas.
 
 - **✅ Aceptación:** La solicitud permite describir el objetivo libremente, indicar nivel, modalidad y disponibilidad.
 
@@ -259,13 +259,13 @@ Como usuario, quiero recibir recomendaciones de clases y personas compatibles se
 
 Esta épica organiza el paso desde una propuesta encontrada hasta la realización y confirmación de una sesión de aprendizaje.
 
-Permitir que Docentes y Alumnos coordinen intercambios claros, con estados y reglas visibles para ambas partes.
+Permitir que los USER coordinen intercambios claros, con estados y reglas visibles para ambas partes.
 
 Una sesión pasa por estados claros y, al completarse, queda disponible para historial, créditos y calificaciones.
 
 ### HU12 Solicitar una sesión
 
-Como Alumno, quiero solicitar una sesión desde una propuesta para comenzar el intercambio.
+Como USER, quiero solicitar una sesión desde una propuesta para comenzar el intercambio.
 
 - **✅ Aceptación:** La solicitud identifica participantes, tema, fecha, horario, duración, modalidad y tipo de intercambio.
 
@@ -283,7 +283,7 @@ Como Alumno, quiero solicitar una sesión desde una propuesta para comenzar el i
 
 ### HU13 Elegir el tipo de intercambio
 
-Como Docente y Alumno, quiero acordar si el intercambio será recíproco o mediante créditos.
+Como USER, quiero acordar si el intercambio será recíproco o mediante créditos.
 
 - **✅ Aceptación:** Se registra el tipo elegido y, si corresponde, el conocimiento ofrecido o la cantidad de créditos.
 
@@ -301,7 +301,7 @@ Como Docente y Alumno, quiero acordar si el intercambio será recíproco o media
 
 ### HU14 Gestionar una solicitud
 
-Como Docente, quiero aceptar o rechazar una solicitud para confirmar si realizaré la sesión.
+Como USER, quiero aceptar o rechazar una solicitud para confirmar si realizaré la sesión.
 
 - **✅ Aceptación:** La solicitud cambia a aceptada o rechazada y conserva su estado.
 
@@ -371,9 +371,9 @@ Los créditos son internos de la plataforma y no son dinero ni pueden convertirs
 
 ### HU17 Transferir créditos
 
-Como plataforma, quiero transferir créditos al Docente cuando una sesión mediante créditos se complete.
+Como plataforma, quiero transferir créditos al USER que ofrece el aprendizaje cuando una sesión mediante créditos se complete.
 
-- **✅ Aceptación:** El Alumno entrega los créditos, el Docente los recibe y el movimiento queda registrado.
+- **✅ Aceptación:** El USER que aprende entrega los créditos, el USER que ofrece el aprendizaje los recibe y el movimiento queda registrado.
 
 #### 🛠️ Refinamiento aplicado
 
@@ -510,7 +510,7 @@ Como Administrador, quiero revisar denuncias, ocultar publicaciones y suspender 
 
 ### HU22 Validar conocimientos y estudios
 
-Como Docente, quiero cargar títulos, certificados o referencias para aumentar la confianza en mis propuestas.
+Como USER, quiero cargar títulos, certificados o referencias para aumentar la confianza en mis propuestas.
 
 - **✅ Aceptación:** La documentación puede revisarse y el perfil muestra un nivel de verificación.
 
@@ -559,6 +559,6 @@ Como Docente, quiero cargar títulos, certificados o referencias para aumentar l
 ## Exclusiones del MVP
 
 - Clases grupales.
-- Equipos docentes.
+- Equipos de enseñanza.
 - Intercambios 2×1 u otras equivalencias.
-- Sesiones con más de un Docente o más de un Alumno.
+- Sesiones con más de dos USER.
