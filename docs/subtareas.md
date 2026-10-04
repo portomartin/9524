@@ -53,8 +53,8 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
   Request body:
   ```json
   {
-    "email": "...",
-    "password": "..."
+    "email": "martin@example.com",
+    "password": "Password123!"
   }
   ```
   Response: `201 Created`, `400 Bad Request` o `409 Conflict`. No almacenar contraseñas en texto plano.
@@ -69,7 +69,10 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
   ```
   Login request body:
   ```json
-  { "email": "...", "password": "..." }
+  {
+    "email": "martin@example.com",
+    "password": "Password123!"
+  }
   ```
   Login response: `200 OK` con cookie segura o `401 Unauthorized`. Logout invalida la sesión.
 - **Frontend:** Crear login, logout, protección de rutas y estados de error; mantener el estado `USER` de forma segura.
@@ -118,14 +121,14 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
   Request body:
   ```json
   {
-    "topic": "...",
-    "categoryId": "...",
-    "description": "...",
-    "level": "...",
-    "modality": "...",
+    "topic": "Jira",
+    "categoryId": "cat-01",
+    "description": "Aprendé a organizar un proyecto en Jira.",
+    "level": "Intermedio",
+    "modality": "online",
     "durationMinutes": 60,
     "creditCost": 1,
-    "status": "..."
+    "status": "PUBLISHED"
   }
   ```
   Response: `201 Created`, `200 OK`, `400 Bad Request` o `422 Unprocessable Entity`.
@@ -143,11 +146,11 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
   Request body:
   ```json
   {
-    "topic": "...",
-    "objective": "...",
-    "level": "...",
-    "modality": "...",
-    "availabilitySummary": "..."
+    "topic": "Inglés",
+    "objective": "Conversar con fluidez",
+    "level": "Básico",
+    "modality": "online",
+    "availabilitySummary": "Martes 18:00"
   }
   ```
   Response: `201 Created`, `200 OK`, `400 Bad Request` o `404 Not Found`.
@@ -237,15 +240,15 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
   Request body:
   ```json
   {
-    "offerId": "...",
-    "proposedDate": "YYYY-MM-DD",
-    "startTime": "HH:mm",
+    "offerId": "of-123",
+    "proposedDate": "2026-10-15",
+    "startTime": "18:00",
     "durationMinutes": 60,
-    "modality": "...",
-    "exchangeType": "...",
-    "reciprocalOfferId": "...",
+    "modality": "online",
+    "exchangeType": "RECIPROCAL",
+    "reciprocalOfferId": "of-456",
     "creditCost": 1,
-    "message": "..."
+    "message": "Me interesa intercambiar esta sesión."
   }
   ```
   Crear la sesión con estado `SOLICITADA`. Response: `201 Created`, `400 Bad Request`, `409 Conflict` o `401 Unauthorized`.
@@ -305,7 +308,7 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
   ```json
   {
     "score": 5,
-    "comment": "..."
+    "comment": "Muy clara y útil."
   }
   ```
   Response: `201 Created`, `400 Bad Request`, `403 Forbidden` o `409 Conflict`; permitir una calificación por participante.
@@ -323,10 +326,10 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
   Request body:
   ```json
   {
-    "targetType": "...",
-    "targetId": "...",
-    "reasonCode": "...",
-    "description": "..."
+    "targetType": "OFFER",
+    "targetId": "of-123",
+    "reasonCode": "INAPPROPRIATE",
+    "description": "Contenido no pertinente."
   }
   ```
   Response: `201 Created`, `400 Bad Request` o `409 Conflict`; no revelar datos innecesarios.
