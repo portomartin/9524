@@ -1,6 +1,6 @@
 ---
 name: derivar-planificacion-mvp
-description: Derivar una versión del MVP hacia un resumen, WBS, USM, backlog y subtareas técnicas, dejando todos los resultados documentados localmente.
+description: Derivar una versión del MVP hacia un resumen, WBS, USM, backlog y subtareas técnicas, y finalizar con estimaciones, capacidad del equipo y propuesta de sprints documentadas localmente.
 ---
 
 # Derivar planificación del MVP
@@ -21,6 +21,9 @@ flowchart TD
     E --> F
     F --> G[Crear subtareas técnicas]
     G --> H[Revisar derivación completa]
+    H --> I[Estimar HU y simular capacidad del equipo]
+    I --> J[Proponer sprints y guardar planificación]
+    J --> K[Presentar resultados y pendientes]
 ```
 
 ## Nodos y conexiones
@@ -32,13 +35,19 @@ flowchart TD
 5. **Crear resumen:** redactar una vista rápida del espíritu, flujo, roles, entidad central y principios del MVP. Guardar en `docs/mvp-resumido.md`. No incluir secciones de alcance incluido ni de exclusiones; declarar siempre que es un artefacto derivado, nunca fuente de verdad.
 6. **Guardar documentos locales:** cuando el usuario solicite derivar el plan completo, guardar los resultados aprobados o solicitados en `docs/wbs.md`, `docs/usm.md` y `docs/backlog.md`.
 7. **Crear subtareas técnicas:** después de disponer del backlog local, aplicar [create-subtereas](../create-subtereas/SKILL.md) para descomponer las historias aprobadas en subtareas Backend/API REST y Frontend. Guardar el resultado local en `docs/subtareas.md`.
-8. **Revisar derivación completa:** presentar la versión del MVP utilizada, los documentos generados, los pendientes y cualquier diferencia con los artefactos anteriores.
+8. **Revisar derivación completa:** comprobar la trazabilidad al MVP, los criterios de aceptación y las dependencias de las HU y subtareas. Incorporar el refinamiento solicitado antes de estimar; señalar ambigüedades sin inventar reglas.
+9. **Estimar HU y simular capacidad del equipo:** aplicar [crear-sprints](../crear-sprints/SKILL.md) al backlog revisado y sus subtareas. Reutilizar los datos del equipo y decisiones de la conversación; preguntar lo que falte o declarar supuestos si se solicitó una simulación. Separar capacidad horaria, puntos estimados y velocidad observada o hipotética. Conservar estimaciones anteriores válidas salvo pedido de reestimación. Los 6 integrantes, 15 horas semanales y 20 puntos del ejemplo no son valores universales.
+10. **Proponer sprints y guardar planificación:** continuar con `crear-sprints` para agrupar HU completas según objetivos, dependencias y capacidad. Guardar en `docs/sprints.md` la versión del MVP, fecha, supuestos, capacidad horaria, estimaciones por HU, velocidad de referencia, distribución y trabajo pendiente. Si hay incertidumbres, identificar la propuesta como provisional. No asignar fechas arbitrarias ni reducir puntos para forzar una entrega.
+11. **Presentar resultados y pendientes:** presentar la versión utilizada, documentos generados, capacidad, total de puntos, sprints propuestos, diferencias respecto de la planificación anterior y decisiones pendientes.
 
 ## Independencia y finalización
 
 - Las ramas WBS, USM y backlog no leen las salidas de las otras. Cada una verifica su contenido contra el MVP. Pueden consultar su propio documento previo únicamente para conservar identificadores y formato compatibles con la fuente.
 - Las ramas pueden recorrerse una tras otra; no requieren agentes separados ni ejecución simultánea. El orden de ejecución no crea una dependencia entre ellas.
+- La etapa final de sprints sí depende del backlog revisado, sus subtareas y los datos del equipo. Usa estos documentos para estimar y organizar trabajo, manteniendo el MVP como fuente de requisitos.
+- Si el pedido se limita a un artefacto (por ejemplo, actualizar solo la WBS), no ejecutar la etapa de sprints. En una actualización completa, revisar el impacto en estimaciones y distribución existentes; no reemplazarlas sin analizar qué cambió.
 - Si una rama encuentra una ambigüedad, presentarla como pendiente de esa rama y completar el trabajo posible en las restantes. No inventar reglas ni modificar el MVP.
 - “Derivar todo”, “preparar la planificación” o “actualizar la documentación” permite dejar los resultados en `docs/` cuando el contexto lo indique.
 - Los cambios de alcance o reglas requieren una decisión explícita y deben reflejarse primero en la versión del MVP utilizada.
-- Terminar cuando se hayan guardado y presentado el resumen, WBS, USM, backlog y subtareas, o cuando se informe un bloqueo. Este grafo no publica cambios en GitHub.
+- Terminar cuando se hayan guardado y presentado el resumen, WBS, USM, backlog, subtareas y propuesta de sprints, o cuando se identifique qué parte queda pendiente y por qué. Si faltan datos para comprometer sprints, completar los documentos y estimaciones posibles y dejar la distribución pendiente o como simulación explícita.
+- Este grafo produce documentación local; no publica cambios en GitHub ni crea o modifica issues o sprints en Jira. La aplicación externa requiere que el usuario la solicite y se realiza por separado.

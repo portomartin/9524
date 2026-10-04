@@ -1,6 +1,6 @@
 ---
 name: actualizar-jira
-description: Sincronizar en Jira la planificación local aprobada y publicar siempre el MVP activo y su resumen en la sección Documentos de Confluence, evitando duplicados o pérdida de decisiones.
+description: Sincronizar en Jira la planificación local aprobada, incluidas estimaciones y distribución de HU en sprints, y publicar el MVP activo y su resumen en Documentos de Confluence, evitando duplicados o pérdida de decisiones.
 ---
 
 # Actualizar Jira
@@ -13,6 +13,7 @@ Usar este skill únicamente cuando el usuario solicite crear, actualizar o sincr
 - Leer el archivo de la versión activa, por defecto `docs/mvp-v3.md`.
 - Leer `docs/mvp-resumido.md`.
 - Leer `docs/backlog.md` y `docs/subtareas.md`.
+- Leer `docs/sprints.md` cuando exista. La sincronización completa de la planificación incluye sus story points, objetivos de sprint y asignaciones de HU, siempre dentro del plan aprobado y del alcance solicitado. Si falta, sincronizar los artefactos disponibles e informar que los sprints quedan pendientes; no inventar una distribución.
 - Considerar la documentación local como fuente de la sincronización, no el contenido previo de Jira.
 - No modificar el MVP, WBS, USM, backlog ni subtareas locales desde este skill.
 
@@ -39,8 +40,22 @@ Usar este skill únicamente cuando el usuario solicite crear, actualizar o sincr
 5. Comparar por claves, títulos, padres y contenido antes de crear o editar.
 6. Proponer o ejecutar únicamente los cambios incluidos en la autorización del usuario.
 7. Aplicar la etiqueta de versión a cada issue nueva: épica, historia y subtarea.
-8. Evitar duplicados y conservar estados, responsables, estimaciones y otros campos no solicitados.
-9. Verificar al finalizar la publicación documental, la cantidad de issues creadas o actualizadas, sus etiquetas y sus relaciones.
+8. Evitar duplicados y conservar estados, responsables y otros campos no solicitados. Las estimaciones y asignaciones de sprint se actualizan cuando la sincronización incluya el plan de `docs/sprints.md`; fuera de ese alcance se conservan.
+9. Aplicar la sección **Estimaciones y sprints** cuando corresponda.
+10. Verificar al finalizar la publicación documental, la cantidad de issues creadas o actualizadas, sus etiquetas, relaciones, puntos y distribución final por sprint.
+
+## Estimaciones y sprints
+
+- Resolver HU locales a claves Jira por identificador `HUxx`, versión y proyecto; no usar claves históricas sin comprobar su correspondencia. Resolver primero las HU recién creadas. Ante duplicados ambiguos, detener solo esa asignación.
+- Leer los sprints del tablero con todas sus páginas y descubrir los campos de estimación del sitio. No fijar IDs de campos, tableros o sprints en el skill.
+- Antes de escribir, comprobar cobertura del plan, sumas, capacidad por sprint y ausencia de HU duplicadas. Distinguir estimaciones provisionales de aprobadas; no aplicar una propuesta pendiente como si ya estuviera aprobada. Si el pedido explícito es aplicar esa propuesta, esa instrucción basta y no requiere una nueva confirmación.
+- Reutilizar los sprints existentes por ID verificado o por nombre inequívoco en el tablero. Crear únicamente los que falten y estén incluidos en la planificación autorizada. Conservar la correspondencia local–Jira durante toda la operación para evitar duplicados.
+- Cargar los puntos de las HU y moverlas a los sprints definidos. Las subtareas mantienen su vínculo con la HU; no sumar sus puntos otra vez ni asignar épicas como historias del sprint. Verificar el comportamiento de las subtareas en el tablero.
+- Actualizar nombres y objetivos únicamente según el plan autorizado. Preservar fechas y estados existentes salvo pedido explícito de reprogramación o cambio de estado. Para sprints nuevos, usar fechas aprobadas si existen; en caso contrario crearlos futuros sin inventar fechas, si la herramienta lo permite.
+- Al usar operaciones que reescriben el sprint completo, reenviar los valores actuales de todos los campos que deban conservarse. No iniciar ni cerrar sprints como efecto de sincronizar.
+- Una HU ausente del plan se conserva donde está. Mover al backlog solo si el plan autorizado lo indica expresamente; no vaciar sprints ni eliminar los que sobren automáticamente.
+- Si una HU cambió de sprint o estimación desde la lectura, resolver la discrepancia antes de sobrescribir. Ante respuesta ambigua, releer antes de reintentar; no repetir creaciones a ciegas. Informar resultados parciales si persiste un error.
+- Releer al terminar: cada HU planificada debe tener los puntos y sprint previstos. Comparar totales, listar sprints creados/reutilizados y HU pendientes, y confirmar que no se cambiaron fechas o estados fuera del alcance.
 
 ## Seguridad de la sincronización
 
@@ -49,6 +64,7 @@ Usar este skill únicamente cuando el usuario solicite crear, actualizar o sincr
 - Cuando se autoriza la sincronización, la actualización del MVP activo y de `MVP resumido` en Documentos forma parte obligatoria de la operación.
 - Si no se puede resolver la sección Documentos o una página existente, detener esa publicación y reportarlo; no crear páginas fuera del espacio del proyecto sin autorización.
 - Si el usuario pide solo revisar o comparar, no crear ni editar issues.
+- Si pide solo cargar puntos o distribuir HU, limitar las mutaciones a ese pedido; esa operación acotada no autoriza publicaciones documentales ni otras modificaciones externas. La publicación del MVP y su resumen se mantiene para la sincronización completa.
 - Si hay diferencias de alcance o decisiones ambiguas, detener la sincronización de esa parte y presentarlas.
 - No eliminar issues automáticamente. Proponerlas como obsoletas o pedir autorización específica.
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Crear sprints"
+  short_description: "Estima HU, simula capacidad y organiza sprints"
+  default_prompt: "Usá $crear-sprints para estimar las HU actuales, simular la capacidad del equipo y proponer sprints con objetivos y dependencias."

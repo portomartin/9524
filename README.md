@@ -35,4 +35,4 @@ Una misma persona puede enseñar o aprender según la actividad, sin cambiar su 
 
 ## Flujo de planificación
 
-El flujo de planificación parte actualmente del **MVP V3** y produce WBS, USM, backlog y subtareas técnicas. Estos documentos ya fueron regenerados y mantienen trazabilidad con V3. `derivar-planificacion-mvp` produce la documentación local y `refinar-backlog` puede revisar el backlog de forma opcional antes de aprobarlo. La sincronización externa se realiza por separado mediante `actualizar-jira`.
+El flujo de planificación parte actualmente del **MVP V3** y produce WBS, USM, backlog y subtareas técnicas. Estos documentos ya fueron regenerados y mantienen trazabilidad con V3. [derivar-planificacion-mvp](skills/derivar-planificacion-mvp/SKILL.md) coordina la documentación local y su revisión. Al final, aplica [crear-sprints](skills/crear-sprints/SKILL.md) para estimar las HU, simular capacidad del equipo y proponer una distribución por objetivos y dependencias. Al ejecutar esa etapa, el resultado se guarda en `docs/sprints.md`. La sincronización externa se realiza por separado mediante `actualizar-jira`.
