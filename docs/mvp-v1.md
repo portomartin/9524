@@ -1,6 +1,6 @@
 # Trabajo Práctico
 
-## MVP: Plataforma de intercambio de aprendizajes
+## MVP V1: Plataforma de intercambio de aprendizajes
 
 ### Conceptos principales
 

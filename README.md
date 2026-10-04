@@ -4,7 +4,10 @@ Proyecto universitario para diseñar un MVP de una plataforma donde las personas
 
 ## Documentación principal
 
-- [Especificación del MVP](docs/mvp.md)
+- [Especificación del MVP V1](docs/mvp-v1.md)
+- [Especificación del MVP V2](docs/mvp-v2.md)
+- [Especificación del MVP V3](docs/mvp-v3.md)
+- [MVP resumido](docs/mvp-resumido.md)
 - [WBS del MVP](docs/wbs.md)
 - [USM del MVP](docs/usm.md)
 - [Backlog del MVP](docs/backlog.md)
@@ -32,4 +35,4 @@ Una misma persona puede enseñar o aprender según la actividad, sin cambiar su 
 
 ## Flujo de planificación
 
-El flujo parte de `docs/mvp.md` y produce tres salidas independientes: WBS, USM y backlog. Cada una deriva su contenido directamente del mismo MVP. `coordinar-planificacion` coordina las tres y `refinar-backlog` puede revisar el backlog de forma opcional antes de aprobarlo.
+El flujo de planificación parte actualmente del **MVP V3** y produce WBS, USM, backlog y subtareas técnicas. Estos documentos ya fueron regenerados y mantienen trazabilidad con V3. `derivar-planificacion-mvp` produce la documentación local y `refinar-backlog` puede revisar el backlog de forma opcional antes de aprobarlo. La sincronización externa se realiza por separado mediante `actualizar-jira`.

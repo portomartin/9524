@@ -1,145 +1,128 @@
-# WBS del MVP
+# WBS del MVP V3
 
-**Proyecto:** Plataforma de intercambio de aprendizajes  
-**Versión:** 1.1 — derivada del MVP aprobado
+**Fuente de verdad:** [`mvp-v3.md`](mvp-v3.md)
 
-La WBS descompone el producto en entregables y capacidades verificables. Se deriva exclusivamente de `docs/mvp.md`.
+La WBS se deriva exclusivamente del MVP V3 activo.
 
 ## 0. Plataforma de intercambio de aprendizajes
 
-### 1. Cuentas y perfiles
+### 1. Descubrimiento y acceso público
 
-#### 1.1. Acceso a la plataforma
+#### 1.1 Experiencia de `GUEST`
 
-- **1.1.1. Registro de usuario**
-- **1.1.2. Inicio de sesión**
-- **1.1.3. Cierre de sesión**
+- **1.1.1. Explorar propuestas de enseñanza**
+- **1.1.2. Explorar aprendizajes buscados**
+- **1.1.3. Consultar reputaciones públicas**
+- **1.1.4. Consultar rankings y contenido trending**
+- **1.1.5. Consultar agendas públicas**
 
-#### 1.2. Perfil y participación
+#### 1.2 Acceso de usuarios
 
-- **1.2.1. Información personal y ubicación general**
-- **1.2.2. Participación como persona que enseña**
-- **1.2.3. Participación como persona que aprende**
-- **1.2.4. Conocimientos ofrecidos y buscados**
-- **1.2.5. Nivel y objetivos por tema**
-- **1.2.6. Disponibilidad y modalidad preferida**
-- **1.2.7. Reputación y créditos disponibles**
+- **1.2.1. Crear cuenta con registro breve**
+- **1.2.2. Iniciar sesión**
+- **1.2.3. Cerrar sesión**
+- **1.2.4. Convertir una acción protegida de `GUEST` en acceso autenticado**
 
-### 2. Propuestas y solicitudes de aprendizaje
+### 2. Participación y contenidos de aprendizaje
 
-#### 2.1. Propuestas de enseñanza
+#### 2.1 Perfil de `USER`
 
-- **2.1.1. Nombre, categoría y descripción**
-- **2.1.2. Nivel requerido y nivel alcanzable**
-- **2.1.3. Modalidad y duración estimada**
-- **2.1.4. Cantidad de créditos**
-- **2.1.5. Configuración de sesión individual**
-- **2.1.6. Validación y advertencia antes de publicar**
+- **2.1.1. Crear perfil básico**
+- **2.1.2. Editar perfil**
+- **2.1.3. Informar conocimientos que puede enseñar**
+- **2.1.4. Informar aprendizajes que desea buscar**
+- **2.1.5. Informar objetivos, niveles y modalidad**
 
-#### 2.2. Solicitudes de aprendizaje
+#### 2.2 Propuestas y necesidades
 
-- **2.2.1. Conocimiento que se desea aprender**
-- **2.2.2. Objetivo de aprendizaje libre**
-- **2.2.3. Nivel actual**
-- **2.2.4. Modalidad y disponibilidad**
+- **2.2.1. Publicar propuesta de aprendizaje individual**
+- **2.2.2. Editar propuesta**
+- **2.2.3. Registrar necesidad de aprendizaje**
+- **2.2.4. Aplicar validaciones básicas de contenido**
 
-### 3. Búsqueda, compatibilidad y recomendaciones
+### 3. Búsqueda y compatibilidad
 
-#### 3.1. Búsqueda y filtros
+#### 3.1 Exploración
 
-- **3.1.1. Búsqueda por conocimiento o habilidad**
-- **3.1.2. Filtros por categoría y nivel**
-- **3.1.3. Filtros por modalidad y ubicación**
-- **3.1.4. Filtros por disponibilidad**
-- **3.1.5. Filtros por tipo de intercambio y créditos**
+- **3.1.1. Buscar propuestas y aprendizajes buscados**
+- **3.1.2. Filtrar por tema, categoría, nivel y modalidad**
+- **3.1.3. Filtrar por disponibilidad y créditos**
 
-#### 3.2. Compatibilidad basada en reglas
+#### 3.2 Compatibilidad
 
-- **3.2.1. Coincidencia de conocimientos**
-- **3.2.2. Compatibilidad de niveles y objetivos**
-- **3.2.3. Compatibilidad de modalidad y horarios**
-- **3.2.4. Presentación de resultados compatibles**
-- **3.2.5. Detección de intercambios recíprocos**
+- **3.2.1. Comparar conocimientos ofrecidos y aprendizajes buscados**
+- **3.2.2. Comparar niveles, objetivos y modalidad**
+- **3.2.3. Comparar agendas públicas y franjas libres**
+- **3.2.4. Detectar intercambios recíprocos**
 
-#### 3.3. Recomendaciones mediante IA
+### 4. Agenda y sesiones individuales
 
-- **3.3.1. Interpretación de intereses y objetivos**
-- **3.3.2. Recomendación de clases y personas**
-- **3.3.3. Priorización por nivel, modalidad y disponibilidad**
+#### 4.1 Agenda de disponibilidad
 
-### 4. Intercambios y sesiones
+- **4.1.1. Crear disponibilidad concreta por fecha y hora**
+- **4.1.2. Editar y eliminar disponibilidades**
+- **4.1.3. Activar o desactivar visibilidad pública**
+- **4.1.4. Cargar múltiples franjas sin recurrencias persistidas**
+- **4.1.5. Ocultar franjas comprometidas por acuerdos**
 
-#### 4.1. Solicitudes y reservas
+#### 4.2 Intercambio
 
-- **4.1.1. Solicitud de sesión individual**
-- **4.1.2. Datos de la solicitud**
-- **4.1.3. Aceptación o rechazo**
-- **4.1.4. Propuesta de fecha y horario**
-- **4.1.5. Reserva de sesión**
-- **4.1.6. Modificación o cancelación**
-- **4.1.7. Estados pendiente, aceptada, rechazada, cancelada y completada**
+- **4.2.1. Crear una sesión en estado solicitada desde una propuesta**
+- **4.2.2. Elegir intercambio recíproco o mediante créditos**
+- **4.2.3. Gestionar el estado de la sesión**
+- **4.2.4. Confirmar la sesión y pasarla a en curso**
+- **4.2.5. Cancelar la sesión antes de finalizarla**
+- **4.2.6. Finalizar la sesión**
 
-#### 4.2. Intercambio recíproco y créditos
+### 5. Créditos, historial y confianza
 
-- **4.2.1. Acuerdo de intercambio recíproco**
-- **4.2.2. Créditos iniciales**
-- **4.2.3. Transferencia de créditos al completar**
-- **4.2.4. Uso y consulta de créditos**
-- **4.2.5. Registro de movimientos**
-- **4.2.6. Estimación orientativa de créditos mediante LLM**
+#### 5.1 Créditos internos
 
-#### 4.3. Finalización e historial
+- **5.1.1. Asignar créditos a una propuesta**
+- **5.1.2. Transferir créditos al completar una sesión**
+- **5.1.3. Registrar movimientos de créditos**
+- **5.1.4. Evitar saldos negativos y transferencias duplicadas**
 
-- **4.3.1. Confirmación de sesión completada**
-- **4.3.2. Historial de sesiones**
-- **4.3.3. Historial de temas enseñados y aprendidos**
-- **4.3.4. Historial de intercambios y créditos**
+#### 5.2 Historial y reputación
 
-### 5. Reputación, seguridad y administración
+- **5.2.1. Consultar historial propio**
+- **5.2.2. Calificar a otro participante**
+- **5.2.3. Calcular reputación promedio**
+- **5.2.4. Mostrar reputación pública**
 
-#### 5.1. Calificaciones
+### 6. Seguridad y administración
 
-- **5.1.1. Puntuación de 1 a 5**
-- **5.1.2. Comentario opcional**
-- **5.1.3. Cálculo y visualización del promedio**
+#### 6.1 Protección del contenido
 
-#### 5.2. Contenidos y denuncias
+- **6.1.1. Mostrar reglas y advertencias**
+- **6.1.2. Recibir denuncias**
+- **6.1.3. Revisar contenido denunciado**
 
-- **5.2.1. Categorías permitidas**
-- **5.2.2. Lista de palabras y expresiones prohibidas**
-- **5.2.3. Validación de publicaciones**
-- **5.2.4. Advertencias antes de publicar**
-- **5.2.5. Denuncia de usuarios o publicaciones**
+#### 6.2 Administración
 
-#### 5.3. Panel de administración
+- **6.2.1. Consultar usuarios, propuestas y denuncias**
+- **6.2.2. Ocultar propuestas**
+- **6.2.3. Suspender o reactivar cuentas**
 
-- **5.3.1. Consulta de usuarios y publicaciones**
-- **5.3.2. Revisión de denuncias**
-- **5.3.3. Ocultamiento de publicaciones**
-- **5.3.4. Suspensión o reactivación de cuentas**
-- **5.3.5. Administración de categorías y expresiones prohibidas**
-- **5.3.6. Revisión humana de sanciones definitivas**
+## Trazabilidad
 
-#### 5.4. Validación de conocimientos y estudios
-
-- **5.4.1. Carga de títulos, certificados o referencias**
-- **5.4.2. Revisión administrativa**
-- **5.4.3. Nivel de verificación visible en el perfil**
-
-## Trazabilidad con el MVP
-
-| Entregable WBS | Secciones del MVP |
+| Bloque WBS | Secciones del MVP V3 |
 |---|---|
-| 1. Cuentas y perfiles | Conceptos principales; Perfiles de usuario |
-| 2. Propuestas y solicitudes | Publicación de propuestas; Descripción general; Perfiles de usuario |
-| 3. Búsqueda, compatibilidad y recomendaciones | Sistema de compatibilidad; Búsqueda y filtros; Descripción general |
-| 4. Intercambios y sesiones | Intercambios recíprocos y créditos virtuales; Solicitudes y reservas; Disponibilidad horaria; Historial de actividades |
-| 5. Reputación, seguridad y administración | Calificaciones y reputación; Contenidos no permitidos y seguridad; Panel de administración |
+| 1 | Roles de acceso; Principios; Descubrir y comprender |
+| 2 | Crear una participación mínima; Publicar y encontrar compatibilidades |
+| 3 | Publicar y encontrar compatibilidades |
+| 4 | Agenda pública; Acordar y coordinar |
+| 5 | Créditos internos; Calificación y confianza |
+| 6 | Soporte necesario; Seguridad y límites |
 
-## Supuestos y pendientes
+## Exclusiones verificadas
 
-- El MVP mantiene sesiones individuales 1 a 1.
-- Los límites y reglas del cálculo de créditos mediante LLM están pendientes de definición.
-- Deben definirse los documentos aceptados para validar conocimientos y estudios.
-- La WBS no incorpora documentación académica ni tareas técnicas sin respaldo explícito en el MVP.
-- Clases grupales, equipos de enseñanza e intercambios no 1 a 1 quedan fuera del MVP.
+Quedan fuera de esta WBS las recurrencias de agenda, las clases grupales, los equipos de enseñanza, las recomendaciones avanzadas mediante IA, la validación documental, el chat completo, las videollamadas integradas y las integraciones de calendario.
+
+## Pendientes
+
+- Definir los campos mínimos del registro breve.
+- Definir qué información exacta de las propuestas es pública para `GUEST`.
+- Definir la granularidad de duración de las sesiones.
+- Definir reglas de saldo inicial y valor de los créditos.
+- Definir filtros mínimos para la primera implementación.

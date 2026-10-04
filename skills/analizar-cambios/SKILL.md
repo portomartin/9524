@@ -5,7 +5,7 @@ description: Analizar cómo un cambio en la especificación del MVP afecta épic
 
 # Analizar cambios
 
-Comparar la versión actual y la propuesta de cambio de `docs/mvp.md`.
+Comparar la versión activa del MVP (`docs/mvp-v1.md`, `docs/mvp-v2.md` o `docs/mvp-v3.md`) con la propuesta de cambio indicada explícitamente.
 
 Informar:
 

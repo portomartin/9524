@@ -1,564 +1,395 @@
-# Backlog del MVP
+# Backlog del MVP V3
 
 **Proyecto:** Plataforma de intercambio de aprendizajes  
-**Versión:** 1.0 — derivada del MVP aprobado
+**Fuente de verdad:** [`mvp-v3.md`](mvp-v3.md)  
+**Estado:** derivado del MVP V3; pendiente de revisión funcional.
 
-Las historias se derivan exclusivamente de `docs/mvp.md`. No se asignan prioridades ni estimaciones porque el MVP no las define.
+Las historias se derivan exclusivamente del MVP V3. No se mezclan requisitos del backlog anterior ni se asignan prioridades o estimaciones no definidas por la especificación.
 
-## Épica E1. Acceso y perfiles
-
-### Introducción
-
-Esta épica permite que una persona ingrese a la plataforma y configure la información necesaria para ofrecer o buscar aprendizajes.
-
-Construir una identidad básica y unas preferencias que permitan encontrar aprendizajes y personas compatibles.
-
-La persona puede acceder a la plataforma y mantener un perfil completo y editable.
-
-### HU01 Registrarse
-
-Como usuario, quiero registrarme para crear una cuenta y utilizar la plataforma.
-
-- **✅ Aceptación:** Se completan los datos básicos y se crea la cuenta.
-
-#### 🛠️ Refinamiento aplicado
-
-- Validar campos obligatorios y formato
-- Mostrar errores junto al campo correspondiente
-- Conservar los datos válidos después de un error
-- Evitar almacenar contraseñas en texto plano
-- Permitir contraseñas largas y no imponer combinaciones arbitrarias de caracteres.
-
-#### ❓ Pendientes de decisión
-
-- Confirmación de correo
-- Longitud mínima
-- Aceptación de términos
-- Campos exactos del primer paso y política ante un correo ya registrado.
-
-### HU02 Iniciar y cerrar sesión
-
-Como usuario, quiero iniciar y cerrar sesión para acceder a mis actividades y proteger mi cuenta.
-
-- **✅ Aceptación:** El usuario puede iniciar sesión con sus credenciales y cerrar la sesión activa.
-
-#### 🛠️ Refinamiento aplicado
-
-- Ofrecer mensajes de error claros sin revelar información sensible
-- Invalidar la sesión al cerrar sesión
-- Proteger los intentos repetidos y mantener una sesión segura en el navegador.
-
-#### ❓ Pendientes de decisión
-
-- Duración de la sesión
-- Cierre de todas las sesiones
-- Recuperación de contraseña
-- Bloqueo temporal y autenticación multifactor.
-
-### HU03 Completar el perfil
-
-Como usuario, quiero completar mi nombre, descripción y ubicación general para presentarme ante la comunidad.
-
-- **✅ Aceptación:** El perfil permite guardar esos datos y editarlos.
-
-#### 🛠️ Refinamiento aplicado
-
-- Permitir guardar parcialmente y editar el perfil
-- Distinguir campos obligatorios de opcionales
-- Mostrar una vista previa de la información visible para otros usuarios
-- Validar textos y límites de longitud.
-
-#### ❓ Pendientes de decisión
-
-- Campos obligatorios
-- Visibilidad de ubicación
-- Posibilidad de ocultar el perfil y reglas para eliminar o cambiar información.
-
-### HU04 Definir preferencias de participación
-
-Como usuario, quiero indicar mis conocimientos ofrecidos, aprendizajes buscados, niveles, objetivos, modalidad y disponibilidad para encontrar aprendizajes compatibles.
-
-- **✅ Aceptación:** Se pueden configurar conocimientos ofrecidos y aprendizajes buscados, niveles por tema, modalidad y franjas horarias.
-
-#### 🛠️ Refinamiento aplicado
-
-- Permitir que una persona ofrezca y busque aprendizajes sin cambiar su rol técnico `USER`.
-- Configurar nivel por tema
-- Conservar las preferencias al editarlas
-- Mostrar qué información falta para mejorar la compatibilidad.
-
-#### ❓ Pendientes de decisión
-
-- Si se exige al menos un tema para enseñar o aprender
-- Valores permitidos para disponibilidad y si las preferencias pueden modificarse mientras existen solicitudes activas.
-
-## Épica E2. Propuestas de enseñanza
+## Épica E1. Descubrimiento y acceso público
 
 ### Introducción
 
-Esta épica permite que un USER publique un conocimiento o habilidad para que otras personas puedan encontrarlo y solicitar una sesión individual.
+Esta épica permite que una persona entienda el valor de la plataforma y explore oportunidades de aprendizaje antes de registrarse. El acceso `GUEST` es de solo lectura; las acciones protegidas requieren autenticación.
 
-Convertir los conocimientos ofrecidos por la comunidad en propuestas claras, comparables y utilizables dentro del MVP.
+### HU01 Explorar como `GUEST`
 
-Una propuesta publicada contiene la información necesaria para que otro USER evalúe si desea solicitarla.
+Como `GUEST`, quiero explorar propuestas de enseñanza y aprendizajes buscados, para descubrir rápidamente si la plataforma me interesa.
 
-### HU05 Publicar una propuesta
-
-Como USER, quiero publicar un conocimiento o habilidad para que otros usuarios puedan encontrarlo.
-
-- **✅ Aceptación:** La propuesta incluye nombre, categoría, descripción, niveles, modalidad, duración y créditos.
+- **✅ Aceptación:** Se puede consultar contenido público sin crear una cuenta.
 
 #### 🛠️ Refinamiento aplicado
 
-- Validar campos antes de publicar
-- Permitir guardar un borrador
-- Mostrar un resumen previo
-- Impedir publicar sin categoría
-- Modalidad
-- Nivel
-- Duración y créditos cuando sean obligatorios.
+- Mostrar qué se puede aprender.
+- Mostrar qué conocimientos ofrecen otros usuarios.
+- Permitir abrir el detalle público de una propuesta.
 
 #### ❓ Pendientes de decisión
 
-- Moderación previa obligatoria
-- Límites de duración y créditos
-- Edición posterior a una solicitud y estados de borrador/publicada/oculta.
+- Campos exactos visibles en el detalle público.
+- Reglas de orden inicial del contenido.
 
-### HU06 Publicar una sesión individual
+### HU02 Consultar confianza pública
 
-Como USER, quiero indicar que mi propuesta es individual para mantener el alcance del MVP.
+Como `GUEST`, quiero ver reputaciones, rankings y contenido trending, para evaluar si existen oportunidades valiosas.
 
-- **✅ Aceptación:** La propuesta no permite configurar más de dos USER en la misma sesión.
+- **✅ Aceptación:** La información pública se puede consultar sin exponer datos privados ni acuerdos.
 
 #### 🛠️ Refinamiento aplicado
 
-- Validar que cada sesión tenga exactamente dos USER
-- Rechazar configuraciones grupales
-- Comunicar la restricción antes de guardar.
+- Mostrar reputación promedio cuando exista.
+- Separar rankings y trending de los datos privados.
+- No mostrar agendas tomadas ni participantes de acuerdos.
 
 #### ❓ Pendientes de decisión
 
-- Si una propuesta puede tener múltiples horarios disponibles y si un USER puede publicar varias propuestas sobre el mismo tema.
+- Definición exacta de ranking.
+- Definición exacta de trending.
 
-## Épica E3. Solicitudes de aprendizaje
+### HU03 Registrarse cuando sea necesario
+
+Como `GUEST`, quiero registrarme solo cuando intento realizar una acción protegida, para no perder tiempo antes de entender el producto.
+
+- **✅ Aceptación:** Una acción protegida ofrece iniciar sesión o registrarse y conserva el contexto cuando sea posible.
+
+#### 🛠️ Refinamiento aplicado
+
+- Mantener la exploración pública sin registro anticipado.
+- Solicitar únicamente los datos necesarios.
+- Diferenciar inicio de sesión de creación de cuenta.
+
+#### ❓ Pendientes de decisión
+
+- Campos mínimos del registro.
+- Acciones exactas que requieren autenticación.
+
+### HU04 Autenticarse
+
+Como `USER`, quiero iniciar y cerrar sesión, para acceder a mis acciones y proteger mi cuenta.
+
+- **✅ Aceptación:** El usuario puede iniciar sesión, mantener una sesión segura y cerrarla.
+
+#### 🛠️ Refinamiento aplicado
+
+- Mantener el rol técnico `USER`.
+- No crear roles separados para enseñar y aprender.
+- Proteger rutas y operaciones privadas.
+
+#### ❓ Pendientes de decisión
+
+- Duración y renovación de la sesión.
+- Recuperación de contraseña.
+
+## Épica E2. Perfil, propuestas y necesidades
 
 ### Introducción
 
-Esta épica permite que un USER exprese qué desea aprender y con qué objetivo, sin limitarse a opciones predeterminadas.
+Esta épica permite que un `USER` indique qué puede enseñar y qué desea aprender, y publique propuestas concretas para que otras personas las descubran.
 
-Representar necesidades de aprendizaje reales para mejorar la búsqueda y la compatibilidad entre personas.
+### HU05 Completar el perfil
 
-El sistema dispone de una solicitud de aprendizaje suficientemente clara para buscar propuestas adecuadas.
+Como `USER`, quiero completar y editar mi perfil básico, para presentarme ante otras personas.
 
-### HU07 Indicar qué aprender
-
-Como USER, quiero indicar qué conocimiento deseo aprender para encontrar propuestas adecuadas.
-
-- **✅ Aceptación:** La solicitud permite describir el objetivo libremente, indicar nivel, modalidad y disponibilidad.
+- **✅ Aceptación:** El perfil permite guardar y editar la información básica sin exigir completar todo el producto.
 
 #### 🛠️ Refinamiento aplicado
 
-- Permitir objetivo libre y datos estructurados de apoyo
-- Permitir editar
-- Pausar o eliminar la solicitud
-- Mostrar un estado claro de la solicitud.
+- Permitir guardar información parcial.
+- Informar conocimientos ofrecidos y aprendizajes buscados.
+- Mantener separada la información pública de la privada.
 
 #### ❓ Pendientes de decisión
 
-- Si una persona puede tener varias solicitudes simultáneas
-- Cuándo una solicitud deja de estar activa y qué datos son obligatorios.
+- Campos obligatorios del perfil.
+- Visibilidad de ubicación general.
 
-## Épica E4. Búsqueda y compatibilidad
+### HU06 Publicar una propuesta
+
+Como `USER`, quiero publicar algo que sé enseñar, para que otras personas puedan encontrarlo y crear una solicitud de sesión.
+
+- **✅ Aceptación:** La propuesta incluye tema, categoría, descripción, nivel, modalidad, duración y condición de intercambio.
+
+#### 🛠️ Refinamiento aplicado
+
+- Permitir guardar borrador.
+- Validar contenido antes de publicar.
+- Mantener propuestas individuales.
+- Mostrar una vista pública apta para `GUEST`.
+
+#### ❓ Pendientes de decisión
+
+- Campos obligatorios exactos.
+- Revisión previa a la publicación.
+
+### HU07 Registrar un aprendizaje buscado
+
+Como `USER`, quiero indicar qué deseo aprender, para encontrar propuestas compatibles.
+
+- **✅ Aceptación:** La necesidad permite describir objetivo, nivel, modalidad y disponibilidad.
+
+#### 🛠️ Refinamiento aplicado
+
+- Permitir objetivos escritos libremente.
+- Permitir editar o pausar la necesidad.
+- Usar la necesidad en la compatibilidad.
+
+#### ❓ Pendientes de decisión
+
+- Cantidad de necesidades simultáneas.
+- Vencimiento de una necesidad inactiva.
+
+## Épica E3. Búsqueda y compatibilidad
 
 ### Introducción
 
-Esta épica ayuda a las personas a encontrar propuestas, solicitudes y usuarios compatibles según sus conocimientos y objetivos.
+Esta épica conecta lo que un `USER` puede enseñar con lo que otro desea aprender, priorizando coincidencias comprensibles y accionables.
 
-Reducir el esfuerzo de encontrar oportunidades relevantes y favorecer los intercambios recíprocos.
+### HU08 Buscar aprendizajes
 
-Los resultados muestran oportunidades y personas compatibles con información suficiente para decidir el siguiente paso.
+Como visitante o `USER`, quiero buscar propuestas y aprendizajes buscados, para encontrar oportunidades relevantes.
 
-### HU08 Buscar propuestas y solicitudes
-
-Como usuario, quiero buscar conocimientos, propuestas y solicitudes para encontrar oportunidades relevantes.
-
-- **✅ Aceptación:** Se muestran resultados relacionados con el conocimiento o habilidad buscada.
+- **✅ Aceptación:** La búsqueda devuelve resultados públicos relacionados con el conocimiento consultado.
 
 #### 🛠️ Refinamiento aplicado
 
-- Mostrar estado vacío cuando no existan resultados
-- Permitir consultar resultados en páginas
-- Presentar información suficiente para distinguir una propuesta de una solicitud.
+- Permitir búsqueda a `GUEST`.
+- Mostrar estado vacío y errores comprensibles.
+- Diferenciar propuesta de aprendizaje buscado.
 
 #### ❓ Pendientes de decisión
 
-- Orden por relevancia
-- Fecha o compatibilidad
-- Búsqueda parcial y comportamiento ante errores del servicio.
+- Orden por relevancia.
+- Búsqueda parcial y sin resultados.
 
-### HU09 Aplicar filtros
+### HU09 Filtrar resultados
 
-Como usuario, quiero filtrar resultados por conocimiento, categoría, nivel, modalidad, ubicación, disponibilidad, intercambio y créditos.
+Como visitante o `USER`, quiero filtrar resultados, para reducir rápidamente las opciones.
 
-- **✅ Aceptación:** Cada filtro puede aplicarse a los resultados y combinarse con otros.
+- **✅ Aceptación:** Los filtros se pueden combinar y limpiar.
 
 #### 🛠️ Refinamiento aplicado
 
-- Permitir combinar filtros
-- Mostrar filtros activos
-- Ofrecer limpiar uno o todos
-- Conservar los filtros al cambiar de página
-- Informar cuando la combinación no produce resultados.
+- Filtrar por tema, categoría, nivel y modalidad.
+- Filtrar por disponibilidad pública.
+- Filtrar por créditos cuando corresponda.
 
 #### ❓ Pendientes de decisión
 
-- Valores exactos de cada filtro
-- Si se puede filtrar por rangos de créditos y si los filtros se guardan entre sesiones.
+- Filtros mínimos de la primera interfaz.
+- Paginación.
 
 ### HU10 Encontrar compatibilidades
 
-Como usuario, quiero encontrar personas compatibles según conocimientos, niveles, objetivos, modalidad y horarios.
+Como `USER`, quiero conocer qué personas y propuestas son compatibles conmigo, para iniciar un intercambio posible.
 
-- **✅ Aceptación:** Los resultados muestran coincidencias y la información principal de cada usuario.
-
-#### 🛠️ Refinamiento aplicado
-
-- Mostrar qué criterios generaron cada coincidencia
-- Diferenciar coincidencia parcial de coincidencia fuerte
-- Evitar presentar el resultado como garantía de éxito
-- Permitir revisar la información que sustenta la coincidencia.
-
-#### ❓ Pendientes de decisión
-
-- Ponderación de criterios
-- Mínimo de compatibilidad
-- Desempate y tratamiento de datos faltantes.
-
-### HU11 Recibir recomendaciones
-
-Como usuario, quiero recibir recomendaciones de clases y personas compatibles según mis intereses y objetivos.
-
-- **✅ Aceptación:** Las recomendaciones consideran objetivos libres, nivel, modalidad y disponibilidad.
+- **✅ Aceptación:** La compatibilidad explica la coincidencia entre tema, nivel, objetivo, modalidad y disponibilidad.
 
 #### 🛠️ Refinamiento aplicado
 
-- Explicar por qué se recomienda una persona o propuesta
-- Permitir descartar una recomendación
-- Evitar repetir indefinidamente contenido descartado
-- Actualizar recomendaciones cuando cambien las preferencias.
+- Comparar conocimientos ofrecidos y aprendizajes buscados.
+- Comparar agendas públicas libres.
+- Destacar posibles intercambios recíprocos.
+- No presentar la compatibilidad como garantía de éxito.
 
 #### ❓ Pendientes de decisión
 
-- Frecuencia de actualización
-- Cantidad de recomendaciones
-- Uso de IA/LLM y métricas para evaluar la calidad.
+- Ponderación de criterios.
+- Umbral mínimo de compatibilidad.
 
-## Épica E5. Intercambios y sesiones
+## Épica E4. Agenda y sesiones
 
 ### Introducción
 
-Esta épica organiza el paso desde una propuesta encontrada hasta la realización y confirmación de una sesión de aprendizaje.
+Esta épica permite mostrar disponibilidad concreta, acordar una sesión individual y registrar su cumplimiento. La agenda es única para enseñar y aprender.
 
-Permitir que los USER coordinen intercambios claros, con estados y reglas visibles para ambas partes.
+### HU11 Gestionar disponibilidad
 
-Una sesión pasa por estados claros y, al completarse, queda disponible para historial, créditos y calificaciones.
+Como `USER`, quiero cargar disponibilidades concretas, para que otras personas puedan encontrar horarios posibles.
 
-### HU12 Solicitar una sesión
-
-Como USER, quiero solicitar una sesión desde una propuesta para comenzar el intercambio.
-
-- **✅ Aceptación:** La solicitud identifica participantes, tema, fecha, horario, duración, modalidad y tipo de intercambio.
+- **✅ Aceptación:** Cada disponibilidad registra día, fecha y hora, y la unidad mínima es una hora.
 
 #### 🛠️ Refinamiento aplicado
 
-- Validar disponibilidad y datos obligatorios
-- Impedir solicitudes duplicadas para la misma propuesta y franja
-- Mostrar un resumen antes de enviar
-- Registrar el estado inicial como pendiente.
+- Iniciar la agenda vacía.
+- Permitir cargar una hora o muchas fechas.
+- Permitir cargar disponibilidades de meses y años futuros.
+- Ofrecer ayudas de carga masiva sin persistir recurrencias.
 
 #### ❓ Pendientes de decisión
 
-- Conflictos con otras reservas
-- Modificación de una solicitud pendiente y vencimiento de solicitudes sin respuesta.
+- Zona horaria.
+- Duración de franjas mayores a una hora.
 
-### HU13 Elegir el tipo de intercambio
+### HU12 Publicar la agenda
 
-Como USER, quiero acordar si el intercambio será recíproco o mediante créditos.
+Como `USER`, quiero activar o desactivar la visibilidad de mi agenda, para decidir cuándo mostrar mis horarios libres.
 
-- **✅ Aceptación:** Se registra el tipo elegido y, si corresponde, el conocimiento ofrecido o la cantidad de créditos.
+- **✅ Aceptación:** Una agenda activada muestra solo franjas libres y una agenda desactivada no se muestra públicamente.
 
 #### 🛠️ Refinamiento aplicado
 
-- Mostrar claramente las dos alternativas
-- Pedir confirmación del tipo elegido
-- Registrar el conocimiento ofrecido cuando sea recíproco y los créditos cuando corresponda
-- Impedir valores negativos o inconsistentes.
+- Permitir consultar siempre la propia agenda.
+- Permitir que `GUEST` consulte agendas públicas.
+- No mostrar datos de acuerdos privados.
 
 #### ❓ Pendientes de decisión
 
-- Si ambas partes deben confirmar
-- Si pueden cambiar el tipo después de aceptar y cómo se resuelven diferencias sobre el valor del intercambio.
+- Vista exacta para una agenda vacía.
+- Nivel de detalle de la disponibilidad pública.
 
-### HU14 Gestionar una solicitud
+### HU13 Crear una sesión solicitada
 
-Como USER, quiero aceptar o rechazar una solicitud para confirmar si realizaré la sesión.
+Como `USER`, quiero crear una sesión en estado `SOLICITADA` desde una propuesta, para iniciar el intercambio.
 
-- **✅ Aceptación:** La solicitud cambia a aceptada o rechazada y conserva su estado.
+- **✅ Aceptación:** La sesión solicitada identifica participantes, tema, fecha, hora, duración, modalidad y tipo de intercambio, y comienza en estado `SOLICITADA`.
 
 #### 🛠️ Refinamiento aplicado
 
-- Mostrar toda la información antes de aceptar o rechazar
-- Registrar quién y cuándo realizó la acción
-- Impedir aceptar una solicitud incompatible con la disponibilidad actual
-- Comunicar el cambio de estado.
+- Impedir solicitudes sobre franjas tomadas.
+- Mostrar resumen antes de confirmar.
+- Mantener la sesión individual entre dos `USER`.
 
 #### ❓ Pendientes de decisión
 
-- Motivos obligatorios de rechazo
-- Vencimiento automático y posibilidad de volver a abrir una solicitud rechazada.
+- Conflictos de horario.
+- Vencimiento de solicitudes sin respuesta.
 
-### HU15 Reservar o cancelar
+### HU14 Gestionar el estado de una sesión
 
-Como participante, quiero reservar o cancelar una sesión antes de realizarla para mantener actualizada la coordinación del encuentro.
+Como `USER`, quiero aceptar, iniciar o cancelar una sesión solicitada, para llevarla al estado que corresponda durante el intercambio.
 
-- **✅ Aceptación:** Una solicitud aceptada conserva la fecha acordada y cualquiera de los participantes puede cancelarla antes de realizarse, dejando registrado el estado cancelado.
+- **✅ Aceptación:** La sesión registra cambios de estado válidos: `SOLICITADA`, `CONFIRMADA`, `EN_CURSO` o `CANCELADA`.
 
 #### 🛠️ Refinamiento aplicado
 
-- Controlar transiciones válidas de estado
-- Impedir cancelar una sesión ya completada
-- Pedir confirmación antes de cancelar
-- Conservar el historial de cambios.
+- Aceptar una sesión solicitada y pasarla a `CONFIRMADA`.
+- Rechazar una sesión solicitada implica cancelarla sin reservar la franja.
+- Pasar una sesión confirmada a `EN_CURSO` cuando comience.
+- Cancelar antes de realizar la sesión.
+- Ocultar la franja reservada de la agenda pública.
+- Mostrar detalles del acuerdo solo a los participantes.
 
 #### ❓ Pendientes de decisión
 
-- Plazo máximo de cancelación
-- Modificación de horario
-- Motivo de cancelación
-- Penalizaciones y tratamiento de créditos cancelados.
+- Motivos de rechazo.
+- Política de cancelación.
 
-### HU16 Completar una sesión
+### HU15 Finalizar una sesión
 
-Como participante, quiero marcar la sesión como completada para registrar el resultado del encuentro.
+Como participante, quiero marcar una sesión en curso como `FINALIZADA`, para habilitar créditos, historial y calificaciones.
 
-- **✅ Aceptación:** Una sesión finalizada queda disponible para historial, créditos y calificación.
+- **✅ Aceptación:** Una sesión en curso puede pasar a `FINALIZADA` y habilita las acciones posteriores.
 
 #### 🛠️ Refinamiento aplicado
 
-- Permitir completar solo una sesión aceptada y pasada
-- Registrar fecha y participante que la completó
-- Impedir completar dos veces la misma sesión
-- Habilitar historial y calificación después de completarla.
+- Impedir completar dos veces.
+- Registrar fecha y participantes.
+- Mantener el detalle privado para los involucrados.
 
 #### ❓ Pendientes de decisión
 
-- Si deben confirmar ambas partes
-- Cómo se gestionan disputas y cuánto tiempo se permite informar que una sesión no ocurrió.
+- Si se requiere confirmación de una o de ambas personas.
+- Tratamiento de desacuerdos.
 
-## Épica E6. Créditos e historial
+## Épica E5. Créditos, historial y reputación
 
 ### Introducción
 
-Esta épica registra el valor interno de los intercambios mediante créditos y conserva la actividad realizada por cada usuario.
+Esta épica sostiene los intercambios no recíprocos, conserva la actividad y construye confianza mediante calificaciones mutuas.
 
-Hacer transparente el movimiento de créditos y permitir que cada persona consulte su recorrido dentro de la plataforma.
+### HU16 Intercambiar con créditos
 
-Los créditos y las actividades quedan registrados de forma consultable para ambas partes.
+Como `USER`, quiero usar créditos internos cuando no existe reciprocidad directa, para poder aprender de todas formas.
 
-### Restricciones
-
-Los créditos son internos de la plataforma y no son dinero ni pueden convertirse en dinero, productos o servicios.
-
-### HU17 Transferir créditos
-
-Como plataforma, quiero transferir créditos al USER que ofrece el aprendizaje cuando una sesión mediante créditos se complete.
-
-- **✅ Aceptación:** El USER que aprende entrega los créditos, el USER que ofrece el aprendizaje los recibe y el movimiento queda registrado.
+- **✅ Aceptación:** El participante que aprende entrega créditos y quien ofrece el aprendizaje los recibe al completar la sesión.
 
 #### 🛠️ Refinamiento aplicado
 
-- Ejecutar la transferencia como una operación consistente
-- Impedir saldos negativos
-- Registrar origen
-- Destino
-- Cantidad
-- Sesión y fecha
+- Mantener créditos internos.
+- Evitar saldos negativos.
 - Evitar transferencias duplicadas.
-
-#### 📌 Reglas vigentes
-
-- Los créditos son internos de la plataforma
-- Los créditos no son dinero
-- Los créditos no pueden convertirse en dinero, productos ni servicios.
+- Registrar origen, destino, cantidad y sesión.
 
 #### ❓ Pendientes de decisión
 
-- Saldo inicial
-- Límites
-- Reversión por cancelación o disputa y reglas para cuentas suspendidas.
+- Saldo inicial.
+- Valor de cada propuesta.
+- Reversión por cancelación o disputa.
 
-### HU18 Consultar historial
+### HU17 Consultar historial
 
-Como usuario, quiero consultar mis sesiones, aprendizajes, intercambios y movimientos para hacer seguimiento de mi actividad.
+Como `USER`, quiero consultar mis sesiones, intercambios, créditos y calificaciones, para conocer mi actividad.
 
-- **✅ Aceptación:** Se muestran sesiones solicitadas, aceptadas, canceladas y completadas, además de créditos y temas.
+- **✅ Aceptación:** El historial muestra únicamente información propia y estados relevantes.
 
 #### 🛠️ Refinamiento aplicado
 
-- Separar sesiones
-- Aprendizajes
-- Intercambios y movimientos
-- Mostrar estados y fechas
-- Permitir consultar el detalle
-- Controlar el acceso para que cada usuario vea solo su información autorizada.
+- Separar sesiones, aprendizajes, intercambios y movimientos.
+- Mostrar fechas y estados.
+- Preparar paginación.
 
 #### ❓ Pendientes de decisión
 
-- Filtros
-- Exportación
-- Paginación y tiempo de conservación del historial.
+- Conservación del historial.
+- Filtros del historial.
 
-## Épica E7. Calificaciones y reputación
+### HU18 Calificarse mutuamente
+
+Como participante de una sesión completada, quiero calificar a la otra persona, para construir reputación y confianza.
+
+- **✅ Aceptación:** Ambos participantes pueden emitir una calificación de 1 a 5 y un comentario opcional una sola vez.
+
+#### 🛠️ Refinamiento aplicado
+
+- Habilitar la calificación solo después de completar.
+- Mostrar reputación promedio públicamente.
+- Permitir consultar la reputación desde el acceso `GUEST`.
+
+#### ❓ Pendientes de decisión
+
+- Edición o eliminación de una calificación.
+- Moderación de comentarios.
+
+## Épica E6. Seguridad y administración
 
 ### Introducción
 
-Esta épica permite que las personas valoren sus experiencias de aprendizaje una vez finalizada la sesión.
+Esta épica protege el carácter educativo, lícito y seguro del intercambio sin desplazar el foco de la experiencia principal.
 
-Generar señales de confianza para ayudar a la comunidad a evaluar futuras propuestas y participantes.
+### HU19 Denunciar contenido o usuarios
 
-Cada perfil puede mostrar una reputación basada en experiencias reales y completadas.
+Como `USER`, quiero denunciar contenido o usuarios, para ayudar a mantener un espacio seguro.
 
-### Restricciones
-
-Solo pueden calificarse participantes de una sesión marcada como completada.
-
-### HU19 Calificar una experiencia
-
-Como participante, quiero calificar a la otra persona después de completar una sesión para aportar información a la comunidad.
-
-- **✅ Aceptación:** Solo se puede calificar una sesión completada, con puntuación de 1 a 5 y comentario opcional.
+- **✅ Aceptación:** La denuncia queda registrada y puede ser revisada.
 
 #### 🛠️ Refinamiento aplicado
 
-- Habilitar la calificación solo después de completar
-- Permitir una puntuación de 1 a 5 y comentario opcional
-- Evitar calificaciones duplicadas
-- Mostrar el promedio y conservar las calificaciones que lo componen.
+- Mostrar reglas y advertencias antes de publicar.
+- Pedir motivo de denuncia.
+- No exponer información innecesaria.
 
 #### ❓ Pendientes de decisión
 
-- Plazo para calificar
-- Posibilidad de editar
-- Moderación de comentarios
-- Respuesta del calificado y tratamiento de calificaciones abusivas.
+- Catálogo inicial de motivos.
+- Denuncias duplicadas.
 
-## Épica E8. Seguridad y administración
+### HU20 Administrar seguridad
 
-### Introducción
+Como `ADMIN`, quiero revisar usuarios, propuestas y denuncias, para proteger la plataforma.
 
-Esta épica protege el carácter educativo, lícito y seguro de la plataforma y brinda herramientas básicas de revisión administrativa.
-
-Prevenir contenidos inadecuados y permitir que las denuncias y sanciones sean revisadas por una persona administradora.
-
-La plataforma puede detectar, recibir, revisar y gestionar contenidos o cuentas que incumplan las reglas del MVP.
-
-### Restricciones
-
-Las sanciones definitivas requieren revisión administrativa y la plataforma no permite ofrecer servicios profesionales.
-
-### HU20 Validar y denunciar contenidos
-
-Como plataforma, quiero validar publicaciones y permitir denuncias para limitar contenidos ilegales, riesgosos o ajenos al aprendizaje.
-
-- **✅ Aceptación:** Se aplican categorías y expresiones prohibidas, se muestran advertencias y se pueden denunciar publicaciones o cuentas.
+- **✅ Aceptación:** `ADMIN` puede revisar, ocultar propuestas y suspender o reactivar cuentas según permisos.
 
 #### 🛠️ Refinamiento aplicado
 
-- Mostrar reglas antes de publicar
-- Validar categorías y expresiones prohibidas
-- Ofrecer motivos de denuncia claros
-- Confirmar la recepción de la denuncia sin revelar información innecesaria.
+- Registrar acción, fecha y motivo.
+- Requerir revisión humana para sanciones definitivas.
+- Mantener las operaciones administrativas fuera del recorrido de `GUEST` y `USER`.
 
 #### ❓ Pendientes de decisión
 
-- Lista exacta de categorías y expresiones
-- Revisión automática o manual inicial
-- Anonimato de la denuncia y límite contra denuncias abusivas.
+- Permisos administrativos exactos.
+- Registro de auditoría.
 
-### HU21 Administrar denuncias y cuentas
+## Exclusiones del MVP V3
 
-Como Administrador, quiero revisar denuncias, ocultar publicaciones y suspender o reactivar cuentas cuando corresponda.
-
-- **✅ Aceptación:** Las sanciones definitivas requieren revisión humana y quedan registradas.
-
-#### 🛠️ Refinamiento aplicado
-
-- Separar permisos administrativos
-- Registrar acciones y motivos
-- Mostrar el estado de cada denuncia
-- Permitir ocultar y restaurar publicaciones
-- Conservar un registro de suspensiones y reactivaciones.
-
-- **Regla vigente:** las sanciones definitivas requieren revisión humana y no se aplican de manera automática.
-
-#### ❓ Pendientes de decisión
-
-- Roles administrativos
-- Duración de suspensiones
-- Notificación al usuario
-- Apelaciones y retención del registro de auditoría.
-
-### HU22 Validar conocimientos y estudios
-
-Como USER, quiero cargar títulos, certificados o referencias para aumentar la confianza en mis propuestas.
-
-- **✅ Aceptación:** La documentación puede revisarse y el perfil muestra un nivel de verificación.
-
-#### ⚠️ Estado de alcance
-
-- Historia candidata pendiente de confirmación para la primera versión
-- El MVP permite implementar validación documental, pero no la incluye expresamente entre sus funcionalidades principales.
-
-#### 🛠️ Refinamiento aplicado
-
-- Informar qué documentación puede cargarse
-- Mostrar estado de revisión
-- Restringir el acceso a documentos
-- Diferenciar experiencia
-- Formación acreditada y certificación verificada
-- Permitir rechazar o solicitar correcciones.
-
-#### 📌 Reglas vigentes
-
-- La validación no habilita servicios profesionales
-- La validación no reemplaza una matrícula ni una habilitación legal.
-
-#### ❓ Pendientes de decisión
-
-- Documentos aceptados
-- Tamaño y formato
-- Conservación y eliminación
-- Responsables de revisión
-- Niveles de verificación y visibilidad en el perfil.
-
-### Fuentes de refinamiento
-
-- [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
-- [OWASP Email Validation and Verification Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Email_Validation_and_Verification_Cheat_Sheet.html)
-- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
-- [NIST SP 800-63B](https://pages.nist.gov/800-63-4/sp800-63b.html)
-- [W3C WCAG 2.2 — Error Identification](https://www.w3.org/WAI/WCAG22/Understanding/error-identification)
-
-## Pendientes sin decisión aprobada
-
-- Límites, reglas y revisión del cálculo orientativo de créditos mediante LLM.
-- Documentos aceptados y procedimiento de validación de estudios.
-- Diseño final de las solicitudes de aprendizaje.
-- Canal de contacto entre participantes.
-
-## Exclusiones del MVP
-
-- Clases grupales.
-- Equipos de enseñanza.
-- Intercambios 2×1 u otras equivalencias.
-- Sesiones con más de dos USER.
+Comunidades, badges, IA avanzada, validación documental, recurrencias de agenda, clases grupales, equipos de enseñanza, sesiones con más de dos participantes, chat completo, videollamadas e integraciones externas de calendario.

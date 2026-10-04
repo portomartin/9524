@@ -1,6 +1,6 @@
 ---
 name: crear-usm
-description: Crear o actualizar un User Story Map directamente desde el MVP, independiente de la WBS y del backlog, organizando el recorrido de Docente y Alumno.
+description: Crear o actualizar un User Story Map directamente desde una versión indicada del MVP, independiente de la WBS y del backlog.
 ---
 
 # User Story Mapping
@@ -12,7 +12,7 @@ Usar esta skill cuando el usuario solicite crear, revisar o reorganizar el User 
 Leer primero:
 
 - `AGENTS.md` para las reglas generales del proyecto.
-- `docs/mvp.md` como única fuente de verdad del alcance actual.
+- La versión indicada del MVP (`docs/mvp-v1.md`, `docs/mvp-v2.md` o `docs/mvp-v3.md`) como única fuente de verdad del alcance de la ejecución.
 - `references/directriz-usm.md` para aplicar la estructura conceptual del mapa.
 
 Derivar el contenido únicamente del MVP. No leer la WBS ni el backlog como entradas. Las reglas y referencias orientan el método y el formato, no agregan requisitos. Si existe `docs/usm.md`, consultarlo solo para preservar identificadores y formato compatibles con el MVP; no usarlo como fuente de alcance.
@@ -37,20 +37,22 @@ Cuando se organice el mapa, considerar estos niveles conceptuales:
 
 El `release slice` puede representarse como una marca de alcance o una separación entre historias incluidas y posteriores. No copiar los colores, nombres ni el dominio de la captura de referencia. El resultado puede presentarse como tabla, lista jerárquica, diagrama u otro formato que facilite la lectura.
 
-El mapa debe representar el recorrido de los roles principales:
+El mapa debe representar los recorridos de `GUEST`, `USER` y `ADMIN` cuando corresponda:
 
-- **Docente:** ofrece conocimientos, publica propuestas y enseña.
-- **Alumno:** busca aprendizajes, solicita sesiones y aprende.
-- Una misma persona puede desempeñar ambos roles.
+- `GUEST`: descubre propuestas, reputaciones, rankings, trending y agendas públicas en modo lectura.
+- `USER`: ofrece aprendizajes, busca aprender, coordina sesiones y califica.
+- `ADMIN`: revisa contenido y denuncias mediante permisos administrativos.
+
+Un `USER` puede enseñar y aprender según la actividad.
 
 ## Reglas del proyecto
 
-- Basar el mapa en `docs/mvp.md`, no en ideas no aprobadas.
+- Basar el mapa en la versión indicada del MVP, no en ideas no aprobadas.
 - Mantener el MVP limitado a intercambios y sesiones individuales 1 a 1.
 - No proponer funcionalidades futuras que no estén descritas como tales en el MVP; señalar exclusiones sin inventar historias para otros cortes.
 - No convertir el mapa en una lista de tareas técnicas.
 - Cada historia debe expresar una acción y un beneficio para un rol.
-- Evitar duplicar historias cuando una misma acción pueda ser realizada por Docente y Alumno.
+- Evitar duplicar historias cuando una misma acción pueda ser realizada por cualquier `USER`.
 - Mantener el flujo narrativo de la experiencia, desde el ingreso hasta la finalización y evaluación de una sesión.
 - Usar el release slice para separar el MVP del alcance futuro, no para crear una lista independiente de prioridades.
 - Mantener trazabilidad directa hacia secciones del MVP.
@@ -64,7 +66,7 @@ Presentar:
 2. La identificación del backbone, actividades, tareas, detalles e historias.
 3. El flujo narrativo del usuario.
 4. El release slice del MVP y los elementos posteriores.
-5. Una tabla de trazabilidad hacia secciones de `docs/mvp.md`.
+5. Una tabla de trazabilidad hacia secciones de la versión indicada del MVP.
 6. Supuestos y puntos pendientes de confirmar.
 
-No modificar `docs/mvp.md` ni `docs/wbs.md` automáticamente. Si el mapa se aprueba, guardarlo en `docs/usm.md` y registrar el cambio cuando corresponda.
+No modificar ninguna versión del MVP ni `docs/wbs.md` automáticamente. Si el mapa se aprueba, guardarlo en `docs/usm.md` y registrar el cambio cuando corresponda.

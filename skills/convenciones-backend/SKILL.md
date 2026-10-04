@@ -115,6 +115,6 @@ Cuando el usuario solicite validar una implementación Backend, revisar explíci
 - [ ] Las transiciones de estado son válidas y no permiten duplicados.
 - [ ] La paginación, filtros y ordenamiento son consistentes.
 - [ ] Existen pruebas para éxito, validación, permisos y errores.
-- [ ] La implementación respeta `docs/mvp.md` y no incorpora alcance no aprobado.
+- [ ] La implementación respeta la versión activa del MVP indicada para la tarea y no incorpora alcance no aprobado.
 
 El resultado de la validación debe separar hallazgos bloqueantes, observaciones y aspectos conformes. Si algo no puede verificarse con la evidencia disponible, indicarlo como “no verificable” en lugar de asumir que se cumple.

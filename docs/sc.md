@@ -10,7 +10,7 @@
 - Coordinar sesiones individuales 1 a 1 y consultar el historial de actividad.
 - Contar con señales de confianza mediante calificaciones, reputación y validación opcional de estudios.
 
-**Trazabilidad:** `docs/mvp.md`, secciones “Descripción general”, “Perfiles de usuario”, “Sistema de compatibilidad”, “Solicitudes y reservas” y “Calificaciones y reputación”.
+**Trazabilidad:** `docs/mvp-v1.md`, secciones “Descripción general”, “Perfiles de usuario”, “Sistema de compatibilidad”, “Solicitudes y reservas” y “Calificaciones y reputación”.
 
 ### Motivadores
 
@@ -23,7 +23,7 @@
 
 Los créditos son internos de la plataforma: no son dinero ni pueden convertirse en dinero, productos o servicios.
 
-**Trazabilidad:** `docs/mvp.md`, secciones “Descripción general”, “Intercambios recíprocos y créditos virtuales” y “Objetivo del MVP”.
+**Trazabilidad:** `docs/mvp-v1.md`, secciones “Descripción general”, “Intercambios recíprocos y créditos virtuales” y “Objetivo del MVP”.
 
 ## Negocio
 
@@ -31,7 +31,7 @@ Los créditos son internos de la plataforma: no son dinero ni pueden convertirse
 
 Facilitar el intercambio de aprendizajes entre personas, permitiendo enseñar lo que se sabe y aprender lo que se necesita sin utilizar dinero.
 
-**Trazabilidad:** `docs/mvp.md`, secciones “Descripción general” y “Objetivo del MVP”.
+**Trazabilidad:** `docs/mvp-v1.md`, secciones “Descripción general” y “Objetivo del MVP”.
 
 ### Impacto
 
@@ -54,7 +54,7 @@ Los dos primeros puntos se desprenden del objetivo del MVP. El impacto de largo 
 - Consultar historial, calificar participantes y calcular reputación.
 - Denunciar usuarios o publicaciones y administrar el contenido denunciado.
 
-**Trazabilidad:** `docs/mvp.md`, secciones “Funcionalidades principales del MVP”, “Contenidos no permitidos y seguridad”, “Panel de administración” y “Objetivo del MVP”.
+**Trazabilidad:** `docs/mvp-v1.md`, secciones “Funcionalidades principales del MVP”, “Contenidos no permitidos y seguridad”, “Panel de administración” y “Objetivo del MVP”.
 
 ## Comportamiento y medición
 
@@ -80,7 +80,7 @@ Se espera que los usuarios:
 
 Los administradores revisan denuncias, gestionan publicaciones y cuentas, y administran categorías y expresiones prohibidas.
 
-**Trazabilidad:** `docs/mvp.md`, secciones “Funcionalidades principales del MVP”, “Solicitudes y reservas”, “Historial de actividades”, “Contenidos no permitidos y seguridad” y “Panel de administración”.
+**Trazabilidad:** `docs/mvp-v1.md`, secciones “Funcionalidades principales del MVP”, “Solicitudes y reservas”, “Historial de actividades”, “Contenidos no permitidos y seguridad” y “Panel de administración”.
 
 ### Métricas
 

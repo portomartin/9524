@@ -1,6 +1,6 @@
 # Modelo de dominio
 
-Este documento define los conceptos principales del producto y sus relaciones. Se deriva de `docs/mvp.md`; los detalles no resueltos por el MVP se mantienen como propuestas pendientes de aprobación.
+Este documento define los conceptos principales del producto y sus relaciones. Actualmente se deriva del **MVP V1**, en `docs/mvp-v1.md`; los detalles no resueltos por el MVP se mantienen como propuestas pendientes de aprobación.
 
 ## Cuenta
 
@@ -224,4 +224,4 @@ Persona autorizada para evaluar Solicitudes de verificación.
 
 ## Glosario de decisiones pendientes
 
-Las definiciones marcadas como pendientes deben aprobarse antes de transformarse en reglas obligatorias. Si una decisión cambia el alcance o una regla del producto, primero debe actualizarse `docs/mvp.md`.
+Las definiciones marcadas como pendientes deben aprobarse antes de transformarse en reglas obligatorias. Si una decisión cambia el alcance o una regla del producto, primero debe actualizarse la versión activa del MVP.

@@ -5,7 +5,7 @@ description: Transformar la especificación vigente del MVP en épicas e histori
 
 # Generar backlog
 
-Leer `AGENTS.md` y `docs/mvp.md` antes de proponer cambios.
+Leer `AGENTS.md` y la versión indicada del MVP (`docs/mvp-v1.md`, `docs/mvp-v2.md` o `docs/mvp-v3.md`) antes de proponer cambios.
 
 Derivar el contenido únicamente del MVP, sin leer la WBS ni el USM como entradas. Si existe `docs/backlog.md`, consultarlo solo para preservar identificadores, épicas y formato compatibles con el MVP; no usarlo como fuente de alcance. El backlog puede prepararse aunque no existan WBS ni USM.
 
@@ -22,7 +22,7 @@ Las decisiones aprobadas deben quedar registradas en el backlog, dentro de la HU
 - Colocar la formulación `Como...` inmediatamente debajo del título de cada historia. Es el contenido principal de la HU y debe aparecer antes de refinamientos, pendientes o criterios de aceptación.
 - Asignar cada historia a una épica y evitar historias duplicadas.
 - No inventar funcionalidades que no estén respaldadas por el MVP.
-- Separar claramente historias de Docente, Alumno y Administrador.
+- Separar claramente las historias de `GUEST`, `USER` y `ADMIN` cuando sus permisos o beneficios sean diferentes.
 - Proponer un criterio de aceptación breve para cada historia, presentado como una viñeta con la etiqueta `**✅ Aceptación:**` y texto iniciado con mayúscula.
 - Señalar las ambigüedades como pendientes dentro de la HU correspondiente.
 - No inventar prioridades, estimaciones ni decisiones técnicas; dejarlas pendientes si el MVP no las define.
@@ -31,7 +31,7 @@ Las decisiones aprobadas deben quedar registradas en el backlog, dentro de la HU
 
 La IA puede enriquecer el backlog, pero debe distinguir el origen y el estado de cada aporte:
 
-- **Derivado del MVP:** requisito respaldado directamente por `docs/mvp.md`.
+- **Derivado del MVP:** requisito respaldado directamente por la versión indicada del MVP.
 - **Corrección humana:** contenido aprobado por el equipo y conservado del backlog existente.
 - **Propuesta de refinamiento:** mejora sugerida por la IA para aclarar una HU, detectar un caso límite o facilitar el desarrollo.
 - **Pendiente de decisión:** definición necesaria que el MVP todavía no resuelve.
@@ -60,9 +60,9 @@ Si la propuesta depende de información que puede cambiar con el tiempo, investi
 
 Las propuestas que agreguen alcance, modifiquen una regla de negocio o cambien una exclusión no deben incorporarse como requisitos aprobados. Deben presentarse separadas y esperar confirmación humana. Las propuestas de redacción o detalle que no cambien el alcance pueden incorporarse como refinamiento, identificándolas como tales cuando corresponda.
 
-Cuando una definición pendiente sea necesaria para implementar una HU, documentarla como pendiente en lugar de inventar una respuesta. Si el equipo aprueba una propuesta que cambia el alcance o una regla del producto, solicitar primero la actualización de `docs/mvp.md` y luego sincronizar el backlog.
+Cuando una definición pendiente sea necesaria para implementar una HU, documentarla como pendiente en lugar de inventar una respuesta. Si el equipo aprueba una propuesta que cambia el alcance o una regla del producto, solicitar primero la actualización de la versión activa del MVP y luego sincronizar el backlog.
 
-Cuando una decisión aprobada modifique el alcance o una regla de negocio del MVP, registrar también el cambio en `docs/mvp.md` y en el registro de cambios del proyecto antes de actualizar los documentos derivados. Si la decisión solo aclara o refina una HU sin cambiar el alcance, conservarla en el backlog sin modificar el MVP.
+Cuando una decisión aprobada modifique el alcance o una regla de negocio del MVP, registrar también el cambio en la versión activa del MVP y en el registro de cambios del proyecto antes de actualizar los documentos derivados. Si la decisión solo aclara o refina una HU sin cambiar el alcance, conservarla en el backlog sin modificar el MVP.
 
 Las historias de usuario deben aparecer después del contenido introductorio de su épica. No crear una sección redundante llamada “Subítems”: cuando el backlog se traslade a una herramienta de gestión, las historias podrán representarse como subítems de la épica.
 

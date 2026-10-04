@@ -2,9 +2,11 @@
 
 ## Fuente de verdad
 
-- La especificación vigente del producto está en `docs/mvp.md`.
-- Los documentos derivados deben reflejar la versión aprobada del MVP y no introducir funcionalidades sin justificar.
-- Ante un cambio en `docs/mvp.md`, revisar el impacto en la WBS, las decisiones registradas y los documentos derivados.
+- Existen tres versiones de la especificación: `docs/mvp-v1.md`, `docs/mvp-v2.md` y `docs/mvp-v3.md`.
+- La fuente activa de verdad es `docs/mvp-v3.md` (**MVP V3**).
+- V1 y V2 se conservan como versiones históricas y de comparación.
+- Los skills y procesos automáticos deben partir de `docs/mvp-v3.md` salvo que el usuario indique explícitamente otra versión para una comparación o migración.
+- La selección de V3 como fuente debe reflejarse progresivamente en el backlog, la WBS, las decisiones registradas y los demás documentos derivados.
 
 ## Dominio
 

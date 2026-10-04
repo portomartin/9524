@@ -1,6 +1,6 @@
 ---
 name: create-subtereas
-description: Crear subtareas técnicas de Jira debajo de historias de usuario, separando Backend/API REST y Frontend, con contratos HTTP legibles y convenciones Vue.
+description: Derivar subtareas técnicas locales debajo de historias de usuario, separando Backend/API REST y Frontend, con contratos HTTP legibles y convenciones Vue.
 ---
 
 # Create subtareas
@@ -9,11 +9,10 @@ Usar este skill cuando el usuario solicite crear, actualizar o refinar subtareas
 
 ## Fuentes y alcance
 
-1. Leer `AGENTS.md`, `docs/mvp.md` y `docs/backlog.md` antes de generar subtareas.
+1. Leer `AGENTS.md`, la versión indicada del MVP (`docs/mvp-v1.md`, `docs/mvp-v2.md` o `docs/mvp-v3.md`) y `docs/backlog.md` antes de generar subtareas.
 2. Mantener la trazabilidad: Épica → Historia de usuario → Subtarea.
 3. No incorporar funcionalidades fuera del MVP ni resolver unilateralmente pendientes de decisión.
 4. No crear subtareas para historias candidatas o pendientes de confirmación, como HU22, salvo aprobación explícita.
-5. Si se actualiza Jira, verificar primero el proyecto, las historias existentes, el tipo de issue `Subtask` y las subtareas ya creadas para evitar duplicados.
 
 ## Descomposición estándar
 
@@ -90,15 +89,6 @@ La implementación debe usar Vue y la librería de componentes adoptada por el p
 
 No crear estilos propios, CSS innecesario, objetos visuales ad hoc ni una identidad visual paralela. Reutilizar componentes, variantes, tokens y patrones de layout de la librería. Mantener la lógica de negocio en servicios o composables y validar en frontend sin reemplazar las validaciones del backend.
 
-## Creación en Jira
+## Resultado local
 
-Cuando el usuario autorice actualizar Jira:
-
-1. Resolver el proyecto y las historias existentes.
-2. Confirmar que no existan subtareas equivalentes.
-3. Crear cada issue como tipo `Subtask` con el campo `parent` apuntando a la historia.
-4. Usar labels coherentes, por ejemplo `mvp`, `subtask`, `backend` o `frontend`.
-5. Mantener el estado inicial del flujo del proyecto, salvo instrucción expresa.
-6. Verificar al finalizar la cantidad creada, los padres y que las descripciones conserven los bloques `http` y `json`.
-
-La creación de subtareas en Jira es una mutación externa: requiere autorización explícita del usuario para ejecutarse.
+Guardar las subtareas derivadas en `docs/subtareas.md`, manteniendo la trazabilidad Épica → Historia → Subtarea. La sincronización con herramientas externas pertenece a un proceso separado.

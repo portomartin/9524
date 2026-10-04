@@ -14,7 +14,7 @@ Una WBS (*Work Breakdown Structure*, o estructura de desglose del trabajo) es un
 Leer primero:
 
 - `AGENTS.md` para las reglas del proyecto.
-- `docs/mvp.md` como única fuente de verdad del alcance y los requisitos.
+- La versión indicada del MVP (`docs/mvp-v1.md`, `docs/mvp-v2.md` o `docs/mvp-v3.md`) como única fuente de verdad del alcance y los requisitos.
 - `references/directriz-wbs.md` para aplicar el formato de la captura de referencia.
 
 Derivar el contenido únicamente del MVP. No leer el USM ni el backlog como entradas. Las reglas y referencias orientan el método y el formato, no agregan requisitos. Si existe `docs/wbs.md`, consultarlo solo para preservar identificadores y formato compatibles con el MVP; no usarlo como fuente de alcance.
@@ -37,7 +37,7 @@ La profundidad puede variar cuando el entregable sea suficientemente claro. No c
 - Usar numeración jerárquica: `1`, `1.1`, `1.1.1`.
 - Nombrar cada elemento con un resultado o capacidad comprensible.
 - Mantener trazabilidad hacia secciones concretas del MVP.
-- Distinguir los roles Docente, Alumno y Administrador cuando corresponda.
+- Distinguir `GUEST`, `USER` y `ADMIN` cuando corresponda.
 - No mezclar en un mismo nivel funcionalidades, tareas técnicas y documentos de gestión.
 - Incluir entregables académicos de gestión solo si están respaldados por el MVP; señalar los que requieran otra fuente como pendientes, sin incorporarlos automáticamente.
 - Detectar elementos del MVP que no estén representados en la WBS.
@@ -52,4 +52,4 @@ Presentar:
 2. Una tabla de trazabilidad entre entregables y secciones del MVP.
 3. Supuestos, ambigüedades y elementos pendientes de confirmar.
 
-La WBS es una salida independiente del MVP; no es una entrada obligatoria del USM ni del backlog. No modificar `docs/mvp.md`, `docs/usm.md` ni `docs/backlog.md` automáticamente. Si la WBS se aprueba, guardarla en `docs/wbs.md` y registrar el cambio cuando corresponda.
+La WBS es una salida independiente del MVP; no es una entrada obligatoria del USM ni del backlog. No modificar ninguna versión del MVP, `docs/usm.md` ni `docs/backlog.md` automáticamente. Si la WBS se aprueba, guardarla en `docs/wbs.md` y registrar el cambio cuando corresponda.

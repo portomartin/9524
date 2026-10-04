@@ -10,8 +10,8 @@ Usar esta skill cuando el usuario solicite crear, actualizar, ordenar o regenera
 ## Fuente y alcance
 
 - Leer `AGENTS.md` y verificar los archivos existentes antes de escribir enlaces.
-- Mantener la especificación de `docs/mvp.md` como fuente de verdad del producto.
-- No modificar `docs/mvp.md`, el backlog, la WBS, la USM ni Jira desde esta skill.
+- Mantener visible la versión activa de la especificación del MVP como fuente de verdad del producto.
+- No modificar las versiones del MVP, el backlog, la WBS, la USM ni Jira desde esta skill.
 - No hacer commit ni push automáticamente.
 
 ## Estructura vigente
@@ -20,7 +20,7 @@ El README debe contener estas secciones, en este orden:
 
 1. Título y descripción breve del proyecto.
 2. `## Documentación principal`, con únicamente estos documentos:
-   - `docs/mvp.md` — Especificación del MVP.
+   - `docs/mvp-v1.md`, `docs/mvp-v2.md` y `docs/mvp-v3.md` — Especificaciones disponibles del MVP.
    - `docs/wbs.md` — WBS del MVP.
    - `docs/usm.md` — USM del MVP.
    - `docs/backlog.md` — Backlog del MVP.

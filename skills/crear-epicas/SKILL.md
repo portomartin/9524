@@ -9,7 +9,7 @@ Usar esta skill cuando se solicite identificar, crear, revisar o reorganizar ép
 
 ## Fuente de verdad
 
-Leer primero `AGENTS.md` y el contenido completo de `docs/mvp.md`. El MVP es la única fuente de alcance.
+Leer primero `AGENTS.md` y el contenido completo de la versión indicada del MVP (`docs/mvp-v1.md`, `docs/mvp-v2.md` o `docs/mvp-v3.md`). Esa versión es la única fuente de alcance.
 
 Si existe `docs/backlog.md`, consultarlo únicamente para conservar IDs, nombres y formato compatibles. No usar la WBS ni el User Story Map para agregar alcance a las épicas.
 

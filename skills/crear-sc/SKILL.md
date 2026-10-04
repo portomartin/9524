@@ -9,11 +9,11 @@ Usar esta skill cuando se solicite crear, revisar o completar el SC del proyecto
 
 ## Fuente y límites
 
-- Leer `AGENTS.md` y `docs/mvp.md` antes de elaborar el canvas.
-- Usar `docs/mvp.md` como única fuente de alcance aprobado.
+- Leer `AGENTS.md` y la versión indicada del MVP (`docs/mvp-v1.md`, `docs/mvp-v2.md` o `docs/mvp-v3.md`) antes de elaborar el canvas.
+- Usar la versión indicada del MVP como única fuente de alcance aprobado.
 - No incorporar funcionalidades, métricas objetivo ni reglas de negocio que el MVP no respalde.
 - Marcar como `Propuesta pendiente de aprobación` cualquier definición necesaria que el MVP no resuelva.
-- No modificar `docs/mvp.md`, WBS, USM, backlog ni Jira automáticamente.
+- No modificar ninguna versión del MVP, WBS, USM, backlog ni Jira automáticamente.
 - El SC no reemplaza al backlog, la WBS ni la USM; resume el sentido, alcance e impacto del producto.
 
 ## Estructura obligatoria
@@ -51,7 +51,7 @@ Organizar el canvas en siete bloques:
 Presentar:
 
 1. El SC completo en Markdown, preferentemente como tabla o bloques claramente identificados.
-2. La trazabilidad de cada bloque hacia secciones de `docs/mvp.md`.
+2. La trazabilidad de cada bloque hacia secciones de la versión indicada del MVP.
 3. Supuestos y propuestas pendientes de aprobación.
 4. Una comprobación breve de coherencia entre propósito, objetivos, acciones y métricas.
 
