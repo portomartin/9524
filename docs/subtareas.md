@@ -15,6 +15,7 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
 - Las operaciones de `ADMIN` requieren permiso administrativo.
 - La disponibilidad se persiste por fecha y hora concreta; no se persisten recurrencias.
 - Los errores usan `{ code, message, fields }` cuando corresponda.
+- Los ejemplos de request deben usar valores representativos y cada subtarea Backend/API REST debe indicar explícitamente el tipo de los path params, query params, headers y propiedades JSON (`string`, `integer`, `number`, `boolean`, `date`, `time`, `string[]`, etc.).
 - Las subtareas Frontend deben consultar y aplicar `convenciones-frontend`.
 
 ## E1. Descubrimiento y acceso público
@@ -87,13 +88,21 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
   Request body sugerido:
   ```json
   {
-    "name": "...",
-    "description": "...",
-    "generalLocation": "...",
-    "teachingTopics": [],
-    "learningTopics": []
+    "name": "Martín Porto",
+    "description": "Me interesa compartir conocimientos prácticos.",
+    "generalLocation": "Buenos Aires",
+    "teachingTopics": [
+      "Gestión de proyectos",
+      "Jira",
+      "Planificación de software"
+    ],
+    "learningTopics": [
+      "Inglés conversacional",
+      "Diseño UX"
+    ]
   }
   ```
+  `teachingTopics` y `learningTopics` son arrays de strings (`string[]`). Para el MVP no se modelan como objetos ni requieren un catálogo formal.
   Response: `200 OK`, `400 Bad Request` o `401 Unauthorized`.
 - **Frontend:** Crear perfil editable con guardado parcial, visibilidad diferenciada y estados de carga, éxito y error.
 
@@ -185,15 +194,20 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
   DELETE /api/v1/me/availability/{availabilityId}
   Content-Type: application/json
   ```
-  Request body para alta o modificación:
+  - `GET` lista las franjas del usuario autenticado. No recibe body. Ejemplo: `GET /api/v1/me/availability`.
+  - `POST` crea una franja nueva. No recibe `availabilityId`; recibe la fecha, hora y duración en el body.
+  - `PATCH` modifica una franja existente. `availabilityId` es el identificador `string` de la franja, por ejemplo `av-123`; viaja en el path: `PATCH /api/v1/me/availability/av-123`.
+  - `DELETE` elimina una franja existente usando el mismo `availabilityId`: `DELETE /api/v1/me/availability/av-123`.
+
+  Request body para `POST` o `PATCH`:
   ```json
   {
-    "date": "YYYY-MM-DD",
-    "startTime": "HH:mm",
+    "date": "2026-10-15",
+    "startTime": "18:00",
     "durationMinutes": 60
   }
   ```
-  Response: `201 Created`, `200 OK`, `204 No Content`, `400 Bad Request` o `409 Conflict`. Rechazar recurrencias.
+  `date` es `date` con formato `YYYY-MM-DD`; `startTime` es `time` con formato `HH:mm`; `durationMinutes` es `integer`. `POST` responde `201 Created`; `PATCH` responde `200 OK`; `DELETE` responde `204 No Content`. Todos pueden responder `400 Bad Request` o `409 Conflict`. Rechazar recurrencias.
 - **Frontend:** Crear agenda inicialmente vacía, carga de una o múltiples franjas concretas y ayudas masivas sin crear reglas recurrentes.
 
 ### HU12 — Publicar la agenda
@@ -328,6 +342,58 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
   ```
   y acciones protegidas para ocultar propuestas y suspender o reactivar cuentas. Request: filtros administrativos y motivo cuando corresponda. Response: `200 OK`, `403 Forbidden` o `404 Not Found`. Auditar actor, fecha y motivo.
 - **Frontend:** Crear panel administrativo básico con revisión, filtros, detalle, confirmación y errores de autorización.
+
+## Tipos de datos de los contratos Backend/API REST
+
+Además de los ejemplos JSON, las subtareas usan estos tipos para sus parámetros y respuestas:
+
+| HU | Tipos relevantes |
+|---|---|
+| HU01 | `offerId: string`; resultados públicos: `array<object>` |
+| HU02 | `userId: string`; `page/pageSize: integer`; rankings y trending: `array<object>` |
+| HU03 | `email: string(email)`; `password: string`; usuario creado: `object` sin credenciales |
+| HU04 | `email/password: string`; cookie de sesión segura |
+| HU05 | `name/description/generalLocation: string`; `teachingTopics/learningTopics: string[]` |
+| HU06 | campos descriptivos: `string`; `durationMinutes/creditCost: integer` |
+| HU07 | campos descriptivos: `string`; `needId: string` |
+| HU08 | `query/type: string`; `page/pageSize: integer`; resultados: `array<object>` |
+| HU09 | filtros textuales: `string`; `creditMax: number` |
+| HU10 | `page/pageSize: integer`; compatibilidades: `array<object>` |
+| HU11 | `availabilityId: string`; `date: date`; `startTime: time`; `durationMinutes: integer` |
+| HU12 | `userId: string`; `isPublic: boolean`; franjas: `array<object>` |
+| HU13 | IDs: `string`; `proposedDate: date`; `startTime: time`; duración y créditos: `integer` |
+| HU14 | `sessionId: string`; `reason: string` opcional; fechas de transición: `date-time` |
+| HU15 | `sessionId: string`; estado: `string` enumerado |
+| HU16 | IDs y `Idempotency-Key: string`; créditos: `integer` |
+| HU17 | filtros: `string/date`; paginación: `integer`; historial: `array<object>` |
+| HU18 | IDs: `string`; `score: integer` de 1 a 5; `comment: string` opcional |
+| HU19 | campos de denuncia: `string` |
+| HU20 | filtros, motivos e IDs: `string`; paginación: `integer` |
+
+Los parámetros también deben documentarse con su propósito y un ejemplo concreto:
+
+| HU | Ejemplos de parámetros |
+|---|---|
+| HU01 | `offerId=of-123` identifica una propuesta pública |
+| HU02 | `userId=usr-123`; `page=1&pageSize=20` |
+| HU03 | `email=martin@example.com`; `password=Password123!` |
+| HU04 | `email=martin@example.com`; cookie segura de sesión |
+| HU05 | `teachingTopics=["Jira", "Gestión de proyectos"]`; `learningTopics=["Inglés"]` |
+| HU06 | `topic=Jira`; `durationMinutes=60`; `creditCost=1` |
+| HU07 | `topic=Inglés`; `objective=Conversar con fluidez` |
+| HU08 | `query=Ingles&type=offer&page=1&pageSize=20` |
+| HU09 | `date=2026-10-15`; `time=18:00`; `creditMax=2` |
+| HU10 | `page=1&pageSize=20` |
+| HU11 | `availabilityId=av-123`; `date=2026-10-15`; `startTime=18:00` |
+| HU12 | `userId=usr-123`; `isPublic=true` |
+| HU13 | `offerId=of-123`; `proposedDate=2026-10-15`; `startTime=18:00` |
+| HU14 | `sessionId=ses-123`; `reason=Imprevisto personal` |
+| HU15 | `sessionId=ses-123`; transición `EN_CURSO` → `FINALIZADA` |
+| HU16 | `sessionId=ses-123`; `Idempotency-Key=transfer-ses-123-001` |
+| HU17 | `type=session`; `from=2026-10-01`; `page=1&pageSize=20` |
+| HU18 | `sessionId=ses-123`; `score=5`; `comment=Muy clara y útil` |
+| HU19 | `targetType=OFFER`; `targetId=of-123`; `reasonCode=INAPPROPRIATE` |
+| HU20 | `status=ACTIVE`; `page=1&pageSize=20`; `reason=Incumplimiento` |
 
 ## Exclusiones técnicas
 

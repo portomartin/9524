@@ -25,6 +25,8 @@ Usar este skill únicamente cuando el usuario solicite crear, actualizar o sincr
 - Las subtareas deben incluir `HUxx` y su tipo técnico (`Backend` o `Frontend`) en un resumen breve y legible. Los endpoints, cuerpos HTTP, respuestas y detalles de implementación deben quedar en la descripción, nunca en el título.
 - En las subtareas `Backend/API REST`, la descripción debe separar claramente la especificación técnica: usar bloques de código `http` para endpoints, headers y parámetros, bloques `json` para request/response bodies cuando corresponda, y texto separado para reglas, estados y códigos HTTP. No dejar contratos técnicos extensos como texto inline.
 - Cuando una subtarea incluya varios endpoints, explicar la responsabilidad de cada método (por ejemplo, `GET` consulta y `PATCH` modifica parcialmente), indicando para cada uno si recibe body y qué response espera.
+- Los request bodies y parámetros deben usar valores representativos y declarar sus tipos de datos. Para arrays se debe especificar el tipo de sus items, por ejemplo `string[]` o `array<object>`, y para fechas/horas usar `date` y `time`.
+- Cada endpoint debe explicar su propósito y sus parámetros: indicar qué representa cada path/query parameter o header, dónde se envía, su tipo y un ejemplo concreto. Cuando una subtarea tenga varios métodos, describirlos por separado aunque compartan el mismo bloque HTTP.
 - Las issues históricas no deben modificarse ni recibir etiquetas retroactivamente, salvo autorización explícita.
 - La etiqueta debe aplicarse a todos los niveles para que los filtros, tableros, dashboards y reportes incluyan el conjunto completo de la versión.
 
