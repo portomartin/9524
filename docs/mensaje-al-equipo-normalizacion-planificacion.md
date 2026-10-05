@@ -37,7 +37,7 @@ Si una subtarea Jira queda demasiado grande, puede dividirse en varias subtareas
 
 ## Por qué no debemos forzar la derivación
 
-![No forzar una derivación que no encaja](assets/no-forzar-derivacion.png)
+![No forzar una derivación que no encaja](assets/no-forzar-derivacion-v2.png)
 
 Forzar por fuera de la decisión del skill que algo sea una subtarea puede generar:
 
