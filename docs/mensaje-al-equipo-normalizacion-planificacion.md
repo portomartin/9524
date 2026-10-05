@@ -29,13 +29,44 @@ Por lo tanto:
 - Jira es el tablero operativo.
 - Las checklists agregan detalle técnico sin crear nuevas issues.
 
-La derivación mediante skills genera una estructura inicial, pero no es rígida. Confiamos en el skill para decidir el nivel de granularidad adecuado y no debemos forzarlo a producir una subtarea específica. Si una subtarea Jira queda demasiado grande, puede dividirse en varias subtareas hermanas bajo la misma HU; no se deben crear subtareas hijas de otras subtareas.
+## Granularidad derivada
 
-Forzar por fuera de la decisión del skill que algo sea una subtarea puede generar una fragmentación artificial, duplicar responsabilidades, dispersar criterios y producir diferencias entre el MVP, la documentación derivada y Jira. Como estamos trabajando con un enfoque de *spec-driven development*, la estructura debe surgir de la especificación refinada y de su derivación automática. En este proceso confiamos en la IA para interpretar el MVP y proponer la granularidad, y respetamos su decisión salvo que detectemos un problema en la especificación de origen.
+La derivación mediante skills genera una estructura inicial, pero no es rígida. Confiamos en el skill para decidir el nivel de granularidad adecuado y no debemos forzarlo a producir una subtarea específica.
 
-Si una capacidad parece requerir una subtarea independiente por su responsabilidad, comportamiento o impacto funcional, primero debemos expresarla con suficiente claridad en el MVP y volver a derivar la planificación. Puede ser necesario iterar y refinar el MVP varias veces hasta que el skill detecte esa independencia y genere la subtarea de forma natural.
+Si una subtarea Jira queda demasiado grande, puede dividirse en varias subtareas hermanas bajo la misma HU. No se deben crear subtareas hijas de otras subtareas.
 
-Si después de sucesivos refinamientos la subtarea sigue sin aparecer, debemos aceptar que probablemente no sea una unidad independiente: puede estar cubierta por otra tarea, ser un criterio de aceptación o corresponder a una checklist técnica. En ese caso, no debemos ir contra la derivación; debemos revisar nuestra descomposición conceptual.
+## Por qué no debemos forzar la derivación
+
+Forzar por fuera de la decisión del skill que algo sea una subtarea puede generar:
+
+- fragmentación artificial;
+- duplicación de responsabilidades;
+- dispersión de criterios;
+- diferencias entre el MVP, la documentación derivada y Jira.
+
+Como estamos trabajando con un enfoque de *spec-driven development*, la estructura debe surgir de la especificación refinada y de su derivación automática. En este proceso confiamos en la IA para interpretar el MVP y proponer la granularidad, y respetamos su decisión salvo que detectemos un problema en la especificación de origen.
+
+## Cómo hacer que nazca una subtarea
+
+![Una subtarea nace de un MVP refinado](assets/subtarea-nace-mvp.png)
+
+Si una capacidad parece requerir una subtarea independiente por su responsabilidad, comportamiento o impacto funcional, primero debemos expresarla con suficiente claridad en el MVP y volver a derivar la planificación.
+
+```text
+MVP refinado
+    ↓
+derivación mediante skills
+    ↓
+HU y subtareas adecuadas
+```
+
+Puede ser necesario iterar y refinar el MVP varias veces hasta que el skill detecte esa independencia y genere la subtarea de forma natural.
+
+## Si la subtarea nunca aparece
+
+Si después de sucesivos refinamientos la subtarea sigue sin aparecer, debemos aceptar que probablemente no sea una unidad independiente. Puede estar cubierta por otra tarea, ser un criterio de aceptación o corresponder a una checklist técnica.
+
+En ese caso, no debemos ir contra la derivación: debemos revisar nuestra descomposición conceptual.
 
 Para cualquier referencia antigua:
 
