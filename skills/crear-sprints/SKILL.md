@@ -11,7 +11,7 @@ Preparar una planificación trazable en español, separando capacidad horaria, e
 
 - Leer las instrucciones del proyecto y la especificación que declaren vigente. No fijar una versión o ruta de MVP para todos los proyectos.
 - Obtener las HU actuales con identificador, descripción, criterios de aceptación, subtareas, estimación existente y dependencias. Si la fuente es Jira, consultar todas las páginas y descubrir los campos de puntos y sprint del sitio; no asumir sus identificadores.
-- Recuperar del contexto: integrantes, horas semanales por persona, duración del sprint, ausencias, margen de coordinación e imprevistos, fechas y restricciones de entrega. Preguntar solo los datos necesarios que falten. Para una simulación, se pueden proponer supuestos explícitos.
+- Recuperar del contexto: integrantes, horas semanales por persona, duración del sprint, ausencias, margen de coordinación e imprevistos, fechas y restricciones de entrega. Para este proyecto, la duración acordada es de 2 semanas por sprint. Preguntar solo los datos necesarios que falten. Para una simulación, se pueden proponer supuestos explícitos.
 - Conservar estimaciones acordadas salvo que el usuario pida reestimar. Distinguir estimación recuperada, nueva estimación y supuesto. Una HU recreada no conserva necesariamente el historial de la eliminada: no afirmar que se recuperaron puntos sin evidencia.
 - Señalar diferencias entre Jira y el MVP; no resolverlas agregando requisitos ni cambiando la especificación. Se puede estimar condicionalmente la variante solicitada, identificándola.
 
@@ -42,7 +42,7 @@ Las horas no determinan los story points. No establecer equivalencias como un pu
 
 Con historial comparable, calcular la velocidad a partir de los puntos de HU realmente terminadas por sprint y presentar su variación. No contar trabajo parcial ni cambiar puntos retrospectivamente para ajustar la velocidad. Revisar comparabilidad si cambió el equipo, su dedicación o la escala.
 
-Sin historial, declarar una hipótesis de velocidad negociable. Si el usuario ya adoptó una, reutilizarla. Los 20 puntos semanales del ejemplo son una hipótesis de ese equipo, no un valor por defecto universal. Contrastar el conjunto de HU con la disponibilidad y dependencias; si se dispone de horas estimadas por tarea, sirven como control de viabilidad, no como fórmula para producir puntos.
+Sin historial, declarar una hipótesis de velocidad negociable. Si el usuario ya adoptó una, reutilizarla. Los 20 puntos por sprint del ejemplo son una hipótesis de ese equipo, no un valor por defecto universal ni una velocidad semanal. Contrastar el conjunto de HU con la disponibilidad y dependencias; si se dispone de horas estimadas por tarea, sirven como control de viabilidad, no como fórmula para producir puntos.
 
 Cuando ayude, comparar escenarios con distintas dedicaciones, reservas o velocidades, etiquetando cada variable como dato o supuesto. No recalcular velocidad automáticamente en proporción a las horas. Recalibrar después de 2–3 sprints con datos reales.
 
@@ -53,7 +53,8 @@ Cuando el usuario pida crear o planificar sprints, entregar la asignación concr
 1. Definir un objetivo concreto por sprint y ordenar dependencias. Priorizar entregas utilizables; evitar separar sistemáticamente frontend y backend en sprints diferentes.
 2. Seleccionar HU completas dentro de la capacidad provisional. Considerar bloqueos, especialidades y trabajo compartido. Si una dependencia se implementa en el mismo sprint, explicar el orden y el riesgo.
 3. Dejar visibles las HU que no caben y las que necesitan refinamiento. Una historia de 13 puntos puede requerir descomposición, pero no crear historias nuevas ni cambiar alcance silenciosamente.
-4. Mostrar puntos por sprint y total pendiente. `techo(total de puntos / velocidad)` es una referencia aritmética, no un calendario garantizado: las HU indivisibles y dependencias pueden requerir más sprints.
+4. Cuando existan fechas confirmadas, representar cada sprint con inicio y fin explícitos. Para este proyecto, cada sprint dura 2 semanas y el inicio de un sprint coincide con el fin del anterior; no insertar semanas vacías ni convertirlo en una cadencia semanal.
+5. Mostrar puntos por sprint y total pendiente. `techo(total de puntos / velocidad)` es una referencia aritmética, no un calendario garantizado: las HU indivisibles y dependencias pueden requerir más sprints.
 5. Si hay una fecha o cantidad fija de sprints insuficiente, exponer la brecha y opciones de priorización, plazo o capacidad. No modificar estos compromisos automáticamente.
 
 Presentar la distribución con estas columnas:

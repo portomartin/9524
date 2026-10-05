@@ -21,9 +21,9 @@ Usar este skill únicamente cuando el usuario solicite crear, actualizar o sincr
 
 - Toda épica, historia y subtarea nueva derivada del MVP activo debe recibir la etiqueta `mvp-v3` cuando la fuente activa sea `docs/mvp-v3.md`.
 - Si cambia la versión activa, usar una etiqueta equivalente y explícita, por ejemplo `mvp-v4`.
-- Las épicas deben conservar en el resumen su identificador de WBS: `E1`, `E2`, `E3`, etc., seguido del nombre de la épica.
-- Las historias deben conservar su identificador `HUxx`.
-- Las subtareas deben incluir `HUxx` y su tipo técnico (`Backend` o `Frontend`) en un resumen breve y legible. Los endpoints, cuerpos HTTP, respuestas y detalles de implementación deben quedar en la descripción, nunca en el título.
+- Las épicas deben usar numeración WBS visible entre corchetes: `[1.0.0]`, `[2.0.0]`, `[3.0.0]`, seguida del nombre de la épica. No usar prefijos `E1`, `E2`, `E3`.
+- Las historias deben usar numeración WBS derivada de su épica entre corchetes: `[1.1.0]`, `[1.2.0]`, `[2.1.0]`, etc. No usar prefijos `HUxx` en el resumen visible.
+- Las subtareas deben usar el tercer nivel WBS derivado de su historia y conservar su tipo técnico: `[1.1.1] [Backend] ...` o `[1.1.2] [Frontend] ...`. Los endpoints, cuerpos HTTP, respuestas y detalles de implementación deben quedar en la descripción, nunca en el título.
 - En las subtareas `Backend/API REST`, la descripción debe separar claramente la especificación técnica: usar bloques de código `http` para endpoints, headers y parámetros, bloques `json` para request/response bodies cuando corresponda, y texto separado para reglas, estados y códigos HTTP. No dejar contratos técnicos extensos como texto inline.
 - Cuando una subtarea incluya varios endpoints, explicar la responsabilidad de cada método (por ejemplo, `GET` consulta y `PATCH` modifica parcialmente), indicando para cada uno si recibe body y qué response espera.
 - Los request bodies y parámetros deben usar valores representativos y declarar sus tipos de datos. Para arrays se debe especificar el tipo de sus items, por ejemplo `string[]` o `array<object>`, y para fechas/horas usar `date` y `time`.
@@ -46,7 +46,7 @@ Usar este skill únicamente cuando el usuario solicite crear, actualizar o sincr
 
 ## Estimaciones y sprints
 
-- Resolver HU locales a claves Jira por identificador `HUxx`, versión y proyecto; no usar claves históricas sin comprobar su correspondencia. Resolver primero las HU recién creadas. Ante duplicados ambiguos, detener solo esa asignación.
+- Resolver historias locales a claves Jira por numeración WBS, nombre, versión y proyecto; no usar claves históricas sin comprobar su correspondencia. Resolver primero las historias recién creadas. Ante duplicados ambiguos, detener solo esa asignación.
 - Leer los sprints del tablero con todas sus páginas y descubrir los campos de estimación del sitio. No fijar IDs de campos, tableros o sprints en el skill.
 - Antes de escribir, comprobar cobertura del plan, sumas, capacidad por sprint y ausencia de HU duplicadas. Distinguir estimaciones provisionales de aprobadas; no aplicar una propuesta pendiente como si ya estuviera aprobada. Si el pedido explícito es aplicar esa propuesta, esa instrucción basta y no requiere una nueva confirmación.
 - Reutilizar los sprints existentes por ID verificado o por nombre inequívoco en el tablero. Crear únicamente los que falten y estén incluidos en la planificación autorizada. Conservar la correspondencia local–Jira durante toda la operación para evitar duplicados.

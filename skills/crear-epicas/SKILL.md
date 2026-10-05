@@ -27,7 +27,7 @@ Si existe `docs/backlog.md`, consultarlo únicamente para conservar IDs, nombres
 
 ## Identificación y formato
 
-Usar identificadores estables con el formato `E1`, `E2`, `E3`.
+Usar numeración jerárquica WBS con formato `[1.0.0]`, `[2.0.0]`, `[3.0.0]`, seguida del nombre de la épica. No usar prefijos `E1`, `E2`, `E3` en los títulos visibles.
 
 Para cada épica presentar:
 
@@ -39,11 +39,11 @@ Para cada épica presentar:
 Ejemplo de estructura:
 
 ```markdown
-## E4. Búsqueda y compatibilidad
+## 4. Búsqueda y compatibilidad
 
 **Objetivo:** permitir encontrar propuestas, solicitudes y personas compatibles.
 
-**Historias:** HU08, HU09, HU10, HU11.
+**Historias:** 4.1, 4.2, 4.3, 4.4.
 ```
 
 ## Conservación del backlog

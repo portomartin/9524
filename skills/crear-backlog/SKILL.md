@@ -18,7 +18,8 @@ Las decisiones aprobadas deben quedar registradas en el backlog, dentro de la HU
 - Mantener las épicas existentes cuando sigan representando capacidades distintas.
 - Incluir debajo de cada título de épica una única sección `Introducción`, derivada exclusivamente del MVP, que integre en párrafos breves el propósito de la épica, su objetivo, el valor para el usuario y el resultado esperado. No crear secciones separadas para esos conceptos.
 - Crear historias de usuario con el formato: `Como [rol], quiero [acción], para [beneficio]`.
-- Titular cada historia con el formato `HU01 Nombre de la historia`, sin guion dentro del identificador ni raya entre el identificador y el nombre.
+- Titular cada historia con su numeración jerárquica WBS entre corchetes, por ejemplo `[1.1.0] Nombre de la historia`, sin prefijo `HUxx`.
+- La numeración de las historias reinicia dentro de cada épica: épica `[1.0.0]` usa `[1.1.0]`, `[1.2.0]`; épica `[2.0.0]` usa `[2.1.0]`, `[2.2.0]`, etc.
 - Colocar la formulación `Como...` inmediatamente debajo del título de cada historia. Es el contenido principal de la HU y debe aparecer antes de refinamientos, pendientes o criterios de aceptación.
 - Asignar cada historia a una épica y evitar historias duplicadas.
 - No inventar funcionalidades que no estén respaldadas por el MVP.

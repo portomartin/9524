@@ -6,13 +6,13 @@
 
 Las historias se derivan exclusivamente del MVP V3. No se mezclan requisitos del backlog anterior ni se asignan prioridades o estimaciones no definidas por la especificación.
 
-## Épica E1. Descubrimiento y acceso público
+## Épica [1.0.0]. Descubrimiento y acceso público
 
 ### Introducción
 
 Esta épica permite que una persona entienda el valor de la plataforma y explore oportunidades de aprendizaje antes de registrarse. El acceso `GUEST` es de solo lectura; las acciones protegidas requieren autenticación.
 
-### HU01 Explorar como `GUEST`
+### [1.1.0] Explorar como `GUEST`
 
 Como `GUEST`, quiero explorar propuestas de enseñanza y aprendizajes buscados, para descubrir rápidamente si la plataforma me interesa.
 
@@ -29,7 +29,7 @@ Como `GUEST`, quiero explorar propuestas de enseñanza y aprendizajes buscados, 
 - Campos exactos visibles en el detalle público.
 - Reglas de orden inicial del contenido.
 
-### HU02 Consultar confianza pública
+### [1.2.0] Consultar confianza pública
 
 Como `GUEST`, quiero ver reputaciones, rankings y contenido trending, para evaluar si existen oportunidades valiosas.
 
@@ -46,7 +46,7 @@ Como `GUEST`, quiero ver reputaciones, rankings y contenido trending, para evalu
 - Definición exacta de ranking.
 - Definición exacta de trending.
 
-### HU03 Registrarse cuando sea necesario
+### [1.3.0] Registrarse cuando sea necesario
 
 Como `GUEST`, quiero registrarme solo cuando intento realizar una acción protegida, para no perder tiempo antes de entender el producto.
 
@@ -63,7 +63,7 @@ Como `GUEST`, quiero registrarme solo cuando intento realizar una acción proteg
 - Campos mínimos del registro.
 - Acciones exactas que requieren autenticación.
 
-### HU04 Autenticarse
+### [1.4.0] Autenticarse
 
 Como `USER`, quiero iniciar y cerrar sesión, para acceder a mis acciones y proteger mi cuenta.
 
@@ -80,13 +80,13 @@ Como `USER`, quiero iniciar y cerrar sesión, para acceder a mis acciones y prot
 - Duración y renovación de la sesión.
 - Recuperación de contraseña.
 
-## Épica E2. Perfil, propuestas y necesidades
+## Épica [2.0.0]. Perfil, propuestas y necesidades
 
 ### Introducción
 
 Esta épica permite que un `USER` indique qué puede enseñar y qué desea aprender, y publique propuestas concretas para que otras personas las descubran.
 
-### HU05 Completar el perfil
+### [2.1.0] Completar el perfil
 
 Como `USER`, quiero completar y editar mi perfil básico, para presentarme ante otras personas.
 
@@ -103,7 +103,7 @@ Como `USER`, quiero completar y editar mi perfil básico, para presentarme ante 
 - Campos obligatorios del perfil.
 - Visibilidad de ubicación general.
 
-### HU06 Publicar una propuesta
+### [2.2.0] Publicar una propuesta
 
 Como `USER`, quiero publicar algo que sé enseñar, para que otras personas puedan encontrarlo y crear una solicitud de sesión.
 
@@ -121,7 +121,7 @@ Como `USER`, quiero publicar algo que sé enseñar, para que otras personas pued
 - Campos obligatorios exactos.
 - Revisión previa a la publicación.
 
-### HU07 Registrar un aprendizaje buscado
+### [2.3.0] Registrar un aprendizaje buscado
 
 Como `USER`, quiero indicar qué deseo aprender, para encontrar propuestas compatibles.
 
@@ -138,13 +138,13 @@ Como `USER`, quiero indicar qué deseo aprender, para encontrar propuestas compa
 - Cantidad de necesidades simultáneas.
 - Vencimiento de una necesidad inactiva.
 
-## Épica E3. Búsqueda y compatibilidad
+## Épica [3.0.0]. Búsqueda y compatibilidad
 
 ### Introducción
 
 Esta épica conecta lo que un `USER` puede enseñar con lo que otro desea aprender, priorizando coincidencias comprensibles y accionables.
 
-### HU08 Buscar aprendizajes
+### [3.1.0] Buscar aprendizajes
 
 Como visitante o `USER`, quiero buscar propuestas y aprendizajes buscados, para encontrar oportunidades relevantes.
 
@@ -161,7 +161,7 @@ Como visitante o `USER`, quiero buscar propuestas y aprendizajes buscados, para 
 - Orden por relevancia.
 - Búsqueda parcial y sin resultados.
 
-### HU09 Filtrar resultados
+### [3.2.0] Filtrar resultados
 
 Como visitante o `USER`, quiero filtrar resultados, para reducir rápidamente las opciones.
 
@@ -178,7 +178,7 @@ Como visitante o `USER`, quiero filtrar resultados, para reducir rápidamente la
 - Filtros mínimos de la primera interfaz.
 - Paginación.
 
-### HU10 Encontrar compatibilidades
+### [3.3.0] Encontrar compatibilidades
 
 Como `USER`, quiero conocer qué personas y propuestas son compatibles conmigo, para iniciar un intercambio posible.
 
@@ -196,13 +196,13 @@ Como `USER`, quiero conocer qué personas y propuestas son compatibles conmigo, 
 - Ponderación de criterios.
 - Umbral mínimo de compatibilidad.
 
-## Épica E4. Agenda y sesiones
+## Épica [4.0.0]. Agenda y sesiones
 
 ### Introducción
 
 Esta épica permite mostrar disponibilidad concreta, acordar una sesión individual y registrar su cumplimiento. La agenda es única para enseñar y aprender.
 
-### HU11 Gestionar disponibilidad
+### [4.1.0] Gestionar disponibilidad
 
 Como `USER`, quiero cargar disponibilidades concretas, para que otras personas puedan encontrar horarios posibles.
 
@@ -220,7 +220,7 @@ Como `USER`, quiero cargar disponibilidades concretas, para que otras personas p
 - Zona horaria.
 - Duración de franjas mayores a una hora.
 
-### HU12 Publicar la agenda
+### [4.2.0] Publicar la agenda
 
 Como `USER`, quiero activar o desactivar la visibilidad de mi agenda, para decidir cuándo mostrar mis horarios libres.
 
@@ -237,7 +237,7 @@ Como `USER`, quiero activar o desactivar la visibilidad de mi agenda, para decid
 - Vista exacta para una agenda vacía.
 - Nivel de detalle de la disponibilidad pública.
 
-### HU13 Crear una sesión solicitada
+### [4.3.0] Crear una sesión solicitada
 
 Como `USER`, quiero crear una sesión en estado `SOLICITADA` desde una propuesta, para iniciar el intercambio.
 
@@ -254,7 +254,7 @@ Como `USER`, quiero crear una sesión en estado `SOLICITADA` desde una propuesta
 - Conflictos de horario.
 - Vencimiento de solicitudes sin respuesta.
 
-### HU14 Gestionar el estado de una sesión
+### [4.4.0] Gestionar el estado de una sesión
 
 Como `USER`, quiero aceptar, iniciar o cancelar una sesión solicitada, para llevarla al estado que corresponda durante el intercambio.
 
@@ -274,7 +274,7 @@ Como `USER`, quiero aceptar, iniciar o cancelar una sesión solicitada, para lle
 - Motivos de rechazo.
 - Política de cancelación.
 
-### HU15 Finalizar una sesión
+### [4.5.0] Finalizar una sesión
 
 Como participante, quiero marcar una sesión en curso como `FINALIZADA`, para habilitar créditos, historial y calificaciones.
 
@@ -291,13 +291,13 @@ Como participante, quiero marcar una sesión en curso como `FINALIZADA`, para ha
 - Si se requiere confirmación de una o de ambas personas.
 - Tratamiento de desacuerdos.
 
-## Épica E5. Créditos, historial y reputación
+## Épica [5.0.0]. Créditos, historial y reputación
 
 ### Introducción
 
 Esta épica sostiene los intercambios no recíprocos, conserva la actividad y construye confianza mediante calificaciones mutuas.
 
-### HU16 Intercambiar con créditos
+### [5.1.0] Intercambiar con créditos
 
 Como `USER`, quiero usar créditos internos cuando no existe reciprocidad directa, para poder aprender de todas formas.
 
@@ -316,7 +316,7 @@ Como `USER`, quiero usar créditos internos cuando no existe reciprocidad direct
 - Valor de cada propuesta.
 - Reversión por cancelación o disputa.
 
-### HU17 Consultar historial
+### [5.2.0] Consultar historial
 
 Como `USER`, quiero consultar mis sesiones, intercambios, créditos y calificaciones, para conocer mi actividad.
 
@@ -333,7 +333,7 @@ Como `USER`, quiero consultar mis sesiones, intercambios, créditos y calificaci
 - Conservación del historial.
 - Filtros del historial.
 
-### HU18 Calificarse mutuamente
+### [5.3.0] Calificarse mutuamente
 
 Como participante de una sesión completada, quiero calificar a la otra persona, para construir reputación y confianza.
 
@@ -350,13 +350,13 @@ Como participante de una sesión completada, quiero calificar a la otra persona,
 - Edición o eliminación de una calificación.
 - Moderación de comentarios.
 
-## Épica E6. Seguridad y administración
+## Épica [6.0.0]. Seguridad y administración
 
 ### Introducción
 
 Esta épica protege el carácter educativo, lícito y seguro del intercambio sin desplazar el foco de la experiencia principal.
 
-### HU19 Denunciar contenido o usuarios
+### [6.1.0] Denunciar contenido o usuarios
 
 Como `USER`, quiero denunciar contenido o usuarios, para ayudar a mantener un espacio seguro.
 
@@ -373,7 +373,7 @@ Como `USER`, quiero denunciar contenido o usuarios, para ayudar a mantener un es
 - Catálogo inicial de motivos.
 - Denuncias duplicadas.
 
-### HU20 Administrar seguridad
+### [6.2.0] Administrar seguridad
 
 Como `ADMIN`, quiero revisar usuarios, propuestas y denuncias, para proteger la plataforma.
 

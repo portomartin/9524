@@ -12,7 +12,7 @@ Usar este skill cuando el usuario solicite crear, actualizar o refinar subtareas
 1. Leer `AGENTS.md`, la versión indicada del MVP (`docs/mvp-v1.md`, `docs/mvp-v2.md` o `docs/mvp-v3.md`) y `docs/backlog.md` antes de generar subtareas.
 2. Mantener la trazabilidad: Épica → Historia de usuario → Subtarea.
 3. No incorporar funcionalidades fuera del MVP ni resolver unilateralmente pendientes de decisión.
-4. No crear subtareas para historias candidatas o pendientes de confirmación, como HU22, salvo aprobación explícita.
+4. No crear subtareas para historias candidatas o pendientes de confirmación, salvo aprobación explícita.
 
 ## Descomposición estándar
 
@@ -21,12 +21,14 @@ Cada historia aprobada debe tener, como mínimo, dos subtareas:
 - **Backend/API REST:** modelo, reglas de negocio, endpoints, autorización, validaciones y pruebas del servicio.
 - **Frontend:** pantalla o flujo de usuario, integración con la API, estados visuales, validaciones de presentación y pruebas de interacción.
 
-Usar títulos trazables, por ejemplo:
+Usar títulos trazables con numeración WBS, conservando por ahora el tipo técnico:
 
 ```text
-HU01 [Backend] Implementar registro de usuario
-HU01 [Frontend] Crear pantalla de registro
+[1.1.1] [Backend] Implementar registro de usuario
+[1.1.2] [Frontend] Crear pantalla de registro
 ```
+
+La subtarea debe usar el tercer nivel derivado de su épica e historia entre corchetes: `[1.1.1]`, `[1.1.2]`, etc. No usar `HUxx` en el título visible.
 
 Agregar subtareas transversales solo cuando una pieza técnica no pertenezca claramente a una historia específica. No duplicar autenticación, componentes compartidos, manejo común de errores o auditoría en todas las historias.
 

@@ -43,6 +43,7 @@ flowchart TD
 ## Independencia y finalización
 
 - Las ramas WBS, USM y backlog no leen las salidas de las otras. Cada una verifica su contenido contra el MVP. Pueden consultar su propio documento previo únicamente para conservar identificadores y formato compatibles con la fuente.
+- Usar una numeración WBS única y jerárquica en los artefactos derivados: épicas `[1.0.0]`, `[2.0.0]`; historias `[1.1.0]`, `[1.2.0]`; subtareas `[1.1.1]`, `[1.1.2]`. Conservar `[Backend]` y `[Frontend]` en los títulos de subtareas. No introducir nuevamente prefijos `E1` o `HUxx` en títulos visibles.
 - Las ramas pueden recorrerse una tras otra; no requieren agentes separados ni ejecución simultánea. El orden de ejecución no crea una dependencia entre ellas.
 - La etapa final de sprints sí depende del backlog revisado, sus subtareas y los datos del equipo. Usa estos documentos para estimar y organizar trabajo, manteniendo el MVP como fuente de requisitos.
 - Si el pedido se limita a un artefacto (por ejemplo, actualizar solo la WBS), no ejecutar la etapa de sprints. En una actualización completa, revisar el impacto en estimaciones y distribución existentes; no reemplazarlas sin analizar qué cambió.
