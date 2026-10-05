@@ -2,9 +2,9 @@
 
 **Fuente de verdad:** [`mvp-v3.md`](mvp-v3.md)  
 **Backlog de origen:** [`backlog.md`](backlog.md)  
-**Estado:** derivación local; no sincronizada con Jira.
+**Estado:** derivación local revisada y sincronizada con Jira el 2026-10-05.
 
-Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Frontend. Los endpoints son propuestas técnicas y deben validarse contra el contrato definitivo.
+La cantidad de subtareas se decide según el trabajo real de cada HU. No existe un mínimo obligatorio de Backend y Frontend. Los endpoints son propuestas técnicas y deben validarse contra el contrato definitivo.
 
 ## Convenciones transversales
 
@@ -17,6 +17,33 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
 - Los errores usan `{ code, message, fields }` cuando corresponda.
 - Los ejemplos de request deben usar valores representativos y cada subtarea Backend/API REST debe indicar explícitamente el tipo de los path params, query params, headers y propiedades JSON (`string`, `integer`, `number`, `boolean`, `date`, `time`, `string[]`, etc.).
 - Las subtareas Frontend deben consultar y aplicar `convenciones-frontend`.
+
+## Descomposición decidida
+
+| HU | Subtareas técnicas |
+|---|---|
+| [1.1.0] | [1.1.1] Backend: exponer exploración pública; [1.1.2] Frontend: crear navegación y detalle público |
+| [1.2.0] | [1.2.1] Backend: exponer confianza pública; [1.2.2] Frontend: mostrar reputación, rankings y trending |
+| [1.3.0] | [1.3.1] Backend: implementar registro; [1.3.2] Frontend: conservar contexto y registrar |
+| [1.4.0] | [1.4.1] Backend: implementar autenticación; [1.4.2] Frontend: gestionar sesión y rutas protegidas |
+| [2.1.0] | [2.1.1] Backend: gestionar perfil; [2.1.2] Frontend: crear edición de perfil |
+| [2.2.0] | [2.2.1] Backend: gestionar propuestas; [2.2.2] Frontend: crear edición y publicación |
+| [2.3.0] | [2.3.1] Backend: gestionar necesidades; [2.3.2] Frontend: crear flujo de aprendizaje buscado |
+| [3.1.0] | [3.1.1] Backend: implementar búsqueda pública; [3.1.2] Frontend: crear buscador |
+| [3.2.0] | [3.2.1] Backend: aplicar filtros; [3.2.2] Frontend: gestionar filtros combinables |
+| [3.3.0] | [3.3.1] Backend: calcular compatibilidades; [3.3.2] Frontend: explicar coincidencias |
+| [4.1.0] | [4.1.1] Backend: gestionar franjas; [4.1.2] Backend: procesar carga múltiple sin recurrencia; [4.1.3] Frontend: crear agenda y carga asistida |
+| [4.2.0] | [4.2.1] Backend: controlar visibilidad y privacidad; [4.2.2] Frontend: publicar y consultar agenda |
+| [4.3.0] | [4.3.1] Backend: crear sesión solicitada; [4.3.2] Backend: controlar disponibilidad y concurrencia; [4.3.3] Frontend: crear solicitud y resumen |
+| [4.4.0] | [4.4.1] Backend: implementar máquina de estados; [4.4.2] Backend: aplicar privacidad y efectos sobre la franja; [4.4.3] Frontend: gestionar acciones de sesión |
+| [4.5.0] | [4.5.1] Backend: finalizar sesión; [4.5.2] Frontend: completar y habilitar acciones posteriores |
+| [5.1.0] | [5.1.1] Backend: gestionar saldo y libro de movimientos; [5.1.2] Backend: ejecutar transferencia idempotente; [5.1.3] Frontend: mostrar créditos y resultado |
+| [5.2.0] | [5.2.1] Backend: consultar historial propio; [5.2.2] Frontend: crear historial de actividad |
+| [5.3.0] | [5.3.1] Backend: gestionar calificaciones y reputación; [5.3.2] Frontend: calificar y consultar reputación |
+| [6.1.0] | [6.1.1] Backend: gestionar denuncias; [6.1.2] Frontend: crear flujo de denuncia |
+| [6.2.0] | [6.2.1] Backend: consultar recursos administrativos; [6.2.2] Backend: ejecutar moderación y auditoría; [6.2.3] Frontend: crear panel administrativo |
+
+**Resultado:** 45 subtareas para 20 HU. Quince HU requieren dos subtareas y cinco HU requieren tres. La numeración no fija una especialidad: refleja el orden de la descomposición decidida.
 
 ## [1.0.0] Descubrimiento y acceso público
 
@@ -81,8 +108,8 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
   Login response: `200 OK` con cookie segura o `401 Unauthorized`. Logout invalida la sesión.
 
   Checklist técnica histórica:
-  - [ ] [1.4.1.1] Implementar inicio de sesión con credenciales validadas y sesión segura.
-  - [ ] [1.4.1.2] Invalidar la sesión en el cierre de sesión.
+  - [x] [1.4.1.1] Implementar inicio de sesión con credenciales validadas y sesión segura.
+  - [x] [1.4.1.2] Invalidar la sesión en el cierre de sesión.
   - [ ] [1.4.1.3] Mantener recuperación de contraseña como pendiente hasta definir su alcance.
 - **Frontend:** Crear login, logout, protección de rutas y estados de error; mantener el estado `USER` de forma segura.
 
@@ -215,7 +242,7 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
 
 ### [4.1.0] — Gestionar disponibilidad
 
-- **Backend/API REST:** Implementar:
+- **[4.1.1] [Backend] Gestionar franjas:** Implementar:
   ```http
   GET /api/v1/me/availability
   POST /api/v1/me/availability
@@ -242,7 +269,22 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
   - [ ] [4.1.1.1] Persistir disponibilidades como franjas explícitas de fecha y hora.
   - [ ] [4.1.1.2] Gestionar alta, modificación y eliminación de franjas.
   - [ ] [4.1.1.3] Validar duración, conflictos y rechazo de recurrencias persistidas.
-- **Frontend:** Crear agenda inicialmente vacía, carga de una o múltiples franjas concretas y ayudas masivas sin crear reglas recurrentes.
+- **[4.1.2] [Backend] Procesar carga múltiple sin recurrencia:** Implementar una operación que reciba franjas concretas ya expandidas, sin persistir una regla recurrente.
+  ```http
+  POST /api/v1/me/availability/batch
+  Content-Type: application/json
+  ```
+  Request body sugerido:
+  ```json
+  {
+    "slots": [
+      { "date": "2026-10-15", "startTime": "18:00", "durationMinutes": 60 },
+      { "date": "2026-10-17", "startTime": "10:00", "durationMinutes": 60 }
+    ]
+  }
+  ```
+  `slots` es `array<object>` de fechas y horas concretas. Responder `201 Created` con franjas creadas o `409 Conflict` con las posiciones rechazadas. Validar el lote de forma determinista y probar que no se almacene ninguna recurrencia.
+- **[4.1.3] [Frontend] Crear agenda y carga asistida:** Crear agenda inicialmente vacía, carga de una o múltiples franjas concretas y ayudas masivas sin crear reglas recurrentes. Consultar y aplicar el skill `convenciones-frontend`.
 
 ### [4.2.0] — Publicar la agenda
 
@@ -267,7 +309,7 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
 
 ### [4.3.0] — Crear una sesión solicitada
 
-- **Backend/API REST:** Implementar:
+- **[4.3.1] [Backend] Crear sesión solicitada:** Implementar:
   ```http
   POST /api/v1/sessions
   Content-Type: application/json
@@ -287,18 +329,20 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
   }
   ```
   Crear la sesión con estado `SOLICITADA`. Response: `201 Created`, `400 Bad Request`, `409 Conflict` o `401 Unauthorized`.
-- **Frontend:** Crear resumen de solicitud, validar franja libre y mostrar confirmación antes de enviar.
+- **[4.3.2] [Backend] Controlar disponibilidad y concurrencia:** Aplicar sobre `POST /api/v1/sessions` una validación consistente de la franja elegida antes de crear la sesión. No recibe un body adicional: usa `proposedDate`, `startTime` y `durationMinutes` de la solicitud. Responder `409 Conflict` cuando la franja dejó de estar disponible. Probar dos solicitudes concurrentes y garantizar que solo una pueda comprometer la misma franja.
+- **[4.3.3] [Frontend] Crear solicitud y resumen:** Crear resumen de solicitud, validar franja libre y mostrar confirmación antes de enviar. Consultar y aplicar el skill `convenciones-frontend`.
 
 ### [4.4.0] — Gestionar el estado de una sesión
 
-- **Backend/API REST:** Implementar:
+- **[4.4.1] [Backend] Implementar máquina de estados:** Implementar:
   ```http
   POST /api/v1/sessions/{sessionId}/confirm
   POST /api/v1/sessions/{sessionId}/start
   POST /api/v1/sessions/{sessionId}/cancel
   ```
   Request: actor autenticado y, para cancelar, motivo opcional; sin body obligatorio. Registrar actor, fecha, motivo y transición. Response: `200 OK`, `400 Bad Request`, `403 Forbidden` o `409 Conflict`.
-- **Frontend:** Crear acciones con confirmación, mostrar estados `SOLICITADA`/`CONFIRMADA`/`EN_CURSO`/`CANCELADA` y detalle visible solo a participantes.
+- **[4.4.2] [Backend] Aplicar privacidad y efectos sobre la franja:** Integrar las mismas transiciones con la agenda y la autorización. Al confirmar, ocultar la franja comprometida de la vista pública; al cancelar, aplicar la liberación que corresponda sin exponer el acuerdo. Los endpoints son los de [4.4.1] y no requieren un body adicional salvo el motivo opcional. Probar permisos de ambos participantes, transiciones inválidas y consultas públicas posteriores.
+- **[4.4.3] [Frontend] Gestionar acciones de sesión:** Crear acciones con confirmación, mostrar estados `SOLICITADA`/`CONFIRMADA`/`EN_CURSO`/`CANCELADA` y detalle visible solo a participantes. Consultar y aplicar el skill `convenciones-frontend`.
 
 ### [4.5.0] — Finalizar una sesión
 
@@ -313,7 +357,13 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
 
 ### [5.1.0] — Intercambiar con créditos
 
-- **Backend/API REST:** Implementar:
+- **[5.1.1] [Backend] Gestionar saldo y libro de movimientos:** Implementar la consulta autenticada de saldo y movimientos internos:
+  ```http
+  GET /api/v1/me/credit-balance
+  GET /api/v1/me/credit-movements?page={page}&pageSize={pageSize}
+  ```
+  Sin request body. `page` y `pageSize` son `integer`. Responder `200 OK` con saldo `integer` y movimientos `array<object>`, o `401 Unauthorized`. Probar privacidad y consistencia entre saldo y libro de movimientos.
+- **[5.1.2] [Backend] Ejecutar transferencia idempotente:** Implementar:
   ```http
   POST /api/v1/sessions/{sessionId}/credit-transfer
   Idempotency-Key: {key}
@@ -321,10 +371,10 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
   Request: sin body; derivar participantes y cantidad de la sesión. Response: `201 Created`, `400 Bad Request`, `409 Conflict` o `422 Unprocessable Entity`; impedir saldo negativo.
 
   Checklist técnica histórica:
-  - [ ] [5.1.1.1] Validar saldo suficiente antes de transferir créditos.
-  - [ ] [5.1.1.2] Registrar débito y crédito como una operación consistente e idempotente.
-  - [ ] [5.1.1.3] Exponer el resultado de la transferencia sin tratar créditos como dinero.
-- **Frontend:** Mostrar costo, saldo y resultado de transferencia sin presentar créditos como dinero.
+  - [ ] [5.1.2.1] Validar saldo suficiente antes de transferir créditos.
+  - [ ] [5.1.2.2] Registrar débito y crédito como una operación consistente e idempotente.
+  - [ ] [5.1.2.3] Exponer el resultado de la transferencia sin tratar créditos como dinero.
+- **[5.1.3] [Frontend] Mostrar créditos y resultado:** Mostrar costo, saldo y resultado de transferencia sin presentar créditos como dinero. Consultar y aplicar el skill `convenciones-frontend`.
 
 ### [5.2.0] — Consultar historial
 
@@ -382,14 +432,22 @@ Cada historia aprobada tiene una subtarea Backend/API REST y una subtarea Fronte
 
 ### [6.2.0] — Administrar seguridad
 
-- **Backend/API REST:** Implementar:
+- **[6.2.1] [Backend] Consultar recursos administrativos:** Implementar:
   ```http
   GET /api/v1/admin/users
   GET /api/v1/admin/teaching-offers
   GET /api/v1/admin/reports
   ```
-  y acciones protegidas para ocultar propuestas y suspender o reactivar cuentas. Request: filtros administrativos y motivo cuando corresponda. Response: `200 OK`, `403 Forbidden` o `404 Not Found`. Auditar actor, fecha y motivo.
-- **Frontend:** Crear panel administrativo básico con revisión, filtros, detalle, confirmación y errores de autorización.
+  Request: filtros administrativos sin body. Response: `200 OK`, `403 Forbidden` o `404 Not Found`. Restringir la información a permisos `ADMIN` y probar paginación y filtros.
+- **[6.2.2] [Backend] Ejecutar moderación y auditoría:** Implementar acciones protegidas:
+  ```http
+  POST /api/v1/admin/teaching-offers/{offerId}/hide
+  POST /api/v1/admin/users/{userId}/suspend
+  POST /api/v1/admin/users/{userId}/reactivate
+  Content-Type: application/json
+  ```
+  `offerId` y `userId` son `string`. Request body sugerido: `{ "reason": "Incumplimiento de las reglas" }`, donde `reason` es `string`. Responder `200 OK`, `403 Forbidden`, `404 Not Found` o `409 Conflict`. Auditar actor, fecha, motivo y acción; exigir revisión humana para sanciones definitivas.
+- **[6.2.3] [Frontend] Crear panel administrativo:** Crear panel administrativo básico con revisión, filtros, detalle, confirmación y errores de autorización. Consultar y aplicar el skill `convenciones-frontend`.
 
 ## Tipos de datos de los contratos Backend/API REST
 

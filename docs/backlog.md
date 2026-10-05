@@ -2,9 +2,9 @@
 
 **Proyecto:** Plataforma de intercambio de aprendizajes  
 **Fuente de verdad:** [`mvp-v3.md`](mvp-v3.md)  
-**Estado:** derivado del MVP V3; pendiente de revisión funcional.
+**Estado:** derivado directamente del MVP V3; conserva refinamientos compatibles y mantiene decisiones funcionales pendientes.
 
-Las historias se derivan exclusivamente del MVP V3. No se mezclan requisitos del backlog anterior ni se asignan prioridades o estimaciones no definidas por la especificación.
+Las historias se derivan exclusivamente del MVP V3. La WBS y el USM no se utilizan como entradas del backlog. No se asignan prioridades o estimaciones no definidas por la especificación.
 
 ## Épica [1.0.0]. Descubrimiento y acceso público
 
@@ -146,7 +146,7 @@ Esta épica conecta lo que un `USER` puede enseñar con lo que otro desea aprend
 
 ### [3.1.0] Buscar aprendizajes
 
-Como visitante o `USER`, quiero buscar propuestas y aprendizajes buscados, para encontrar oportunidades relevantes.
+Como `GUEST` o `USER`, quiero buscar propuestas y aprendizajes buscados, para encontrar oportunidades relevantes.
 
 - **✅ Aceptación:** La búsqueda devuelve resultados públicos relacionados con el conocimiento consultado.
 
@@ -163,7 +163,7 @@ Como visitante o `USER`, quiero buscar propuestas y aprendizajes buscados, para 
 
 ### [3.2.0] Filtrar resultados
 
-Como visitante o `USER`, quiero filtrar resultados, para reducir rápidamente las opciones.
+Como `GUEST` o `USER`, quiero filtrar resultados, para reducir rápidamente las opciones.
 
 - **✅ Aceptación:** Los filtros se pueden combinar y limpiar.
 
@@ -276,7 +276,7 @@ Como `USER`, quiero aceptar, iniciar o cancelar una sesión solicitada, para lle
 
 ### [4.5.0] Finalizar una sesión
 
-Como participante, quiero marcar una sesión en curso como `FINALIZADA`, para habilitar créditos, historial y calificaciones.
+Como `USER` participante, quiero marcar una sesión en curso como `FINALIZADA`, para habilitar créditos, historial y calificaciones.
 
 - **✅ Aceptación:** Una sesión en curso puede pasar a `FINALIZADA` y habilita las acciones posteriores.
 
@@ -335,7 +335,7 @@ Como `USER`, quiero consultar mis sesiones, intercambios, créditos y calificaci
 
 ### [5.3.0] Calificarse mutuamente
 
-Como participante de una sesión completada, quiero calificar a la otra persona, para construir reputación y confianza.
+Como `USER` participante de una sesión completada, quiero calificar a la otra persona, para construir reputación y confianza.
 
 - **✅ Aceptación:** Ambos participantes pueden emitir una calificación de 1 a 5 y un comentario opcional una sola vez.
 

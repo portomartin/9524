@@ -1,8 +1,9 @@
 # WBS del MVP V3
 
-**Fuente de verdad:** [`mvp-v3.md`](mvp-v3.md)
+**Fuente de verdad:** [`mvp-v3.md`](mvp-v3.md)  
+**Estado:** derivada directamente del MVP V3 e independiente del backlog y del USM.
 
-La WBS se deriva exclusivamente del MVP V3 activo.
+La WBS organiza el alcance por entregables y capacidades verificables. Su numeración describe la jerarquía propia de la WBS y no obliga a que el backlog replique la misma estructura.
 
 ## 0. Plataforma de intercambio de aprendizajes
 
@@ -114,6 +115,10 @@ La WBS se deriva exclusivamente del MVP V3 activo.
 | 4 | Agenda pública; Acordar y coordinar |
 | 5 | Créditos internos; Calificación y confianza |
 | 6 | Soporte necesario; Seguridad y límites |
+
+## Validación posterior con el backlog
+
+La comparación de cobertura se realiza después de generar ambos artefactos desde el MVP. No se exige una relación uno a uno ni que sus niveles o identificadores coincidan. La revisión actual no detecta alcance del MVP ausente en ninguno de los dos artefactos.
 
 ## Exclusiones verificadas
 

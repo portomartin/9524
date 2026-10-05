@@ -1,13 +1,13 @@
 ---
 name: crear-backlog
-description: Transformar la especificación vigente del MVP en épicas e historias de usuario. Usar cuando se solicite crear o actualizar el backlog del proyecto.
+description: Transformar directamente la especificación vigente del MVP en épicas e historias de usuario. Usar cuando se solicite crear o actualizar el backlog del proyecto.
 ---
 
 # Generar backlog
 
 Leer `AGENTS.md` y la versión indicada del MVP (`docs/mvp-v1.md`, `docs/mvp-v2.md` o `docs/mvp-v3.md`) antes de proponer cambios.
 
-Derivar el contenido únicamente del MVP, sin leer la WBS ni el USM como entradas. Si existe `docs/backlog.md`, consultarlo solo para preservar identificadores, épicas y formato compatibles con el MVP; no usarlo como fuente de alcance. El backlog puede prepararse aunque no existan WBS ni USM.
+Derivar el contenido únicamente del MVP, sin leer la WBS ni el USM como entradas. Si existe `docs/backlog.md`, consultarlo solo para preservar identificadores, épicas, formato y decisiones compatibles con el MVP; no usarlo como fuente de alcance. El backlog puede prepararse aunque no existan WBS ni USM.
 
 El backlog es un documento vivo: las correcciones humanas aprobadas deben conservarse. Antes de regenerar, comparar el backlog existente y no eliminar introducciones, aclaraciones, criterios o decisiones agregadas manualmente. Si hay un conflicto con el MVP, señalarlo en vez de sobrescribirlo.
 
@@ -68,3 +68,5 @@ Cuando una decisión aprobada modifique el alcance o una regla de negocio del MV
 Las historias de usuario deben aparecer después del contenido introductorio de su épica. No crear una sección redundante llamada “Subítems”: cuando el backlog se traslade a una herramienta de gestión, las historias podrán representarse como subítems de la épica.
 
 Presentar el borrador en Markdown. Si se aprueba, guardarlo en `docs/backlog.md`, salvo que el usuario indique otra ubicación o formato. No modificar el MVP, la WBS ni el USM desde esta rama.
+
+Cuando el backlog forme parte de una derivación completa que también genere WBS, comparar ambos artefactos únicamente después de haberlos creado de manera independiente. Esta validación posterior no convierte a la WBS en entrada del backlog. Si la cobertura es completa, informar el resultado sin mantener una matriz permanente. Si existen brechas, presentar los paquetes sin cobertura, elementos sin respaldo, duplicaciones o contradicciones y proponer qué artefacto derivado ajustar. Solo guardar un informe cuando el usuario lo pida o la brecha deba quedar registrada para una decisión posterior.

@@ -19,11 +19,13 @@ flowchart TD
     C --> F
     D --> F
     E --> F
-    F --> G[Crear subtareas técnicas]
-    G --> H[Revisar derivación completa]
-    H --> I[Estimar HU y simular capacidad del equipo]
-    I --> J[Proponer sprints y guardar planificación]
-    J --> K[Presentar resultados y pendientes]
+    F --> G[Validar cobertura WBS y backlog]
+    G --> H[Crear subtareas técnicas]
+    H --> I[Reconciliar trabajo histórico inicial]
+    I --> J[Revisar derivación completa]
+    J --> K[Estimar HU y simular capacidad del equipo]
+    K --> L[Proponer sprints y guardar planificación]
+    L --> M[Presentar resultados y pendientes]
 ```
 
 ## Nodos y conexiones
@@ -31,24 +33,29 @@ flowchart TD
 1. **Leer MVP:** leer `AGENTS.md` y el contenido completo de la versión indicada (`docs/mvp-v1.md`, `docs/mvp-v2.md` o `docs/mvp-v3.md`). Usar esa misma versión como fuente de requisitos de todas las ramas. Registrar en los documentos qué versión se usó y no mezclar versiones.
 2. **Crear WBS:** aplicar [crear-wbs](../crear-wbs/SKILL.md) y sus referencias. Preparar el borrador a partir del MVP.
 3. **Crear USM:** aplicar [crear-usm](../crear-usm/SKILL.md) y sus referencias. Preparar el borrador a partir del MVP.
-4. **Crear backlog:** aplicar [crear-backlog](../crear-backlog/SKILL.md). Preparar las épicas e historias a partir del MVP.
+4. **Crear backlog:** aplicar [crear-backlog](../crear-backlog/SKILL.md). Preparar las épicas e historias directamente a partir del MVP, sin leer la WBS ni el USM como entradas.
 5. **Crear resumen:** redactar una vista rápida del espíritu, flujo, roles, entidad central y principios del MVP. Guardar en `docs/mvp-resumido.md`. No incluir secciones de alcance incluido ni de exclusiones; declarar siempre que es un artefacto derivado, nunca fuente de verdad.
 6. **Guardar documentos locales:** cuando el usuario solicite derivar el plan completo, guardar los resultados aprobados o solicitados en `docs/wbs.md`, `docs/usm.md` y `docs/backlog.md`.
-7. **Crear subtareas técnicas:** después de disponer del backlog local, aplicar [create-subtereas](../create-subtereas/SKILL.md) para descomponer las historias aprobadas en subtareas Backend/API REST y Frontend. Guardar el resultado local en `docs/subtareas.md`.
-8. **Revisar derivación completa:** comprobar la trazabilidad al MVP, los criterios de aceptación y las dependencias de las HU y subtareas. Incorporar el refinamiento solicitado antes de estimar; señalar ambigüedades sin inventar reglas.
-9. **Estimar HU y simular capacidad del equipo:** aplicar [crear-sprints](../crear-sprints/SKILL.md) al backlog revisado y sus subtareas. Reutilizar los datos del equipo y decisiones de la conversación; preguntar lo que falte o declarar supuestos si se solicitó una simulación. Separar capacidad horaria, puntos estimados y velocidad observada o hipotética. Conservar estimaciones anteriores válidas salvo pedido de reestimación. Los 6 integrantes, 15 horas semanales y 20 puntos del ejemplo no son valores universales.
-10. **Proponer sprints y guardar planificación:** continuar con `crear-sprints` para agrupar HU completas según objetivos, dependencias y capacidad. Guardar en `docs/sprints.md` la versión del MVP, fecha, supuestos, capacidad horaria, estimaciones por HU, velocidad de referencia, distribución y trabajo pendiente. Si hay incertidumbres, identificar la propuesta como provisional. No asignar fechas arbitrarias ni reducir puntos para forzar una entrega.
-11. **Presentar resultados y pendientes:** presentar la versión utilizada, documentos generados, capacidad, total de puntos, sprints propuestos, diferencias respecto de la planificación anterior y decisiones pendientes.
+7. **Validar cobertura WBS y backlog:** comprobar en ambos sentidos que cada paquete WBS dentro del MVP esté cubierto por una o más épicas, historias o tareas, y que cada elemento del backlog tenga respaldo en el MVP y ubicación en la WBS. No exigir una relación uno a uno. Si no hay diferencias, informar la validación sin crear una matriz permanente. Si hay brechas, presentarlas y proponer el ajuste del artefacto derivado correspondiente; guardar un informe solo cuando el usuario lo solicite o la decisión deba quedar pendiente.
+8. **Crear subtareas técnicas:** después de disponer de un backlog local validado o con brechas explícitamente informadas, aplicar [create-subtereas](../create-subtereas/SKILL.md) para decidir la descomposición técnica necesaria de cada historia aprobada. Guardar el resultado local en `docs/subtareas.md`. No crear subtareas para elementos señalados como fuera de alcance o pendientes de decisión.
+9. **Reconciliar el trabajo histórico inicial:** aplicar [ampliar-backlog-con-mapeo](../ampliar-backlog-con-mapeo/SKILL.md) después de generar `docs/subtareas.md`. Este paso es obligatorio mientras exista `docs/mapeo-funcionalidades-historicas.md`, porque conserva el trabajo que el equipo inició con la nomenclatura WBS anterior. Incorporar en las subtareas Backend actuales las checklists históricas que sigan respaldadas por el MVP activo, sin crear HU, subtareas Jira ni alcance nuevo. Preservar los ítems ya reconciliados, evitar duplicados y mantener como `pendiente` o `fuera de alcance` lo que no corresponda aplicar. La matriz histórica es una entrada exclusiva de esta reconciliación y nunca una fuente para derivar el backlog.
+10. **Revisar derivación completa:** comprobar la trazabilidad al MVP, la cobertura WBS-backlog, la preservación del trabajo histórico aplicable, los criterios de aceptación y las dependencias de las HU y subtareas. Incorporar el refinamiento solicitado antes de estimar; señalar ambigüedades sin inventar reglas.
+11. **Estimar HU y simular capacidad del equipo:** aplicar [crear-sprints](../crear-sprints/SKILL.md) al backlog revisado y sus subtareas. Reutilizar los datos del equipo y decisiones de la conversación; preguntar lo que falte o declarar supuestos si se solicitó una simulación. Separar capacidad horaria, puntos estimados y velocidad observada o hipotética. Conservar estimaciones anteriores válidas salvo pedido de reestimación. Los 6 integrantes, 15 horas semanales y 20 puntos del ejemplo no son valores universales.
+12. **Proponer sprints y guardar planificación:** continuar con `crear-sprints` para agrupar HU completas según objetivos, dependencias y capacidad. Guardar en `docs/sprints.md` la versión del MVP, fecha, supuestos, capacidad horaria, estimaciones por HU, velocidad de referencia, distribución y trabajo pendiente. Si hay incertidumbres, identificar la propuesta como provisional. No asignar fechas arbitrarias ni reducir puntos para forzar una entrega.
+13. **Presentar resultados y pendientes:** presentar la versión utilizada, documentos generados, resultado de la validación WBS-backlog, estado de la reconciliación histórica, brechas pendientes, capacidad, total de puntos, sprints propuestos, diferencias respecto de la planificación anterior y decisiones pendientes.
 
 ## Independencia y finalización
 
-- Las ramas WBS, USM y backlog no leen las salidas de las otras. Cada una verifica su contenido contra el MVP. Pueden consultar su propio documento previo únicamente para conservar identificadores y formato compatibles con la fuente.
-- Usar una numeración WBS única y jerárquica en los artefactos derivados: épicas `[1.0.0]`, `[2.0.0]`; historias `[1.1.0]`, `[1.2.0]`; subtareas `[1.1.1]`, `[1.1.2]`. Conservar `[Backend]` y `[Frontend]` en los títulos de subtareas. No introducir nuevamente prefijos `E1` o `HUxx` en títulos visibles.
+- El resumen, la WBS, el USM y el backlog se derivan directamente del MVP. Durante su generación inicial, WBS, USM y backlog no leen las salidas de las otras ramas. Cada una puede consultar únicamente su propio documento previo para conservar identificadores, decisiones y formato compatibles con el MVP.
+- WBS y backlog pueden usar estructuras diferentes. La numeración compartida es una convención de trazabilidad, no implica que el backlog dependa jerárquicamente de la WBS.
+- La reconciliación histórica es un parche propio de este proyecto para no perder trabajo inicial. Se ejecuta después de derivar las subtareas y no altera la independencia entre MVP, WBS, USM y backlog. Dejará de aplicarse únicamente cuando el usuario retire `docs/mapeo-funcionalidades-historicas.md` o indique expresamente que la migración terminó.
+- No reescribir automáticamente un artefacto para ocultar una brecha. Aplicar directamente solo correcciones inequívocas que conserven el alcance y las reglas del MVP; documentar los demás ajustes como propuestas o decisiones pendientes.
+- Usar una numeración WBS única y jerárquica en los artefactos derivados: épicas `[1.0.0]`, `[2.0.0]`; historias `[1.1.0]`, `[1.2.0]`; subtareas `[1.1.1]`, `[1.1.2]`. Conservar la especialidad pertinente —por ejemplo `[Backend]`, `[Frontend]` o `[Pruebas]`— en los títulos de subtareas. No introducir nuevamente prefijos `E1` o `HUxx` en títulos visibles.
 - Las ramas pueden recorrerse una tras otra; no requieren agentes separados ni ejecución simultánea. El orden de ejecución no crea una dependencia entre ellas.
-- La etapa final de sprints sí depende del backlog revisado, sus subtareas y los datos del equipo. Usa estos documentos para estimar y organizar trabajo, manteniendo el MVP como fuente de requisitos.
+- La etapa final de sprints depende del backlog validado, sus subtareas y los datos del equipo. Usa estos documentos para estimar y organizar trabajo, manteniendo el MVP como fuente de requisitos.
 - Si el pedido se limita a un artefacto (por ejemplo, actualizar solo la WBS), no ejecutar la etapa de sprints. En una actualización completa, revisar el impacto en estimaciones y distribución existentes; no reemplazarlas sin analizar qué cambió.
 - Si una rama encuentra una ambigüedad, presentarla como pendiente de esa rama y completar el trabajo posible en las restantes. No inventar reglas ni modificar el MVP.
 - “Derivar todo”, “preparar la planificación” o “actualizar la documentación” permite dejar los resultados en `docs/` cuando el contexto lo indique.
 - Los cambios de alcance o reglas requieren una decisión explícita y deben reflejarse primero en la versión del MVP utilizada.
-- Terminar cuando se hayan guardado y presentado el resumen, WBS, USM, backlog, subtareas y propuesta de sprints, o cuando se identifique qué parte queda pendiente y por qué. Si faltan datos para comprometer sprints, completar los documentos y estimaciones posibles y dejar la distribución pendiente o como simulación explícita.
+- Terminar cuando se hayan guardado y presentado el resumen, WBS, USM, backlog, resultado de la validación de cobertura, subtareas con la reconciliación histórica preservada y propuesta de sprints, o cuando se identifique qué parte queda pendiente y por qué. Si faltan datos para comprometer sprints, completar los documentos y estimaciones posibles y dejar la distribución pendiente o como simulación explícita.
 - Este grafo produce documentación local; no publica cambios en GitHub ni crea o modifica issues o sprints en Jira. La aplicación externa requiere que el usuario la solicite y se realiza por separado.

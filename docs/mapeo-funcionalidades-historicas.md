@@ -4,6 +4,8 @@
 
 **No es fuente de verdad:** no modifica el MVP V3, el backlog, la WBS ni Jira. Sirve para conservar la trazabilidad de funcionalidades encontradas en documentación histórica y decidir posteriormente si requieren criterios, endpoints o nuevas subtareas.
 
+**Decisión vigente:** este mapeo se aplica como reconciliación obligatoria al final de `derivar-planificacion-mvp` mientras dure la migración del trabajo inicial. No participa en la derivación del backlog y dejará de aplicarse cuando el equipo confirme que la migración terminó.
+
 ## Criterio de mapeo
 
 La relación puede ser uno a uno, uno a varios o varios a uno:
@@ -44,4 +46,3 @@ No se crea automáticamente una subtarea por cada campo. Una separación futura 
 - Definir si el catálogo de categorías requiere endpoints y subtarea propia.
 - Definir si la validación de contenido es una regla de propuestas o una capacidad transversal de moderación.
 - Definir si el saldo de créditos necesita una consulta Backend específica además de transferencia e historial.
-- Decidir si esta granularidad se incorpora permanentemente al skill de derivación o se aplica como parche único.

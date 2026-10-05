@@ -1,6 +1,6 @@
 ---
 name: create-subtereas
-description: Derivar subtareas técnicas locales debajo de historias de usuario, separando Backend/API REST y Frontend, con contratos HTTP legibles y convenciones Vue.
+description: Derivar las subtareas técnicas que realmente necesita cada historia de usuario, con contratos HTTP legibles y convenciones Vue cuando correspondan.
 ---
 
 # Create subtareas
@@ -14,12 +14,19 @@ Usar este skill cuando el usuario solicite crear, actualizar o refinar subtareas
 3. No incorporar funcionalidades fuera del MVP ni resolver unilateralmente pendientes de decisión.
 4. No crear subtareas para historias candidatas o pendientes de confirmación, salvo aprobación explícita.
 
-## Descomposición estándar
+## Decidir la descomposición
 
-Cada historia aprobada debe tener, como mínimo, dos subtareas:
+Determinar la cantidad y el tipo de subtareas a partir del trabajo necesario para cumplir la historia y sus criterios de aceptación. No crear subtareas para alcanzar una cantidad mínima ni dividir trabajo que resulte más claro y verificable como una sola unidad.
 
-- **Backend/API REST:** modelo, reglas de negocio, endpoints, autorización, validaciones y pruebas del servicio.
-- **Frontend:** pantalla o flujo de usuario, integración con la API, estados visuales, validaciones de presentación y pruebas de interacción.
+Una historia puede requerir ninguna subtarea, una o varias. Usar, según corresponda:
+
+- **Backend/API REST:** cuando haya modelo, persistencia, reglas de negocio, endpoints, autorización, validaciones o pruebas del servicio.
+- **Frontend:** cuando haya pantalla o flujo de usuario, integración con la API, estados visuales, validaciones de presentación o pruebas de interacción.
+- **Otras especialidades:** únicamente cuando exista trabajo independiente y verificable de infraestructura, migración, seguridad, datos, diseño o pruebas que no quede cubierto razonablemente dentro de Backend o Frontend.
+
+Crear más de una subtarea de una misma especialidad cuando represente unidades de trabajo con resultados distintos, dependencias diferentes o posibilidad real de ejecución independiente. Mantenerlas juntas cuando separarlas solo produzca coordinación artificial o títulos genéricos.
+
+Antes de finalizar la descomposición, comprobar que todas las partes necesarias de la HU estén cubiertas y que ninguna subtarea replique trabajo transversal ya asignado a otra historia. Si la HU es suficientemente pequeña para ejecutarse directamente, conservarla sin subtareas y explicar brevemente esa decisión en el resultado local.
 
 Usar títulos trazables con numeración WBS, conservando por ahora el tipo técnico:
 
@@ -28,11 +35,11 @@ Usar títulos trazables con numeración WBS, conservando por ahora el tipo técn
 [1.1.2] [Frontend] Crear pantalla de registro
 ```
 
-La subtarea debe usar el tercer nivel derivado de su épica e historia entre corchetes: `[1.1.1]`, `[1.1.2]`, etc. No usar `HUxx` en el título visible.
+Cada subtarea creada debe usar el tercer nivel derivado de su épica e historia entre corchetes: `[1.1.1]`, `[1.1.2]`, etc. Numerarlas consecutivamente según la descomposición resultante; el sufijo no implica una especialidad fija. No usar `HUxx` en el título visible.
 
 Agregar subtareas transversales solo cuando una pieza técnica no pertenezca claramente a una historia específica. No duplicar autenticación, componentes compartidos, manejo común de errores o auditoría en todas las historias.
 
-## Formato obligatorio para Backend
+## Formato para subtareas Backend
 
 Cada subtarea Backend debe incluir, en este orden:
 
@@ -79,7 +86,7 @@ Usar convenciones consistentes:
 
 Incluir validaciones, autorización, idempotencia y auditoría cuando sean necesarias por la historia. Las transferencias de créditos deben derivar cantidad y participantes de la sesión y evitar duplicados.
 
-## Formato obligatorio para Frontend
+## Formato para subtareas Frontend
 
 Cada subtarea Frontend debe indicar:
 
@@ -93,4 +100,4 @@ No crear estilos propios, CSS innecesario, objetos visuales ad hoc ni una identi
 
 ## Resultado local
 
-Guardar las subtareas derivadas en `docs/subtareas.md`, manteniendo la trazabilidad Épica → Historia → Subtarea. La sincronización con herramientas externas pertenece a un proceso separado.
+Guardar la descomposición derivada en `docs/subtareas.md`, manteniendo la trazabilidad Épica → Historia → Subtarea y dejando explícitas las HU que no requieran subtareas. La sincronización con herramientas externas pertenece a un proceso separado.
