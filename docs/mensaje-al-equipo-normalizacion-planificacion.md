@@ -77,3 +77,9 @@ nomenclatura vieja → buscar equivalencia → continuar en Jira actual
 ```
 
 Les pedimos usar la nueva nomenclatura para nuevos documentos, tareas, commits y conversaciones técnicas, sin duplicar trabajo que ya exista.
+
+## Jira como autoridad operativa
+
+Para el trabajo cotidiano, Jira es la fuente única de verdad operativa: allí deben consultarse el estado vigente, la jerarquía, las asignaciones, los sprints y el avance de las issues. La documentación explica el criterio y el MVP define el producto; Jira concentra la ejecución actual del equipo.
+
+![Jira como fuente única de verdad operativa](assets/jira-fuente-de-verdad.png)
