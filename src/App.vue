@@ -1,55 +1,51 @@
 <script setup>
-import { ref } from 'vue'
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import Menubar from 'primevue/menubar'
+import Button from 'primevue/button'
+import Avatar from 'primevue/avatar'
+import { usePlatformStore } from './stores/platformStore'
 
-const count = ref(0)
+const router = useRouter()
+const { currentUser, isAuthenticated, isAdmin, logout } = usePlatformStore()
+
+const items = computed(() => {
+  const publicItems = [
+    { label: 'Explorar', icon: 'pi pi-compass', command: () => router.push({ name: 'explore' }) },
+    { label: 'Buscar', icon: 'pi pi-search', command: () => router.push({ name: 'search' }) },
+    { label: 'Confianza', icon: 'pi pi-star', command: () => router.push({ name: 'trust' }) },
+  ]
+  if (isAuthenticated.value) publicItems.push({ label: 'Mi espacio', icon: 'pi pi-user', command: () => router.push({ name: 'workspace' }) })
+  if (isAdmin.value) publicItems.push({ label: 'Administración', icon: 'pi pi-shield', command: () => router.push({ name: 'admin' }) })
+  return publicItems
+})
+
+function signOut() {
+  logout()
+  router.push({ name: 'explore' })
+}
 </script>
 
 <template>
-  <main class="container">
-    <h1>Hola, Vue</h1>
-    <p>Tu aplicación mínima ya está funcionando.</p>
-    <button type="button" @click="count++">
-      Clics: {{ count }}
-    </button>
-  </main>
+  <div class="min-h-screen surface-ground">
+    <Menubar :model="items" class="border-noround border-x-none border-top-none shadow-1 sticky top-0 z-5 px-3 md:px-5">
+      <template #start>
+        <Button text severity="contrast" aria-label="Ir al inicio" class="mr-2" @click="router.push({ name: 'explore' })">
+          <Avatar icon="pi pi-sparkles" shape="circle" class="bg-primary text-primary-contrast mr-2" />
+          <span class="font-bold text-lg">Intercambia</span>
+        </Button>
+      </template>
+      <template #end>
+        <div class="flex align-items-center gap-2">
+          <Avatar v-if="currentUser" :label="currentUser.name.slice(0, 1).toUpperCase()" shape="circle" class="hidden md:flex" />
+          <span v-if="currentUser" class="hidden lg:inline text-sm font-medium">{{ currentUser.name }}</span>
+          <Button v-if="isAuthenticated" label="Salir" icon="pi pi-sign-out" text size="small" @click="signOut" />
+          <Button v-else label="Ingresar" icon="pi pi-sign-in" size="small" @click="router.push({ name: 'auth' })" />
+        </div>
+      </template>
+    </Menubar>
+    <main class="w-full lg:w-10 xl:w-9 mx-auto p-3 md:p-5 lg:py-6">
+      <RouterView />
+    </main>
+  </div>
 </template>
-
-<style>
-:root {
-  font-family: Inter, system-ui, sans-serif;
-  color: #213547;
-  background: #f6f7fb;
-}
-
-body {
-  margin: 0;
-}
-
-.container {
-  display: grid;
-  min-height: 100vh;
-  place-content: center;
-  gap: 0.75rem;
-  text-align: center;
-}
-
-h1,
-p {
-  margin: 0;
-}
-
-button {
-  margin-top: 0.75rem;
-  padding: 0.65rem 1rem;
-  border: 0;
-  border-radius: 0.5rem;
-  color: white;
-  background: #42b883;
-  cursor: pointer;
-  font: inherit;
-}
-
-button:hover {
-  background: #369b6d;
-}
-</style>
