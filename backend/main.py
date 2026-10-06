@@ -2,6 +2,7 @@ import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.routing import APIRoute
 from pydantic import BaseModel
 
 app = FastAPI(title="9524 API", version="0.1.0")
@@ -23,8 +24,19 @@ app.add_middleware(
 
 
 @app.get("/")
-def root() -> dict[str, str]:
-    return {"name": "9524 API", "docs": "/docs"}
+def root() -> dict[str, object]:
+    return {
+        "name": app.title,
+        "version": app.version,
+        "docs": app.docs_url,
+        "openapi": app.openapi_url,
+        "endpoints": [
+            {"method": method, "path": route.path}
+            for route in app.routes
+            if isinstance(route, APIRoute) and route.include_in_schema
+            for method in sorted(route.methods)
+        ],
+    }
 
 
 @app.get("/health")

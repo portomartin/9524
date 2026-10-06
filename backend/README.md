@@ -18,7 +18,7 @@ http://127.0.0.1:8000/docs.
 
 Endpoints GET:
 
-- `/`: nombre de la API y enlace a la documentación.
+- `/`: nombre, versión, enlaces a documentación y OpenAPI, y lista automática de endpoints (`method`, `path`). Las nuevas rutas se agregan al listado automáticamente.
 - `/health`: devuelve `{"status":"ok"}`.
 - `/api/hello`: devuelve un mensaje de ejemplo.
 - `/api/v1/public/offers`: lista pública de propuestas de enseñanza (datos de ejemplo).
