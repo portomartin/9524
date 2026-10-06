@@ -2,8 +2,10 @@
 
 Listado generado desde [`backend/backlog_endpoints.json`](../backend/backlog_endpoints.json).
 
-Las 44 combinaciones de verbo y ruta del backlog son **stubs**:
-devuelven `{}` con **200 OK**, sin lógica, autenticación ni persistencia.
+Hay 44 combinaciones de verbo y ruta del backlog.
+`GET /api/v1/public/offers` devuelve un array con una propuesta de ejemplo y alimenta el listado del frontend.
+Las demás rutas son **stubs**: devuelven `{}` con **200 OK**.
+No hay autenticación ni persistencia.
 Esto no implica que las tareas de Jira estén completadas.
 
 - [API e índice actualizado](https://nine524-api.onrender.com/).

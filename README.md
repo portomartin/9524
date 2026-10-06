@@ -19,9 +19,10 @@ API mínima en Python con FastAPI, publicada en Render:
 - [Documentación interactiva para probar la API](https://nine524-api.onrender.com/docs).
 - [Contrato OpenAPI en JSON](https://nine524-api.onrender.com/openapi.json).
 
-El índice se actualiza automáticamente al agregar rutas. Las 44 rutas y verbos
-del backlog backend de Jira son stubs: devuelven `{}` con `200 OK`, sin lógica,
-autenticación ni base de datos. La API todavía no está conectada al frontend.
+El índice se actualiza automáticamente al agregar rutas. De las 44 rutas y verbos
+del backlog, `GET /api/v1/public/offers` devuelve propuestas de ejemplo y alimenta
+el listado público del frontend. Las otras 43 devuelven `{}` con `200 OK`.
+No hay autenticación ni base de datos en el backend.
 El plan gratuito puede tardar alrededor de un minuto en responder después de
 un período de inactividad.
 
@@ -43,9 +44,9 @@ Para ejecutarla localmente o consultar la configuración de Render, ver
 
 ## Estado del proyecto
 
-El frontend implementa las 20 subtareas frontend definidas para el MVP. Todavía utiliza datos mock persistidos en `localStorage` mediante una capa de servicios preparada para sustituirse por un adaptador HTTP; la API mínima publicada aún no está integrada.
+El frontend implementa las 20 subtareas frontend definidas para el MVP. Solo el listado de propuestas públicas consulta la API de Render. Los demás servicios, incluido el detalle de propuestas y la edición, utilizan mocks persistidos en `localStorage`.
 
-No contiene credenciales reales ni realiza operaciones contra un backend.
+No contiene credenciales reales. La única operación HTTP es la lectura del listado público de propuestas.
 
 ## Credenciales de demostración
 
@@ -102,7 +103,7 @@ y publica esta carpeta automáticamente.
 
 ## Modos mock
 
-La aplicación usa mocks de forma predeterminada:
+Los servicios usan mocks excepto el listado de propuestas, que consulta Render:
 
 ```env
 VITE_API_MODE=mock
@@ -115,7 +116,10 @@ VITE_MOCK_SCENARIO=empty
 VITE_MOCK_SCENARIO=error
 ```
 
-Para conectar una API real deberá incorporarse el adaptador HTTP manteniendo los contratos de los servicios existentes.
+El listado utiliza `VITE_API_URL` (por defecto `https://nine524-api.onrender.com`).
+Para probar un backend local, configurar `VITE_API_URL=http://127.0.0.1:8000`
+en `frontend/.env.local` y reiniciar Vite. `VITE_MOCK_SCENARIO` solo afecta los mocks.
+Las publicaciones creadas localmente no aparecen en el listado remoto de demostración.
 
 ## Estructura principal
 

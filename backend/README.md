@@ -6,7 +6,9 @@ API mínima con FastAPI, sin base de datos ni autenticación.
 
 Las 44 combinaciones únicas de ruta y verbo de las 34 tareas backend de Jira
 BH95 están registradas en `backlog_endpoints.json` (snapshot del 2026-10-06).
-Todas las rutas `/api/v1` devuelven `{}` con **200 OK**, incluso POST y DELETE.
+`GET /api/v1/public/offers` devuelve un array con una propuesta de ejemplo,
+consumido por el listado público del frontend. Las otras 43 rutas `/api/v1`
+devuelven `{}` con **200 OK**, incluso POST y DELETE.
 No validan bodies, filtros ni permisos y no ejecutan acciones ni guardan datos.
 Los parámetros de query se documentan como strings opcionales para esta demo.
 Esto no constituye la implementación funcional ni completa las tareas de Jira.
@@ -32,8 +34,7 @@ Endpoints auxiliares GET:
 - `/`: nombre, versión, enlaces a documentación y OpenAPI, y lista automática de endpoints (`method`, `path`). Las nuevas rutas se agregan al listado automáticamente.
 - `/health`: devuelve `{"status":"ok"}`.
 - `/api/hello`: devuelve un mensaje de ejemplo.
-El anterior ejemplo de `/api/v1/public/offers` también devuelve `{}` ahora,
-igual que las demás rutas del backlog.
+El detalle de propuestas y los demás servicios del frontend siguen siendo mocks.
 
 ## Desplegar en Render
 
@@ -58,7 +59,7 @@ Esta variable configura CORS; no restringe el acceso directo ni autentica usuari
 
 La URL pública asignada por Render será del tipo
 `https://9524-api-xxxx.onrender.com`. Probar `/health`, `/api/hello` y `/docs`.
-El frontend todavía no consume esta API.
+El frontend consume únicamente `GET /api/v1/public/offers`.
 
 El servicio gratis se suspende después de 15 minutos sin tráfico y tarda
 aproximadamente un minuto en reactivarse. No usar archivos locales para

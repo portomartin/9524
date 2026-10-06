@@ -55,11 +55,26 @@ async def backlog_stub() -> dict:
     return {}
 
 
+async def list_public_offers() -> list[dict]:
+    return [{
+        "id": "offer-vue-basics",
+        "title": "Introducción práctica a Vue 3",
+        "description": "Aprendé a construir componentes, manejar estado reactivo y organizar una aplicación pequeña con Composition API.",
+        "category": "Desarrollo web",
+        "level": "Inicial",
+        "modality": "Virtual",
+        "durationMinutes": 60,
+        "authorDisplayName": "Lucía M.",
+        "publishedAt": "2026-10-05T14:30:00Z",
+    }]
+
+
 # Snapshot de las rutas y verbos de Jira BH95. No implementa reglas del producto.
 backlog_endpoints = json.loads(
     Path(__file__).with_name("backlog_endpoints.json").read_text(encoding="utf-8")
 )
 for endpoint in backlog_endpoints:
+    is_public_offers = endpoint["method"] == "GET" and endpoint["path"] == "/api/v1/public/offers"
     parameters = [
         {"name": name, "in": "path", "required": True, "schema": {"type": "string"}}
         for name in re.findall(r"\{(\w+)\}", endpoint["path"])
@@ -69,14 +84,15 @@ for endpoint in backlog_endpoints:
     ]
     app.add_api_route(
         endpoint["path"],
-        backlog_stub,
+        list_public_offers if is_public_offers else backlog_stub,
         methods=[endpoint["method"]],
         status_code=200,
         name=endpoint["method"].lower() + "_" + re.sub(r"\W+", "_", endpoint["path"]),
         tags=["Backlog — stubs"],
         summary=f"{endpoint['method']} {endpoint['path']}",
         description=(
-            "Stub de demostración: devuelve {} con 200 OK. "
+            ("Listado de propuestas con datos de ejemplo. " if is_public_offers else "Stub de demostración: devuelve {} con 200 OK. ")
+            +
             "No valida datos, autentica ni persiste cambios. Tickets: "
             + ", ".join(endpoint["issues"])
         ),
