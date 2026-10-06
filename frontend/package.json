@@ -1,0 +1,30 @@
+{
+  "name": "9524-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@lucide/vue": "^1.52.0",
+    "@primeuix/themes": "^3.0.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "primeflex": "^4.0.0",
+    "primeicons": "^8.0.2",
+    "primevue": "^4.5.5",
+    "reka-ui": "^2.11.0",
+    "tailwind-merge": "^3.7.0",
+    "vue": "^3.5.0",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-vue": "^5.2.0",
+    "tailwindcss": "^4.3.3",
+    "vite": "^6.0.0"
+  }
+}
