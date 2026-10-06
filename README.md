@@ -10,6 +10,22 @@ La aplicación está publicada en GitHub Pages:
 
 > GitHub Pages puede tardar unos minutos en reflejar el último cambio publicado en `main`.
 
+## API backend
+
+API mínima en Python con FastAPI, publicada en Render:
+
+- [API e índice automático de endpoints](https://nine524-api.onrender.com/).
+- [Documentación interactiva para probar la API](https://nine524-api.onrender.com/docs).
+- [Contrato OpenAPI en JSON](https://nine524-api.onrender.com/openapi.json).
+
+El índice se actualiza automáticamente al agregar rutas. La API utiliza datos
+de ejemplo, sin base de datos, y todavía no está conectada al frontend.
+El plan gratuito puede tardar alrededor de un minuto en responder después de
+un período de inactividad.
+
+Para ejecutarla localmente o consultar la configuración de Render, ver
+[`backend/README.md`](backend/README.md).
+
 ## Funcionalidades
 
 - Exploración pública de propuestas y aprendizajes buscados.
@@ -25,7 +41,7 @@ La aplicación está publicada en GitHub Pages:
 
 ## Estado del proyecto
 
-El frontend implementa las 20 subtareas frontend definidas para el MVP. Como todavía no existe una API disponible, utiliza datos mock persistidos en `localStorage` mediante una capa de servicios preparada para sustituirse por un adaptador HTTP.
+El frontend implementa las 20 subtareas frontend definidas para el MVP. Todavía utiliza datos mock persistidos en `localStorage` mediante una capa de servicios preparada para sustituirse por un adaptador HTTP; la API mínima publicada aún no está integrada.
 
 No contiene credenciales reales ni realiza operaciones contra un backend.
 
