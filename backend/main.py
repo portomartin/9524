@@ -2,6 +2,7 @@ import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 app = FastAPI(title="9524 API", version="0.1.0")
 
@@ -34,3 +35,38 @@ def health() -> dict[str, str]:
 @app.get("/api/hello")
 def hello() -> dict[str, str]:
     return {"message": "Hola desde el backend Python"}
+
+
+class PublicOffer(BaseModel):
+    id: str
+    title: str
+    description: str
+    category: str
+    level: str
+    modality: str
+    durationMinutes: int
+    authorDisplayName: str
+    publishedAt: str
+
+
+@app.get(
+    "/api/v1/public/offers",
+    response_model=list[PublicOffer],
+    tags=["Catálogo público"],
+    summary="Listar propuestas públicas de enseñanza",
+    description="Demo con datos de ejemplo, sin persistencia. No requiere autenticación.",
+)
+def list_public_offers() -> list[PublicOffer]:
+    return [
+        PublicOffer(
+            id="offer-vue-basics",
+            title="Introducción práctica a Vue 3",
+            description="Aprendé a construir componentes y manejar estado reactivo.",
+            category="Desarrollo web",
+            level="Inicial",
+            modality="Virtual",
+            durationMinutes=60,
+            authorDisplayName="Lucía M.",
+            publishedAt="2026-10-05T14:30:00Z",
+        )
+    ]

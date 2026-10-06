@@ -21,6 +21,12 @@ Endpoints GET:
 - `/`: nombre de la API y enlace a la documentación.
 - `/health`: devuelve `{"status":"ok"}`.
 - `/api/hello`: devuelve un mensaje de ejemplo.
+- `/api/v1/public/offers`: lista pública de propuestas de enseñanza (datos de ejemplo).
+
+Este último endpoint inicia la subtarea `[1.1.1]` del backlog MVP V3 de 95.24.
+Devuelve `200 OK` con un array de propuestas, sin autenticación ni datos privados.
+Es una demo sin persistencia; la subtarea completa sigue pendiente de integrar
+el almacenamiento y las reglas de publicación. Se puede probar desde `/docs`.
 
 ## Desplegar en Render
 
