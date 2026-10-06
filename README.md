@@ -18,8 +18,9 @@ API mínima en Python con FastAPI, publicada en Render:
 - [Documentación interactiva para probar la API](https://nine524-api.onrender.com/docs).
 - [Contrato OpenAPI en JSON](https://nine524-api.onrender.com/openapi.json).
 
-El índice se actualiza automáticamente al agregar rutas. La API utiliza datos
-de ejemplo, sin base de datos, y todavía no está conectada al frontend.
+El índice se actualiza automáticamente al agregar rutas. Las 44 rutas y verbos
+del backlog backend de Jira son stubs: devuelven `{}` con `200 OK`, sin lógica,
+autenticación ni base de datos. La API todavía no está conectada al frontend.
 El plan gratuito puede tardar alrededor de un minuto en responder después de
 un período de inactividad.
 

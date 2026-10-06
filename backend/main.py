@@ -1,9 +1,11 @@
+import json
 import os
+import re
+from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.routing import APIRoute
-from pydantic import BaseModel
 
 app = FastAPI(title="9524 API", version="0.1.0")
 
@@ -18,8 +20,8 @@ allowed_origins = [
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
-    allow_methods=["GET"],
-    allow_headers=["Content-Type"],
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allow_headers=["Content-Type", "Authorization", "Idempotency-Key"],
 )
 
 
@@ -49,36 +51,34 @@ def hello() -> dict[str, str]:
     return {"message": "Hola desde el backend Python"}
 
 
-class PublicOffer(BaseModel):
-    id: str
-    title: str
-    description: str
-    category: str
-    level: str
-    modality: str
-    durationMinutes: int
-    authorDisplayName: str
-    publishedAt: str
+async def backlog_stub() -> dict:
+    return {}
 
 
-@app.get(
-    "/api/v1/public/offers",
-    response_model=list[PublicOffer],
-    tags=["Catálogo público"],
-    summary="Listar propuestas públicas de enseñanza",
-    description="Demo con datos de ejemplo, sin persistencia. No requiere autenticación.",
+# Snapshot de las rutas y verbos de Jira BH95. No implementa reglas del producto.
+backlog_endpoints = json.loads(
+    Path(__file__).with_name("backlog_endpoints.json").read_text(encoding="utf-8")
 )
-def list_public_offers() -> list[PublicOffer]:
-    return [
-        PublicOffer(
-            id="offer-vue-basics",
-            title="Introducción práctica a Vue 3",
-            description="Aprendé a construir componentes y manejar estado reactivo.",
-            category="Desarrollo web",
-            level="Inicial",
-            modality="Virtual",
-            durationMinutes=60,
-            authorDisplayName="Lucía M.",
-            publishedAt="2026-10-05T14:30:00Z",
-        )
+for endpoint in backlog_endpoints:
+    parameters = [
+        {"name": name, "in": "path", "required": True, "schema": {"type": "string"}}
+        for name in re.findall(r"\{(\w+)\}", endpoint["path"])
+    ] + [
+        {"name": name, "in": "query", "required": False, "schema": {"type": "string"}}
+        for name in endpoint["queryParams"]
     ]
+    app.add_api_route(
+        endpoint["path"],
+        backlog_stub,
+        methods=[endpoint["method"]],
+        status_code=200,
+        name=endpoint["method"].lower() + "_" + re.sub(r"\W+", "_", endpoint["path"]),
+        tags=["Backlog — stubs"],
+        summary=f"{endpoint['method']} {endpoint['path']}",
+        description=(
+            "Stub de demostración: devuelve {} con 200 OK. "
+            "No valida datos, autentica ni persiste cambios. Tickets: "
+            + ", ".join(endpoint["issues"])
+        ),
+        openapi_extra={"parameters": parameters},
+    )

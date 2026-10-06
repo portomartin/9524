@@ -1,0 +1,385 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v1/public/offers",
+    "issues": [
+      "BH95-166"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/public/learning-needs",
+    "issues": [
+      "BH95-167"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/public/users/{userId}/reputation",
+    "issues": [
+      "BH95-168",
+      "BH95-201"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/public/rankings",
+    "issues": [
+      "BH95-169"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/public/auth-requirement",
+    "issues": [
+      "BH95-170"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/users",
+    "issues": [
+      "BH95-170"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/login",
+    "issues": [
+      "BH95-172"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/logout",
+    "issues": [
+      "BH95-172"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/me/profile",
+    "issues": [
+      "BH95-174"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/me/profile",
+    "issues": [
+      "BH95-174"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/teaching-offers",
+    "issues": [
+      "BH95-176"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/teaching-offers/{offerId}",
+    "issues": [
+      "BH95-176"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/teaching-offers/{offerId}",
+    "issues": [
+      "BH95-176"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/learning-needs",
+    "issues": [
+      "BH95-178"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/learning-needs/{needId}",
+    "issues": [
+      "BH95-178"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/learning-needs/{needId}",
+    "issues": [
+      "BH95-178"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/public/search",
+    "issues": [
+      "BH95-180",
+      "BH95-182"
+    ],
+    "queryParams": [
+      "query",
+      "type",
+      "page",
+      "pageSize",
+      "categoryId",
+      "level",
+      "modality",
+      "date",
+      "time",
+      "creditMax"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/me/compatibilities",
+    "issues": [
+      "BH95-184"
+    ],
+    "queryParams": [
+      "page",
+      "pageSize"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/me/availability",
+    "issues": [
+      "BH95-186"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/me/availability",
+    "issues": [
+      "BH95-186"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/me/availability/{availabilityId}",
+    "issues": [
+      "BH95-186"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/me/availability/{availabilityId}",
+    "issues": [
+      "BH95-186"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/public/users/{userId}/availability",
+    "issues": [
+      "BH95-188",
+      "BH95-216"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/me/availability-visibility",
+    "issues": [
+      "BH95-189"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/sessions",
+    "issues": [
+      "BH95-190",
+      "BH95-207"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/sessions/{sessionId}/confirm",
+    "issues": [
+      "BH95-192",
+      "BH95-216"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/sessions/{sessionId}/cancel",
+    "issues": [
+      "BH95-193",
+      "BH95-216"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/sessions/{sessionId}/complete",
+    "issues": [
+      "BH95-194"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/sessions/{sessionId}/credit-transfer",
+    "issues": [
+      "BH95-196"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/me/history",
+    "issues": [
+      "BH95-198"
+    ],
+    "queryParams": [
+      "type",
+      "status",
+      "from",
+      "to",
+      "page",
+      "pageSize"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/me/credit-movements",
+    "issues": [
+      "BH95-198",
+      "BH95-208"
+    ],
+    "queryParams": [
+      "page",
+      "pageSize"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/sessions/{sessionId}/ratings",
+    "issues": [
+      "BH95-200"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/reports",
+    "issues": [
+      "BH95-202"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/users",
+    "issues": [
+      "BH95-204"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/teaching-offers",
+    "issues": [
+      "BH95-204"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/reports",
+    "issues": [
+      "BH95-204"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/admin/users/{userId}/suspend",
+    "issues": [
+      "BH95-205"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/admin/users/{userId}/reactivate",
+    "issues": [
+      "BH95-205"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/me/availability/batch",
+    "issues": [
+      "BH95-206"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/me/credit-balance",
+    "issues": [
+      "BH95-208"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/admin/teaching-offers/{offerId}/hide",
+    "issues": [
+      "BH95-209"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/sessions/{sessionId}/start",
+    "issues": [
+      "BH95-210"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/public/offers/{offerId}",
+    "issues": [
+      "BH95-211"
+    ],
+    "queryParams": []
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/public/trending",
+    "issues": [
+      "BH95-213"
+    ],
+    "queryParams": []
+  }
+]

@@ -2,6 +2,17 @@
 
 API mínima con FastAPI, sin base de datos ni autenticación.
 
+## Stubs del backlog Jira
+
+Las 44 combinaciones únicas de ruta y verbo de las 34 tareas backend de Jira
+BH95 están registradas en `backlog_endpoints.json` (snapshot del 2026-10-06).
+Todas las rutas `/api/v1` devuelven `{}` con **200 OK**, incluso POST y DELETE.
+No validan bodies, filtros ni permisos y no ejecutan acciones ni guardan datos.
+Los parámetros de query se documentan como strings opcionales para esta demo.
+Esto no constituye la implementación funcional ni completa las tareas de Jira.
+Las rutas compartidas se registran una vez, con todos sus tickets de origen.
+La lista se consulta en `/` y se prueba en `/docs`.
+
 ## Ejecutar localmente (PowerShell)
 
 Desde la raíz del repositorio:
@@ -16,17 +27,13 @@ python -m venv .venv
 La API queda en http://127.0.0.1:8000 y la documentación interactiva en
 http://127.0.0.1:8000/docs.
 
-Endpoints GET:
+Endpoints auxiliares GET:
 
 - `/`: nombre, versión, enlaces a documentación y OpenAPI, y lista automática de endpoints (`method`, `path`). Las nuevas rutas se agregan al listado automáticamente.
 - `/health`: devuelve `{"status":"ok"}`.
 - `/api/hello`: devuelve un mensaje de ejemplo.
-- `/api/v1/public/offers`: lista pública de propuestas de enseñanza (datos de ejemplo).
-
-Este último endpoint inicia la subtarea `[1.1.1]` del backlog MVP V3 de 95.24.
-Devuelve `200 OK` con un array de propuestas, sin autenticación ni datos privados.
-Es una demo sin persistencia; la subtarea completa sigue pendiente de integrar
-el almacenamiento y las reglas de publicación. Se puede probar desde `/docs`.
+El anterior ejemplo de `/api/v1/public/offers` también devuelve `{}` ahora,
+igual que las demás rutas del backlog.
 
 ## Desplegar en Render
 
