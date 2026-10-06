@@ -77,6 +77,7 @@ Contraseña: admin1234
 Requisitos: Node.js y npm.
 
 ```bash
+cd frontend
 npm install
 npm run dev
 ```
@@ -89,12 +90,15 @@ http://localhost:5173/9524-frontend/
 
 ## Build de producción
 
+Desde la carpeta `frontend/`:
+
 ```bash
 npm run build
 npm run preview
 ```
 
-Los archivos optimizados se generan en `dist/`.
+Los archivos optimizados se generan en `frontend/dist/`. GitHub Pages construye
+y publica esta carpeta automáticamente.
 
 ## Modos mock
 
@@ -116,7 +120,7 @@ Para conectar una API real deberá incorporarse el adaptador HTTP manteniendo lo
 ## Estructura principal
 
 ```text
-src/
+frontend/src/
 ├── assets/       # Base visual mínima
 ├── components/   # Componentes compartidos
 ├── composables/  # Estado y carga reutilizable
@@ -129,4 +133,8 @@ src/
 ```
 
 El progreso funcional está documentado en [`docs/frontend-progress.md`](docs/frontend-progress.md).
+
+La raíz contiene `frontend/` (Vue), `backend/` (FastAPI), `docs/` (documentación),
+`skills/` (instrucciones de trabajo), `.github/` (despliegue de Pages) y
+`render.yaml` (configuración del backend).
 
