@@ -6,7 +6,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 
-API_URL = "https://nine524-api.onrender.com"
+API_URL = "https://nine524-api-unificado.onrender.com"
 
 
 def endpoint_url(endpoint: dict) -> str:
@@ -32,9 +32,9 @@ def render_document(endpoints: list[dict], issue_titles: dict[str, str]) -> str:
         "No hay autenticación ni persistencia.",
         "Esto no implica que las tareas de Jira estén completadas.",
         "",
-        "- [API e índice actualizado](https://nine524-api.onrender.com/).",
-        "- [Documentación interactiva y parámetros](https://nine524-api.onrender.com/docs).",
-        "- [Contrato OpenAPI JSON](https://nine524-api.onrender.com/openapi.json).",
+        "- [API e índice actualizado](https://nine524-api-unificado.onrender.com/).",
+        "- [Documentación interactiva y parámetros](https://nine524-api-unificado.onrender.com/docs).",
+        "- [Contrato OpenAPI JSON](https://nine524-api-unificado.onrender.com/openapi.json).",
         "",
         "## Rutas del backlog",
         "",

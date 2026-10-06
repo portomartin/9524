@@ -1,4 +1,4 @@
-const apiUrl = (import.meta.env.VITE_API_URL || 'https://nine524-api.onrender.com').replace(/\/$/, '')
+const apiUrl = (import.meta.env.VITE_API_URL || 'https://nine524-api-unificado.onrender.com').replace(/\/$/, '')
 
 export const httpPublicOffersAdapter = {
   async listOffers() {

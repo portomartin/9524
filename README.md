@@ -55,9 +55,9 @@ La aplicación está publicada en GitHub Pages:
 API mínima en Python con FastAPI, publicada en Render:
 
 - [Listado de endpoints: verbos, rutas y tickets de Jira](docs/api-endpoints.md).
-- [API e índice automático de endpoints](https://nine524-api.onrender.com/).
-- [Documentación interactiva para probar la API](https://nine524-api.onrender.com/docs).
-- [Contrato OpenAPI en JSON](https://nine524-api.onrender.com/openapi.json).
+- [API e índice automático de endpoints](https://nine524-api-unificado.onrender.com/).
+- [Documentación interactiva para probar la API](https://nine524-api-unificado.onrender.com/docs).
+- [Contrato OpenAPI en JSON](https://nine524-api-unificado.onrender.com/openapi.json).
 
 El índice se actualiza automáticamente al agregar rutas. De las 44 rutas y verbos
 del backlog, `GET /api/v1/public/offers` devuelve propuestas de ejemplo y alimenta
@@ -156,7 +156,7 @@ VITE_MOCK_SCENARIO=empty
 VITE_MOCK_SCENARIO=error
 ```
 
-El listado utiliza `VITE_API_URL` (por defecto `https://nine524-api.onrender.com`).
+El listado utiliza `VITE_API_URL` (por defecto `https://nine524-api-unificado.onrender.com`).
 Para probar un backend local, configurar `VITE_API_URL=http://127.0.0.1:8000`
 en `frontend/.env.local` y reiniciar Vite. `VITE_MOCK_SCENARIO` solo afecta los mocks.
 Las publicaciones creadas localmente no aparecen en el listado remoto de demostración.
