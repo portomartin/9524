@@ -14,6 +14,7 @@ La aplicación está publicada en GitHub Pages:
 
 API mínima en Python con FastAPI, publicada en Render:
 
+- [Listado de endpoints: verbos, rutas y tickets de Jira](docs/api-endpoints.md).
 - [API e índice automático de endpoints](https://nine524-api.onrender.com/).
 - [Documentación interactiva para probar la API](https://nine524-api.onrender.com/docs).
 - [Contrato OpenAPI en JSON](https://nine524-api.onrender.com/openapi.json).
