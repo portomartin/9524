@@ -11,8 +11,6 @@ API_URL = "https://nine524-api.onrender.com"
 
 def endpoint_url(endpoint: dict) -> str:
     method, path = endpoint["method"], endpoint["path"]
-    if method == "GET":
-        return API_URL + re.sub(r"\{\w+\}", "demo-id", path)
     name = method.lower() + "_" + re.sub(r"\W+", "_", path)
     operation_id = re.sub(r"\W", "_", name + path) + "_" + method.lower()
     return f"{API_URL}/docs#/{quote('Backlog — stubs', safe='')}/{operation_id}"
@@ -52,17 +50,16 @@ def render_document(endpoints: list[dict], issue_titles: dict[str, str]) -> str:
     lines += [
         "",
         "Los valores entre llaves son parámetros de ruta (por ejemplo, `{userId}`).",
-        "Los enlaces GET abren la API usando `demo-id` como identificador de ejemplo.",
-        "Los demás verbos abren su operación en `/docs`: usar Try it out y Execute.",
+        "Todos los verbos abren su operación en Swagger (`/docs`): usar Try it out y Execute.",
         "Las rutas compartidas por varios tickets aparecen una sola vez.",
         "",
         "## Rutas auxiliares",
         "",
         "| Verbo | Ruta | Respuesta |",
         "| --- | --- | --- |",
-        f"| GET | [/]({API_URL}/) | Nombre, versión, documentación y lista automática de endpoints. |",
-        f"| GET | [/health]({API_URL}/health) | Estado de salud de la API. |",
-        f"| GET | [/api/hello]({API_URL}/api/hello) | Mensaje de ejemplo. |",
+        f"| GET | [/]({API_URL}/docs#/default/root__get) | Nombre, versión, documentación y lista automática de endpoints. |",
+        f"| GET | [/health]({API_URL}/docs#/default/health_health_get) | Estado de salud de la API. |",
+        f"| GET | [/api/hello]({API_URL}/docs#/default/hello_api_hello_get) | Mensaje de ejemplo. |",
         "",
         "## Actualizar este documento",
         "",
