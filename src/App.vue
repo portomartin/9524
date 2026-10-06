@@ -1,50 +1,76 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import Menubar from 'primevue/menubar'
-import Button from 'primevue/button'
-import Avatar from 'primevue/avatar'
+import { Compass, LogIn, LogOut, Menu, Search, Shield, Sparkles, Star, User, X } from '@lucide/vue'
+import UiButton from './components/ui/Button.vue'
 import { usePlatformStore } from './stores/platformStore'
 
 const router = useRouter()
 const { currentUser, isAuthenticated, isAdmin, logout } = usePlatformStore()
+const mobileOpen = ref(false)
 
 const items = computed(() => {
   const publicItems = [
-    { label: 'Explorar', icon: 'pi pi-compass', command: () => router.push({ name: 'explore' }) },
-    { label: 'Buscar', icon: 'pi pi-search', command: () => router.push({ name: 'search' }) },
-    { label: 'Confianza', icon: 'pi pi-star', command: () => router.push({ name: 'trust' }) },
+    { label: 'Explorar', icon: Compass, route: { name: 'explore' } },
+    { label: 'Buscar', icon: Search, route: { name: 'search' } },
+    { label: 'Confianza', icon: Star, route: { name: 'trust' } },
   ]
-  if (isAuthenticated.value) publicItems.push({ label: 'Mi espacio', icon: 'pi pi-user', command: () => router.push({ name: 'workspace' }) })
-  if (isAdmin.value) publicItems.push({ label: 'Administración', icon: 'pi pi-shield', command: () => router.push({ name: 'admin' }) })
+  if (isAuthenticated.value) publicItems.push({ label: 'Mi espacio', icon: User, route: { name: 'workspace' } })
+  if (isAdmin.value) publicItems.push({ label: 'Administración', icon: Shield, route: { name: 'admin' } })
   return publicItems
 })
 
+function navigate(route) {
+  mobileOpen.value = false
+  router.push(route)
+}
+
 function signOut() {
   logout()
+  mobileOpen.value = false
   router.push({ name: 'explore' })
 }
 </script>
 
 <template>
-  <div class="min-h-screen surface-ground">
-    <Menubar :model="items" class="border-noround border-x-none border-top-none shadow-1 sticky top-0 z-5 px-3 md:px-5">
-      <template #start>
-        <Button text severity="contrast" aria-label="Ir al inicio" class="mr-2" @click="router.push({ name: 'explore' })">
-          <Avatar icon="pi pi-sparkles" shape="circle" class="bg-primary text-primary-contrast mr-2" />
-          <span class="font-bold text-lg">Intercambia</span>
-        </Button>
-      </template>
-      <template #end>
-        <div class="flex align-items-center gap-2">
-          <Avatar v-if="currentUser" :label="currentUser.name.slice(0, 1).toUpperCase()" shape="circle" class="hidden md:flex" />
-          <span v-if="currentUser" class="hidden lg:inline text-sm font-medium">{{ currentUser.name }}</span>
-          <Button v-if="isAuthenticated" label="Salir" icon="pi pi-sign-out" text size="small" @click="signOut" />
-          <Button v-else label="Ingresar" icon="pi pi-sign-in" size="small" @click="router.push({ name: 'auth' })" />
+  <div class="min-h-screen bg-background text-foreground">
+    <header class="sticky top-0 z-50 border-b bg-background/90 backdrop-blur-xl">
+      <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-6">
+        <button class="flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Ir al inicio" @click="navigate({ name: 'explore' })">
+          <span class="grid size-9 place-items-center rounded-xl bg-primary text-primary-foreground shadow-sm"><Sparkles :size="18" /></span>
+          <span class="text-lg font-bold tracking-tight">Intercambia</span>
+        </button>
+
+        <nav class="hidden items-center gap-1 md:flex" aria-label="Navegación principal">
+          <UiButton v-for="item in items" :key="item.label" variant="ghost" @click="navigate(item.route)">
+            <component :is="item.icon" :size="16" />{{ item.label }}
+          </UiButton>
+        </nav>
+
+        <div class="hidden items-center gap-2 md:flex">
+          <div v-if="currentUser" class="flex items-center gap-2 rounded-full bg-muted px-3 py-1.5 text-sm font-medium">
+            <span class="grid size-6 place-items-center rounded-full bg-primary/10 text-xs text-primary">{{ currentUser.name.slice(0, 1).toUpperCase() }}</span>
+            <span class="hidden lg:inline">{{ currentUser.name }}</span>
+          </div>
+          <UiButton v-if="isAuthenticated" variant="ghost" size="sm" @click="signOut"><LogOut :size="16" />Salir</UiButton>
+          <UiButton v-else size="sm" @click="navigate({ name: 'auth' })"><LogIn :size="16" />Ingresar</UiButton>
         </div>
-      </template>
-    </Menubar>
-    <main class="w-full lg:w-10 xl:w-9 mx-auto p-3 md:p-5 lg:py-6">
+
+        <UiButton class="md:hidden" variant="ghost" size="icon" aria-label="Abrir menú" @click="mobileOpen = !mobileOpen">
+          <X v-if="mobileOpen" :size="20" /><Menu v-else :size="20" />
+        </UiButton>
+      </div>
+
+      <nav v-if="mobileOpen" class="border-t bg-background p-3 md:hidden" aria-label="Navegación móvil">
+        <div class="mx-auto flex max-w-7xl flex-col gap-1">
+          <UiButton v-for="item in items" :key="item.label" variant="ghost" class="justify-start" @click="navigate(item.route)"><component :is="item.icon" :size="17" />{{ item.label }}</UiButton>
+          <UiButton v-if="isAuthenticated" variant="ghost" class="justify-start" @click="signOut"><LogOut :size="17" />Salir</UiButton>
+          <UiButton v-else class="justify-start" @click="navigate({ name: 'auth' })"><LogIn :size="17" />Ingresar</UiButton>
+        </div>
+      </nav>
+    </header>
+
+    <main class="mx-auto w-full max-w-7xl px-4 py-6 lg:px-6 lg:py-8">
       <RouterView />
     </main>
   </div>
