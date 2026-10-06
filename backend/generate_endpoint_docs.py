@@ -18,7 +18,11 @@ def endpoint_url(endpoint: dict) -> str:
     return f"{API_URL}/docs#/{quote('Backlog — stubs', safe='')}/{operation_id}"
 
 
-def render_document(endpoints: list[dict]) -> str:
+def markdown_label(text: str) -> str:
+    return text.replace("\\", "\\\\").replace("[", "\\[").replace("]", "\\]").replace("|", "\\|")
+
+
+def render_document(endpoints: list[dict], issue_titles: dict[str, str]) -> str:
     lines = [
         "# Endpoints de la API",
         "",
@@ -34,12 +38,12 @@ def render_document(endpoints: list[dict]) -> str:
         "",
         "## Rutas del backlog",
         "",
-        "| Verbo | Ruta | Tickets de Jira |",
+        "| Verbo | Ruta | Tareas de Jira |",
         "| --- | --- | --- |",
     ]
     for endpoint in endpoints:
-        tickets = ", ".join(
-            f"[{key}](https://martinporto.atlassian.net/browse/{key})"
+        tickets = "<br>".join(
+            f"[{markdown_label(issue_titles[key])}](https://martinporto.atlassian.net/browse/{key})"
             for key in endpoint["issues"]
         )
         lines.append(
@@ -69,6 +73,7 @@ def render_document(endpoints: list[dict]) -> str:
         "```",
         "",
         "Incluir el documento regenerado en el mismo commit que el manifiesto.",
+        "Los nombres de las tareas se conservan en `backend/backlog_issue_titles.json`.",
         "",
     ]
     return "\n".join(lines)
@@ -77,7 +82,8 @@ def render_document(endpoints: list[dict]) -> str:
 if __name__ == "__main__":
     backend_dir = Path(__file__).resolve().parent
     endpoints = json.loads((backend_dir / "backlog_endpoints.json").read_text(encoding="utf-8"))
+    issue_titles = json.loads((backend_dir / "backlog_issue_titles.json").read_text(encoding="utf-8"))
     destination = backend_dir.parent / "docs" / "api-endpoints.md"
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(render_document(endpoints), encoding="utf-8")
+    destination.write_text(render_document(endpoints, issue_titles), encoding="utf-8")
     print(f"Generado: {destination} ({len(endpoints)} rutas del backlog)")
