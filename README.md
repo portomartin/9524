@@ -14,6 +14,7 @@ Proyecto universitario para diseñar un MVP de una plataforma donde las personas
 - [SC del MVP](docs/sc.md)
 - [SC visual del MVP](docs/sc-visual.png)
 - [Metodología de planificación](docs/metodologia.md)
+- [Índice de skills](docs/indice-de-skills.md)
 - [Alcance futuro](docs/alcance-futuro.md)
 
 ## Enlaces externos

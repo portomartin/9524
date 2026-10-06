@@ -2,7 +2,7 @@
 
 **Fecha de derivación:** 2026-10-05.  
 **Planificación base:** 2026-10-04.
-**Estado:** distribución, estimaciones y descomposición variable aplicadas y verificadas en Jira el 2026-10-05; capacidad y refinamientos funcionales siguen siendo provisionales.
+**Estado:** distribución y estimaciones verificadas en Jira el 2026-10-05; la descomposición local fue refinada posteriormente y Jira conserva por ahora la versión externa anterior de 45 subtareas. Capacidad y refinamientos funcionales siguen siendo provisionales.
 **Fuentes:** [MVP V3](mvp-v3.md), [WBS](wbs.md), [backlog](backlog.md), [subtareas](subtareas.md) y estimaciones acordadas en la conversación. Las claves Jira corresponden a las HU consultadas durante la sincronización registrada.
 
 ## Equipo y capacidad
@@ -180,3 +180,30 @@ Se propone reutilizar únicamente Sprint 1–4. No crear Sprint 5–7 ni asignar
 - Jira conserva 6 épicas, 20 HU y 45 subtareas con etiqueta `mvp-v3`; no se crearon issues ni se alteraron estados o responsables.
 - Se verificaron 114 SP distribuidos en Sprint 1 = 13, Sprint 2 = 32, Sprint 3 = 35 y Sprint 4 = 34; se conservaron objetivos, fechas y estados de los cuatro sprints.
 - `MVP V3` y `MVP resumido` coinciden exactamente con Confluence; no se generaron versiones documentales nuevas.
+
+## Revisión local — 2026-10-05 (granularidad Backend, segunda pasada)
+
+- Se volvió a derivar la descomposición técnica de las 20 HU aplicando el criterio revisado: endpoint distinto como indicio, responsabilidades independientes como fundamento y checklist para detalles menores.
+- Se granularizaron también `[1.1.0]`, `[1.2.0]`, `[4.2.0]`, `[5.3.0]` y `[6.2.0]`; las demás HU se mantuvieron agrupadas cuando dividirlas habría duplicado trabajo o separado artificialmente un mismo ciclo de vida.
+- La documentación local queda en 54 subtareas para 20 HU: 11 HU con dos subtareas, 5 HU con tres, 3 HU con cuatro y 1 HU con cinco.
+- No cambiaron el alcance del MVP V3, las 20 historias, las estimaciones ni la distribución de 114 SP en cuatro sprints.
+- Jira conserva por ahora la versión externa anterior de 45 subtareas; esta diferencia queda pendiente de una sincronización externa solicitada por separado.
+
+## Ejecución de derivar planificación — 2026-10-05 (contratos Backend)
+
+- **Fuente:** `docs/mvp-v3.md` como única fuente de requisitos.
+- **Pasadas ejecutadas:** 2 de un máximo de 3.
+- **Primera pasada:** comprobó la cobertura de 20 HU, la numeración de 54 subtareas y la presencia de los artefactos derivados.
+- **Segunda pasada:** verificó los contratos de las 34 subtareas Backend, confirmando endpoint, request y response; también revisó trazabilidad, exclusiones, estimaciones y distribución de sprints.
+- **Tercera pasada:** no fue necesaria porque no se detectaron brechas materiales.
+- **Condición de corte:** cumplida; no hay subtareas Backend con contrato incompleto, no hay identificadores duplicados y se conservan 114 SP en Sprint 1 = 13, Sprint 2 = 32, Sprint 3 = 35 y Sprint 4 = 34.
+
+## Ejecución de derivar planificación — 2026-10-05
+
+- **Fuente:** `docs/mvp-v3.md` como única fuente de requisitos.
+- **Pasadas ejecutadas:** 2 de un máximo de 3.
+- **Primera pasada:** comprobó la presencia y vigencia de los artefactos locales y la cobertura inicial de las 20 HU.
+- **Segunda pasada:** verificó cobertura, trazabilidad, numeración, duplicaciones, contratos técnicos, exclusiones del MVP y compatibilidad estructural con Jira.
+- **Tercera pasada:** no fue necesaria porque no se detectaron brechas materiales.
+- **Condición de corte:** cumplida; las 20 HU tienen subtareas, existen 54 identificadores únicos y no quedan entradas Backend/Frontend sin numeración WBS.
+- **Pendientes:** sincronizar con Jira solo si se solicita; Jira conserva la versión externa anterior de 45 subtareas.

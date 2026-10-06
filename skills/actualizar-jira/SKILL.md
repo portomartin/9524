@@ -7,6 +7,26 @@ description: Sincronizar en Jira la planificación local aprobada, incluidas est
 
 Usar este skill únicamente cuando el usuario solicite crear, actualizar o sincronizar issues de Jira a partir de la documentación local aprobada. La sincronización autorizada incluye siempre la actualización documental del MVP activo y del MVP resumido en la sección Documentos asociada al proyecto.
 
+## Flujo visual de sincronización
+
+La sincronización externa usa un loop corto de verificación, distinto del loop de refinamiento de la planificación:
+
+```mermaid
+flowchart TD
+    A[Leer fuente local y resolver proyecto] --> B[Leer Jira y Confluence]
+    B --> C[Comparar claves, padres, contenido, etiquetas y plan]
+    C --> D[Aplicar únicamente cambios autorizados]
+    D --> E[Releer Jira y Confluence]
+    E --> F{¿Resultado consistente?}
+    F -- "Sí" --> G[Informar sincronización completa]
+    F -- "Diferencia concreta reparable" --> H[Corregir solo el elemento afectado]
+    H --> I[Releer el elemento corregido]
+    I --> J{¿Quedó consistente?}
+    J -- "Sí" --> G
+    J -- "No o conflicto" --> K[Detener esa parte e informar resultado parcial]
+    F -- "No o conflicto" --> K
+```
+
 ## Fuente y alcance
 
 - Leer `AGENTS.md` y confirmar qué versión del MVP está activa.
@@ -43,6 +63,17 @@ Usar este skill únicamente cuando el usuario solicite crear, actualizar o sincr
 8. Evitar duplicados y conservar estados, responsables y otros campos no solicitados. Las estimaciones y asignaciones de sprint se actualizan cuando la sincronización incluya el plan de `docs/sprints.md`; fuera de ese alcance se conservan.
 9. Aplicar la sección **Estimaciones y sprints** cuando corresponda.
 10. Verificar al finalizar la publicación documental, la cantidad de issues creadas o actualizadas, sus etiquetas, relaciones, puntos y distribución final por sprint.
+
+## Loop de verificación posterior
+
+La sincronización debe ejecutar una única verificación posterior a las escrituras:
+
+1. Leer nuevamente Jira y Confluence después de aplicar los cambios.
+2. Comparar issues, padres, títulos, descripciones, etiquetas, puntos, sprints y relaciones con la fuente local autorizada. En cada subtarea `[Backend]`, verificar que la descripción tenga endpoint y verbo, request —o `sin body`—, response exitosa y errores relevantes; si es una tarea interna sin endpoint, debe declararlo como excepción con entrada, salida y pruebas.
+3. Si aparece una diferencia concreta y reparable, corregir únicamente ese elemento y releerlo una vez.
+4. Si persiste una diferencia, hay una respuesta ambigua o existe un conflicto de estado, detener esa parte e informar el resultado parcial.
+
+No repetir escrituras a ciegas ni iniciar un loop indefinido. La condición de corte es que la sincronización quede consistente, incluidos los contratos mínimos de Backend, o que una parte quede detenida con el motivo documentado. Este loop valida la aplicación externa; no rediseña el backlog ni modifica el MVP.
 
 ## Estimaciones y sprints
 
