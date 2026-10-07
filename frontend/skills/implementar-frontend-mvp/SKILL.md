@@ -5,6 +5,9 @@ description: Implementar incrementalmente en Vue todas las subtareas frontend de
 
 # Implementar todo el frontend del MVP 9524
 
+El código está en `frontend/`. Ejecutar los comandos npm desde esa carpeta.
+Las rutas `docs/` y `AGENTS.md` se resuelven desde la raíz del repositorio.
+
 Completar todas las subtareas marcadas como Frontend en el backlog vigente. Trabajar incrementalmente sobre el repositorio existente: no regenerar la aplicación, no reemplazar funcionalidad correcta y no repetir subtareas ya completadas.
 
 Cuando el usuario invoque el skill sin indicar una subtarea, continuar automáticamente desde la primera subtarea pendiente hasta completar todo el backlog frontend o encontrar una condición de detención real.

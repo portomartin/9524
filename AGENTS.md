@@ -16,6 +16,8 @@
 
 ## Forma de trabajo
 
+- Los skills de documentación y planificación están en `docs/skills/`; los de implementación y publicación de frontend en `frontend/skills/`; los de backend en `backend/skills/`.
+- Las rutas de archivos citadas como `docs/`, `frontend/`, `backend/` y `AGENTS.md` se interpretan desde la raíz del repositorio, salvo enlaces Markdown relativos.
 - Diferenciar épicas, historias de usuario, criterios de aceptación y tareas técnicas.
 - Mantener el alcance del MVP explícito.
 - No modificar la especificación automáticamente: proponer cambios y esperar confirmación cuando afecten el alcance o las reglas del producto.
