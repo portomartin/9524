@@ -19,6 +19,7 @@ Documentos:
 - [MVP v1.0](proyecto-sdd/mvp-v1.md)
 - [Historias de usuario (USM)](proyecto-wbs/historias-de-usuario.md)
 - [Estructura de desglose del trabajo (WBS)](proyecto-wbs/wbs-original.md)
+- [Backlog](proyecto-wbs/backlog.md)
 - [Scrum en Jira](https://martinporto.atlassian.net/jira/software/projects/WBSO/boards/35/backlog)
 
 _[Proceso para crear y mantener Jira](proyecto-wbs/skills/crear-jira-desde-wbs-original/SKILL.md)_

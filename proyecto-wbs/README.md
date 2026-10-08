@@ -4,6 +4,7 @@ Proyecto de planificación independiente construido con el enfoque tradicional d
 
 - **Estructura de desglose del trabajo (WBS):** [`wbs-original.md`](wbs-original.md).
 - **Historias de usuario (USM):** [`historias-de-usuario.md`](historias-de-usuario.md).
+- **Backlog:** [`backlog.md`](backlog.md).
 - **Scrum en Jira:** [`jerarquia-jira.md`](jerarquia-jira.md).
 - **Proceso de sincronización:** [`skills/crear-jira-desde-wbs-original/SKILL.md`](skills/crear-jira-desde-wbs-original/SKILL.md).
 - **Proyecto Jira:** `WBSO` — `WBS Original Histórico`.
