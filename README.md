@@ -14,12 +14,14 @@ Este repositorio estudia dos enfoques independientes para planificar y desarroll
 6. Es el enfoque vigente y tradicional, aunque se encuentra en vías de extinción frente a modelos de desarrollo centrados en especificaciones e IA.
 7. Consolidar backend y frontend suele convertirse en un infierno: aunque ambas partes funcionen por separado, los errores humanos de comunicación e interpretación producen contratos, modelos, validaciones e interfaces incompatibles. Una parte importante de los sprints termina consumida en detectar diferencias, resolver conflictos y rehacer trabajo durante la integración.
 
-Recursos principales:
+Documentos:
 
-- [WBS original](proyecto-wbs/wbs-original.md)
-- [Jerarquía de Jira](proyecto-wbs/jerarquia-jira.md)
-- [Proceso para crear y mantener Jira](proyecto-wbs/skills/crear-jira-desde-wbs-original/SKILL.md)
-- Proyecto Jira: `WBSO` — `WBS Original Histórico`
+- [MVP v1.0](proyecto-sdd/mvp-v1.md)
+- [Historias de usuario (USM)](proyecto-wbs/historias-de-usuario.md)
+- [Estructura de desglose del trabajo (WBS)](proyecto-wbs/wbs-original.md)
+- [Scrum en Jira](https://martinporto.atlassian.net/jira/software/projects/WBSO/boards/35/backlog)
+
+_[Proceso para crear y mantener Jira](proyecto-wbs/skills/crear-jira-desde-wbs-original/SKILL.md)_
 
 ## Proyecto alternativo: SDD centrado en IA
 
@@ -38,6 +40,12 @@ La diferencia central entre ambos enfoques es:
 > En el proyecto WBS, las personas desarrollan con asistencia de IA. En el proyecto SDD, las personas dirigen y refinan mientras la IA implementa.
 
 El proyecto SDD mantiene sus propios artefactos, código, skills y seguimiento. Sus tareas, estados, sprints e issues no deben mezclarse automáticamente con los del proyecto WBS principal.
+
+Documentos:
+
+- [MVP v3.0](proyecto-sdd/mvp-v3.md)
+- [Proyecto SDD](proyecto-sdd/README.md)
+- [Tablero Jira BH95](https://martinporto.atlassian.net/jira/software/projects/BH95/boards/2/backlog)
 
 ## Estructura
 

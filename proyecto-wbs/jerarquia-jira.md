@@ -1,4 +1,4 @@
-# Jerarquía Jira basada en el WBS original
+# Scrum en Jira
 
 **Fuente de verdad:** [`wbs-original.md`](wbs-original.md)  
 **Uso:** proyecto Jira independiente del MVP V3.  

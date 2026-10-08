@@ -24,7 +24,7 @@ La documentación está dividida en dos proyectos de planificación independient
 
 ## Enlaces externos
 
-- [Cronograma Jira BH95](https://martinporto.atlassian.net/jira/software/projects/BH95/boards/2/timeline)
+- [Tablero Jira BH95](https://martinporto.atlassian.net/jira/software/projects/BH95/boards/2/backlog)
 - [Repositorio GitHub](https://github.com/portomartin/9524)
 - [Carpeta de Google Drive](https://drive.google.com/drive/folders/1yT3fRMZmn2E0MRizzJtzh7e1q5G1IJOz)
 

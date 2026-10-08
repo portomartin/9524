@@ -100,7 +100,7 @@ Se propone reutilizar únicamente Sprint 1–4. No crear Sprint 5–7 ni asignar
 - Verificadas las 40 subtareas en el mismo sprint que sus respectivas HU, sin puntos adicionales.
 - MVP V3 y MVP resumido en Confluence coinciden con los archivos locales; no se generaron versiones idénticas innecesarias.
 - El calendario local confirmado establece únicamente cuatro sprints de dos semanas: Sprint 1, 24 de septiembre–8 de octubre; Sprint 2, 8–22 de octubre; Sprint 3, 22 de octubre–5 de noviembre; Sprint 4, 5–19 de noviembre. Jira quedó alineado en fechas y asignaciones; Sprint 5–7 permanecen vacíos porque Jira no permite eliminar sprints futuros mediante el conector.
-- [Tablero Jira BH95](https://martinporto.atlassian.net/jira/software/projects/BH95/boards/2).
+- [Tablero Jira BH95](https://martinporto.atlassian.net/jira/software/projects/BH95/boards/2/backlog).
 
 ## Registro de sincronización — 2026-10-05 (ajuste de [1.2.0])
 

@@ -1,4 +1,4 @@
-# WBS original histórico
+# Estructura de desglose del trabajo (WBS)
 
 Fuente: versión histórica proporcionada por el usuario.
 
