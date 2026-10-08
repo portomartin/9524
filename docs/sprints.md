@@ -2,7 +2,7 @@
 
 **Fecha de derivación:** 2026-10-05.  
 **Planificación base:** 2026-10-04.
-**Estado:** distribución y estimaciones verificadas en Jira el 2026-10-05; la descomposición local fue refinada posteriormente y Jira conserva por ahora la versión externa anterior de 45 subtareas. Capacidad y refinamientos funcionales siguen siendo provisionales.
+**Estado:** distribución ajustada en Jira el 2026-10-07 para concentrar en Sprint 1 las HU que contienen las funcionalidades históricas `1.3.x.x` y `1.4.x.x`. Capacidad y refinamientos funcionales siguen siendo provisionales.
 **Fuentes:** [MVP V3](mvp-v3.md), [WBS](wbs.md), [backlog](backlog.md), [subtareas](subtareas.md) y estimaciones acordadas en la conversación. Las claves Jira corresponden a las HU consultadas durante la sincronización registrada.
 
 ## Equipo y capacidad
@@ -58,10 +58,10 @@ Se establece un límite de **4 sprints de dos semanas**. El calendario confirmad
 
 | Sprint | Período | Objetivo | HU asignadas (SP) | Total SP | Capacidad SP | Dependencias o riesgos |
 |---|---|---|---|---:|---:|---|
-| Sprint 1 | 24-sept–8-oct | Acceder y crear un perfil | [1.3.0] (5), [1.4.0] (5), [2.1.0] (3) | 13 | 20 | Integrar registro y autenticación antes de cerrar perfil |
-| Sprint 2 | 8-oct–22-oct | Publicar, explorar y encontrar compatibilidades | [2.2.0] (8), [2.3.0] (3), [1.1.0] (5), [1.2.0] (8), [3.3.0] (8) | 32 | 20 | Requiere acceso y contenido publicado; sobrecupo visible de 12 SP |
-| Sprint 3 | 22-oct–5-nov | Consultar horarios y completar el ciclo de sesión | [4.1.0] (8), [4.2.0] (3), [3.1.0] (5), [4.3.0] (8), [4.4.0] (8), [4.5.0] (3) | 35 | 20 | La agenda y la propuesta habilitan solicitud, gestión y finalización; sobrecupo visible de 15 SP |
-| Sprint 4 | 5-nov–19-nov | Créditos, historial, reputación y seguridad | [3.2.0] (5), [6.1.0] (3), [5.1.0] (8), [5.2.0] (5), [5.3.0] (5), [6.2.0] (8) | 34 | 20 | Se completa el valor posterior a la sesión y la operación segura; sobrecupo visible de 14 SP |
+| Sprint 1 | 24-sept–8-oct | Usuarios, perfil, publicaciones, necesidades, disponibilidad y créditos | [1.3.0] (5), [1.4.0] (5), [2.1.0] (3), [2.2.0] (8), [2.3.0] (3), [4.1.0] (8), [5.1.0] (8) | 40 | 20 | Se prioriza concentrar las funcionalidades históricas `1.3.x.x` y `1.4.x.x`; sobrecupo visible de 20 SP |
+| Sprint 2 | 8-oct–22-oct | Publicar, explorar y encontrar compatibilidades | [1.1.0] (5), [1.2.0] (8), [3.3.0] (8) | 21 | 20 | Requiere acceso y contenido publicado; sobrecupo visible de 1 SP |
+| Sprint 3 | 22-oct–5-nov | Publicar la agenda y completar el ciclo de sesión | [4.2.0] (3), [3.1.0] (5), [4.3.0] (8), [4.4.0] (8), [4.5.0] (3) | 27 | 20 | La agenda y la propuesta habilitan solicitud, gestión y finalización; sobrecupo visible de 7 SP |
+| Sprint 4 | 5-nov–19-nov | Historial, reputación y seguridad | [3.2.0] (5), [6.1.0] (3), [5.2.0] (5), [5.3.0] (5), [6.2.0] (8) | 26 | 20 | Se completa el valor posterior a la sesión y la operación segura; sobrecupo visible de 6 SP |
 | **Total** | — | **20 historias asignadas** | — | **114** | **80** | **Límite blando: 34 SP por encima de la capacidad de referencia; no quedan HU sin sprint** |
 
 La búsqueda manual permite solicitar sesiones antes del recomendador de compatibilidad. Esto ordena la implementación sin retirar compatibilidad del MVP. Las entregas intermedias son incrementos de desarrollo, no una autorización para operar públicamente sin la administración y seguridad completas.
@@ -89,7 +89,7 @@ Se propone reutilizar únicamente Sprint 1–4. No crear Sprint 5–7 ni asignar
 
 ## Verificación
 
-20 HU consideradas, asignadas una vez cada una; 114 SP en historias y 114 SP distribuidos en los cuatro sprints. Los sprints contienen 13, 32, 35 y 34 SP frente a una referencia de 20 SP; no quedan HU sin sprint.
+20 HU consideradas, asignadas una vez cada una; 114 SP en historias y 114 SP distribuidos en los cuatro sprints. Los sprints contienen 40, 21, 27 y 26 SP frente a una referencia de 20 SP; no quedan HU sin sprint.
 
 ## Registro de sincronización — 2026-10-05
 
@@ -207,3 +207,10 @@ Se propone reutilizar únicamente Sprint 1–4. No crear Sprint 5–7 ni asignar
 - **Tercera pasada:** no fue necesaria porque no se detectaron brechas materiales.
 - **Condición de corte:** cumplida; las 20 HU tienen subtareas, existen 54 identificadores únicos y no quedan entradas Backend/Frontend sin numeración WBS.
 - **Pendientes:** sincronizar con Jira solo si se solicita; Jira conserva la versión externa anterior de 45 subtareas.
+
+## Registro de sincronización — 2026-10-07 (consolidación del WBS histórico)
+
+- Se movieron al Sprint 1 las HU `[2.2.0]`, `[2.3.0]`, `[4.1.0]` y `[5.1.0]`, porque contienen las funcionalidades históricas `1.3.x.x` y `1.4.x.x`.
+- Se movieron también sus subtareas existentes y las 19 subtareas provisionales de reconciliación WBS.
+- La nueva distribución queda: Sprint 1 = 40 SP, Sprint 2 = 21 SP, Sprint 3 = 27 SP y Sprint 4 = 26 SP.
+- Se acepta explícitamente el sobrecupo del Sprint 1 para mantener juntas las funcionalidades históricas `1.3.x.x` y `1.4.x.x`.

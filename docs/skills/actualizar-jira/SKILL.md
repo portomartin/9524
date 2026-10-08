@@ -99,6 +99,18 @@ No repetir escrituras a ciegas ni iniciar un loop indefinido. La condición de c
 - Si hay diferencias de alcance o decisiones ambiguas, detener la sincronización de esa parte y presentarlas.
 - No eliminar issues automáticamente. Proponerlas como obsoletas o pedir autorización específica.
 
+## Reconciliación histórica autorizada
+
+Aplicar esta excepción únicamente cuando el usuario solicite expresamente reconciliar un WBS histórico ya trabajado con Jira:
+
+- Mantener el MVP y el WBS histórico sin modificaciones.
+- Resolver cada elemento WBS contra un único check canónico y una única subtarea Jira 1:1.
+- Si una subtarea Jira existente agrupa varios elementos WBS, conservarla y crear subtareas provisionales adicionales para completar la correspondencia 1:1; no eliminar ni reescribir la tarea histórica salvo autorización específica.
+- Usar en cada subtarea el formato `[x.x.x.x] [WBS x.x.x] Nombre exacto del WBS` y las etiquetas `mvp-v3`, `provisional` y `wbs-reconciliacion`, cuando correspondan.
+- Limpiar únicamente los checks históricos que hayan sido migrados a las subtareas provisionales; conservar los checks técnicos que no representen un elemento WBS migrado.
+- Si la reconciliación incluye sprints, asignar las HU y subtareas según el plan autorizado, aunque el sprint quede temporalmente sobrecargado. Para el ajuste histórico vigente, todos los elementos `1.3.x.x` y `1.4.x.x` se asignan al Sprint 1.
+- Registrar el resultado en la documentación de reconciliación y verificar después las claves, padres, títulos, checks, etiquetas y sprints.
+
 ## Trazabilidad
 
 Mantener la relación:
