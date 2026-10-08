@@ -2,10 +2,10 @@
 
 ## Fuente de verdad
 
-- Existen tres versiones de la especificación: `docs/mvp-v1.md`, `docs/mvp-v2.md` y `docs/mvp-v3.md`.
-- La fuente activa de verdad es `docs/mvp-v3.md` (**MVP V3**).
+- Existen tres versiones de la especificación: `proyecto-sdd/mvp-v1.md`, `proyecto-sdd/mvp-v2.md` y `proyecto-sdd/mvp-v3.md`.
+- La fuente activa de verdad es `proyecto-sdd/mvp-v3.md` (**MVP V3**).
 - V1 y V2 se conservan como versiones históricas y de comparación.
-- Los skills y procesos automáticos deben partir de `docs/mvp-v3.md` salvo que el usuario indique explícitamente otra versión para una comparación o migración.
+- Los skills y procesos automáticos deben partir de `proyecto-sdd/mvp-v3.md` salvo que el usuario indique explícitamente otra versión para una comparación o migración.
 - La selección de V3 como fuente debe reflejarse progresivamente en el backlog, la WBS, las decisiones registradas y los demás documentos derivados.
 
 ## Dominio
@@ -16,8 +16,8 @@
 
 ## Forma de trabajo
 
-- Los skills de documentación y planificación están en `docs/skills/`; los de implementación y publicación de frontend en `frontend/skills/`; los de backend en `backend/skills/`.
-- Las rutas de archivos citadas como `docs/`, `frontend/`, `backend/` y `AGENTS.md` se interpretan desde la raíz del repositorio, salvo enlaces Markdown relativos.
+- Los skills de documentación y planificación SDD están en `proyecto-sdd/skills/`; el proceso clásico independiente está en `proyecto-wbs/skills/`; los skills de implementación y publicación de frontend están en `proyecto-sdd/frontend/skills/`; y los de backend, en `proyecto-sdd/backend/skills/`.
+- Las rutas de archivos citadas como `proyecto-sdd/`, `proyecto-wbs/` y `AGENTS.md` se interpretan desde la raíz del repositorio, salvo enlaces Markdown relativos.
 - Diferenciar épicas, historias de usuario, criterios de aceptación y tareas técnicas.
 - Mantener el alcance del MVP explícito.
 - No modificar la especificación automáticamente: proponer cambios y esperar confirmación cuando afecten el alcance o las reglas del producto.
