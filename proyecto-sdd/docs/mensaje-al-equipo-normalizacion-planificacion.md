@@ -37,7 +37,7 @@ Si una subtarea Jira queda demasiado grande, puede dividirse en varias subtareas
 
 ## Por qué no debemos forzar la derivación
 
-![No forzar una derivación que no encaja](assets/no-forzar-derivacion-v2.png)
+![No forzar una derivación que no encaja](../assets/no-forzar-derivacion-v2.png)
 
 Forzar por fuera de la decisión del skill que algo sea una subtarea puede generar:
 
@@ -50,7 +50,7 @@ Como estamos trabajando con un enfoque de *spec-driven development*, la estructu
 
 ## Cómo hacer que nazca una subtarea
 
-![Una subtarea nace de un MVP refinado](assets/subtarea-nace-mvp.png)
+![Una subtarea nace de un MVP refinado](../assets/subtarea-nace-mvp.png)
 
 Si una capacidad parece requerir una subtarea independiente por su responsabilidad, comportamiento o impacto funcional, primero debemos expresarla con suficiente claridad en el MVP y volver a derivar la planificación.
 

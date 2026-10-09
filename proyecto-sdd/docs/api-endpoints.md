@@ -1,6 +1,6 @@
 # Endpoints de la API
 
-Listado generado desde [`proyecto-sdd/backend/backlog_endpoints.json`](backend/backlog_endpoints.json).
+Listado generado desde [`proyecto-sdd/backend/backlog_endpoints.json`](../backend/backlog_endpoints.json).
 
 Hay 44 combinaciones de verbo y ruta del backlog.
 `GET /api/v1/public/offers` devuelve un array con una propuesta de ejemplo y alimenta el listado del frontend.

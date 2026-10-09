@@ -4,18 +4,18 @@ Proyecto universitario para diseñar un MVP de una plataforma donde las personas
 
 ## Documentación principal
 
-- [Especificación del MVP V1](mvp-v1.md)
-- [Especificación del MVP V2](mvp-v2.md)
-- [Especificación del MVP V3](mvp-v3.md)
-- [MVP resumido](mvp-resumido.md)
-- [WBS del MVP](wbs.md)
-- [USM del MVP](usm.md)
-- [Backlog del MVP](backlog.md)
-- [SC del MVP](sc.md)
-- [SC visual del MVP](sc-visual.png)
-- [Metodología de planificación](metodologia.md)
-- [Índice de skills](indice-de-skills.md)
-- [Alcance futuro](alcance-futuro.md)
+- [Especificación del MVP V1](docs/mvp-v1.md)
+- [Especificación del MVP V2](docs/mvp-v2.md)
+- [Especificación del MVP V3](docs/mvp-v3.md)
+- [MVP resumido](docs/mvp-resumido.md)
+- [WBS del MVP](docs/wbs.md)
+- [USM del MVP](docs/usm.md)
+- [Backlog del MVP](docs/backlog.md)
+- [SC del MVP](docs/sc.md)
+- [SC visual del MVP](docs/sc-visual.png)
+- [Metodología de planificación](docs/metodologia.md)
+- [Índice de skills](docs/indice-de-skills.md)
+- [Alcance futuro](docs/alcance-futuro.md)
 
 La documentación está dividida en dos proyectos de planificación independientes:
 
@@ -41,7 +41,7 @@ Una misma persona puede enseñar o aprender según la actividad, sin cambiar su 
 
 ## Flujo de planificación
 
-El flujo de planificación parte actualmente del **MVP V3** y produce WBS, USM, backlog y subtareas técnicas. Estos documentos ya fueron regenerados y mantienen trazabilidad con V3. [derivar-planificacion-mvp](skills/derivar-planificacion-mvp/SKILL.md) coordina la documentación local y su revisión. Al final, aplica [crear-sprints](skills/crear-sprints/SKILL.md) para estimar las HU, simular capacidad del equipo y proponer una distribución por objetivos y dependencias. Al ejecutar esa etapa, el resultado se guarda en `proyecto-sdd/sprints.md`. La sincronización externa se realiza por separado mediante `actualizar-jira`.
+El flujo de planificación parte actualmente del **MVP V3** y produce WBS, USM, backlog y subtareas técnicas. Estos documentos ya fueron regenerados y mantienen trazabilidad con V3. [derivar-planificacion-mvp](skills/derivar-planificacion-mvp/SKILL.md) coordina la documentación local y su revisión. Al final, aplica [crear-sprints](skills/crear-sprints/SKILL.md) para estimar las HU, simular capacidad del equipo y proponer una distribución por objetivos y dependencias. Al ejecutar esa etapa, el resultado se guarda en `proyecto-sdd/docs/sprints.md`. La sincronización externa se realiza por separado mediante `actualizar-jira`.
 
 ## Aplicación Intercambia
 
@@ -59,7 +59,7 @@ La aplicación está publicada en GitHub Pages:
 
 API mínima en Python con FastAPI, publicada en Render:
 
-- [Listado de endpoints: verbos, rutas y tickets de Jira](api-endpoints.md).
+- [Listado de endpoints: verbos, rutas y tickets de Jira](docs/api-endpoints.md).
 - [API e índice automático de endpoints](https://nine524-api-unificado.onrender.com/).
 - [Documentación interactiva para probar la API](https://nine524-api-unificado.onrender.com/docs).
 - [Contrato OpenAPI en JSON](https://nine524-api-unificado.onrender.com/openapi.json).
@@ -181,7 +181,7 @@ proyecto-sdd/frontend/src/
 └── theme.js      # Preset visual de PrimeVue
 ```
 
-El progreso funcional está documentado en [`proyecto-sdd/frontend-progress.md`](frontend-progress.md).
+El progreso funcional está documentado en [`proyecto-sdd/docs/frontend-progress.md`](docs/frontend-progress.md).
 
 La raíz contiene `proyecto-sdd/` (especificación, planificación, frontend Vue y backend FastAPI),
 `proyecto-wbs/` (planificación clásica independiente), `.github/` (despliegue de Pages) y `render.yaml` (configuración del backend).
