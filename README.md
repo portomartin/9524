@@ -16,7 +16,7 @@ Este repositorio estudia dos enfoques independientes para planificar y desarroll
 
 Documentos:
 
-- [MVP v1.0](proyecto-sdd/mvp-v1.md)
+- [MVP v1.0](proyecto-sdd/docs/mvp-v1.md)
 - [Historias de usuario (USM)](proyecto-wbs/historias-de-usuario.md)
 - [Estructura de desglose del trabajo (WBS)](proyecto-wbs/wbs-original.md)
 - [Backlog](proyecto-wbs/backlog.md)
@@ -44,7 +44,7 @@ El proyecto SDD mantiene sus propios artefactos, código, skills y seguimiento. 
 
 Documentos:
 
-- [MVP v3.0](proyecto-sdd/mvp-v3.md)
+- [MVP v3.0](proyecto-sdd/docs/mvp-v3.md)
 - [Proyecto SDD](proyecto-sdd/README.md)
 - [Tablero Jira BH95](https://martinporto.atlassian.net/jira/software/projects/BH95/boards/2/backlog)
 
