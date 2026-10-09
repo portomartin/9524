@@ -1,79 +1,136 @@
 <script setup>
-import { reactive, ref } from 'vue'
-import Card from 'primevue/card'
-import DataTable from 'primevue/datatable'
-import Column from 'primevue/column'
-import Rating from 'primevue/rating'
-import Tag from 'primevue/tag'
-import Message from 'primevue/message'
-import Button from 'primevue/button'
-import Dialog from 'primevue/dialog'
-import Select from 'primevue/select'
-import Textarea from 'primevue/textarea'
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import {
+  ShieldCheck,
+  Trophy,
+  TrendingUp,
+  Calendar,
+  Star,
+  Info
+} from '@lucide/vue'
 import { usePlatformStore } from '../stores/platformStore'
+import Button from '../components/ui/Button.vue'
+import Badge from '../components/ui/Badge.vue'
+import Card from '../components/ui/Card.vue'
 
-const store = usePlatformStore()
-const { state } = store
-const trending = [...state.offers].slice(0, 3)
-const reportDialog = ref(false)
-const selectedPerson = ref(null)
-const reportSent = ref(false)
-const report = reactive({ reasonCode: 'INAPPROPRIATE', description: '' })
-function openReport(person) { selectedPerson.value = person; report.description = ''; reportDialog.value = true }
-function sendReport() {
-  store.report({ targetType: 'USER', targetId: selectedPerson.value.userId, targetLabel: selectedPerson.value.userName, reasonCode: report.reasonCode, description: report.description })
-  reportDialog.value = false
-  reportSent.value = true
-}
+const router = useRouter()
+const platformStore = usePlatformStore()
+
+const rankings = computed(() => platformStore.rankings)
+const trending = computed(() => platformStore.trending)
 </script>
 
 <template>
-  <section class="flex flex-column gap-4">
-    <div><h1 class="mb-2">Confianza pública</h1><p class="text-color-secondary mt-0">Referencias públicas sin exponer acuerdos ni información privada.</p></div>
-    <Message v-if="reportSent" severity="success" :closable="false">Recibimos tu denuncia para revisión.</Message>
-    <div class="grid">
-      <div class="col-12 lg:col-6">
-        <Card class="h-full">
-          <template #title>Personas destacadas</template>
-          <template #content>
-            <DataTable :value="state.ratings" responsive-layout="scroll">
-              <Column field="userName" header="Persona" />
-              <Column header="Reputación">
-                <template #body="{ data }"><div class="flex align-items-center gap-2"><Rating :model-value="Math.round(data.score)" readonly /><span>{{ data.score }} ({{ data.count }})</span></div></template>
-              </Column>
-              <Column header=""><template #body="{ data }"><Button icon="pi pi-flag" text severity="danger" aria-label="Denunciar usuario" @click="openReport(data)" /></template></Column>
-            </DataTable>
-          </template>
-        </Card>
-      </div>
-      <div class="col-12 lg:col-6">
-        <Card class="h-full">
-          <template #title>Contenido con actividad reciente</template>
-          <template #content>
-            <div class="flex flex-column gap-3">
-              <div v-for="offer in trending" :key="offer.id" class="surface-50 border-round p-3">
-                <div class="font-semibold mb-2">{{ offer.title }}</div>
-                <Tag :value="offer.category" />
-              </div>
-              <Message v-if="trending.length === 0" severity="secondary" :closable="false">Todavía no hay datos públicos suficientes.</Message>
-            </div>
-          </template>
-        </Card>
-      </div>
+  <div class="max-w-7xl mx-auto flex flex-col gap-8">
+    <!-- Header -->
+    <div class="rounded-3xl border border-border bg-card p-6 md:p-10 shadow-xs">
+      <Badge variant="outline" class="mb-3 text-emerald-700 border-emerald-300 bg-emerald-50">
+        <ShieldCheck class="h-3 w-3 mr-1" />
+        Transparencia y Reputación Comunitaria
+      </Badge>
+      <h1 class="text-3xl md:text-4xl font-black tracking-tight text-foreground mb-2">
+        Confianza y Rankings Públicos
+      </h1>
+      <p class="text-sm text-muted-foreground max-w-2xl leading-relaxed">
+        La reputación de cada miembro se calcula a partir de calificaciones reales otorgadas al finalizar sesiones acordadas.
+        No se exponen acuerdos privados ni detalles confidenciales.
+      </p>
     </div>
-    <Card>
-      <template #title>Agendas públicas</template>
-      <template #subtitle>Solo se muestran horarios libres; nunca acuerdos ni participantes.</template>
-      <template #content>
-        <DataTable :value="state.publicAgendas" responsive-layout="scroll">
-          <template #empty>No hay horarios públicos disponibles.</template>
-          <Column field="userName" header="Persona" />
-          <Column field="date" header="Fecha" />
-          <Column field="startTime" header="Hora" />
-          <Column header="Duración"><template #body="{ data }">{{ data.durationMinutes }} min</template></Column>
-        </DataTable>
-      </template>
-    </Card>
-    <Dialog v-model:visible="reportDialog" modal header="Denunciar usuario" class="w-11 md:w-5"><Message severity="warn" :closable="false">La denuncia será revisada antes de tomar una medida.</Message><div class="flex flex-column gap-3 mt-3"><Select v-model="report.reasonCode" :options="[{label:'Conducta inapropiada',value:'INAPPROPRIATE'},{label:'Identidad engañosa',value:'MISLEADING'},{label:'Otro motivo',value:'OTHER'}]" option-label="label" option-value="value" /><Textarea v-model="report.description" rows="4" placeholder="Descripción obligatoria" /></div><template #footer><Button label="Cancelar" text @click="reportDialog = false" /><Button label="Enviar denuncia" severity="danger" :disabled="!report.description.trim()" @click="sendReport" /></template></Dialog>
-  </section>
+
+    <!-- Grid: Rankings and Trending -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+      <!-- Rankings Column -->
+      <Card class="p-6 md:col-span-7 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-lg font-bold text-foreground">Miembros con Mejor Reputación</h2>
+              <p class="text-xs text-muted-foreground">Calificación promedio basada en intercambios completados</p>
+            </div>
+            <Trophy class="h-5 w-5 text-amber-500" />
+          </div>
+
+          <div v-if="rankings.length > 0" class="flex flex-col gap-3">
+            <div
+              v-for="(user, idx) in rankings"
+              :key="user.id"
+              class="flex items-center justify-between p-3 rounded-xl border border-border/60 bg-muted/20 hover:bg-muted/50 transition-colors"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="h-7 w-7 rounded-full flex items-center justify-center text-xs font-black"
+                  :class="idx === 0 ? 'bg-amber-100 text-amber-800' : idx === 1 ? 'bg-slate-200 text-slate-800' : 'bg-blue-100 text-blue-800'"
+                >
+                  #{{ idx + 1 }}
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-foreground">{{ user.name }}</div>
+                  <div class="text-[11px] text-muted-foreground">
+                    {{ user.skillsToTeach.slice(0, 2).join(', ') || 'Miembro general' }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="text-right">
+                  <div class="flex items-center gap-1 text-xs font-bold text-foreground justify-end">
+                    <Star class="h-3 w-3 fill-amber-400 text-amber-400" />
+                    <span>{{ user.reputationScore }}</span>
+                  </div>
+                  <span class="text-[10px] text-muted-foreground">{{ user.reviewsCount }} reseñas</span>
+                </div>
+
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  title="Ver agenda libre"
+                  @click="router.push({ name: 'public-availability', params: { id: user.id } })"
+                >
+                  <Calendar class="h-4 w-4 text-muted-foreground" />
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <div v-else class="text-center p-8 text-xs text-muted-foreground">
+            Aún no hay suficientes calificaciones para mostrar el ranking.
+          </div>
+        </div>
+      </Card>
+
+      <!-- Trending Categories Column -->
+      <Card class="p-6 md:col-span-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-lg font-bold text-foreground">Temáticas en Tendencia</h2>
+              <p class="text-xs text-muted-foreground">Conocimientos más demandados y ofrecidos</p>
+            </div>
+            <TrendingUp class="h-5 w-5 text-blue-500" />
+          </div>
+
+          <div v-if="trending.length > 0" class="flex flex-col gap-2 mb-6">
+            <div
+              v-for="item in trending"
+              :key="item.category"
+              class="flex items-center justify-between p-2.5 rounded-lg bg-muted/40 text-xs font-medium"
+            >
+              <span class="text-foreground">{{ item.category }}</span>
+              <span class="rounded-full bg-primary/10 text-primary font-bold px-2 py-0.5 text-[11px]">
+                {{ item.count }} propuestas
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-blue-200/60 bg-blue-50/50 p-3.5 text-xs text-blue-900 flex items-start gap-2.5">
+          <Info class="h-4 w-4 shrink-0 text-blue-600 mt-0.5" />
+          <div class="leading-relaxed">
+            <strong>Seguridad y Privacidad:</strong> La plataforma nunca muestra las fechas que ya fueron tomadas por otros participantes ni datos personales privados.
+          </div>
+        </div>
+      </Card>
+    </div>
+  </div>
 </template>

@@ -1,28 +1,90 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { usePlatformStore } from '../stores/platformStore'
+import { useAuthStore } from '../stores/authStore'
+
+const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: () => import('../views/HomeView.vue')
+  },
+  {
+    path: '/explore',
+    name: 'explore',
+    component: () => import('../views/ExploreView.vue')
+  },
+  {
+    path: '/offers/:id',
+    name: 'offer-detail',
+    component: () => import('../views/OfferDetailView.vue'),
+    props: true
+  },
+  {
+    path: '/needs/:id',
+    name: 'need-detail',
+    component: () => import('../views/NeedDetailView.vue'),
+    props: true
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('../views/SearchView.vue')
+  },
+  {
+    path: '/trust',
+    name: 'trust',
+    component: () => import('../views/TrustView.vue')
+  },
+  {
+    path: '/users/:id/availability',
+    name: 'public-availability',
+    component: () => import('../views/PublicAvailabilityView.vue'),
+    props: true
+  },
+  {
+    path: '/auth',
+    name: 'auth',
+    component: () => import('../views/AuthView.vue')
+  },
+  {
+    path: '/workspace',
+    name: 'workspace',
+    component: () => import('../views/WorkspaceView.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () => import('../views/AdminView.vue'),
+    meta: { requiresAuth: true, requiresAdmin: true }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    component: () => import('../views/NotFoundView.vue')
+  }
+]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    { path: '/', name: 'explore', component: () => import('../views/ExploreView.vue') },
-    { path: '/confianza', name: 'trust', component: () => import('../views/TrustView.vue') },
-    { path: '/buscar', name: 'search', component: () => import('../views/SearchView.vue') },
-    { path: '/acceso', name: 'auth', component: () => import('../views/AuthView.vue') },
-    { path: '/propuestas/:offerId', name: 'public-offer-detail', component: () => import('../views/PublicOfferDetailView.vue'), props: true },
-    { path: '/aprendizajes/:learningNeedId', name: 'public-learning-need-detail', component: () => import('../views/PublicLearningNeedDetailView.vue'), props: true },
-    { path: '/mi-espacio/:section?', name: 'workspace', component: () => import('../views/WorkspaceView.vue'), props: true, meta: { requiresAuth: true } },
-    { path: '/administracion', name: 'admin', component: () => import('../views/AdminView.vue'), meta: { requiresAuth: true, requiresAdmin: true } },
-    { path: '/:pathMatch(.*)*', redirect: { name: 'explore' } },
-  ],
-  scrollBehavior: () => ({ top: 0 }),
+  history: createWebHistory(),
+  routes,
+  scrollBehavior() {
+    return { top: 0 }
+  }
 })
 
-router.beforeEach((to) => {
-  const { isAuthenticated, isAdmin } = usePlatformStore()
-  if (to.meta.requiresAuth && !isAuthenticated.value) return { name: 'auth', query: { redirect: to.fullPath } }
-  if (to.meta.requiresAdmin && !isAdmin.value) return { name: 'workspace', query: { denied: 'admin' } }
-  if (to.name === 'auth' && isAuthenticated.value) return { name: 'workspace' }
-  return true
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore()
+
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    authStore.redirectAfterLogin = to.fullPath
+    return next({ path: '/auth', query: { redirect: to.fullPath } })
+  }
+
+  if (to.meta.requiresAdmin && !authStore.isAdmin) {
+    return next({ path: '/workspace' })
+  }
+
+  next()
 })
 
 export default router
