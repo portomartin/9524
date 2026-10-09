@@ -8,21 +8,14 @@ Fuente: versión histórica proporcionada por el usuario.
 - 1.1.2 Elaboración de la WBS.
 - 1.1.3 Elaboración del User Story Map.
 - 1.1.4 Elaboración del backlog.
-- 1.1.5 Creación y configuración del tablero de Jira.
-- 1.1.6 Carga y organización de épicas, historias y tareas en Jira.
-- 1.1.7 Asunción de la responsabilidad y liderazgo del proyecto.
-- 1.1.8 Investigación, selección y configuración del hosting público gratuito y despliegue del frontend.
-- 1.1.9 Investigación, selección y configuración del hosting público gratuito y despliegue del backend.
-- 1.1.10 Integración de los despliegues con el código fuente.
+- 1.1.5 Creación, configuración y carga de épicas, historias y tareas en el tablero de Jira.
 
-### 1.2 Diseño de la plataforma
+### 1.2 Gestión, despliegue e integración de la plataforma
 
-- 1.2.1 Arquitectura de navegación.
-- 1.2.2 Prototipo de las pantallas.
-- 1.2.3 Diseño visual.
-- 1.2.4 Diseño adaptable a computadoras y celulares.
-- 1.2.5 Modelo de datos.
-- 1.2.6 Catálogo de componentes de interfaz.
+- 1.2.1 Asunción de la responsabilidad y liderazgo del proyecto.
+- 1.2.2 Investigación, selección y configuración del hosting público gratuito y despliegue del frontend.
+- 1.2.3 Investigación, selección y configuración del hosting público gratuito y despliegue del backend.
+- 1.2.4 Integración de los despliegues con el código fuente.
 
 ### 1.3 Sistema de usuarios
 
