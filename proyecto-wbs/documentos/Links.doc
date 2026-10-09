@@ -9,8 +9,8 @@
 \pard\sa140\f0\fs21 Tablero de trabajo del proyecto WBSO. Re\'fane las \'e9picas, historias, subtareas y sprints utilizados para planificar y seguir el avance del proyecto.\par
 \pard\sa300\f0\fs22{\field{\*\fldinst HYPERLINK "https://martinporto.atlassian.net/jira/software/projects/WBSO/boards/35/backlog"}{\fldrslt{\ul\cf2 Abrir tablero Jira WBSO}}}\par
 \pard\sa240\f0\fs24\b Repositorio GitHub\b0\par
-\pard\sa140\f0\fs21 Repositorio que conserva el c\'f3digo, la documentaci\'f3n y el historial de cambios de los proyectos WBS y SDD.\par
-\pard\sa300\f0\fs22{\field{\*\fldinst HYPERLINK "https://github.com/portomartin/9524"}{\fldrslt{\ul\cf2 Abrir repositorio 9524}}}\par
+\pard\sa140\f0\fs21 Organizaci\'f3n de GitHub del equipo, donde se encuentran los repositorios utilizados para desarrollar y compartir el trabajo.\par
+\pard\sa300\f0\fs22{\field{\*\fldinst HYPERLINK "https://github.com/gdsi-2026-grupo8/"}{\fldrslt{\ul\cf2 Abrir GitHub del equipo}}}\par
 \pard\sa240\f0\fs24\b Demo publicada\b0\par
 \pard\sa140\f0\fs21 Versi\'f3n accesible desde la web para recorrer la interfaz y comprobar el estado visible de la aplicaci\'f3n.\par
 \pard\sa300\f0\fs22{\field{\*\fldinst HYPERLINK "https://portomartin.github.io/9524/"}{\fldrslt{\ul\cf2 Abrir demo publicada}}}\par

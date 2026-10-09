@@ -2,15 +2,18 @@
 
 Fuente: versión histórica proporcionada por el usuario.
 
-### 1.1 Definición del MVP
+### 1.1 Planificación y definición del MVP
 
-- 1.1.1 Documento de alcance.
-- 1.1.2 Requisitos funcionales.
-- 1.1.3 Requisitos no funcionales.
-- 1.1.4 Reglas de intercambio.
-- 1.1.5 Reglas del sistema de créditos.
-- 1.1.6 Política de contenidos permitidos.
-- 1.1.7 Casos de uso.
+- 1.1.1 Redacción de la especificación del MVP.
+- 1.1.2 Elaboración de la WBS.
+- 1.1.3 Elaboración del User Story Map.
+- 1.1.4 Elaboración del backlog.
+- 1.1.5 Creación y configuración del tablero de Jira.
+- 1.1.6 Carga y organización de épicas, historias y tareas en Jira.
+- 1.1.7 Asunción de la responsabilidad y liderazgo del proyecto.
+- 1.1.8 Investigación, selección y configuración del hosting público gratuito y despliegue del frontend.
+- 1.1.9 Investigación, selección y configuración del hosting público gratuito y despliegue del backend.
+- 1.1.10 Integración de los despliegues con el código fuente.
 
 ### 1.2 Diseño de la plataforma
 
