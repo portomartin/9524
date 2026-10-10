@@ -21,5 +21,7 @@ class User(SQLModel, table=True):
     teaching_topics: str = Field(default="[]")  # JSON string con lista de temas
     learning_topics: str = Field(default="[]")  # JSON string con lista de temas
     credit_balance: int = Field(default=1)  # 1 crédito de cortesía inicial
+    agenda_public: bool = Field(default=True)  # Visibilidad pública de agenda
     is_active: bool = Field(default=True)
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
