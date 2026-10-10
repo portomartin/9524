@@ -103,11 +103,11 @@ Start-Process powershell.exe -ArgumentList "-NoExit", "-Command", $frontendCmd
 Write-Host ""
 Write-Host "Servidores iniciados en ventanas separadas." -ForegroundColor Cyan
 Write-Host "  - Backend API: http://127.0.0.1:8000 (Swagger: http://127.0.0.1:8000/docs)" -ForegroundColor Gray
-Write-Host "  - $feName: http://localhost:$fePort" -ForegroundColor Gray
+Write-Host "  - ${feName}: http://localhost:${fePort}" -ForegroundColor Gray
 Write-Host ""
 
 if ($OpenBrowser) {
     Start-Sleep -Seconds 2
-    Start-Process "http://localhost:$fePort"
+    Start-Process "http://localhost:${fePort}"
     Start-Process "http://127.0.0.1:8000/docs"
 }
