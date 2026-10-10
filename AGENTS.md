@@ -25,8 +25,8 @@
 
 ## Forma de trabajo
 
-- Los skills de documentación y planificación SDD están en `proyecto-sdd/skills/`; el proceso clásico independiente está en `proyecto-wbs/skills/`; los skills de implementación y publicación de frontend están en `proyecto-sdd/frontend/skills/`; y los de backend, en `proyecto-sdd/backend/skills/`.
-- Las rutas de archivos citadas como `proyecto-sdd/`, `proyecto-wbs/` y `AGENTS.md` se interpretan desde la raíz del repositorio, salvo enlaces Markdown relativos.
+- Los skills de documentación y planificación SDD están en `proyecto-sdd/skills/`; el proceso clásico independiente está en `proyecto-wbs/skills/`; los skills de implementación y publicación de frontend están en `proyecto-sdd/frontend/skills/` (incluyendo la especificación viviente `frontend-v3-agentic-spec`); y los de backend, en `proyecto-sdd/backend/skills/`.
+- La evolución y nuevas ideas de experiencia de usuario para el frontend `v3` se gestionan e iteran sobre `proyecto-sdd/frontend/skills/frontend-v3-agentic-spec/SKILL.md`.
 - Diferenciar épicas, historias de usuario, criterios de aceptación y tareas técnicas.
 - Mantener el alcance del MVP explícito.
 - No modificar la especificación automáticamente: proponer cambios y esperar confirmación cuando afecten el alcance o las reglas del producto.
