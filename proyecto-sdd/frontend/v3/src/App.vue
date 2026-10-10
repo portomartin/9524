@@ -173,11 +173,11 @@ function handleResetData() {
           <template v-if="authStore.isAuthenticated">
             <!-- Credits Badge -->
             <button
-              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-300 bg-amber-50 text-amber-800 text-xs font-semibold cursor-pointer transition-all hover:bg-amber-100"
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-xs font-semibold cursor-pointer transition-all hover:bg-amber-500/20"
               title="1 crédito = 1 hora de sesión. No son dinero."
               @click="router.push({ name: 'workspace', query: { tab: 'credits' } })"
             >
-              <Coins class="h-3.5 w-3.5 text-amber-600" />
+              <Coins class="h-3.5 w-3.5 text-amber-400" />
               <span>{{ authStore.credits }} Créditos</span>
             </button>
 
