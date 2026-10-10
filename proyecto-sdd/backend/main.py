@@ -65,9 +65,14 @@ def hello() -> dict[str, str]:
 
 
 from app.routers.public_catalog import router as public_catalog_router
+from app.routers.auth import router as auth_router
+from app.routers.user_offers import router as user_offers_router
 
 # Registrar routers con implementación real
 app.include_router(public_catalog_router)
+app.include_router(auth_router)
+app.include_router(user_offers_router)
+
 
 
 async def backlog_stub() -> dict:

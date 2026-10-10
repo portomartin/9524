@@ -86,3 +86,34 @@ class CatalogRepository:
             })
         rankings.sort(key=lambda x: (x["score"], x["reviewsCount"]), reverse=True)
         return rankings
+
+    def create_offer(self, offer: TeachingOffer) -> TeachingOffer:
+        self.session.add(offer)
+        self.session.commit()
+        self.session.refresh(offer)
+        return offer
+
+    def update_offer(self, offer: TeachingOffer, update_data: dict) -> TeachingOffer:
+        for field, value in update_data.items():
+            if value is not None and hasattr(offer, field):
+                setattr(offer, field, value)
+        self.session.add(offer)
+        self.session.commit()
+        self.session.refresh(offer)
+        return offer
+
+    def create_need(self, need: LearningNeed) -> LearningNeed:
+        self.session.add(need)
+        self.session.commit()
+        self.session.refresh(need)
+        return need
+
+    def update_need(self, need: LearningNeed, update_data: dict) -> LearningNeed:
+        for field, value in update_data.items():
+            if value is not None and hasattr(need, field):
+                setattr(need, field, value)
+        self.session.add(need)
+        self.session.commit()
+        self.session.refresh(need)
+        return need
+
