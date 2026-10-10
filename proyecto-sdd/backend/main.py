@@ -1,19 +1,32 @@
 import json
 import os
 import re
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.routing import APIRoute
 
-app = FastAPI(title="9524 API", version="0.1.0")
+from app.seed import seed_database
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Inicializa las tablas y datos semilla al arrancar
+    seed_database()
+    yield
+
+
+app = FastAPI(title="9524 API", version="0.1.0", lifespan=lifespan)
+
+default_cors = (
+    "http://localhost:5171,http://localhost:5172,http://localhost:5173,"
+    "http://127.0.0.1:5171,http://127.0.0.1:5172,http://127.0.0.1:5173"
+)
 allowed_origins = [
     origin.strip()
-    for origin in os.getenv(
-        "CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173"
-    ).split(",")
+    for origin in os.getenv("CORS_ORIGINS", default_cors).split(",")
     if origin.strip()
 ]
 
@@ -51,50 +64,55 @@ def hello() -> dict[str, str]:
     return {"message": "Hola desde el backend Python"}
 
 
+from app.routers.public_catalog import router as public_catalog_router
+
+# Registrar routers con implementación real
+app.include_router(public_catalog_router)
+
+
 async def backlog_stub() -> dict:
     return {}
 
 
-async def list_public_offers() -> list[dict]:
-    return [{
-        "id": "offer-vue-basics",
-        "title": "Introducción práctica a Vue 3",
-        "description": "Aprendé a construir componentes, manejar estado reactivo y organizar una aplicación pequeña con Composition API.",
-        "category": "Desarrollo web",
-        "level": "Inicial",
-        "modality": "Virtual",
-        "durationMinutes": 60,
-        "authorDisplayName": "Lucía M.",
-        "publishedAt": "2026-10-05T14:30:00Z",
-    }]
-
-
-# Snapshot de las rutas y verbos de Jira BH95. No implementa reglas del producto.
+# Snapshot de las rutas y verbos de Jira BH95.
+# Solo registra como stubs las rutas que aún no tienen implementación real en app.routes.
 backlog_endpoints = json.loads(
     Path(__file__).with_name("backlog_endpoints.json").read_text(encoding="utf-8")
 )
+
+registered_routes = {
+    (method, route.path)
+    for route in app.routes
+    if isinstance(route, APIRoute)
+    for method in route.methods
+}
+
 for endpoint in backlog_endpoints:
-    is_public_offers = endpoint["method"] == "GET" and endpoint["path"] == "/api/v1/public/offers"
+    method = endpoint["method"]
+    path = endpoint["path"]
+    if (method, path) in registered_routes:
+        continue  # Ruta ya implementada de verdad
+
     parameters = [
         {"name": name, "in": "path", "required": True, "schema": {"type": "string"}}
-        for name in re.findall(r"\{(\w+)\}", endpoint["path"])
+        for name in re.findall(r"\{(\w+)\}", path)
     ] + [
         {"name": name, "in": "query", "required": False, "schema": {"type": "string"}}
         for name in endpoint["queryParams"]
     ]
     app.add_api_route(
-        endpoint["path"],
-        list_public_offers if is_public_offers else backlog_stub,
-        methods=[endpoint["method"]],
+        path,
+        backlog_stub,
+        methods=[method],
         status_code=200,
-        name=endpoint["method"].lower() + "_" + re.sub(r"\W+", "_", endpoint["path"]),
-        tags=["Backlog — stubs"],
-        summary=f"{endpoint['method']} {endpoint['path']}",
+        name=method.lower() + "_" + re.sub(r"\W+", "_", path),
+        tags=["Backlog — stubs pendientes"],
+        summary=f"{method} {path}",
         description=(
-            ("Listado de propuestas con datos de ejemplo. " if is_public_offers else "Stub de demostración: devuelve {} con 200 OK. ")
-            +
-            "No valida datos, autentica ni persiste cambios. Tickets: "
+            "Stub de demostración: devuelve {} con 200 OK. "
+            "Pendiente de implementación en próximas fases. Tickets: "
             + ", ".join(endpoint["issues"])
         ),
         openapi_extra={"parameters": parameters},
     )
+

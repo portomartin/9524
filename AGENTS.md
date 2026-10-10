@@ -14,6 +14,15 @@
 - Una misma persona puede enseñar o aprender según la actividad, sin cambiar de rol técnico.
 - Los créditos son internos de la plataforma: no son dinero ni pueden convertirse en dinero.
 
+## Arquitectura y Backend
+
+- La arquitectura técnica aprobada para el backend es la definida en `proyecto-sdd/backend/docs/especificacion-tecnica-backend.md`:
+  - Framework: FastAPI (Python).
+  - Persistencia: SQLModel con soporte dual (SQLite `sqlite:///./app.db` en local, PostgreSQL vía `DATABASE_URL` en Render/Cloud).
+  - Patrón de diseño: Arquitectura en capas (Routers -> Services -> Repositories -> Models).
+  - Implementación incremental guiada por el skill `proyecto-sdd/backend/skills/implementar-backend/SKILL.md` respetando `proyecto-sdd/backend/skills/convenciones-backend/SKILL.md`.
+  - No rediseñar ni proponer otros stacks o arquitecturas salvo solicitud explícita del usuario.
+
 ## Forma de trabajo
 
 - Los skills de documentación y planificación SDD están en `proyecto-sdd/skills/`; el proceso clásico independiente está en `proyecto-wbs/skills/`; los skills de implementación y publicación de frontend están en `proyecto-sdd/frontend/skills/`; y los de backend, en `proyecto-sdd/backend/skills/`.
@@ -22,3 +31,5 @@
 - Mantener el alcance del MVP explícito.
 - No modificar la especificación automáticamente: proponer cambios y esperar confirmación cuando afecten el alcance o las reglas del producto.
 - Escribir la documentación en español claro y consistente.
+
+

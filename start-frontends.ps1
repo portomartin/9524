@@ -28,19 +28,19 @@ Write-Host "==========================================================" -Foregro
 Write-Host ""
 
 $frontends = @(
-    @{ Name = "frontend-v0"; Port = 5171; Title = "V0 - Codex Original"; Desc = "Original Codex (PrimeVue)"; Color = "Yellow" },
-    @{ Name = "frontend-v1"; Port = 5172; Title = "V1 - PrimeVue 4"; Desc = "MVP V3 Completo (PrimeVue 4)"; Color = "Magenta" },
-    @{ Name = "frontend-v2"; Port = 5173; Title = "V2 - Tailwind + Shadcn"; Desc = "MVP V3 Moderno (Tailwind + Shadcn)"; Color = "Green" }
+    @{ RelativePath = "proyecto-sdd\frontend\v0"; Port = 5171; Title = "V0 - Codex Original"; Desc = "Original Codex (PrimeVue)"; Color = "Yellow" },
+    @{ RelativePath = "proyecto-sdd\frontend\v1"; Port = 5172; Title = "V1 - PrimeVue 4"; Desc = "MVP V3 Completo (PrimeVue 4)"; Color = "Magenta" },
+    @{ RelativePath = "proyecto-sdd\frontend\v2"; Port = 5173; Title = "V2 - Tailwind + Shadcn"; Desc = "MVP V3 Moderno (Tailwind + Shadcn)"; Color = "Green" }
 )
 
 foreach ($fe in $frontends) {
-    $dir = Join-Path $root $fe.Name
+    $dir = Join-Path $root $fe.RelativePath
     if (-not (Test-Path $dir)) {
         Write-Warning "No se encontró la carpeta $dir"
         continue
     }
 
-    Write-Host "-> Levantando $($fe.Name) en puerto $($fe.Port) ($($fe.Desc))..." -ForegroundColor $fe.Color
+    Write-Host "-> Levantando $($fe.Title) en puerto $($fe.Port) ($($fe.Desc))..." -ForegroundColor $fe.Color
 
     # Abre una ventana independiente de PowerShell para cada servidor con su propio título
     $cmd = "Set-Location -LiteralPath '$dir'; `$host.UI.RawUI.WindowTitle = '$($fe.Title) [Puerto $($fe.Port)]'; npm run dev"
