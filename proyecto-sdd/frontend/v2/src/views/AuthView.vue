@@ -28,7 +28,7 @@ const isSubmitting = ref(false)
 
 const redirectTarget = route.query.redirect || authStore.redirectAfterLogin || '/workspace'
 
-function handleSubmit() {
+async function handleSubmit() {
   errorMessage.value = ''
   isSubmitting.value = true
 
@@ -37,7 +37,7 @@ function handleSubmit() {
       if (!name.value || !email.value || !password.value) {
         throw new Error('Por favor completa todos los campos del registro.')
       }
-      authStore.register({
+      await authStore.register({
         name: name.value,
         email: email.value,
         password: password.value
@@ -46,10 +46,10 @@ function handleSubmit() {
       if (!email.value || !password.value) {
         throw new Error('Ingresa tu email y contraseña.')
       }
-      authStore.login(email.value, password.value)
+      await authStore.login(email.value, password.value)
     }
 
-    platformStore.refreshAll()
+    await platformStore.refreshAll()
     authStore.redirectAfterLogin = null
     router.push(redirectTarget)
   } catch (err) {
