@@ -25,8 +25,14 @@
 
 ## Forma de trabajo
 
-- Los skills de documentación y planificación SDD están en `proyecto-sdd/skills/`; el proceso clásico independiente está en `proyecto-wbs/skills/`; los skills de implementación y publicación de frontend están en `proyecto-sdd/frontend/skills/` (incluyendo la especificación viviente `frontend-v3-agentic-spec`); y los de backend, en `proyecto-sdd/backend/skills/`.
-- La evolución y nuevas ideas de experiencia de usuario para el frontend `v3` se gestionan e iteran sobre `proyecto-sdd/frontend/skills/frontend-v3-agentic-spec/SKILL.md`.
+- Los skills de documentación y planificación SDD están en `proyecto-sdd/skills/`; el proceso clásico independiente está en `proyecto-wbs/skills/`; los skills de implementación y publicación de frontend están en `proyecto-sdd/frontend/skills/`; y los de backend, en `proyecto-sdd/backend/skills/`.
+- Cada versión del frontend cuenta con su especificación viviente dedicada en `proyecto-sdd/frontend/skills/`:
+  - **V1 (PrimeVue 4 Multipágina):** `proyecto-sdd/frontend/skills/frontend-v1-primevue-spec/SKILL.md`
+  - **V2 (Tailwind + Shadcn Multipágina):** `proyecto-sdd/frontend/skills/frontend-v2-tailwind-spec/SKILL.md`
+  - **V3 (Agentic Experience Visual Multipágina):** `proyecto-sdd/frontend/skills/frontend-v3-agentic-spec/SKILL.md`
+  - **V4 (Spatial Canvas / Lienzo Único sin cambios de página + Flash/Blink):** `proyecto-sdd/frontend/skills/frontend-v4-spatial-spec/SKILL.md`
+  - **V5 (Human-First & Síntesis Visual con Íconos en Lienzo Único):** `proyecto-sdd/frontend/skills/frontend-v5-human-visual-spec/SKILL.md`
+  - **V6 (Warm Parchment Light Theme + Panel Maestro por Sección basado en V4):** `proyecto-sdd/frontend/skills/frontend-v6-warm-light-spec/SKILL.md`
 - Diferenciar épicas, historias de usuario, criterios de aceptación y tareas técnicas.
 - Mantener el alcance del MVP explícito.
 - No modificar la especificación automáticamente: proponer cambios y esperar confirmación cuando afecten el alcance o las reglas del producto.
