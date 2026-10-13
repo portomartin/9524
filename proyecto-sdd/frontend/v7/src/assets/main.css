@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   TEMA CLARO CÁLIDO: ANTIGRAVITY IDE / SOLARIZED WARM PARCHMENT (V6)
+   Inspirado en el lienzo crema (#fdf6e3) y paneles arena (#eee8d5) del IDE
+   ========================================================================== */
+:root {
+  --background: #fdf6e3;
+  --foreground: #073642;
+  --card: #f3edda;
+  --card-foreground: #073642;
+  --popover: #f6f0de;
+  --popover-foreground: #073642;
+  --primary: #0d9488;
+  --primary-foreground: #fdf6e3;
+  --secondary: #eee8d5;
+  --secondary-foreground: #073642;
+  --muted: #eee8d5;
+  --muted-foreground: #586e75;
+  --accent: #e5dec9;
+  --accent-foreground: #073642;
+  --destructive: #cb4b16;
+  --destructive-foreground: #fdf6e3;
+  --border: #d6ceb8;
+  --input: #e8e1cc;
+  --ring: #0d9488;
+  --radius: 0.85rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Inversión armónica de la escala Slate hacia Pergamino Cálido Solarized Light */
+  --color-white: #073642;
+  --color-slate-950: #fdf6e3;
+  --color-slate-900: #f3edda;
+  --color-slate-800: #e7e0cb;
+  --color-slate-700: #d2c9b0;
+  --color-slate-600: #93a1a1;
+  --color-slate-500: #657b83;
+  --color-slate-400: #52676f;
+  --color-slate-300: #2c4249;
+  --color-slate-200: #14323b;
+  --color-slate-100: #073642;
+  --color-slate-50: #04232b;
+
+  /* Acentos editoriales calibrados sobre fondo crema (#fdf6e3 / #eee8d5) */
+  --color-emerald-200: #065f46;
+  --color-emerald-300: #0f766e;
+  --color-emerald-400: #0d9488;
+  --color-emerald-500: #0d9488;
+  --color-emerald-600: #0f766e;
+  --color-emerald-950: #d9efe8;
+
+  --color-teal-300: #0f766e;
+  --color-teal-400: #0d9488;
+  --color-teal-500: #0d9488;
+  --color-teal-600: #115e59;
+
+  --color-indigo-200: #1e3a8a;
+  --color-indigo-300: #1d5ba0;
+  --color-indigo-400: #268bd2;
+  --color-indigo-500: #2077b8;
+  --color-indigo-600: #1b6ca8;
+  --color-indigo-950: #ddebf7;
+
+  --color-amber-200: #78350f;
+  --color-amber-300: #8c5800;
+  --color-amber-400: #b58900;
+  --color-amber-500: #c96412;
+
+  --color-rose-300: #9f1239;
+  --color-rose-400: #cb4b16;
+  --color-rose-500: #cb4b16;
+  --color-rose-600: #b91c1c;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+}
+
+/* Asegurar que los botones sólidos de acción mantengan texto crema claro (#fdf6e3) */
+.bg-indigo-600,
+.bg-indigo-600\/90,
+.bg-indigo-500,
+.bg-emerald-600,
+.bg-emerald-500,
+.bg-rose-600,
+.bg-rose-500,
+.from-emerald-500 {
+  color: #fdf6e3 !important;
+}
+
+/* Sombras cálidas suaves en lugar de sombras negras pesadas */
+.shadow-2xl,
+.shadow-xl,
+.shadow-lg {
+  --tw-shadow-color: rgba(88, 110, 117, 0.14);
+}
+
+/* ==========================================================================
+   ANIMACIÓN DE IMPACTO VISUAL EN TEMA CLARO CÁLIDO (FLASH / BLINK V6)
+   Pulso doble Turquesa Solarized (#0d9488) + Ámbar Terracota (#cb4b16)
+   ========================================================================== */
+@keyframes spatialFlashPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(13, 148, 136, 0);
+    transform: scale(1);
+  }
+  15% {
+    box-shadow: 0 0 0 3px #0d9488, 0 12px 45px rgba(13, 148, 136, 0.42), inset 0 0 45px rgba(13, 148, 136, 0.22);
+    background-color: #e4f3ec;
+    transform: scale(1.014);
+  }
+  32% {
+    box-shadow: 0 0 0 1.5px #0d9488, 0 4px 16px rgba(13, 148, 136, 0.15);
+    transform: scale(0.998);
+  }
+  50% {
+    box-shadow: 0 0 0 3px #cb4b16, 0 12px 50px rgba(203, 75, 22, 0.38), inset 0 0 40px rgba(181, 137, 0, 0.22);
+    background-color: #f9edd2;
+    transform: scale(1.011);
+  }
+  70% {
+    box-shadow: 0 0 0 1.5px #0d9488, 0 4px 16px rgba(13, 148, 136, 0.15);
+    transform: scale(1);
+  }
+  85% {
+    box-shadow: 0 0 0 2.5px #0d9488, 0 8px 32px rgba(13, 148, 136, 0.30), inset 0 0 25px rgba(13, 148, 136, 0.14);
+    background-color: #eaf5ef;
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(13, 148, 136, 0);
+    transform: scale(1);
+  }
+}
+
+.spatial-flash-blink {
+  animation: spatialFlashPulse 2.3s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  z-index: 20;
+}
+
+/* ==========================================================================
+   EFECTO ROLLOVER EDITORIAL CÁLIDO EN TARJETAS DEL CATÁLOGO (V7)
+   ========================================================================== */
+.bento-card-rollover-offer {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.25s ease,
+              background-color 0.25s ease;
+}
+
+.bento-card-rollover-offer:hover {
+  transform: translateY(-5px);
+  border-color: #0d9488 !important;
+  background-color: #eef6f0 !important;
+  box-shadow: 0 14px 32px -6px rgba(13, 148, 136, 0.22), 0 0 0 1.5px rgba(13, 148, 136, 0.45) !important;
+}
+
+.bento-card-rollover-need {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.25s ease,
+              background-color 0.25s ease;
+}
+
+.bento-card-rollover-need:hover {
+  transform: translateY(-5px);
+  border-color: #268bd2 !important;
+  background-color: #edf3f8 !important;
+  box-shadow: 0 14px 32px -6px rgba(38, 139, 210, 0.22), 0 0 0 1.5px rgba(38, 139, 210, 0.45) !important;
+}
+

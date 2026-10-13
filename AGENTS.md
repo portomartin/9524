@@ -33,6 +33,7 @@
   - **V4 (Spatial Canvas / Lienzo Único sin cambios de página + Flash/Blink):** `proyecto-sdd/frontend/skills/frontend-v4-spatial-spec/SKILL.md`
   - **V5 (Human-First & Síntesis Visual con Íconos en Lienzo Único):** `proyecto-sdd/frontend/skills/frontend-v5-human-visual-spec/SKILL.md`
   - **V6 (Warm Parchment Light Theme + Panel Maestro por Sección basado en V4):** `proyecto-sdd/frontend/skills/frontend-v6-warm-light-spec/SKILL.md`
+  - **V7 (Refinamientos sobre V6: Sistema de Iconografía Hand-Drawn por Bloque y Tarjeta Hija):** `proyecto-sdd/frontend/skills/frontend-v7-handdrawn-light-spec/SKILL.md`
 - Diferenciar épicas, historias de usuario, criterios de aceptación y tareas técnicas.
 - Mantener el alcance del MVP explícito.
 - No modificar la especificación automáticamente: proponer cambios y esperar confirmación cuando afecten el alcance o las reglas del producto.
