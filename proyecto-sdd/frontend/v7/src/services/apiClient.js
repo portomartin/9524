@@ -1,5 +1,7 @@
-// Cliente HTTP para conectar el frontend v2 con el backend FastAPI
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD ? 'https://nine524-api-unificado.onrender.com' : '')
 
 class ApiClient {
   getToken() {
