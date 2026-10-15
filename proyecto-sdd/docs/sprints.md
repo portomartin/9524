@@ -24,29 +24,29 @@ Se supone que no hay ausencias adicionales y que el equipo dispone de habilidade
 
 Son las nuevas estimaciones propuestas y aceptadas en esta conversación, no una recuperación de las estimaciones históricas perdidas. Incluyen la descomposición técnica necesaria de cada HU sin volver a sumar puntos por subtarea. `[2.1.0]` sirve como referencia de funcionalidad sencilla de 3 puntos.
 
-| HU | Jira | Historia | SP | Motivo |
-|---|---|---|---:|---|
-| [1.1.0] | BH95-146 | Explorar como GUEST | 5 | Listados y detalle públicos con privacidad |
-| [1.2.0] | BH95-147 | Consultar confianza pública | 8 | Reputación, rankings y trending por definir |
-| [1.3.0] | BH95-148 | Registrarse cuando sea necesario | 5 | Registro y conservación del contexto |
-| [1.4.0] | BH95-149 | Autenticarse | 5 | Sesiones seguras y rutas protegidas |
-| [2.1.0] | BH95-150 | Completar el perfil | 3 | Edición básica y validación |
-| [2.2.0] | BH95-151 | Publicar una propuesta | 8 | Publicación, borrador y validaciones |
-| [2.3.0] | BH95-152 | Registrar un aprendizaje buscado | 3 | Alta, edición y pausa |
-| [3.1.0] | BH95-153 | Buscar aprendizajes | 5 | Búsqueda pública y paginación |
-| [3.2.0] | BH95-154 | Filtrar resultados | 5 | Filtros combinables y disponibilidad |
-| [3.3.0] | BH95-155 | Encontrar compatibilidades | 8 | Reglas cruzadas y reciprocidad |
-| [4.1.0] | BH95-156 | Gestionar disponibilidad | 8 | Franjas concretas y carga masiva |
-| [4.2.0] | BH95-157 | Publicar la agenda | 3 | Visibilidad y privacidad |
-| [4.3.0] | BH95-158 | Crear una sesión solicitada | 8 | Condiciones y conflictos de horario |
-| [4.4.0] | BH95-159 | Gestionar el estado de una sesión | 8 | Transiciones y reserva de franjas |
-| [4.5.0] | BH95-160 | Finalizar una sesión | 3 | Cierre válido sin duplicados |
-| [5.1.0] | BH95-161 | Intercambiar con créditos | 8 | Consistencia de saldos e idempotencia |
-| [5.2.0] | BH95-162 | Consultar historial | 5 | Actividad integrada y privacidad |
-| [5.3.0] | BH95-163 | Calificarse mutuamente | 5 | Elegibilidad, unicidad y promedio |
-| [6.1.0] | BH95-164 | Denunciar contenido o usuarios | 3 | Validaciones y registro |
-| [6.2.0] | BH95-165 | Administrar seguridad | 8 | Moderación, permisos y auditoría |
-| **Total** | | | **114** | |
+| HU | Jira | Historia | SP | Estado | Motivo |
+|---|---|---|---:|---|---|
+| [1.1.0] | BH95-146 | Explorar como GUEST | 5 | ✅ DONE | Listados y detalle públicos con privacidad |
+| [1.2.0] | BH95-147 | Consultar confianza pública | 8 | ✅ DONE | Reputación, rankings y trending por definir |
+| [1.3.0] | BH95-148 | Registrarse cuando sea necesario | 5 | ✅ DONE | Registro y conservación del contexto |
+| [1.4.0] | BH95-149 | Autenticarse | 5 | ✅ DONE | Sesiones seguras y rutas protegidas |
+| [2.1.0] | BH95-150 | Completar el perfil | 3 | ✅ DONE | Edición básica y validación |
+| [2.2.0] | BH95-151 | Publicar una propuesta | 8 | ✅ DONE | Publicación, borrador y validaciones |
+| [2.3.0] | BH95-152 | Registrar un aprendizaje buscado | 3 | ✅ DONE | Alta, edición y pausa |
+| [3.1.0] | BH95-153 | Buscar aprendizajes | 5 | ✅ DONE | Búsqueda pública y paginación |
+| [3.2.0] | BH95-154 | Filtrar resultados | 5 | ✅ DONE | Filtros combinables y disponibilidad |
+| [3.3.0] | BH95-155 | Encontrar compatibilidades | 8 | ✅ DONE | Reglas cruzadas y reciprocidad |
+| [4.1.0] | BH95-156 | Gestionar disponibilidad | 8 | ✅ DONE | Franjas concretas y carga masiva |
+| [4.2.0] | BH95-157 | Publicar la agenda | 3 | ✅ DONE | Visibilidad y privacidad |
+| [4.3.0] | BH95-158 | Crear una sesión solicitada | 8 | ✅ DONE | Condiciones y conflictos de horario |
+| [4.4.0] | BH95-159 | Gestionar el estado de una sesión | 8 | ✅ DONE | Transiciones y reserva de franjas |
+| [4.5.0] | BH95-160 | Finalizar una sesión | 3 | ✅ DONE | Cierre válido sin duplicados |
+| [5.1.0] | BH95-161 | Intercambiar con créditos | 8 | ✅ DONE | Consistencia de saldos e idempotencia |
+| [5.2.0] | BH95-162 | Consultar historial | 5 | ✅ DONE | Actividad integrada y privacidad |
+| [5.3.0] | BH95-163 | Calificarse mutuamente | 5 | ✅ DONE | Elegibilidad, unicidad y promedio |
+| [6.1.0] | BH95-164 | Denunciar contenido o usuarios | 3 | ⏳ PENDIENTE | Validaciones y registro (Épica 6 - Backend pendiente) |
+| [6.2.0] | BH95-165 | Administrar seguridad | 8 | ⏳ PENDIENTE | Moderación, permisos y auditoría (Épica 6 - Backend pendiente) |
+| **Total** | | | **114** | **103 SP DONE / 11 SP PEND** | |
 
 Se supone autenticación con herramientas estándar y reutilización de componentes. La infraestructura inicial no está desglosada en estas 20 historias; comprobar su disponibilidad antes del primer compromiso. `[5.3.0]` implementa el cálculo y endpoint de reputación que reutiliza `[1.2.0]`; no implementarlo dos veces.
 
@@ -56,13 +56,13 @@ Rankings y trending sí aparecen en el MVP V3 vigente; se corrige la observació
 
 Se establece un límite de **4 sprints de dos semanas**. El calendario confirmado es: Sprint 1, 24-sept–8-oct; Sprint 2, 8-oct–22-oct; Sprint 3, 22-oct–5-nov; Sprint 4, 5-nov–19-nov. Se preservan las estimaciones de las 20 historias. La capacidad de 20 SP por sprint se adopta como límite blando: sirve como referencia de carga, pero no bloquea la asignación.
 
-| Sprint | Período | Objetivo | HU asignadas (SP) | Total SP | Capacidad SP | Dependencias o riesgos |
-|---|---|---|---|---:|---:|---|
-| Sprint 1 | 24-sept–8-oct | Usuarios, perfil, publicaciones, necesidades, disponibilidad y créditos | [1.3.0] (5), [1.4.0] (5), [2.1.0] (3), [2.2.0] (8), [2.3.0] (3), [4.1.0] (8), [5.1.0] (8) | 40 | 20 | Se prioriza concentrar las funcionalidades históricas `1.3.x.x` y `1.4.x.x`; sobrecupo visible de 20 SP |
-| Sprint 2 | 8-oct–22-oct | Publicar, explorar y encontrar compatibilidades | [1.1.0] (5), [1.2.0] (8), [3.3.0] (8) | 21 | 20 | Requiere acceso y contenido publicado; sobrecupo visible de 1 SP |
-| Sprint 3 | 22-oct–5-nov | Publicar la agenda y completar el ciclo de sesión | [4.2.0] (3), [3.1.0] (5), [4.3.0] (8), [4.4.0] (8), [4.5.0] (3) | 27 | 20 | La agenda y la propuesta habilitan solicitud, gestión y finalización; sobrecupo visible de 7 SP |
-| Sprint 4 | 5-nov–19-nov | Historial, reputación y seguridad | [3.2.0] (5), [6.1.0] (3), [5.2.0] (5), [5.3.0] (5), [6.2.0] (8) | 26 | 20 | Se completa el valor posterior a la sesión y la operación segura; sobrecupo visible de 6 SP |
-| **Total** | — | **20 historias asignadas** | — | **114** | **80** | **Límite blando: 34 SP por encima de la capacidad de referencia; no quedan HU sin sprint** |
+| Sprint | Período | Objetivo | HU asignadas (SP) | Total SP | Estado | Dependencias o riesgos |
+|---|---|---|---|---:|---|---|
+| Sprint 1 | 24-sept–8-oct | Usuarios, perfil, publicaciones, necesidades, disponibilidad y créditos | [1.3.0] (5), [1.4.0] (5), [2.1.0] (3), [2.2.0] (8), [2.3.0] (3), [4.1.0] (8), [5.1.0] (8) | 40 | ✅ DONE | Funcionalidades históricas completadas |
+| Sprint 2 | 8-oct–22-oct | Publicar, explorar y encontrar compatibilidades | [1.1.0] (5), [1.2.0] (8), [3.3.0] (8) | 21 | ✅ DONE | Exploración pública y matching en vivo |
+| Sprint 3 | 22-oct–5-nov | Publicar la agenda y completar el ciclo de sesión | [4.2.0] (3), [3.1.0] (5), [4.3.0] (8), [4.4.0] (8), [4.5.0] (3) | 27 | ✅ DONE | Ciclo completo de sesión 1 a 1 |
+| Sprint 4 | 5-nov–19-nov | Historial, reputación y seguridad | [3.2.0] (5), [6.1.0] (3), [5.2.0] (5), [5.3.0] (5), [6.2.0] (8) | 26 | 🟡 PARCIAL (15 SP DONE / 11 SP Pendientes Épica 6) | Completadas HU 3.2, 5.2, 5.3; pendiente backend de Épica 6 |
+| **Total** | — | **20 historias asignadas** | — | **114** | **103 SP DONE / 11 SP PEND** | **Épicas 1 a 5 completadas; Épica 6 pendiente** |
 
 La búsqueda manual permite solicitar sesiones antes del recomendador de compatibilidad. Esto ordena la implementación sin retirar compatibilidad del MVP. Las entregas intermedias son incrementos de desarrollo, no una autorización para operar públicamente sin la administración y seguridad completas.
 
