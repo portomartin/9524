@@ -9,5 +9,7 @@ Proyecto de planificación independiente construido con el enfoque tradicional d
 - **Proceso de sincronización:** [`skills/crear-jira-desde-wbs-original/SKILL.md`](skills/crear-jira-desde-wbs-original/SKILL.md).
 - **Proyecto Jira:** `WBSO` — `WBS Original Histórico`.
 - **Tablero:** [WBSO board](https://martinporto.atlassian.net/jira/software/projects/WBSO/boards/35/backlog).
+- **Especificación Técnica de API (Mini-SDD):** [`docs/sdd-especificacion-api.md`](docs/sdd-especificacion-api.md).
+- **Backend Mock (FastAPI):** [`backend/README.md`](backend/README.md) (`backend/main.py`).
 
 Este proyecto no gobierna el alcance del producto vigente y no debe mezclar issues, estados, sprints ni estimaciones con el proyecto SDD.
