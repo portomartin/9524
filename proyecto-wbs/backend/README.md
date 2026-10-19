@@ -2,6 +2,13 @@
 
 Backend ultra-rápido basado en **FastAPI** para soportar el frontend independiente desarrollado a partir de los tickets Jira del proyecto **WBSO** (`1.3` a `1.12`).
 
+## Despliegue Público en Producción (Render)
+
+- **URL Base:** `https://nine524.onrender.com`
+- **Swagger UI:** [https://nine524.onrender.com/docs](https://nine524.onrender.com/docs)
+- **OpenAPI JSON:** [https://nine524.onrender.com/openapi.json](https://nine524.onrender.com/openapi.json)
+- **Healthcheck:** [https://nine524.onrender.com/health](https://nine524.onrender.com/health)
+
 ## Características
 
 - **Respuestas 200 OK a todo:** Todos los endpoints responden con JSON representativo y status 200.
