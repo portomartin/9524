@@ -35,11 +35,18 @@
 
 ### HU [1.4] Sistema de Publicaciones (`WBSO-8`)
 
+Este módulo implementa el flujo de **"Publicar una propuesta docente"** y sus catálogos asociados según la especificación del frontend:
+
 | Verbo | Ruta | Tickets Jira | Descripción / Mock Response |
 |---|---|---|---|
-| `GET` | `/api/v1/categories` | `WBSO-44` [1.4.2] | Catálogo de categorías disponibles (Tecnología, Idiomas, Arte, etc.). |
+| `POST` | `/me/teaching-offers`<br>`/api/v1/me/teaching-offers` | `WBSO-43` [1.4.1], `WBSO-45` [1.4.3], `WBSO-46` [1.4.4], `WBSO-47` [1.4.5], `WBSO-49` [1.4.6], `WBSO-50` [1.4.7], `WBSO-48` [1.4.9], `WBSO-37` [1.3.9] | **Publicar propuesta docente:** Recibe `multipart/form-data` con parte `data` (JSON) e `image` (opcional). Responde **`201 Created`** con la oferta completa, `status: active`, `moderation_status: active`, `image_url` y timestamps ISO. |
+| `GET` | `/interests`<br>`/api/v1/interests` | `WBSO-44` [1.4.2] | **Catálogo de categorías principales:** Lista de `Interest` (`interest_id`, `interest_name`). |
+| `GET` | `/interests/{id}/subinterests`<br>`/api/v1/interests/{id}/subinterests` | `WBSO-44` [1.4.2] | **Catálogo de subcategorías:** Lista de `Subinterest` (`subinterest_id`, `subinterest_name`) filtradas por interés. |
+| `GET` | `/levels`<br>`/api/v1/levels` | `WBSO-46` [1.4.4] | **Catálogo de niveles:** Lista de `Option<string>` (`beginner`, `intermediate`, `advanced`). |
+| `GET` | `/languages`<br>`/api/v1/languages` | `WBSO-45` [1.4.3] | **Catálogo de idiomas:** Lista de `Option<string>` (`es`, `en`, `pt`, `fr`, `de`). |
+| `GET` | `/modalities`<br>`/api/v1/modalities` | `WBSO-47` [1.4.5] | **Catálogo de modalidades:** Lista de `Option<string>` (`online`, `in_person`). |
+| `GET` | `/durations`<br>`/api/v1/durations` | `WBSO-49` [1.4.6] | **Catálogo de duraciones:** Lista de `Option<number>` (`30, 45, 60, 90, 120` minutos). |
 | `GET` | `/api/v1/publications` | `WBSO-43` [1.4.1], `WBSO-52` [1.4.8] | Listado de publicaciones activas con paginación dummy. |
-| `POST` | `/api/v1/publications` | `WBSO-43` [1.4.1], `WBSO-45` [1.4.3], `WBSO-46` [1.4.4], `WBSO-47` [1.4.5], `WBSO-49` [1.4.6], `WBSO-50` [1.4.7], `WBSO-48` [1.4.9] | Crear nueva publicación (descripción, nivel, modalidad, duración, créditos). |
 | `GET` | `/api/v1/publications/{id}` | `WBSO-45` [1.4.3], `WBSO-52` [1.4.8] | Detalle de publicación por identificador. |
 | `PUT` | `/api/v1/publications/{id}` | `WBSO-52` [1.4.8] | Modificar publicación existente. |
 | `DELETE` | `/api/v1/publications/{id}` | `WBSO-52` [1.4.8] | Eliminar o despublicar propuesta. |

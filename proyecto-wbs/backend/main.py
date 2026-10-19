@@ -1,11 +1,13 @@
 """
 Backend Mock Rápido — Proyecto WBS Clásico
-Endpoints stubs y mocks correspondientes a los tickets Jira del proyecto WBSO (1.3 a 1.12).
-Todas las respuestas devuelven 200 OK con datos dummy y tolerancia a payloads de entrada.
+Endpoints stubs y mocks correspondientes a los tickets Jira del proyecto WBSO (1.3 a 1.12),
+incluyendo la especificación de 'Publicar una propuesta' (POST /me/teaching-offers y catálogos).
 """
 
+from datetime import datetime, timezone
+import json
 from typing import Any, Dict, List, Optional
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, File, Form, HTTPException, Request, Response, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -13,15 +15,16 @@ app = FastAPI(
     title="API Mock — Proyecto WBS Clásico (WBSO)",
     description=(
         "Servidor mock ultra-rápido para pruebas del frontend independiente. "
-        "Basado en las Historias de Usuario HU 1.3 a 1.12 del tablero Jira WBSO."
+        "Basado en las Historias de Usuario HU 1.3 a 1.12 del tablero Jira WBSO, "
+        "con soporte exacto para la especificación 'Publicar una propuesta' (POST /me/teaching-offers)."
     ),
-    version="1.0.0",
+    version="1.1.0",
 )
 
-# CORS permisivo para que cualquier origen frontend pueda consumir sin trabas
+# CORS dinámico con regex para soportar credenciales y cualquier origen de frontend sin conflicto con '*'
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origin_regex=r".*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -66,13 +69,23 @@ class AvailabilitySlotRequest(PermissiveModel):
 
 
 class PublicationCreateRequest(PermissiveModel):
-    title: Optional[str] = "Clases de conversación en inglés técnico"
-    description: Optional[str] = "Práctica orientada a entrevistas y presentaciones laborales."
-    category_id: Optional[str] = "cat-idiomas"
-    level: Optional[str] = "Intermedio"
-    modality: Optional[str] = "Virtual"
+    title: Optional[str] = "Clases de Álgebra"
+    description: Optional[str] = "Refuerzo de álgebra para secundaria..."
+    interest_id: Optional[int] = 1
+    subinterest_id: Optional[int] = 2
+    level_taught: Optional[str] = "beginner"
+    language: Optional[str] = "es"
+    max_students: Optional[int] = 1
+    modality: Optional[str] = "in_person"
+    location: Optional[Dict[str, str]] = Field(
+        default_factory=lambda: {"province": "Buenos Aires", "city": "La Plata", "zone": "Centro"}
+    )
+    credits_cost: Optional[int] = 2
+    time_zone: Optional[str] = "America/Argentina/Buenos_Aires"
+    availability: Optional[List[Dict[str, str]]] = Field(
+        default_factory=lambda: [{"day": "mon", "start_time": "18:00", "end_time": "19:00"}]
+    )
     duration_minutes: Optional[int] = 60
-    credit_value: Optional[int] = 1
 
 
 class SessionRequestCreate(PermissiveModel):
@@ -113,7 +126,7 @@ def root():
     return {
         "status": "ok",
         "service": "WBS Mock Backend",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "swagger_docs": "/docs",
         "health": "/health",
     }
@@ -122,6 +135,218 @@ def root():
 @app.get("/health", tags=["General"])
 def health():
     return {"status": "ok", "mode": "mock-all-200"}
+
+
+# ============================================================================
+# CATÁLOGOS ESPECÍFICOS DEL PDF (HU [1.4] WBSO-44, 46, 47, 49)
+# ============================================================================
+
+INTERESTS_DATA = [
+    {"interest_id": 1, "interest_name": "Matemática"},
+    {"interest_id": 2, "interest_name": "Idiomas"},
+    {"interest_id": 3, "interest_name": "Tecnología y Programación"},
+    {"interest_id": 4, "interest_name": "Música y Arte"},
+    {"interest_id": 5, "interest_name": "Ciencias y Naturaleza"},
+]
+
+SUBINTERESTS_MAP = {
+    1: [
+        {"subinterest_id": 1, "subinterest_name": "Álgebra"},
+        {"subinterest_id": 2, "subinterest_name": "Cálculo"},
+        {"subinterest_id": 3, "subinterest_name": "Geometría"},
+    ],
+    2: [
+        {"subinterest_id": 4, "subinterest_name": "Inglés"},
+        {"subinterest_id": 5, "subinterest_name": "Francés"},
+        {"subinterest_id": 6, "subinterest_name": "Alemán"},
+        {"subinterest_id": 7, "subinterest_name": "Portugués"},
+    ],
+    3: [
+        {"subinterest_id": 8, "subinterest_name": "Python"},
+        {"subinterest_id": 9, "subinterest_name": "Desarrollo Web Frontend"},
+        {"subinterest_id": 10, "subinterest_name": "FastAPI y Backend"},
+        {"subinterest_id": 11, "subinterest_name": "Bases de Datos SQL"},
+    ],
+    4: [
+        {"subinterest_id": 12, "subinterest_name": "Guitarra clásica y eléctrica"},
+        {"subinterest_id": 13, "subinterest_name": "Dibujo e ilustración"},
+        {"subinterest_id": 14, "subinterest_name": "Fotografía digital"},
+    ],
+    5: [
+        {"subinterest_id": 15, "subinterest_name": "Huerta orgánica y botánica"},
+        {"subinterest_id": 16, "subinterest_name": "Física experimental"},
+    ],
+}
+
+LEVELS_DATA = [
+    {"value": "beginner", "label": "Principiante"},
+    {"value": "intermediate", "label": "Intermedio"},
+    {"value": "advanced", "label": "Avanzado"},
+]
+
+LANGUAGES_DATA = [
+    {"value": "es", "label": "Español"},
+    {"value": "en", "label": "Inglés"},
+    {"value": "pt", "label": "Portugués"},
+    {"value": "fr", "label": "Francés"},
+    {"value": "de", "label": "Alemán"},
+]
+
+MODALITIES_DATA = [
+    {"value": "online", "label": "Virtual"},
+    {"value": "in_person", "label": "Presencial"},
+]
+
+DURATIONS_DATA = [
+    {"value": 30, "label": "30 minutos"},
+    {"value": 45, "label": "45 minutos"},
+    {"value": 60, "label": "1 hora"},
+    {"value": 90, "label": "1 hora y media"},
+    {"value": 120, "label": "2 horas"},
+]
+
+
+@app.get("/interests", tags=["Catálogos del PDF (WBSO-44)"], summary="[1.4.2] Catálogo de intereses (WBSO-44)")
+@app.get("/api/v1/interests", tags=["Catálogos del PDF (WBSO-44)"], include_in_schema=False)
+def get_interests():
+    return INTERESTS_DATA
+
+
+@app.get("/interests/{interest_id}/subinterests", tags=["Catálogos del PDF (WBSO-44)"], summary="[1.4.2] Subintereses por interés (WBSO-44)")
+@app.get("/api/v1/interests/{interest_id}/subinterests", tags=["Catálogos del PDF (WBSO-44)"], include_in_schema=False)
+def get_subinterests(interest_id: int):
+    if interest_id not in SUBINTERESTS_MAP:
+        # Devuelve vacío si no tiene subintereses definidos
+        return []
+    return SUBINTERESTS_MAP[interest_id]
+
+
+@app.get("/levels", tags=["Catálogos del PDF (WBSO-46)"], summary="[1.4.4] Catálogo de niveles (WBSO-46)")
+@app.get("/api/v1/levels", tags=["Catálogos del PDF (WBSO-46)"], include_in_schema=False)
+def get_levels():
+    return LEVELS_DATA
+
+
+@app.get("/languages", tags=["Catálogos del PDF (WBSO-45)"], summary="[1.4.3] Catálogo de idiomas (WBSO-45)")
+@app.get("/api/v1/languages", tags=["Catálogos del PDF (WBSO-45)"], include_in_schema=False)
+def get_languages():
+    return LANGUAGES_DATA
+
+
+@app.get("/modalities", tags=["Catálogos del PDF (WBSO-47)"], summary="[1.4.5] Catálogo de modalidades (WBSO-47)")
+@app.get("/api/v1/modalities", tags=["Catálogos del PDF (WBSO-47)"], include_in_schema=False)
+def get_modalities():
+    return MODALITIES_DATA
+
+
+@app.get("/durations", tags=["Catálogos del PDF (WBSO-49)"], summary="[1.4.6] Catálogo de duraciones en minutos numéricos (WBSO-49)")
+@app.get("/api/v1/durations", tags=["Catálogos del PDF (WBSO-49)"], include_in_schema=False)
+def get_durations():
+    return DURATIONS_DATA
+
+
+# ============================================================================
+# CREACIÓN DE PROPUESTAS SEGÚN PDF (POST /me/teaching-offers - 201 Created)
+# ============================================================================
+
+offer_counter = 1
+
+
+@app.post(
+    "/me/teaching-offers",
+    status_code=status.HTTP_201_CREATED,
+    tags=["HU [1.4] Sistema de publicaciones"],
+    summary="[1.4.1 a 1.4.9] Publicar propuesta docente - Contrato PDF (WBSO-43 a 50)",
+)
+@app.post(
+    "/api/v1/me/teaching-offers",
+    status_code=status.HTTP_201_CREATED,
+    tags=["HU [1.4] Sistema de publicaciones"],
+    include_in_schema=False,
+)
+async def create_teaching_offer(
+    request: Request,
+    data: Optional[str] = Form(None),
+    image: Optional[UploadFile] = File(None),
+):
+    global offer_counter
+    offer_counter += 1
+
+    parsed_data: Dict[str, Any] = {}
+
+    content_type = request.headers.get("content-type", "")
+
+    # 1. Si viene como multipart/form-data con parte 'data' (lo especificado en el PDF)
+    if data:
+        try:
+            parsed_data = json.loads(data)
+        except Exception:
+            raise HTTPException(
+                status_code=422,
+                detail={
+                    "message": "The given data was invalid.",
+                    "errors": {"data": ["La parte 'data' debe ser un string JSON válido."]},
+                },
+            )
+    # 2. Si el frontend envía JSON directo por Content-Type: application/json
+    elif "application/json" in content_type:
+        try:
+            parsed_data = await request.json()
+        except Exception:
+            parsed_data = {}
+    # 3. Fallback por si envía campos form directos
+    else:
+        try:
+            form = await request.form()
+            for key, val in form.items():
+                if key != "image":
+                    try:
+                        parsed_data[key] = json.loads(val)
+                    except Exception:
+                        parsed_data[key] = val
+        except Exception:
+            parsed_data = {}
+
+    # Validaciones mínimas según CA5 del PDF (solo para proteger si manda campos vacíos críticos)
+    title = parsed_data.get("title", "Clases de Álgebra")
+    description = parsed_data.get("description", "Refuerzo de álgebra para secundaria...")
+    interest_id = parsed_data.get("interest_id", 1)
+
+    now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    image_url = "https://cdn.lerna.app/ofertas/1/portada.png" if image else None
+
+    # Respuesta 201 exacta requerida por la sección 3.4 del PDF
+    return {
+        "id": offer_counter,
+        "title": title,
+        "description": description,
+        "image_url": image_url,
+        "interest_id": interest_id,
+        "subinterest_id": parsed_data.get("subinterest_id", 2),
+        "level_taught": parsed_data.get("level_taught", "beginner"),
+        "language": parsed_data.get("language", "es"),
+        "max_students": parsed_data.get("max_students", 1),
+        "modality": parsed_data.get("modality", "in_person"),
+        "location": parsed_data.get(
+            "location",
+            {"province": "Buenos Aires", "city": "La Plata", "zone": "Centro"}
+            if parsed_data.get("modality") == "in_person"
+            else None,
+        ),
+        "credits_cost": int(parsed_data.get("credits_cost", 2)),
+        "time_zone": parsed_data.get("time_zone", "America/Argentina/Buenos_Aires"),
+        "availability": parsed_data.get(
+            "availability",
+            [{"day": "mon", "start_time": "18:00", "end_time": "19:00"}],
+        ),
+        "duration_minutes": int(parsed_data.get("duration_minutes", 60)),
+        "status": "active",
+        "moderation_status": "active",
+        "moderation_reason": None,
+        "created_at": now_iso,
+        "updated_at": now_iso,
+    }
 
 
 # ============================================================================
@@ -174,6 +399,7 @@ def recover_password(payload: Optional[PasswordRecoverRequest] = None):
 
 
 @app.get("/api/v1/users/me", tags=["HU [1.3] Sistema de usuarios"], summary="[1.3.4 a 1.3.8] Perfil de usuario (WBSO-36, 38, 39, 41, 42)")
+@app.get("/users/me", tags=["HU [1.3] Sistema de usuarios"], include_in_schema=False)
 def get_user_profile():
     return {
         "id": "usr-wbso-demo",
@@ -192,6 +418,7 @@ def get_user_profile():
 
 
 @app.put("/api/v1/users/me", tags=["HU [1.3] Sistema de usuarios"], summary="[1.3.4] Actualización de perfil (WBSO-36)")
+@app.put("/users/me", tags=["HU [1.3] Sistema de usuarios"], include_in_schema=False)
 def update_user_profile(payload: Optional[ProfileUpdateRequest] = None):
     data = payload.model_dump() if payload else {}
     return {
@@ -215,9 +442,9 @@ def get_user_availability():
     return {
         "user_id": "usr-wbso-demo",
         "slots": [
-            {"id": "slot-1", "day_of_week": "Lunes", "start_time": "18:00", "end_time": "20:00", "status": "AVAILABLE"},
-            {"id": "slot-2", "day_of_week": "Miércoles", "start_time": "19:00", "end_time": "21:00", "status": "AVAILABLE"},
-            {"id": "slot-3", "day_of_week": "Sábados", "start_time": "10:00", "end_time": "13:00", "status": "AVAILABLE"},
+            {"id": "slot-1", "day": "mon", "day_of_week": "Lunes", "start_time": "18:00", "end_time": "20:00", "status": "AVAILABLE"},
+            {"id": "slot-2", "day": "wed", "day_of_week": "Miércoles", "start_time": "19:00", "end_time": "21:00", "status": "AVAILABLE"},
+            {"id": "slot-3", "day": "sat", "day_of_week": "Sábados", "start_time": "10:00", "end_time": "13:00", "status": "AVAILABLE"},
         ],
     }
 
@@ -230,6 +457,7 @@ def add_user_availability(payload: Optional[AvailabilitySlotRequest] = None):
         "message": "Franja horaria agregada",
         "slot": {
             "id": "slot-new-99",
+            "day": "mon",
             "day_of_week": data.get("day_of_week", "Lunes"),
             "start_time": data.get("start_time", "18:00"),
             "end_time": data.get("end_time", "20:00"),
@@ -267,6 +495,7 @@ def list_categories():
 
 
 @app.get("/api/v1/publications", tags=["HU [1.4] Sistema de publicaciones"], summary="[1.4.1 a 1.4.9] Listar publicaciones (WBSO-43, 52)")
+@app.get("/publications", tags=["HU [1.4] Sistema de publicaciones"], include_in_schema=False)
 def list_publications(category: Optional[str] = None, modality: Optional[str] = None):
     return {
         "total": 3,
@@ -336,6 +565,7 @@ def create_publication(payload: Optional[PublicationCreateRequest] = None):
 
 
 @app.get("/api/v1/publications/{publication_id}", tags=["HU [1.4] Sistema de publicaciones"], summary="[1.4.3] Detalle de publicación (WBSO-45)")
+@app.get("/publications/{publication_id}", tags=["HU [1.4] Sistema de publicaciones"], include_in_schema=False)
 def get_publication_detail(publication_id: str):
     return {
         "id": publication_id,
@@ -373,6 +603,7 @@ def delete_publication(publication_id: str):
 # ============================================================================
 
 @app.get("/api/v1/search", tags=["HU [1.5] Sistema de búsqueda y compatibilidad"], summary="[1.5.1 a 1.5.3] Buscador y filtros de aprendizajes (WBSO-51, 53, 54)")
+@app.get("/search", tags=["HU [1.5] Sistema de búsqueda y compatibilidad"], include_in_schema=False)
 def search_publications(q: Optional[str] = "", category: Optional[str] = None, level: Optional[str] = None, modality: Optional[str] = None):
     return {
         "query": q,
@@ -806,7 +1037,7 @@ def admin_audit_log():
 
 
 # ============================================================================
-# Fallback / Stubs comodín para rutas que puedan ser llamadas sin /v1 o extra
+# Fallback / Stubs comodín para rutas adicionales
 # ============================================================================
 
 @app.api_route("/api/{path_name:path}", methods=["GET", "POST", "PUT", "PATCH", "DELETE"], include_in_schema=False)
