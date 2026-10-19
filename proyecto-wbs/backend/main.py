@@ -215,10 +215,14 @@ def get_interests():
 @app.get("/interests/{interest_id}/subinterests", tags=["Catálogos del PDF (WBSO-44)"], summary="[1.4.2] Subintereses por interés (WBSO-44)")
 @app.get("/api/v1/interests/{interest_id}/subinterests", tags=["Catálogos del PDF (WBSO-44)"], include_in_schema=False)
 def get_subinterests(interest_id: int):
-    if interest_id not in SUBINTERESTS_MAP:
-        # Devuelve vacío si no tiene subintereses definidos
-        return []
-    return SUBINTERESTS_MAP[interest_id]
+    # Regla de la página 10 del PDF: Si el interés no existe -> 404
+    valid_interest_ids = [item["interest_id"] for item in INTERESTS_DATA]
+    if interest_id not in valid_interest_ids:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"El interés con ID {interest_id} no existe.",
+        )
+    return SUBINTERESTS_MAP.get(interest_id, [])
 
 
 @app.get("/levels", tags=["Catálogos del PDF (WBSO-46)"], summary="[1.4.4] Catálogo de niveles (WBSO-46)")
@@ -250,13 +254,14 @@ def get_durations():
 # ============================================================================
 
 offer_counter = 1
+CREATED_TEACHING_OFFERS: List[Dict[str, Any]] = []
 
 
 @app.post(
     "/me/teaching-offers",
     status_code=status.HTTP_201_CREATED,
     tags=["HU [1.4] Sistema de publicaciones"],
-    summary="[1.4.1 a 1.4.9] Publicar propuesta docente - Contrato PDF (WBSO-43 a 50)",
+    summary="[1.4.1 a 1.4.9] Publicar propuesta docente - Contrato y Validaciones PDF (WBSO-43 a 50)",
 )
 @app.post(
     "/api/v1/me/teaching-offers",
@@ -270,10 +275,8 @@ async def create_teaching_offer(
     image: Optional[UploadFile] = File(None),
 ):
     global offer_counter
-    offer_counter += 1
 
     parsed_data: Dict[str, Any] = {}
-
     content_type = request.headers.get("content-type", "")
 
     # 1. Si viene como multipart/form-data con parte 'data' (lo especificado en el PDF)
@@ -282,7 +285,7 @@ async def create_teaching_offer(
             parsed_data = json.loads(data)
         except Exception:
             raise HTTPException(
-                status_code=422,
+                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
                 detail={
                     "message": "The given data was invalid.",
                     "errors": {"data": ["La parte 'data' debe ser un string JSON válido."]},
@@ -307,46 +310,174 @@ async def create_teaching_offer(
         except Exception:
             parsed_data = {}
 
-    # Validaciones mínimas según CA5 del PDF (solo para proteger si manda campos vacíos críticos)
-    title = parsed_data.get("title", "Clases de Álgebra")
-    description = parsed_data.get("description", "Refuerzo de álgebra para secundaria...")
-    interest_id = parsed_data.get("interest_id", 1)
+    errors: Dict[str, List[str]] = {}
 
+    # --- Regla 1: title (Obligatorio, trim, max 120 caracteres) ---
+    raw_title = parsed_data.get("title")
+    if not raw_title or not str(raw_title).strip():
+        errors["title"] = ["El título es obligatorio"]
+    elif len(str(raw_title).strip()) > 120:
+        errors["title"] = ["El título no puede superar los 120 caracteres"]
+    title = str(raw_title).strip() if raw_title else ""
+
+    # --- Regla 2: description (Obligatoria, trim, max 2000 caracteres) ---
+    raw_desc = parsed_data.get("description")
+    if not raw_desc or not str(raw_desc).strip():
+        errors["description"] = ["La descripción es obligatoria"]
+    elif len(str(raw_desc).strip()) > 2000:
+        errors["description"] = ["La descripción no puede superar los 2000 caracteres"]
+    description = str(raw_desc).strip() if raw_desc else ""
+
+    # --- Regla 3: interest_id (Obligatorio, entero, existente en catálogo) ---
+    raw_interest = parsed_data.get("interest_id")
+    valid_interest_ids = [item["interest_id"] for item in INTERESTS_DATA]
+    if raw_interest is None:
+        errors["interest_id"] = ["El interés es obligatorio"]
+    elif not isinstance(raw_interest, int) or raw_interest not in valid_interest_ids:
+        errors["interest_id"] = ["El interés seleccionado no existe"]
+
+    # --- Regla 4: subinterest_id (Opcional, si se envía debe pertenecer al interest_id) ---
+    raw_subinterest = parsed_data.get("subinterest_id")
+    if raw_subinterest is not None:
+        if raw_interest in SUBINTERESTS_MAP:
+            valid_sub_ids = [s["subinterest_id"] for s in SUBINTERESTS_MAP[raw_interest]]
+            if raw_subinterest not in valid_sub_ids:
+                errors["subinterest_id"] = ["El subinterés no pertenece al interés elegido"]
+        else:
+            errors["subinterest_id"] = ["El subinterés no pertenece al interés elegido"]
+
+    # --- Regla 5: level_taught (Obligatorio, value vigente de GET /levels) ---
+    raw_level = parsed_data.get("level_taught")
+    valid_levels = [l["value"] for l in LEVELS_DATA]
+    if not raw_level:
+        errors["level_taught"] = ["El nivel es obligatorio"]
+    elif raw_level not in valid_levels:
+        errors["level_taught"] = ["El nivel seleccionado no es válido"]
+
+    # --- Regla 6: language (Obligatorio, value vigente de GET /languages) ---
+    raw_lang = parsed_data.get("language")
+    valid_langs = [l["value"] for l in LANGUAGES_DATA]
+    if not raw_lang:
+        errors["language"] = ["El idioma es obligatorio"]
+    elif raw_lang not in valid_langs:
+        errors["language"] = ["El idioma seleccionado no es válido"]
+
+    # --- Regla 7: max_students (Obligatorio, entero >= 1) ---
+    raw_max_students = parsed_data.get("max_students")
+    if raw_max_students is None:
+        errors["max_students"] = ["La cantidad máxima de estudiantes es obligatoria"]
+    elif not isinstance(raw_max_students, int) or raw_max_students < 1:
+        errors["max_students"] = ["La cantidad máxima de estudiantes debe ser al menos 1"]
+
+    # --- Regla 8: modality & location ---
+    raw_modality = parsed_data.get("modality")
+    valid_modalities = [m["value"] for m in MODALITIES_DATA]
+    if not raw_modality or raw_modality not in valid_modalities:
+        errors["modality"] = ["La modalidad debe ser 'online' o 'in_person'"]
+
+    raw_location = parsed_data.get("location")
+    if raw_modality == "online" and raw_location is not None:
+        # CA3: si modality = online y se envía location, responder 422
+        errors["location"] = ["No debe enviarse ubicación si la modalidad es online"]
+    elif raw_modality == "in_person":
+        if not raw_location or not isinstance(raw_location, dict):
+            errors["location"] = ["Para modalidad presencial, debe indicar provincia, ciudad y zona"]
+        else:
+            if not raw_location.get("province") or not str(raw_location.get("province")).strip():
+                errors["location.province"] = ["La provincia es obligatoria para modalidad presencial"]
+            if not raw_location.get("city") or not str(raw_location.get("city")).strip():
+                errors["location.city"] = ["La ciudad es obligatoria para modalidad presencial"]
+            if not raw_location.get("zone") or not str(raw_location.get("zone")).strip():
+                errors["location.zone"] = ["La zona es obligatoria para modalidad presencial"]
+
+    # --- Regla 9: credits_cost (Obligatorio, JSON number > 0) ---
+    raw_credits = parsed_data.get("credits_cost")
+    if raw_credits is None:
+        errors["credits_cost"] = ["El costo en créditos es obligatorio"]
+    elif not isinstance(raw_credits, (int, float)) or raw_credits <= 0:
+        errors["credits_cost"] = ["El costo en créditos debe ser un número mayor a 0"]
+
+    # --- Regla 10: duration_minutes (Obligatorio, numérico vigente de GET /durations) ---
+    raw_duration = parsed_data.get("duration_minutes")
+    valid_durations = [d["value"] for d in DURATIONS_DATA]
+    if raw_duration is None:
+        errors["duration_minutes"] = ["La duración es obligatoria"]
+    elif isinstance(raw_duration, str) or raw_duration not in valid_durations:
+        errors["duration_minutes"] = ["La duración debe ser un número válido vigente en el catálogo (30, 45, 60, 90 o 120)"]
+
+    # --- Regla 11: time_zone (Obligatoria, identificador IANA válido) ---
+    raw_tz = parsed_data.get("time_zone")
+    if not raw_tz or not isinstance(raw_tz, str) or not raw_tz.strip():
+        errors["time_zone"] = ["La zona horaria es obligatoria"]
+    elif "/" not in raw_tz:
+        errors["time_zone"] = ["La zona horaria debe ser un identificador IANA válido (ej. America/Argentina/Buenos_Aires)"]
+
+    # --- Regla 12: availability (Obligatoria, array con al menos una franja y horas válidas) ---
+    raw_avail = parsed_data.get("availability")
+    if not raw_avail or not isinstance(raw_avail, list) or len(raw_avail) == 0:
+        errors["availability"] = ["Debe ingresar al menos una franja horaria"]
+    else:
+        for i, slot in enumerate(raw_avail):
+            if not isinstance(slot, dict):
+                continue
+            s_time = slot.get("start_time", "")
+            e_time = slot.get("end_time", "")
+            if not slot.get("day"):
+                errors[f"availability.{i}.day"] = ["El día es obligatorio"]
+            if not s_time:
+                errors[f"availability.{i}.start_time"] = ["La hora de inicio es obligatoria"]
+            if not e_time:
+                errors[f"availability.{i}.end_time"] = ["La hora de fin es obligatoria"]
+            elif s_time and e_time and s_time >= e_time:
+                errors[f"availability.{i}.end_time"] = ["La hora de fin debe ser posterior a la de inicio"]
+
+    # --- Regla 13: image (Opcional, JPG o PNG, máximo 2 MB) ---
+    if image:
+        if image.content_type not in ["image/jpeg", "image/png", "image/jpg"]:
+            errors["image"] = ["La imagen debe ser JPG o PNG"]
+        if hasattr(image, "size") and image.size and image.size > 2 * 1024 * 1024:
+            errors["image"] = ["El tamaño de la imagen no puede superar los 2 MB"]
+
+    # Si hay errores, responder exactamente 422 con el schema esperado por el frontend
+    if errors:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={
+                "message": "The given data was invalid.",
+                "errors": errors,
+            },
+        )
+
+    # Si todo es válido -> 201 Created y guardado en memoria
+    offer_counter += 1
     now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    image_url = f"https://cdn.lerna.app/ofertas/{offer_counter}/portada.png" if image else None
 
-    image_url = "https://cdn.lerna.app/ofertas/1/portada.png" if image else None
-
-    # Respuesta 201 exacta requerida por la sección 3.4 del PDF
-    return {
+    new_offer = {
         "id": offer_counter,
         "title": title,
         "description": description,
         "image_url": image_url,
-        "interest_id": interest_id,
-        "subinterest_id": parsed_data.get("subinterest_id", 2),
-        "level_taught": parsed_data.get("level_taught", "beginner"),
-        "language": parsed_data.get("language", "es"),
-        "max_students": parsed_data.get("max_students", 1),
-        "modality": parsed_data.get("modality", "in_person"),
-        "location": parsed_data.get(
-            "location",
-            {"province": "Buenos Aires", "city": "La Plata", "zone": "Centro"}
-            if parsed_data.get("modality") == "in_person"
-            else None,
-        ),
-        "credits_cost": int(parsed_data.get("credits_cost", 2)),
-        "time_zone": parsed_data.get("time_zone", "America/Argentina/Buenos_Aires"),
-        "availability": parsed_data.get(
-            "availability",
-            [{"day": "mon", "start_time": "18:00", "end_time": "19:00"}],
-        ),
-        "duration_minutes": int(parsed_data.get("duration_minutes", 60)),
+        "interest_id": raw_interest,
+        "subinterest_id": raw_subinterest,
+        "level_taught": raw_level,
+        "language": raw_lang,
+        "max_students": raw_max_students,
+        "modality": raw_modality,
+        "location": raw_location if raw_modality == "in_person" else None,
+        "credits_cost": raw_credits,
+        "time_zone": raw_tz,
+        "availability": raw_avail,
+        "duration_minutes": raw_duration,
         "status": "active",
         "moderation_status": "active",
         "moderation_reason": None,
         "created_at": now_iso,
         "updated_at": now_iso,
     }
+
+    CREATED_TEACHING_OFFERS.append(new_offer)
+    return new_offer
 
 
 # ============================================================================
