@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: proyecto-sdd/frontend
+        working-directory: proyecto-sdd/frontend/v7
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,13 +29,15 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: proyecto-sdd/frontend/package-lock.json
+          cache-dependency-path: proyecto-sdd/frontend/v7/package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build
         run: npm run build
+        env:
+          VITE_API_BASE_URL: https://nine524-api-unificado.onrender.com
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -45,7 +47,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: proyecto-sdd/frontend/dist
+          path: proyecto-sdd/frontend/v7/dist
 
   deploy:
     environment:
