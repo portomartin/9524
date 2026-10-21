@@ -1,4 +1,4 @@
-# Especificación Técnica de API (Mini-SDD) — Proyecto WBS Clásico
+﻿# Especificación Técnica de API (Mini-SDD) — Proyecto WBS Clásico
 
 **Proyecto Jira:** `WBSO` — *WBS Original Histórico*  
 **Fuente de verdad del alcance:** [`proyecto-wbs/wbs-original.md`](../wbs-original.md) y [`proyecto-wbs/jerarquia-jira.md`](../jerarquia-jira.md).  
@@ -55,9 +55,11 @@ Este módulo implementa el flujo de **"Publicar una propuesta docente"** y sus c
 
 ### HU [1.5] Sistema de Búsqueda y Compatibilidad (`WBSO-9`)
 
+> Ver especificación detallada del contrato con Frontend en: [`especificacion-1.5-busqueda-compatibilidad.md`](especificacion-1.5-busqueda-compatibilidad.md).
+
 | Verbo | Ruta | Tickets Jira | Descripción / Mock Response |
 |---|---|---|---|
-| `GET` | `/api/v1/search` | `WBSO-51` [1.5.1], `WBSO-53` [1.5.2], `WBSO-54` [1.5.3] | Búsqueda con filtros (texto `q`, `category`, `level`, `modality`). |
+| `GET` | `/publications`<br>`/api/v1/search` | `WBSO-51` [1.5.1], `WBSO-53` [1.5.2], `WBSO-54` [1.5.3], `WBSO-55` [1.5.4], `WBSO-56` [1.5.5], `WBSO-57` [1.5.6], `WBSO-58` [1.5.7] | **Buscador de clases y compatibilidad:** Requiere sesión. Filtros por `query`, `category_id`, `subcategory_id`, `level`, `modality`, `days` (CSV), `time_from`, `time_to`, `compatible_with_me`. Retorna items con datos de publicación, `teacher` y `reciprocal_with_me`. |
 | `GET` | `/api/v1/compatibilities` | `WBSO-55` [1.5.4], `WBSO-56` [1.5.5], `WBSO-57` [1.5.6], `WBSO-58` [1.5.7] | Perfiles compatibles calculados, detección de horarios comunes e intercambios recíprocos. |
 
 ---
