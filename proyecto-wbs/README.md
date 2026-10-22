@@ -11,6 +11,7 @@ Proyecto de planificación independiente construido con el enfoque tradicional d
 - **Tablero:** [WBSO board](https://martinporto.atlassian.net/jira/software/projects/WBSO/boards/35/backlog).
 - **Especificación Técnica de API (Mini-SDD):** [`docs/sdd-especificacion-api.md`](docs/sdd-especificacion-api.md).
 - **Especificación y Convenciones Búsqueda y Compatibilidad (1.5):** [docs/especificacion-1.5-busqueda-compatibilidad.md](docs/especificacion-1.5-busqueda-compatibilidad.md).
+- **Estrategia de Mock Data y Seeding (40 usuarios, SQLite local):** [`docs/estrategia-mock-data-seeding.md`](docs/estrategia-mock-data-seeding.md).
 - **Backend Mock (FastAPI):** [`backend/README.md`](backend/README.md) (`backend/main.py`).
 
 ---

@@ -23,6 +23,17 @@
   - Implementación incremental guiada por el skill `proyecto-sdd/backend/skills/implementar-backend/SKILL.md` respetando `proyecto-sdd/backend/skills/convenciones-backend/SKILL.md`.
   - No rediseñar ni proponer otros stacks o arquitecturas salvo solicitud explícita del usuario.
 
+## Repositorio del Grupo (`9524-backend`)
+
+- **Aislamiento de IA:** El repositorio `9524-backend` es un proyecto colaborativo de equipo. Debe contener **únicamente código Python limpio, idiomático y profesional**. No debe contener comentarios, notas de Markdown, prompts ni ninguna referencia a inteligencia artificial, asistentes o agentes.
+- **Estrategia de Seeding y Mock:**
+  - Las ramas del equipo (`main`, `feature/1.5-busqueda-publicaciones`) conservan el dataset base (~14 usuarios) ejecutable con `python -m db.manage reset`.
+  - La rama `feature/mock-data` provee el seeder ampliado independiente `db/seed_mock.py` con 40 usuarios, 58 publicaciones con portadas WebP reutilizadas y 16 tablas pobladas (cero tablas vacías).
+  - La especificación completa de la estrategia de datos de prueba está documentada en `proyecto-wbs/docs/estrategia-mock-data-seeding.md`.
+- **Soporte de Base de Datos:**
+  - Soporte dual transparente: SQLite local (`DATABASE_URL=sqlite:///./local_dev.db`) para máxima velocidad y desarrollo offline del frontend; PostgreSQL/Supabase para despliegue remoto compartido.
+  - Para SQLite local en FastAPI multihilo, `app/db.py` utiliza `connect_args={"check_same_thread": False}`.
+
 ## Forma de trabajo
 
 - Los skills de documentación y planificación SDD están en `proyecto-sdd/skills/`; el proceso clásico independiente está en `proyecto-wbs/skills/`; los skills de implementación y publicación de frontend están en `proyecto-sdd/frontend/skills/`; y los de backend, en `proyecto-sdd/backend/skills/`.
@@ -38,5 +49,3 @@
 - Mantener el alcance del MVP explícito.
 - No modificar la especificación automáticamente: proponer cambios y esperar confirmación cuando afecten el alcance o las reglas del producto.
 - Escribir la documentación en español claro y consistente.
-
-
