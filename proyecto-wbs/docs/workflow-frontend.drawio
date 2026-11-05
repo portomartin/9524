@@ -1,0 +1,236 @@
+<mxfile host="app.diagrams.net" modified="2026-11-05T20:40:00.000Z" agent="Mozilla/5.0" version="21.6.8" type="device">
+  <diagram id="Workflow-Frontend" name="Workflow Frontend">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Título -->
+        <mxCell id="title" value="Workflow" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=36;fontFamily=Helvetica;fontColor=#222222;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="250" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- ================= FLUJO 1 ================= -->
+        <mxCell id="f1_tag" value="Flujo 1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontColor=#DE6E5C;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="140" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_desc" value="Darse de alta y&#xa;configurar perfil de&#xa;intercambio" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=18;fontColor=#4A4A4A;" vertex="1" parent="1">
+          <mxGeometry x="60" y="170" width="220" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Nodos Flujo 1 -->
+        <mxCell id="f1_start" value="Comienzo" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=10;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="320" y="170" width="50" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f1_s1" value="Ingreso a la&#xa;Plataforma" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="410" y="135" width="85" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f1_a1" value="acceder" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#00B074;strokeColor=none;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="525" y="180" width="65" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f1_s2" value="Pantalla de&#xa;login / registro" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="620" y="135" width="85" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f1_d1" value="¿Tienes&#xa;Cuenta?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="740" y="160" width="70" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f1_s_reg" value="Pantalla de&#xa;registro" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="840" y="210" width="85" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f1_s_home" value="Ir a Inicio" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="980" y="135" width="80" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f1_a_conf" value="Configurar perfil" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#00B074;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="180" width="85" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f1_s_funnel" value="Funnel Alta de Perfil&#xa;&#xa;Temas a enseñar&#xa;Temas a aprender&#xa;Disponibilidad" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="1205" y="130" width="125" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f1_a_save" value="Guardar" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#00B074;strokeColor=none;fontColor=#FFFFFF;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="180" width="70" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Conexiones Flujo 1 -->
+        <mxCell id="e1" edge="1" source="f1_start" target="f1_s1" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e2" edge="1" source="f1_s1" target="f1_a1" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e3" edge="1" source="f1_a1" target="f1_s2" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e4" edge="1" source="f1_s2" target="f1_d1" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        
+        <!-- SI a Inicio -->
+        <mxCell id="e_si" edge="1" source="f1_d1" target="f1_s_home" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="775" y="110" />
+              <mxPoint x="1020" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_si" value="SI" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="790" y="90" width="30" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- NO a registro -->
+        <mxCell id="e_no" edge="1" source="f1_d1" target="f1_s_reg" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="775" y="265" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_no" value="NO" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="785" y="240" width="30" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_reg_home" edge="1" source="f1_s_reg" target="f1_s_home" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="950" y="265" />
+              <mxPoint x="950" y="225" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e5" edge="1" source="f1_s_home" target="f1_a_conf" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e6" edge="1" source="f1_a_conf" target="f1_s_funnel" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e7" edge="1" source="f1_s_funnel" target="f1_a_save" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        
+        <!-- Loop save a Inicio -->
+        <mxCell id="e_loop_home" edge="1" source="f1_a_save" target="f1_s_home" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1395" y="90" />
+              <mxPoint x="1020" y="90" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ================= FLUJO 2 ================= -->
+        <mxCell id="f2_tag" value="Flujo 2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontColor=#DE6E5C;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="440" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_desc" value="Publicar una propuesta&#xa;de enseñanza" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=18;fontColor=#4A4A4A;" vertex="1" parent="1">
+          <mxGeometry x="60" y="470" width="220" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f2_start" value="Comienzo" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=10;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="320" y="470" width="50" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f2_home" value="Inicio" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=12;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="450" y="435" width="85" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f2_a1" value="mis propuestas" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#00B074;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="575" y="480" width="95" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f2_s_pub" value="Pantalla mis&#xa;propuestas" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="710" y="435" width="90" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f2_a2" value="crear propuesta" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#00B074;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="480" width="95" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f2_s_form" value="Rellenar propuesta&#xa;&#xa;(categoría, nivel,&#xa;duración, créditos)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="975" y="430" width="120" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f2_d1" value="¿Quieres&#xa;publicar?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="1135" y="460" width="70" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e2_1" edge="1" source="f2_start" target="f2_home" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e2_2" edge="1" source="f2_home" target="f2_a1" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e2_3" edge="1" source="f2_a1" target="f2_s_pub" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e2_4" edge="1" source="f2_s_pub" target="f2_a2" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e2_5" edge="1" source="f2_a2" target="f2_s_form" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e2_6" edge="1" source="f2_s_form" target="f2_d1" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+
+        <!-- SI loop -->
+        <mxCell id="e2_si" edge="1" source="f2_d1" target="f2_s_pub" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1170" y="400" />
+              <mxPoint x="755" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl2_si" value="SI" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="1175" y="380" width="30" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- NO loop -->
+        <mxCell id="e2_no" edge="1" source="f2_d1" target="f2_s_pub" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1170" y="580" />
+              <mxPoint x="755" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl2_no" value="NO" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="1175" y="550" width="30" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ================= FLUJO 3 ================= -->
+        <mxCell id="f3_tag" value="Flujo 3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontColor=#DE6E5C;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="740" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_desc" value="Buscar una propuesta y&#xa;solicitar una sesión" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=18;fontColor=#4A4A4A;" vertex="1" parent="1">
+          <mxGeometry x="60" y="770" width="220" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f3_start" value="Comienzo" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=10;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="320" y="770" width="50" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f3_home" value="Inicio" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=12;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="450" y="735" width="85" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f3_a1" value="explorar clases" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#00B074;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="575" y="780" width="95" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f3_s_cat" value="Pantalla catálogo&#xa;propuestas (listado)&#xa;+ buscador y filtros" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="710" y="730" width="115" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f3_a2" value="Buscar tema" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#00B074;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="780" width="85" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f3_s_res" value="Pantalla con&#xa;resultados" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="980" y="735" width="90" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f3_a3" value="Seleccionar clase" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#00B074;strokeColor=none;fontColor=#FFFFFF;fontSize=9.5;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1105" y="780" width="100" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="f3_s_detail" value="La propuesta&#xa;ampliada&#xa;&#xa;(Solicitar sesión)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="730" width="110" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e3_1" edge="1" source="f3_start" target="f3_home" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e3_2" edge="1" source="f3_home" target="f3_a1" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e3_3" edge="1" source="f3_a1" target="f3_s_cat" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e3_4" edge="1" source="f3_s_cat" target="f3_a2" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e3_5" edge="1" source="f3_a2" target="f3_s_res" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e3_6" edge="1" source="f3_s_res" target="f3_a3" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+        <mxCell id="e3_7" edge="1" source="f3_a3" target="f3_s_detail" parent="1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;" />
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

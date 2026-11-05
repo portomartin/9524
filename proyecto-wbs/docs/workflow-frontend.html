@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Workflow - Proyecto WBS</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #eef2f5;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .slide-wrapper {
+      background: #ffffff;
+      width: 1450px;
+      padding: 50px 70px 60px 70px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+      border-radius: 4px;
+      position: relative;
+    }
+    .header-title {
+      font-size: 46px;
+      font-weight: 400;
+      color: #2b2b2b;
+      margin-bottom: 55px;
+      letter-spacing: -0.5px;
+    }
+    .flow-row {
+      display: flex;
+      align-items: center;
+      min-height: 180px;
+      margin-bottom: 45px;
+      position: relative;
+    }
+    .flow-row:last-child {
+      margin-bottom: 0;
+    }
+    .flow-meta {
+      width: 270px;
+      flex-shrink: 0;
+      padding-right: 25px;
+    }
+    .flow-tag {
+      font-size: 22px;
+      font-weight: 500;
+      color: #df6e5d;
+      margin-bottom: 10px;
+    }
+    .flow-name {
+      font-size: 21px;
+      font-weight: 300;
+      color: #4a4a4a;
+      line-height: 1.35;
+    }
+    .flow-svg-area {
+      flex-grow: 1;
+      overflow-x: visible;
+    }
+    .watermark {
+      position: absolute;
+      bottom: 25px;
+      right: 45px;
+      font-size: 13px;
+      color: #000;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .watermark-box {
+      width: 14px;
+      height: 14px;
+      background: #000;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-wrapper">
+    <h1 class="header-title">Workflow</h1>
+
+    <!-- ========================================== -->
+    <!-- FLUJO 1 -->
+    <!-- ========================================== -->
+    <div class="flow-row">
+      <div class="flow-meta">
+        <div class="flow-tag">Flujo 1</div>
+        <div class="flow-name">Darse de alta y configurar perfil de intercambio</div>
+      </div>
+      <div class="flow-svg-area">
+        <svg width="1080" height="170" viewBox="0 0 1080 170">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#666" />
+            </marker>
+          </defs>
+
+          <!-- Comienzo -->
+          <circle cx="35" cy="80" r="23" fill="#ffffff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="35" y="84" font-size="9" text-anchor="middle" fill="#555" font-family="'Montserrat', sans-serif">Comienzo</text>
+
+          <line x1="58" y1="80" x2="90" y2="80" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Pantalla Landing -->
+          <rect x="92" y="25" width="80" height="110" rx="16" fill="#fff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="132" y="75" font-size="9.5" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">Ingreso a la</text>
+          <text x="132" y="89" font-size="9.5" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">Plataforma</text>
+
+          <line x1="172" y1="80" x2="198" y2="80" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Botón verde: acceder -->
+          <rect x="200" y="65" width="60" height="30" rx="15" fill="#00b074" />
+          <text x="230" y="84" font-size="9" text-anchor="middle" fill="#fff" font-weight="500" font-family="'Montserrat', sans-serif">acceder</text>
+
+          <line x1="260" y1="80" x2="288" y2="80" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Pantalla login/registro -->
+          <rect x="290" y="25" width="80" height="110" rx="16" fill="#fff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="330" y="75" font-size="9" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">Pantalla de</text>
+          <text x="330" y="89" font-size="9" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">login / registro</text>
+
+          <line x1="370" y1="80" x2="400" y2="80" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Rombo ¿Tienes cuenta? -->
+          <polygon points="430,55 460,80 430,105 400,80" fill="#fff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="430" y="78" font-size="8.5" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">¿Tienes</text>
+          <text x="430" y="88" font-size="8.5" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">Cuenta?</text>
+
+          <!-- Rama SI (arriba hacia Ir a Inicio) -->
+          <path d="M 430 55 L 430 15 L 610 15 L 610 80 L 648 80" fill="none" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+          <text x="442" y="25" font-size="9" fill="#444" font-family="'Montserrat', sans-serif">SI</text>
+
+          <!-- Rama NO (hacia Pantalla de registro) -->
+          <path d="M 430 105 L 430 135 L 478 135" fill="none" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+          <text x="442" y="125" font-size="9" fill="#444" font-family="'Montserrat', sans-serif">NO</text>
+
+          <!-- Pantalla de registro -->
+          <rect x="480" y="85" width="80" height="100" rx="16" fill="#fff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="520" y="130" font-size="9" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">Pantalla de</text>
+          <text x="520" y="144" font-size="9" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">registro</text>
+
+          <!-- Salida de Pantalla de registro hacia Inicio -->
+          <path d="M 560 135 L 610 135 L 610 80" fill="none" stroke="#666" stroke-width="1.2" />
+
+          <!-- Pantalla Ir a Inicio -->
+          <rect x="650" y="25" width="75" height="110" rx="16" fill="#fff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="687" y="84" font-size="9.5" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">Ir a Inicio</text>
+
+          <line x1="725" y1="80" x2="748" y2="80" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Botón verde: Configurar perfil -->
+          <rect x="750" y="65" width="80" height="30" rx="15" fill="#00b074" />
+          <text x="790" y="84" font-size="8.5" text-anchor="middle" fill="#fff" font-weight="500" font-family="'Montserrat', sans-serif">Configurar perfil</text>
+
+          <line x1="830" y1="80" x2="853" y2="80" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Pantalla Funnel de Alta de Perfil -->
+          <rect x="855" y="20" width="115" height="120" rx="16" fill="#fff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="912" y="55" font-size="8.5" text-anchor="middle" fill="#333" font-family="'Montserrat', sans-serif">Funnel Alta de Perfil</text>
+          <text x="912" y="70" font-size="8" text-anchor="middle" fill="#666" font-family="'Montserrat', sans-serif">Temas a enseñar</text>
+          <text x="912" y="82" font-size="8" text-anchor="middle" fill="#666" font-family="'Montserrat', sans-serif">Temas a aprender</text>
+          <text x="912" y="94" font-size="8" text-anchor="middle" fill="#666" font-family="'Montserrat', sans-serif">Disponibilidad</text>
+
+          <line x1="970" y1="80" x2="993" y2="80" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Botón verde: Guardar datos -->
+          <rect x="995" y="65" width="65" height="30" rx="15" fill="#00b074" />
+          <text x="1027" y="84" font-size="8.5" text-anchor="middle" fill="#fff" font-weight="500" font-family="'Montserrat', sans-serif">Guardar</text>
+
+          <!-- Loop de retorno a Inicio -->
+          <path d="M 1027 65 L 1027 10 L 687 10 L 687 23" fill="none" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- FLUJO 2 -->
+    <!-- ========================================== -->
+    <div class="flow-row">
+      <div class="flow-meta">
+        <div class="flow-tag">Flujo 2</div>
+        <div class="flow-name">Publicar una propuesta de enseñanza</div>
+      </div>
+      <div class="flow-svg-area">
+        <svg width="1080" height="170" viewBox="0 0 1080 170">
+          <!-- Comienzo -->
+          <circle cx="35" cy="85" r="23" fill="#ffffff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="35" y="89" font-size="9" text-anchor="middle" fill="#555" font-family="'Montserrat', sans-serif">Comienzo</text>
+
+          <line x1="58" y1="85" x2="148" y2="85" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Pantalla Inicio -->
+          <rect x="150" y="30" width="85" height="110" rx="16" fill="#fff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="192" y="89" font-size="11" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">Inicio</text>
+
+          <line x1="235" y1="85" x2="288" y2="85" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Botón verde: abrir publicaciones -->
+          <rect x="290" y="70" width="85" height="30" rx="15" fill="#00b074" />
+          <text x="332" y="89" font-size="8.5" text-anchor="middle" fill="#fff" font-weight="500" font-family="'Montserrat', sans-serif">mis propuestas</text>
+
+          <line x1="375" y1="85" x2="418" y2="85" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Pantalla mis publicaciones -->
+          <rect x="420" y="30" width="90" height="110" rx="16" fill="#fff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="465" y="80" font-size="9" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">Pantalla mis</text>
+          <text x="465" y="94" font-size="9" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">propuestas</text>
+
+          <line x1="510" y1="85" x2="548" y2="85" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Botón verde: crear propuesta -->
+          <rect x="550" y="70" width="80" height="30" rx="15" fill="#00b074" />
+          <text x="590" y="89" font-size="8.5" text-anchor="middle" fill="#fff" font-weight="500" font-family="'Montserrat', sans-serif">crear propuesta</text>
+
+          <line x1="630" y1="85" x2="668" y2="85" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Pantalla Rellenar propuesta -->
+          <rect x="670" y="25" width="105" height="120" rx="16" fill="#fff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="722" y="70" font-size="9" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">Rellenar propuesta</text>
+          <text x="722" y="84" font-size="8" text-anchor="middle" fill="#777" font-family="'Montserrat', sans-serif">(categoría, nivel,</text>
+          <text x="722" y="96" font-size="8" text-anchor="middle" fill="#777" font-family="'Montserrat', sans-serif">duración, créditos)</text>
+
+          <line x1="775" y1="85" x2="813" y2="85" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Rombo ¿Quieres publicar? -->
+          <polygon points="845,60 875,85 845,110 815,85" fill="#fff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="845" y="83" font-size="8" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">¿Quieres</text>
+          <text x="845" y="93" font-size="8" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">publicar?</text>
+
+          <!-- SI (vuelve a Pantalla mis propuestas) -->
+          <path d="M 845 60 L 845 20 L 465 20 L 465 28" fill="none" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+          <text x="852" y="45" font-size="9" fill="#444" font-family="'Montserrat', sans-serif">SI</text>
+
+          <!-- NO (vuelve a Pantalla mis propuestas) -->
+          <path d="M 845 110 L 845 150 L 465 150 L 465 142" fill="none" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+          <text x="852" y="130" font-size="9" fill="#444" font-family="'Montserrat', sans-serif">NO</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- FLUJO 3 -->
+    <!-- ========================================== -->
+    <div class="flow-row">
+      <div class="flow-meta">
+        <div class="flow-tag">Flujo 3</div>
+        <div class="flow-name">Buscar una propuesta y solicitar una sesión</div>
+      </div>
+      <div class="flow-svg-area">
+        <svg width="1080" height="170" viewBox="0 0 1080 170">
+          <!-- Comienzo -->
+          <circle cx="35" cy="85" r="23" fill="#ffffff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="35" y="89" font-size="9" text-anchor="middle" fill="#555" font-family="'Montserrat', sans-serif">Comienzo</text>
+
+          <line x1="58" y1="85" x2="148" y2="85" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Pantalla Inicio -->
+          <rect x="150" y="30" width="85" height="110" rx="16" fill="#fff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="192" y="89" font-size="11" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">Inicio</text>
+
+          <line x1="235" y1="85" x2="288" y2="85" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Botón verde: explorar aprendizajes -->
+          <rect x="290" y="70" width="85" height="30" rx="15" fill="#00b074" />
+          <text x="332" y="89" font-size="8" text-anchor="middle" fill="#fff" font-weight="500" font-family="'Montserrat', sans-serif">explorar clases</text>
+
+          <line x1="375" y1="85" x2="418" y2="85" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Pantalla Catálogo / Buscador -->
+          <rect x="420" y="25" width="105" height="120" rx="16" fill="#fff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="472" y="73" font-size="8.5" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">Pantalla catálogo</text>
+          <text x="472" y="87" font-size="8" text-anchor="middle" fill="#666" font-family="'Montserrat', sans-serif">propuestas (listado)</text>
+          <text x="472" y="99" font-size="8" text-anchor="middle" fill="#666" font-family="'Montserrat', sans-serif">+ buscador y filtros</text>
+
+          <line x1="525" y1="85" x2="563" y2="85" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Botón verde: Buscar tema -->
+          <rect x="565" y="70" width="75" height="30" rx="15" fill="#00b074" />
+          <text x="602" y="89" font-size="8" text-anchor="middle" fill="#fff" font-weight="500" font-family="'Montserrat', sans-serif">Buscar tema</text>
+
+          <line x1="640" y1="85" x2="678" y2="85" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Pantalla Resultados -->
+          <rect x="680" y="30" width="90" height="110" rx="16" fill="#fff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="725" y="80" font-size="8.5" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">Pantalla con</text>
+          <text x="725" y="93" font-size="8.5" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">resultados</text>
+
+          <line x1="770" y1="85" x2="808" y2="85" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Botón verde: Seleccionar propuesta -->
+          <rect x="810" y="70" width="85" height="30" rx="15" fill="#00b074" />
+          <text x="852" y="89" font-size="7.5" text-anchor="middle" fill="#fff" font-weight="500" font-family="'Montserrat', sans-serif">Seleccionar clase</text>
+
+          <line x1="895" y1="85" x2="933" y2="85" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+          <!-- Pantalla Detalle de la clase y solicitar -->
+          <rect x="935" y="25" width="95" height="120" rx="16" fill="#fff" stroke="#9e9e9e" stroke-width="1.2"/>
+          <text x="982" y="75" font-size="8.5" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">La propuesta</text>
+          <text x="982" y="88" font-size="8.5" text-anchor="middle" fill="#444" font-family="'Montserrat', sans-serif">ampliada</text>
+          <text x="982" y="102" font-size="7.5" text-anchor="middle" fill="#00b074" font-weight="500">(Solicitar sesión)</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Marca / Footer -->
+    <div class="watermark">
+      <span class="watermark-box"></span>
+      PROYECTO WBS &bull; FRONTEND
+    </div>
+
+  </div>
+
+</body>
+</html>
