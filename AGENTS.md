@@ -37,6 +37,7 @@
 ## Forma de trabajo
 
 - Los skills de documentación y planificación SDD están en `proyecto-sdd/skills/`; el proceso clásico independiente está en `proyecto-wbs/skills/`; los skills de implementación y publicación de frontend están en `proyecto-sdd/frontend/skills/`; y los de backend, en `proyecto-sdd/backend/skills/`.
+- Cuando la tarea se refiera a la entrega, demo, defensa, retrospectiva, planificación o notas del proyecto WBS, leer `proyecto-wbs/skills/contexto-wbs/SKILL.md` y los archivos de `proyecto-wbs/contexto/`. Ese contexto es exclusivo de Jira `WBSO` y no debe mezclarse con el proyecto SDD ni con `BH95`.
 - Cada versión del frontend cuenta con su especificación viviente dedicada en `proyecto-sdd/frontend/skills/`:
   - **V1 (PrimeVue 4 Multipágina):** `proyecto-sdd/frontend/skills/frontend-v1-primevue-spec/SKILL.md`
   - **V2 (Tailwind + Shadcn Multipágina):** `proyecto-sdd/frontend/skills/frontend-v2-tailwind-spec/SKILL.md`
