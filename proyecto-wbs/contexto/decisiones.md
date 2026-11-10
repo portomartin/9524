@@ -19,6 +19,8 @@
 
 - Se eliminaron las subtareas duplicadas `WBSO-124` (Aplicación desplegada) y `WBSO-126` (Base de datos configurada). Se verificó que `WBSO-28`, `WBSO-29` y `WBSO-30` siguen bajo `WBSO-6`, dentro de la épica 1.
 - El usuario eliminó `WBSO-16` (Aplicación web integrada). Se verificó que la épica 4 agrupa a `WBSO-18` y `WBSO-19` y se actualizó su título a «Pruebas y entrega».
+- WBSO-19 agrupa trabajo técnico y académico para presentar al profesor. Corresponde tratarlo como una tarea de entrega dentro de la épica WBSO-4. Actualmente figura como Historia en Jira y queda pendiente cambiar su tipo allí.
+- Los 16 ítems del bloque 4.1 de la tabla de clasificación tendrán como padre a [WBSO-151 — [1.16] Documentacion](https://martinporto.atlassian.net/browse/WBSO-151), una tarea de la épica WBSO-4. Las referencias a issues existentes sirven para rastrear el trabajo previo.
 
 ## Pendientes de definir
 
