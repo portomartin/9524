@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Benchmarking - Plataforma de Intercambio de Aprendizajes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #f0f2f5;
+      padding: 35px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .slide-wrapper {
+      background: #ffffff;
+      width: 1560px;
+      padding: 50px 65px 60px 65px;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.07);
+      border-radius: 8px;
+      position: relative;
+    }
+
+    /* Cabecera Principal */
+    .header-bar {
+      margin-bottom: 35px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .header-title {
+      font-size: 58px;
+      font-weight: 400;
+      color: #1e293b;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+    }
+    .header-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 6px;
+    }
+    .header-tag {
+      background: #fee2e2;
+      color: #b91c1c;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Bloque 1: Criterios de Análisis (4 Columnas) */
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .criteria-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      border-top: 4px solid #b91c1c; /* Borde rojo característico del template */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .criteria-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .criteria-icon {
+      font-size: 24px;
+      line-height: 1;
+    }
+    .criteria-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: #b91c1c;
+      letter-spacing: -0.3px;
+    }
+    .criteria-type {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+    .criteria-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #475569;
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .criteria-scale {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #1e293b;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 6px 8px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    /* Bloque 2: Matriz de Scoring Oficial */
+    .scoring-section {
+      margin-bottom: 45px;
+    }
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::before {
+      content: "";
+      width: 4px;
+      height: 22px;
+      background: #b91c1c;
+      display: inline-block;
+      border-radius: 2px;
+    }
+
+    .table-container {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    }
+    .scoring-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .scoring-table th {
+      background: #f8fafc;
+      padding: 16px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+      border-bottom: 2px solid #e2e8f0;
+      border-right: 1px solid #f1f5f9;
+      vertical-align: middle;
+    }
+    .scoring-table th:first-child {
+      text-align: left;
+      padding-left: 24px;
+      width: 28%;
+    }
+    .scoring-table th:last-child {
+      border-right: none;
+      background: #f1f5f9;
+      color: #0f172a;
+      width: 16%;
+    }
+    .scoring-table th .th-icon {
+      font-size: 18px;
+      display: block;
+      margin-bottom: 4px;
+      color: #b91c1c;
+    }
+
+    .scoring-table td {
+      padding: 16px 12px;
+      font-size: 14px;
+      color: #475569;
+      border-bottom: 1px solid #f1f5f9;
+      border-right: 1px solid #f8fafc;
+      vertical-align: middle;
+    }
+    .scoring-table td:first-child {
+      text-align: left;
+      padding-left: 24px;
+      font-weight: 600;
+    }
+    .scoring-table td:last-child {
+      border-right: none;
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .scoring-table tr:hover td {
+      background: #fbfcfe;
+    }
+
+    /* Filas destacadas */
+    .row-highlight td {
+      background: #f0fdf4 !important;
+      color: #166534;
+    }
+    .row-highlight td:first-child {
+      color: #15803d;
+      font-weight: 700;
+    }
+    .score-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .score-green {
+      color: #00b074;
+    }
+    .score-amber {
+      color: #d97706;
+    }
+    .score-red {
+      color: #dc2626;
+    }
+
+    /* Bloque 3: Fichas Comparativas (5 Cards con Capturas) */
+    .competitors-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    .comp-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+    }
+    .comp-preview {
+      width: 100%;
+      height: 140px;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      cursor: zoom-in;
+      position: relative;
+    }
+    .comp-preview:hover {
+      border-color: #94a3b8;
+    }
+    .comp-preview:hover img {
+      transform: scale(1.03);
+    }
+    .comp-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+    .comp-preview::after {
+      content: "🔍 Clic para ampliar";
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background: rgba(15, 23, 42, 0.78);
+      color: #ffffff;
+      font-size: 8.5px;
+      font-family: 'Inter', sans-serif;
+      padding: 2px 6px;
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+    .comp-preview:hover::after {
+      opacity: 1;
+    }
+
+    /* Modal Lightbox Interactivo */
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+      cursor: zoom-out;
+    }
+    .lightbox-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .lightbox-container {
+      max-width: 92vw;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      cursor: default;
+    }
+    .lightbox-img {
+      max-width: 1080px;
+      max-height: 76vh;
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      transform: scale(0.94);
+      transition: transform 0.25s ease;
+      background: #ffffff;
+    }
+    .lightbox-overlay.active .lightbox-img {
+      transform: scale(1);
+    }
+    .lightbox-caption {
+      margin-top: 14px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #ffffff;
+      letter-spacing: 0.3px;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 6px 18px;
+      border-radius: 20px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -42px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      border: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.45);
+    }
+    .comp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+    .comp-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .comp-score-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #334155;
+    }
+    .comp-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex: 1;
+    }
+    .comp-features li {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #475569;
+      line-height: 1.4;
+      margin-bottom: 6px;
+      position: relative;
+      padding-left: 13px;
+    }
+    .comp-features li.pro::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #00b074;
+      font-weight: bold;
+    }
+    .comp-features li.con::before {
+      content: "✕";
+      position: absolute;
+      left: 0;
+      color: #dc2626;
+      font-weight: bold;
+    }
+
+    /* Footer / Watermark */
+    .watermark {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #f1f5f9;
+      font-size: 13px;
+      color: #777;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .watermark-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .watermark-box {
+      width: 12px;
+      height: 12px;
+      background: #b91c1c;
+      display: inline-block;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-wrapper">
+    
+    <!-- Cabecera Principal -->
+    <div class="header-bar">
+      <div>
+        <h1 class="header-title">Benchmarking</h1>
+        <p class="header-subtitle">
+          Evaluación Competitiva y Matriz de Scoring Oficial &bull; Plataforma Lerna &bull; TC017 - FIUBA
+        </p>
+      </div>
+      <div class="header-tag">BENCHMARKING COMPETITIVO</div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- BLOQUE 1: LOS 4 CRITERIOS DE ANÁLISIS     -->
+    <!-- ========================================== -->
+    <div class="criteria-grid">
+      
+      <!-- Criterio 1: Usabilidad -->
+      <div class="criteria-card">
+        <div class="criteria-header">
+          <span class="criteria-icon">👤</span>
+          <h3 class="criteria-name">Usabilidad</h3>
+        </div>
+        <div class="criteria-type">Variable Cualitativa</div>
+        <p class="criteria-desc">
+          Evaluación estandarizada regida según las <strong>10 reglas heurísticas de Jakob Nielsen</strong>. Determina la facilidad de uso, visibilidad del estado y prevención de errores.
+        </p>
+        <div class="criteria-scale">
+          9-10 Heurísticas = <strong>100 pts</strong><br>
+          6-8 = 75 pts &bull; 3-5 = 50 pts &bull; 0-2 = 25 pts
+        </div>
+      </div>
+
+      <!-- Criterio 2: Accesibilidad -->
+      <div class="criteria-card">
+        <div class="criteria-header">
+          <span class="criteria-icon">👆</span>
+          <h3 class="criteria-name">Accesibilidad</h3>
+        </div>
+        <div class="criteria-type">Variable Cuantitativa</div>
+        <p class="criteria-desc">
+          Conformidad con parámetros <strong>W3C / WCAG</strong> que facilitan la navegación a personas con discapacidades. Certificación responsive y legibilidad en mobile.
+        </p>
+        <div class="criteria-scale">
+          Bajo nivel de barreras = <strong>100 pts</strong><br>
+          Incidencias moderadas = 75 / 50 / 25 pts
+        </div>
+      </div>
+
+      <!-- Criterio 3: Versatilidad -->
+      <div class="criteria-card">
+        <div class="criteria-header">
+          <span class="criteria-icon">🛠️</span>
+          <h3 class="criteria-name">Versatilidad</h3>
+        </div>
+        <div class="criteria-type">Variable Cualitativa</div>
+        <p class="criteria-desc">
+          Poder de <strong>customización y apropiación</strong> del servicio. Posibilidades de oferta, rol dual (enseñar/aprender), modalidades (virtual/presencial) y agenda semanal.
+        </p>
+        <div class="criteria-scale">
+          Rol dual y alta adaptabilidad = <strong>100 pts</strong><br>
+          Esquemas rígidos unidireccionales = 50 / 25 pts
+        </div>
+      </div>
+
+      <!-- Criterio 4: Touchpoints -->
+      <div class="criteria-card">
+        <div class="criteria-header">
+          <span class="criteria-icon">🎯</span>
+          <h3 class="criteria-name">Touchpoints</h3>
+        </div>
+        <div class="criteria-type">Variable Cuantitativa</div>
+        <p class="criteria-desc">
+          Puntos de contacto e <strong>interacción directa</strong> entre usuario y servicio: web responsiva, alertas de turno, agenda integrada, videollamada y reseñas mutuas.
+        </p>
+        <div class="criteria-scale">
+          Múltiples canales sincronizados = <strong>100 pts</strong><br>
+          Canal único o desconectado = 50 / 25 pts
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- BLOQUE 2: MATRIZ DE SCORING (OFICIAL P.22) -->
+    <!-- ========================================== -->
+    <div class="scoring-section">
+      <h2 class="section-title">Matriz de Scoring Comparativo (Total 400 pts)</h2>
+      
+      <div class="table-container">
+        <table class="scoring-table">
+          <thead>
+            <tr>
+              <th>Marcas / Plataformas Evaluadas</th>
+              <th><span class="th-icon">👤</span>Usabilidad</th>
+              <th><span class="th-icon">👆</span>Accesibilidad</th>
+              <th><span class="th-icon">🛠️</span>Versatilidad</th>
+              <th><span class="th-icon">🎯</span>Touchpoint</th>
+              <th><span class="th-icon">📊</span>SCORE TOTAL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Lerna -->
+            <tr class="row-highlight">
+              <td>
+                <span style="display:inline-block; width:10px; height:10px; background:#00b074; border-radius:50%; margin-right:8px;"></span>
+                <strong>LERNA (Nuestra Plataforma)</strong>
+              </td>
+              <td>100</td>
+              <td>100</td>
+              <td>100</td>
+              <td>75</td>
+              <td><span class="score-badge score-green">375 / 400</span></td>
+            </tr>
+            <!-- Preply -->
+            <tr>
+              <td>Preply / Italki</td>
+              <td>100</td>
+              <td>75</td>
+              <td>75</td>
+              <td>100</td>
+              <td><span class="score-badge score-green">350</span></td>
+            </tr>
+            <!-- Superprof -->
+            <tr>
+              <td>Superprof</td>
+              <td>75</td>
+              <td>75</td>
+              <td>75</td>
+              <td>50</td>
+              <td><span class="score-badge score-amber">275</span></td>
+            </tr>
+            <!-- TimeRepublik -->
+            <tr>
+              <td>TimeRepublik (Banco de Tiempo)</td>
+              <td>50</td>
+              <td>50</td>
+              <td>75</td>
+              <td>50</td>
+              <td><span class="score-badge score-amber">225</span></td>
+            </tr>
+            <!-- Canales Informales -->
+            <tr>
+              <td>Comunidades Informales (Facebook/WhatsApp)</td>
+              <td>25</td>
+              <td>25</td>
+              <td>50</td>
+              <td>25</td>
+              <td><span class="score-badge score-red">125</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- BLOQUE 3: FICHAS DE RELEVAMIENTO CON CAPTURA -->
+    <!-- ========================================== -->
+    <div class="competitors-grid">
+      
+      <!-- Ficha 1: Lerna -->
+      <div class="comp-card" style="border-top:3px solid #00b074;">
+        <div class="comp-header">
+          <span class="comp-name" style="color:#00b074;">Lerna (P2P)</span>
+          <span class="comp-score-pill" style="background:#dcfce7; color:#15803d;">375 pts</span>
+        </div>
+        <div class="comp-preview">
+          <img src="img/benchmarking/lerna-preview.png" alt="Lerna UI Preview">
+        </div>
+        <ul class="comp-features">
+          <li class="pro">Economía circular sin dinero fiduciario (1h = 1 crédito).</li>
+          <li class="pro">Custodia preventiva (freeze) que asegura el crédito.</li>
+          <li class="pro">Rol dual USER: misma cuenta para enseñar y aprender.</li>
+          <li class="pro">Agenda sincronizada con acceso directo a Meet.</li>
+        </ul>
+      </div>
+
+      <!-- Ficha 2: Preply -->
+      <div class="comp-card">
+        <div class="comp-header">
+          <span class="comp-name">Preply</span>
+          <span class="comp-score-pill">350 pts</span>
+        </div>
+        <div class="comp-preview">
+          <img src="img/benchmarking/preply-preview.png" alt="Preply Preview">
+        </div>
+        <ul class="comp-features">
+          <li class="pro">Touchpoints integrales: apps iOS/Android y aula propia.</li>
+          <li class="pro">Calendario interactivo en vivo.</li>
+          <li class="con">Tarifas dolarizadas excluyentes (USD 20-40/h).</li>
+          <li class="con">Comisión de hasta el 33% sobre el docente.</li>
+        </ul>
+      </div>
+
+      <!-- Ficha 3: Superprof -->
+      <div class="comp-card">
+        <div class="comp-header">
+          <span class="comp-name">Superprof</span>
+          <span class="comp-score-pill">275 pts</span>
+        </div>
+        <div class="comp-preview">
+          <img src="img/benchmarking/superprof-preview.png" alt="Superprof Preview">
+        </div>
+        <ul class="comp-features">
+          <li class="pro">Catálogo muy amplio y perfiles validados.</li>
+          <li class="pro">Excelente posicionamiento y filtros de zona.</li>
+          <li class="con">Cobro de "Pase Alumno" mensual obligatorio.</li>
+          <li class="con">Sin custodia de pago, sin agenda ni aula virtual.</li>
+        </ul>
+      </div>
+
+      <!-- Ficha 4: TimeRepublik -->
+      <div class="comp-card">
+        <div class="comp-header">
+          <span class="comp-name">TimeRepublik</span>
+          <span class="comp-score-pill">225 pts</span>
+        </div>
+        <div class="comp-preview">
+          <img src="img/benchmarking/timerepublik-preview.png" alt="TimeRepublik Preview">
+        </div>
+        <ul class="comp-features">
+          <li class="pro">Banco de tiempo global con TimeCoins.</li>
+          <li class="pro">Red colaborativa internacional.</li>
+          <li class="con">Usabilidad desordenada tipo feed social antiguo.</li>
+          <li class="con">Sin sistema de turnos ni confirmación de clases.</li>
+        </ul>
+      </div>
+
+      <!-- Ficha 5: Comunidades Informales -->
+      <div class="comp-card">
+        <div class="comp-header">
+          <span class="comp-name">Comunidades</span>
+          <span class="comp-score-pill" style="color:#dc2626;">125 pts</span>
+        </div>
+        <div class="comp-preview">
+          <img src="img/benchmarking/comunidades-preview.png" alt="Comunidades Preview">
+        </div>
+        <ul class="comp-features">
+          <li class="pro">Gratuidad total y contacto directo en redes.</li>
+          <li class="con">Caos operativo total en feeds sin estructura.</li>
+          <li class="con">Inseguridad y alto índice de ausentismo / cancelación.</li>
+          <li class="con">Sin reputación verificada ni trazabilidad de tiempo.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Pie / Marca -->
+    <div class="watermark">
+      <div class="watermark-left">
+        <span class="watermark-box"></span>
+        <span>PROYECTO WBS &bull; BENCHMARKING COMPETITIVO LERNA</span>
+      </div>
+      <div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #94a3b8;">
+        TC017 - Gestión del Desarrollo de Sistemas Informáticos - FIUBA
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Lightbox Modal para ampliar capturas -->
+  <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox(event)">
+    <div class="lightbox-container" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()" title="Cerrar (Esc)">✕</button>
+      <img id="lightbox-img" class="lightbox-img" src="" alt="Captura ampliada">
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <script>
+    function openLightbox(src, caption) {
+      const modal = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      const cap = document.getElementById('lightbox-caption');
+      img.src = src;
+      cap.textContent = caption || 'Captura de pantalla';
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      const modal = document.getElementById('lightbox');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    document.querySelectorAll('.comp-preview').forEach(box => {
+      box.addEventListener('click', function() {
+        const img = this.querySelector('img');
+        const card = this.closest('.comp-card');
+        const name = card.querySelector('.comp-name').textContent;
+        openLightbox(img.src, name + ' — Relevamiento de Interfaz');
+      });
+    });
+  </script>
+
+</body>
+</html>

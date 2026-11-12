@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Wireframes - Plataforma de Intercambio de Aprendizajes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #f0f2f5;
+      padding: 30px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .slide-wrapper {
+      background: #ffffff;
+      width: 1560px;
+      padding: 45px 55px 55px 55px;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.07);
+      border-radius: 8px;
+      position: relative;
+    }
+
+    /* Cabecera Principal */
+    .header-bar {
+      margin-bottom: 35px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 18px;
+    }
+    .header-title {
+      font-size: 58px;
+      font-weight: 400;
+      color: #1e293b;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+    }
+    .header-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #94a3b8;
+      margin-top: 6px;
+    }
+
+    /* Grid de 6 columnas de Wireframes */
+    .wireframes-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .wireframe-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .screen-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #8b1d2c; /* Tono borravino / morado idéntico a la cátedra */
+      text-align: center;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      line-height: 1.25;
+      letter-spacing: -0.2px;
+    }
+
+    /* Mockup de Celular */
+    .phone-mockup {
+      width: 220px;
+      height: 440px;
+      background: #ffffff;
+      border: 4px solid #1e293b;
+      border-radius: 36px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12), inset 0 0 0 2px #94a3b8;
+      padding: 10px 8px 12px 8px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 18px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .phone-mockup:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px rgba(0,0,0,0.16);
+    }
+
+    /* Notch superior */
+    .notch {
+      width: 60px;
+      height: 12px;
+      background: #1e293b;
+      border-radius: 0 0 10px 10px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    /* Pantalla interna */
+    .screen-content {
+      flex: 1;
+      background: #f8fafc;
+      border-radius: 26px;
+      padding: 18px 8px 6px 8px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Barra superior de app */
+    .app-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 8px;
+    }
+    .app-logo {
+      font-size: 11px;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+    }
+    .app-badge {
+      font-size: 9px;
+      background: #e2e8f0;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    /* Barra inferior (Bottom Nav) */
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 34px;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 4px;
+      z-index: 5;
+    }
+    .nav-icon {
+      width: 14px;
+      height: 14px;
+      background: #94a3b8;
+      border-radius: 3px;
+    }
+    .nav-icon.active {
+      background: #00b074;
+    }
+
+    /* Elementos genéricos de wireframe */
+    .wf-hero {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 8px;
+      margin-bottom: 8px;
+    }
+    .wf-line-title {
+      height: 8px;
+      background: #64748b;
+      border-radius: 4px;
+      margin-bottom: 5px;
+      width: 70%;
+    }
+    .wf-line-sub {
+      height: 5px;
+      background: #cbd5e1;
+      border-radius: 3px;
+      width: 90%;
+    }
+    .wf-badge-row {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .wf-badge-box {
+      flex: 1;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 5px 3px;
+      text-align: center;
+    }
+    .wf-badge-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: #00b074;
+    }
+    .wf-badge-lbl {
+      font-size: 7px;
+      color: #94a3b8;
+    }
+
+    .wf-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 6px;
+      margin-bottom: 6px;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .wf-thumb {
+      width: 32px;
+      height: 32px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      position: relative;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wf-thumb::after {
+      content: "";
+      width: 12px;
+      height: 12px;
+      background: #cbd5e1;
+      border-radius: 50%;
+    }
+    .wf-card-info {
+      flex: 1;
+    }
+    .wf-btn {
+      background: #00b074;
+      color: #fff;
+      font-size: 8px;
+      font-weight: 600;
+      text-align: center;
+      padding: 4px 6px;
+      border-radius: 10px;
+      margin-top: 4px;
+    }
+    .wf-btn-outline {
+      background: transparent;
+      border: 1px solid #00b074;
+      color: #00b074;
+      font-size: 8px;
+      font-weight: 600;
+      text-align: center;
+      padding: 3px 6px;
+      border-radius: 10px;
+    }
+
+    .wf-input {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      height: 20px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      padding: 0 6px;
+    }
+    .wf-input-text {
+      height: 5px;
+      background: #94a3b8;
+      border-radius: 2px;
+      width: 50%;
+    }
+
+    /* Caja de Funcionalidades Clave */
+    .features-box {
+      width: 100%;
+      text-align: left;
+    }
+    .features-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .features-list li {
+      font-size: 11.5px;
+      color: #475569;
+      line-height: 1.45;
+      margin-bottom: 6px;
+      position: relative;
+      padding-left: 13px;
+    }
+    .features-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #64748b;
+      font-weight: bold;
+    }
+
+    /* Footer / Watermark */
+    .watermark {
+      margin-top: 45px;
+      padding-top: 20px;
+      border-top: 1px solid #f1f5f9;
+      font-size: 13px;
+      color: #777;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .watermark-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .watermark-box {
+      width: 12px;
+      height: 12px;
+      background: #8b1d2c;
+      display: inline-block;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-wrapper">
+    
+    <!-- Cabecera Principal -->
+    <div class="header-bar">
+      <h1 class="header-title">Wireframes</h1>
+      <p class="header-subtitle">
+        Diseño de Experiencia de Usuario (UX) &bull; Arquitectura de Pantallas Clave &bull; TC017 - FIUBA
+      </p>
+    </div>
+
+    <!-- Grid de 6 Pantallas Wireframe -->
+    <div class="wireframes-grid">
+
+      <!-- ========================================== -->
+      <!-- PANTALLA 1: INICIO / DASHBOARD -->
+      <!-- ========================================== -->
+      <div class="wireframe-col">
+        <h3 class="screen-title">Inicio / Dashboard<br>(/home)</h3>
+        
+        <div class="phone-mockup">
+          <div class="notch"></div>
+          <div class="screen-content">
+            <!-- App Bar -->
+            <div class="app-topbar">
+              <span class="app-logo">lerna</span>
+              <span class="app-badge">22 ★</span>
+            </div>
+
+            <!-- Hero Banner -->
+            <div class="wf-hero">
+              <div class="wf-line-title" style="width:60%;"></div>
+              <div class="wf-line-sub" style="width:85%;"></div>
+            </div>
+
+            <!-- Métricas (3 badges) -->
+            <div class="wf-badge-row">
+              <div class="wf-badge-box">
+                <div class="wf-badge-num">22</div>
+                <div class="wf-badge-lbl">Créditos</div>
+              </div>
+              <div class="wf-badge-box">
+                <div class="wf-badge-num" style="color:#df6e5d;">2</div>
+                <div class="wf-badge-lbl">Pendientes</div>
+              </div>
+              <div class="wf-badge-box">
+                <div class="wf-badge-num" style="color:#eab308;">4.7★</div>
+                <div class="wf-badge-lbl">Reputación</div>
+              </div>
+            </div>
+
+            <!-- Título sección recomendados -->
+            <div style="font-size:9px; font-weight:700; color:#334155; margin-bottom:5px;">Recomendado para ti</div>
+
+            <!-- Card 1 -->
+            <div class="wf-card">
+              <div class="wf-thumb"></div>
+              <div class="wf-card-info">
+                <div class="wf-line-title" style="width:80%;"></div>
+                <div class="wf-line-sub" style="width:60%;"></div>
+                <div style="font-size:8px; color:#00b074; font-weight:600; margin-top:3px;">3 CR &bull; 120 min</div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="wf-card">
+              <div class="wf-thumb"></div>
+              <div class="wf-card-info">
+                <div class="wf-line-title" style="width:75%;"></div>
+                <div class="wf-line-sub" style="width:50%;"></div>
+                <div style="font-size:8px; color:#00b074; font-weight:600; margin-top:3px;">1 CR &bull; 60 min</div>
+              </div>
+            </div>
+
+            <!-- Bottom Nav -->
+            <div class="bottom-nav">
+              <div class="nav-icon active"></div>
+              <div class="nav-icon"></div>
+              <div class="nav-icon"></div>
+              <div class="nav-icon"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="features-box">
+          <div class="features-title">Funcionalidades clave:</div>
+          <ul class="features-list">
+            <li>Resumen métrico de créditos, solicitudes y reputación.</li>
+            <li>Carrusel inteligente de recomendaciones personalizadas.</li>
+            <li>Acceso directo al explorador de propuestas y agenda.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- PANTALLA 2: BUSCADOR DE CLASES -->
+      <!-- ========================================== -->
+      <div class="wireframe-col">
+        <h3 class="screen-title">Búsqueda y Catálogo<br>(/search)</h3>
+        
+        <div class="phone-mockup">
+          <div class="notch"></div>
+          <div class="screen-content">
+            <div class="app-topbar">
+              <span class="app-logo">Explorar</span>
+              <span class="app-badge">Filtros</span>
+            </div>
+
+            <!-- Search input -->
+            <div class="wf-input">
+              <div style="font-size:10px; color:#94a3b8; margin-right:4px;">🔍</div>
+              <div class="wf-input-text"></div>
+            </div>
+
+            <!-- Pills de categoría -->
+            <div style="display:flex; gap:4px; margin-bottom:8px; overflow:hidden;">
+              <div style="background:#00b074; color:#fff; font-size:7.5px; padding:2px 6px; border-radius:10px;">Todas</div>
+              <div style="background:#e2e8f0; color:#475569; font-size:7.5px; padding:2px 6px; border-radius:10px;">Cocina</div>
+              <div style="background:#e2e8f0; color:#475569; font-size:7.5px; padding:2px 6px; border-radius:10px;">Música</div>
+            </div>
+
+            <!-- Card Resultado 1 -->
+            <div class="wf-card">
+              <div class="wf-thumb"></div>
+              <div class="wf-card-info">
+                <div class="wf-line-title" style="width:85%;"></div>
+                <div style="font-size:7.5px; color:#64748b;">Elena R. &bull; Presencial</div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
+                  <span style="font-size:8px; color:#00b074; font-weight:700;">3 CR</span>
+                  <span class="wf-btn-outline" style="padding:1px 5px; font-size:7px;">Ver</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Resultado 2 -->
+            <div class="wf-card">
+              <div class="wf-thumb"></div>
+              <div class="wf-card-info">
+                <div class="wf-line-title" style="width:70%;"></div>
+                <div style="font-size:7.5px; color:#64748b;">Juan P. &bull; Virtual</div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
+                  <span style="font-size:8px; color:#00b074; font-weight:700;">1 CR</span>
+                  <span class="wf-btn-outline" style="padding:1px 5px; font-size:7px;">Ver</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Resultado 3 -->
+            <div class="wf-card">
+              <div class="wf-thumb"></div>
+              <div class="wf-card-info">
+                <div class="wf-line-title" style="width:80%;"></div>
+                <div style="font-size:7.5px; color:#64748b;">Carlos M. &bull; Virtual</div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
+                  <span style="font-size:8px; color:#00b074; font-weight:700;">2 CR</span>
+                  <span class="wf-btn-outline" style="padding:1px 5px; font-size:7px;">Ver</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bottom-nav">
+              <div class="nav-icon"></div>
+              <div class="nav-icon active"></div>
+              <div class="nav-icon"></div>
+              <div class="nav-icon"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="features-box">
+          <div class="features-title">Funcionalidades clave:</div>
+          <ul class="features-list">
+            <li>Búsqueda reactiva por palabra clave y categoría.</li>
+            <li>Segmentación por modalidad (Presencial/Virtual).</li>
+            <li>Filtro por costo unitario de créditos requeridos.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- PANTALLA 3: DETALLE DE PUBLICACIÓN -->
+      <!-- ========================================== -->
+      <div class="wireframe-col">
+        <h3 class="screen-title">Detalle de Propuesta<br>(/publications/:id)</h3>
+        
+        <div class="phone-mockup">
+          <div class="notch"></div>
+          <div class="screen-content">
+            <div class="app-topbar">
+              <span style="font-size:10px; color:#475569;">&larr; Volver</span>
+              <span class="app-badge">3 CR</span>
+            </div>
+
+            <!-- Gran Portada -->
+            <div style="width:100%; height:75px; background:#e2e8f0; border-radius:6px; margin-bottom:8px; display:flex; align-items:center; justify-content:center;">
+              <div style="width:24px; height:24px; background:#cbd5e1; border-radius:50%;"></div>
+            </div>
+
+            <!-- Chips -->
+            <div style="display:flex; gap:4px; margin-bottom:6px;">
+              <span style="background:#fee2e2; color:#b91c1c; font-size:7px; padding:2px 5px; border-radius:4px; font-weight:600;">Cocina</span>
+              <span style="background:#e0f2fe; color:#0369a1; font-size:7px; padding:2px 5px; border-radius:4px; font-weight:600;">Presencial</span>
+            </div>
+
+            <div class="wf-line-title" style="width:90%; height:9px;"></div>
+            <div class="wf-line-sub" style="width:100%; margin-bottom:3px;"></div>
+            <div class="wf-line-sub" style="width:85%; margin-bottom:8px;"></div>
+
+            <!-- Docente card -->
+            <div style="background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:6px; display:flex; align-items:center; gap:6px; margin-bottom:8px;">
+              <div style="width:22px; height:22px; background:#00b074; border-radius:50%; color:#fff; font-size:8px; display:flex; align-items:center; justify-content:center; font-weight:700;">ER</div>
+              <div>
+                <div style="font-size:8px; font-weight:700; color:#1e293b;">Elena Rostova</div>
+                <div style="font-size:7px; color:#64748b;">★ 4.9 &bull; 18 clases dictadas</div>
+              </div>
+            </div>
+
+            <!-- Botón Sticky Acción -->
+            <div class="wf-btn" style="padding:6px; font-size:8.5px; border-radius:12px;">
+              Solicitar Clase &bull; 3 Créditos
+            </div>
+
+            <div class="bottom-nav">
+              <div class="nav-icon"></div>
+              <div class="nav-icon active"></div>
+              <div class="nav-icon"></div>
+              <div class="nav-icon"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="features-box">
+          <div class="features-title">Funcionalidades clave:</div>
+          <ul class="features-list">
+            <li>Ficha pedagógica, nivel sugerido y requisitos.</li>
+            <li>Perfil docente con reputación e historial.</li>
+            <li>Reserva con congelamiento preventivo de crédito.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- PANTALLA 4: MIS PUBLICACIONES -->
+      <!-- ========================================== -->
+      <div class="wireframe-col">
+        <h3 class="screen-title">Mis Publicaciones<br>(/my-publications)</h3>
+        
+        <div class="phone-mockup">
+          <div class="notch"></div>
+          <div class="screen-content">
+            <div class="app-topbar">
+              <span class="app-logo">Mis Clases</span>
+              <span style="background:#00b074; color:#fff; font-size:8px; padding:2px 6px; border-radius:10px; font-weight:700;">+ Nueva</span>
+            </div>
+
+            <!-- Card Publicación 1 (Activa) -->
+            <div style="background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:7px; margin-bottom:8px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-size:7.5px; color:#00b074; font-weight:700;">● ACTIVA</span>
+                <span style="font-size:7.5px; color:#64748b;">Virtual</span>
+              </div>
+              <div class="wf-line-title" style="width:85%;"></div>
+              <div style="font-size:7.5px; color:#64748b; margin-bottom:5px;">Tecnología &bull; 2 CR por sesión</div>
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e2e8f0; padding-top:4px;">
+                <span style="font-size:7px; color:#94a3b8;">5 solicitudes</span>
+                <span style="font-size:7px; color:#0369a1; font-weight:600;">Editar</span>
+              </div>
+            </div>
+
+            <!-- Card Publicación 2 (Pausada) -->
+            <div style="background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:7px; margin-bottom:8px; opacity:0.75;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-size:7.5px; color:#94a3b8; font-weight:700;">○ PAUSADA</span>
+                <span style="font-size:7.5px; color:#64748b;">Presencial</span>
+              </div>
+              <div class="wf-line-title" style="width:70%;"></div>
+              <div style="font-size:7.5px; color:#64748b; margin-bottom:5px;">Diseño UX &bull; 1 CR</div>
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e2e8f0; padding-top:4px;">
+                <span style="font-size:7px; color:#94a3b8;">Sin cupos</span>
+                <span style="font-size:7px; color:#0369a1; font-weight:600;">Activar</span>
+              </div>
+            </div>
+
+            <!-- Floating Action Hint -->
+            <div style="border:1px dashed #cbd5e1; border-radius:6px; padding:10px; text-align:center; color:#64748b; font-size:7.5px;">
+              + Crear propuesta para enseñar
+            </div>
+
+            <div class="bottom-nav">
+              <div class="nav-icon"></div>
+              <div class="nav-icon"></div>
+              <div class="nav-icon active"></div>
+              <div class="nav-icon"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="features-box">
+          <div class="features-title">Funcionalidades clave:</div>
+          <ul class="features-list">
+            <li>Administración integral de propuestas publicadas.</li>
+            <li>Interruptor de disponibilidad inmediata (Activa / Pausa).</li>
+            <li>Acceso directo al formulario creador de clases.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- PANTALLA 5: SOLICITUDES Y ENCUENTROS -->
+      <!-- ========================================== -->
+      <div class="wireframe-col">
+        <h3 class="screen-title">Bandeja de Solicitudes<br>(/requests)</h3>
+        
+        <div class="phone-mockup">
+          <div class="notch"></div>
+          <div class="screen-content">
+            <div class="app-topbar">
+              <span class="app-logo">Solicitudes</span>
+              <span class="app-badge" style="background:#fee2e2; color:#b91c1c; font-weight:700;">2 Nuevas</span>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div style="display:flex; background:#e2e8f0; border-radius:6px; padding:2px; margin-bottom:8px;">
+              <div style="flex:1; background:#fff; font-size:7.5px; text-align:center; padding:3px; border-radius:4px; font-weight:700; color:#1e293b;">Recibidas (2)</div>
+              <div style="flex:1; font-size:7.5px; text-align:center; padding:3px; color:#64748b;">Enviadas (1)</div>
+            </div>
+
+            <!-- Solicitud Card 1 -->
+            <div style="background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:7px; margin-bottom:8px;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+                <span style="font-size:8px; font-weight:700; color:#1e293b;">Martín Gómez</span>
+                <span style="font-size:7px; color:#df6e5d; font-weight:600;">+2 CR</span>
+              </div>
+              <div style="font-size:7.5px; color:#64748b; margin-bottom:3px;">Clase: Python Inicial</div>
+              <div style="font-size:7px; color:#94a3b8; margin-bottom:6px;">📅 Mar 18 Nov &bull; 18:30 hs</div>
+              <div style="display:flex; gap:4px;">
+                <div class="wf-btn" style="flex:1; padding:3px 0;">Aceptar</div>
+                <div style="flex:1; background:#f1f5f9; color:#64748b; font-size:8px; font-weight:600; text-align:center; padding:3px 0; border-radius:10px;">Rechazar</div>
+              </div>
+            </div>
+
+            <!-- Solicitud Card 2 -->
+            <div style="background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:7px; margin-bottom:8px;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+                <span style="font-size:8px; font-weight:700; color:#1e293b;">Lucía Silva</span>
+                <span style="font-size:7px; color:#df6e5d; font-weight:600;">+1 CR</span>
+              </div>
+              <div style="font-size:7.5px; color:#64748b; margin-bottom:3px;">Clase: Guitarra Acústica</div>
+              <div style="font-size:7px; color:#94a3b8; margin-bottom:6px;">📅 Jue 20 Nov &bull; 19:00 hs</div>
+              <div style="display:flex; gap:4px;">
+                <div class="wf-btn" style="flex:1; padding:3px 0;">Aceptar</div>
+                <div style="flex:1; background:#f1f5f9; color:#64748b; font-size:8px; font-weight:600; text-align:center; padding:3px 0; border-radius:10px;">Rechazar</div>
+              </div>
+            </div>
+
+            <div class="bottom-nav">
+              <div class="nav-icon"></div>
+              <div class="nav-icon"></div>
+              <div class="nav-icon"></div>
+              <div class="nav-icon active"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="features-box">
+          <div class="features-title">Funcionalidades clave:</div>
+          <ul class="features-list">
+            <li>Bandeja dual segmentada (Recibidas y Enviadas).</li>
+            <li>Aprobación o rechazo con 1 clic y feedback de créditos.</li>
+            <li>Sincronización automática con la Agenda comunitaria.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- PANTALLA 6: AGENDA Y CALENDARIO -->
+      <!-- ========================================== -->
+      <div class="wireframe-col">
+        <h3 class="screen-title">Agenda y Calendario<br>(/calendar)</h3>
+        
+        <div class="phone-mockup">
+          <div class="notch"></div>
+          <div class="screen-content">
+            <div class="app-topbar">
+              <span class="app-logo">Noviembre 2026</span>
+              <span class="app-badge">Semana</span>
+            </div>
+
+            <!-- Mini Calendario Grid -->
+            <div style="display:grid; grid-template-columns:repeat(7, 1fr); gap:2px; margin-bottom:8px; text-align:center; font-size:7px;">
+              <span style="color:#94a3b8;">L</span><span style="color:#94a3b8;">M</span><span style="color:#94a3b8;">M</span><span style="color:#94a3b8;">J</span><span style="color:#94a3b8;">V</span><span style="color:#94a3b8;">S</span><span style="color:#94a3b8;">D</span>
+              <span>16</span><span style="background:#00b074; color:#fff; border-radius:50%; font-weight:700;">17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
+            </div>
+
+            <div style="font-size:8px; font-weight:700; color:#334155; margin-bottom:5px;">Próximas Sesiones</div>
+
+            <!-- Sesión 1: Docente -->
+            <div style="background:#fff; border-left:3px solid #00b074; border:1px solid #e2e8f0; border-radius:6px; padding:6px; margin-bottom:6px;">
+              <div style="display:flex; justify-content:space-between;">
+                <span style="font-size:7px; color:#00b074; font-weight:700;">DOY CLASE</span>
+                <span style="font-size:7px; color:#64748b;">18:00 hs</span>
+              </div>
+              <div style="font-size:8px; font-weight:700; color:#1e293b;">Python para Datos</div>
+              <div style="font-size:7px; color:#64748b; margin-bottom:4px;">Con: Martín G. &bull; Meet</div>
+              <div class="wf-btn" style="padding:2px 0; font-size:7px;">Ingresar a Videollamada</div>
+            </div>
+
+            <!-- Sesión 2: Aprendiz -->
+            <div style="background:#fff; border-left:3px solid #df6e5d; border:1px solid #e2e8f0; border-radius:6px; padding:6px; margin-bottom:6px;">
+              <div style="display:flex; justify-content:space-between;">
+                <span style="font-size:7px; color:#df6e5d; font-weight:700;">TOMO CLASE</span>
+                <span style="font-size:7px; color:#64748b;">Mañana</span>
+              </div>
+              <div style="font-size:8px; font-weight:700; color:#1e293b;">Pan de Masa Madre</div>
+              <div style="font-size:7px; color:#64748b;">Con: Elena R. &bull; Presencial</div>
+            </div>
+
+            <div class="bottom-nav">
+              <div class="nav-icon"></div>
+              <div class="nav-icon"></div>
+              <div class="nav-icon"></div>
+              <div class="nav-icon active"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="features-box">
+          <div class="features-title">Funcionalidades clave:</div>
+          <ul class="features-list">
+            <li>Planificación visual por día, semana o mes.</li>
+            <li>Diferenciación cromática de roles (Docente / Alumno).</li>
+            <li>Acceso directo a la sala virtual del encuentro.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Pie / Marca -->
+    <div class="watermark">
+      <div class="watermark-left">
+        <span class="watermark-box"></span>
+        <span>PROYECTO WBS &bull; LERNA USER INTERFACE (UI) WIREFRAMES</span>
+      </div>
+      <div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #94a3b8;">
+        TC017 - Gestión del Desarrollo de Sistemas Informáticos - FIUBA
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Matriz de Riesgos - Plataforma de Intercambio de Aprendizajes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #f0f2f5;
+      padding: 30px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .slide-wrapper {
+      background: #ffffff;
+      width: 1560px;
+      padding: 45px 55px 55px 55px;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.07);
+      border-radius: 8px;
+      position: relative;
+    }
+
+    /* Cabecera Principal */
+    .header-bar {
+      margin-bottom: 25px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .header-title {
+      font-size: 56px;
+      font-weight: 400;
+      color: #1e293b;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+    }
+    .header-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 6px;
+    }
+    .header-tag {
+      background: #fef3c7;
+      color: #b45309;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Layout Principal: Heatmap 5x5 a la izquierda, Cards de Riesgos a la derecha */
+    .risk-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    /* Mapa de Calor 5x5 */
+    .heatmap-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+    }
+    .heatmap-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .heatmap-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 11.5px;
+      color: #64748b;
+      margin-bottom: 18px;
+    }
+
+    .matrix-wrapper {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .matrix-y-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .matrix-grid-container {
+      display: flex;
+    }
+    .matrix-y-axis {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding-right: 10px;
+      font-size: 10px;
+      color: #64748b;
+      font-weight: 600;
+      width: 75px;
+      text-align: right;
+    }
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(5, 70px);
+      gap: 4px;
+      flex: 1;
+    }
+    .matrix-cell {
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-size: 9px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      transition: transform 0.15s ease;
+    }
+    .matrix-cell:hover {
+      transform: scale(1.04);
+      z-index: 5;
+    }
+
+    /* Colores del Mapa de Calor */
+    .cell-green { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+    .cell-yellow { background: #fef9c3; color: #854d0e; border: 1px solid #fef08a; }
+    .cell-orange { background: #ffedd5; color: #9a3412; border: 1px solid #fed7aa; }
+    .cell-red { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+    /* Fichas de riesgo dentro del heatmap */
+    .risk-badge-pin {
+      padding: 3px 6px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 800;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+      margin: 1px 0;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+    }
+    .pin-r01 { background: #dc2626; } /* Alto */
+    .pin-r03 { background: #ea580c; } /* Medio-Alto */
+    .pin-r04 { background: #ea580c; } /* Medio-Alto */
+    .pin-r02 { background: #d97706; } /* Medio */
+
+    .matrix-x-axis {
+      display: flex;
+      margin-left: 85px;
+      margin-top: 8px;
+    }
+    .matrix-x-cell {
+      flex: 1;
+      text-align: center;
+      font-size: 9.5px;
+      color: #64748b;
+      font-weight: 600;
+    }
+    .matrix-x-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 8px;
+      margin-left: 85px;
+    }
+
+    /* Cards de Riesgos a la derecha */
+    .risk-cards-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .r-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      border-left: 5px solid #64748b;
+      position: relative;
+    }
+    .r-card.r-high { border-left-color: #dc2626; }
+    .r-card.r-med { border-left-color: #ea580c; }
+    .r-card.r-low { border-left-color: #d97706; }
+
+    .r-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .r-id-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .r-id {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 4px;
+      color: #fff;
+    }
+    .r-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .r-calc {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+    }
+
+    .r-cause-effect {
+      font-family: 'Inter', sans-serif;
+      font-size: 11.5px;
+      color: #475569;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .r-actions {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #f1f5f9;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+    }
+    .r-mitigate strong { color: #0369a1; }
+    .r-planb strong { color: #b91c1c; }
+
+    /* Footer / Watermark */
+    .watermark {
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid #f1f5f9;
+      font-size: 13px;
+      color: #777;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .watermark-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .watermark-box {
+      width: 12px;
+      height: 12px;
+      background: #b45309;
+      display: inline-block;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-wrapper">
+    
+    <!-- Cabecera Principal -->
+    <div class="header-bar">
+      <div>
+        <h1 class="header-title">Gestión de Riesgos</h1>
+        <p class="header-subtitle">
+          Matriz de Probabilidad e Impacto &bull; Factor Humano, Coordinación y Factibilidad &bull; TC017 - FIUBA
+        </p>
+      </div>
+      <div class="header-tag">MATRIZ DE RIESGOS 5x5</div>
+    </div>
+
+    <!-- Layout: Heatmap + Cards -->
+    <div class="risk-layout">
+
+      <!-- ========================================== -->
+      <!-- COLUMNA IZQUIERDA: MAPA DE CALOR 5x5       -->
+      <!-- ========================================== -->
+      <div class="heatmap-card">
+        <h3 class="heatmap-title">Matriz de Probabilidad e Impacto</h3>
+        <p class="heatmap-subtitle">Exposición = Probabilidad (P) &times; Impacto (I)</p>
+
+        <div class="matrix-wrapper">
+          <div class="matrix-y-label">&uarr; PROBABILIDAD (P)</div>
+          
+          <div class="matrix-grid-container">
+            <!-- Eje Y -->
+            <div class="matrix-y-axis">
+              <div>0.9 Muy Alta</div>
+              <div>0.7 Alta</div>
+              <div>0.5 Media</div>
+              <div>0.3 Baja</div>
+              <div>0.1 Muy Baja</div>
+            </div>
+
+            <!-- Grilla 5x5 -->
+            <div class="matrix-grid">
+              <!-- Fila 0.9 (Muy Alta) -->
+              <div class="matrix-cell cell-yellow">0.05</div>
+              <div class="matrix-cell cell-orange">0.09</div>
+              <div class="matrix-cell cell-orange">0.18</div>
+              <div class="matrix-cell cell-red">0.36</div>
+              <div class="matrix-cell cell-red">0.72</div>
+
+              <!-- Fila 0.7 (Alta) -->
+              <div class="matrix-cell cell-green">0.04</div>
+              <div class="matrix-cell cell-yellow">0.07</div>
+              <div class="matrix-cell cell-orange">0.14</div>
+              <div class="matrix-cell cell-red" style="background:#fee2e2;">
+                <span class="risk-badge-pin pin-r01">R-01</span>
+                <span style="font-size:8px; color:#991b1b; font-weight:700;">Exp: 0.28</span>
+              </div>
+              <div class="matrix-cell cell-red">0.56</div>
+
+              <!-- Fila 0.5 (Media) -->
+              <div class="matrix-cell cell-green">0.03</div>
+              <div class="matrix-cell cell-yellow">0.05</div>
+              <div class="matrix-cell cell-yellow">0.10</div>
+              <div class="matrix-cell cell-orange" style="background:#ffedd5;">
+                <span class="risk-badge-pin pin-r03">R-03</span>
+                <span class="risk-badge-pin pin-r04">R-04</span>
+                <span style="font-size:8px; color:#9a3412; font-weight:700;">Exp: 0.20</span>
+              </div>
+              <div class="matrix-cell cell-red">0.40</div>
+
+              <!-- Fila 0.3 (Baja) -->
+              <div class="matrix-cell cell-green">0.02</div>
+              <div class="matrix-cell cell-green">0.03</div>
+              <div class="matrix-cell cell-yellow">0.06</div>
+              <div class="matrix-cell cell-yellow" style="background:#fef9c3;">
+                <span class="risk-badge-pin pin-r02">R-02</span>
+                <span style="font-size:8px; color:#854d0e; font-weight:700;">Exp: 0.12</span>
+              </div>
+              <div class="matrix-cell cell-orange">0.24</div>
+
+              <!-- Fila 0.1 (Muy Baja) -->
+              <div class="matrix-cell cell-green">0.01</div>
+              <div class="matrix-cell cell-green">0.01</div>
+              <div class="matrix-cell cell-green">0.02</div>
+              <div class="matrix-cell cell-yellow">0.04</div>
+              <div class="matrix-cell cell-orange">0.08</div>
+            </div>
+          </div>
+
+          <!-- Eje X -->
+          <div class="matrix-x-axis">
+            <div class="matrix-x-cell">0.05<br>Muy Bajo</div>
+            <div class="matrix-x-cell">0.10<br>Bajo</div>
+            <div class="matrix-x-cell">0.20<br>Moderado</div>
+            <div class="matrix-x-cell">0.40<br>Alto</div>
+            <div class="matrix-x-cell">0.80<br>Muy Alto</div>
+          </div>
+          <div class="matrix-x-label">IMPACTO (I) &rarr;</div>
+        </div>
+
+        <div style="margin-top:20px; display:flex; justify-content:space-around; font-size:11px; font-weight:600; color:#475569; border-top:1px solid #f1f5f9; padding-top:12px;">
+          <div><span style="display:inline-block; width:10px; height:10px; background:#fee2e2; border:1px solid #fca5a5; border-radius:2px;"></span> Crítico (&gt;0.25)</div>
+          <div><span style="display:inline-block; width:10px; height:10px; background:#ffedd5; border:1px solid #fdba74; border-radius:2px;"></span> Moderado (0.15 - 0.25)</div>
+          <div><span style="display:inline-block; width:10px; height:10px; background:#fef9c3; border:1px solid #fde047; border-radius:2px;"></span> Bajo (0.05 - 0.14)</div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- COLUMNA DERECHA: FICHAS DE ACCIÓN Y PLAN B -->
+      <!-- ========================================== -->
+      <div class="risk-cards-col">
+
+        <!-- R-01 -->
+        <div class="r-card r-high">
+          <div class="r-header">
+            <div class="r-id-title">
+              <span class="r-id pin-r01">R-01</span>
+              <span class="r-name">Disponibilidad por Exámenes Parciales</span>
+            </div>
+            <span class="r-calc" style="color:#b91c1c; background:#fee2e2;">P: 0.7 &times; I: 0.4 = Exp: 0.28 (ALTO)</span>
+          </div>
+          <p class="r-cause-effect">
+            <strong>Causa:</strong> Superposición con fechas de exámenes y entregas de otras materias en sprints críticos.<br>
+            <strong>Efecto:</strong> Caída drástica de velocidad y retraso acumulado hacia la entrega final.
+          </p>
+          <div class="r-actions">
+            <div class="r-mitigate">
+              <strong>Mitigación Activa:</strong> Sprints cortos semanales, declaración anticipada de disponibilidad por miembro y colchón temporal.
+            </div>
+            <div class="r-planb">
+              <strong>Plan de Contingencia (Plan B):</strong> Podar de inmediato las historias del Release 2 del USM y reasignar el 100% de horas al <em>walking skeleton</em> del MVP.
+            </div>
+          </div>
+        </div>
+
+        <!-- R-03 -->
+        <div class="r-card r-med">
+          <div class="r-header">
+            <div class="r-id-title">
+              <span class="r-id pin-r03">R-03</span>
+              <span class="r-name">Fallas en Comunicación Asincrónica y Bloqueos</span>
+            </div>
+            <span class="r-calc" style="color:#c2410c; background:#ffedd5;">P: 0.5 &times; I: 0.4 = Exp: 0.20 (MEDIO)</span>
+          </div>
+          <p class="r-cause-effect">
+            <strong>Causa:</strong> Trabajo remoto en horarios dispares y demora en reportar trabas técnicas.<br>
+            <strong>Efecto:</strong> Retrabajo, tareas duplicadas o miembros frenados esperando definiciones.
+          </p>
+          <div class="r-actions">
+            <div class="r-mitigate">
+              <strong>Mitigación Activa:</strong> Checkpoints diarios obligatorios en el chat (3 preguntas: qué hice, qué haré, qué me bloquea).
+            </div>
+            <div class="r-planb">
+              <strong>Plan de Contingencia (Plan B):</strong> Sesión urgente de <em>pair programming</em> en llamada en vivo para destrabar el bloqueo entre dos miembros.
+            </div>
+          </div>
+        </div>
+
+        <!-- R-04 -->
+        <div class="r-card r-med">
+          <div class="r-header">
+            <div class="r-id-title">
+              <span class="r-id pin-r04">R-04</span>
+              <span class="r-name">Retrasos y Desfasajes en Entregas Individuales</span>
+            </div>
+            <span class="r-calc" style="color:#c2410c; background:#ffedd5;">P: 0.5 &times; I: 0.4 = Exp: 0.20 (MEDIO)</span>
+          </div>
+          <p class="r-cause-effect">
+            <strong>Causa:</strong> Subestimación de complejidad técnica o falta de claridad en criterios de aceptación.<br>
+            <strong>Efecto:</strong> Cuello de botella en integración tardía y riesgo de aplicación no testeada.
+          </p>
+          <div class="r-actions">
+            <div class="r-mitigate">
+              <strong>Mitigación Activa:</strong> Descomponer historias en tareas de &le; 1-2 días con <em>Definition of Done</em> rigurosa.
+            </div>
+            <div class="r-planb">
+              <strong>Plan de Contingencia (Plan B):</strong> Redistribuir subtareas pendientes a integrantes con mayor carga libre o desescalar a versión mínima.
+            </div>
+          </div>
+        </div>
+
+        <!-- R-02 -->
+        <div class="r-card r-low">
+          <div class="r-header">
+            <div class="r-id-title">
+              <span class="r-id pin-r02">R-02</span>
+              <span class="r-name">Corrupción del Alcance (Scope Creep)</span>
+            </div>
+            <span class="r-calc" style="color:#b45309; background:#fef9c3;">P: 0.3 &times; I: 0.4 = Exp: 0.12 (MODERADO)</span>
+          </div>
+          <p class="r-cause-effect">
+            <strong>Causa:</strong> Entusiasmo por sumar detalles visuales o ideas accesorias fuera del alcance aprobado.<br>
+            <strong>Efecto:</strong> Desvío de horas vitales para la estabilización y pruebas de flujos troncales.
+          </p>
+          <div class="r-actions">
+            <div class="r-mitigate">
+              <strong>Mitigación Activa:</strong> Congelamiento formal del alcance en el MVP V3 y WBS aprobada; postergar ideas extra a Release 2.
+            </div>
+            <div class="r-planb">
+              <strong>Plan de Contingencia (Plan B):</strong> Si un feature accesorio demora o inestabiliza la app, pausarlo y ocultarlo del frontend.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Pie / Marca -->
+    <div class="watermark">
+      <div class="watermark-left">
+        <span class="watermark-box"></span>
+        <span>PROYECTO WBS &bull; MATRIZ DE RIESGOS LERNA</span>
+      </div>
+      <div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #94a3b8;">
+        TC017 - Gestión del Desarrollo de Sistemas Informáticos - FIUBA
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

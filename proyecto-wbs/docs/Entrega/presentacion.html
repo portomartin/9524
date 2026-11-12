@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Defensa Oral - Suite de Presentación Lerna (TC017 FIUBA)</title>
+  <link rel="stylesheet" href="slides-theme.css">
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      background: #0f172a;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Barra Superior de Control de la Presentación */
+    .presenter-bar {
+      height: 60px;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+    .brand-pill {
+      font-size: 11px;
+      font-weight: 700;
+      color: #00b074;
+      background: rgba(0, 176, 116, 0.15);
+      border: 1px solid rgba(0, 176, 116, 0.3);
+      padding: 3px 10px;
+      border-radius: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Píldoras de Diapositiva */
+    .slides-nav {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .slide-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .slide-btn:hover {
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+    }
+    .slide-btn.active {
+      background: #00b074;
+      color: #ffffff;
+      font-weight: 700;
+      border-color: #00b074;
+      box-shadow: 0 0 16px rgba(0, 176, 116, 0.4);
+    }
+    .slide-btn-num {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 50%;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    /* Controles de Navegación */
+    .controls-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-arrow-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .nav-arrow-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .slide-counter {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: #94a3b8;
+      font-weight: 600;
+      min-width: 65px;
+      text-align: center;
+    }
+    .icon-action-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #94a3b8;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .icon-action-btn:hover {
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Viewport del Slide (Iframe a pantalla completa) */
+    .slide-viewport {
+      flex: 1;
+      width: 100%;
+      height: calc(100vh - 60px);
+      border: none;
+      background: #f0f2f5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra Superior del Presentador -->
+  <header class="presenter-bar">
+    
+    <!-- Identidad -->
+    <div class="brand-section">
+      <span class="brand-logo">LERNA</span>
+      <span class="brand-pill">COLOQUIO TC017 &bull; FIUBA</span>
+    </div>
+
+    <!-- Menú de Diapositivas (7 Entregables) -->
+    <nav class="slides-nav">
+      <button class="slide-btn active" onclick="goToSlide(0)">
+        <span class="slide-btn-num">1</span> Scope Canvas
+      </button>
+      <button class="slide-btn" onclick="goToSlide(1)">
+        <span class="slide-btn-num">2</span> Storytelling
+      </button>
+      <button class="slide-btn" onclick="goToSlide(2)">
+        <span class="slide-btn-num">3</span> Benchmarking
+      </button>
+      <button class="slide-btn" onclick="goToSlide(3)">
+        <span class="slide-btn-num">4</span> Wireframes
+      </button>
+      <button class="slide-btn" onclick="goToSlide(4)">
+        <span class="slide-btn-num">5</span> Workflows
+      </button>
+      <button class="slide-btn" onclick="goToSlide(5)">
+        <span class="slide-btn-num">6</span> Riesgos
+      </button>
+      <button class="slide-btn" onclick="goToSlide(6)">
+        <span class="slide-btn-num">7</span> User Story Map
+      </button>
+    </nav>
+
+    <!-- Controles & Teclado -->
+    <div class="controls-section">
+      <button class="nav-arrow-btn" onclick="prevSlide()" title="Anterior (Flecha Izquierda &larr;)">
+        &larr; Ant
+      </button>
+      <span id="slide-counter" class="slide-counter">1 / 7</span>
+      <button class="nav-arrow-btn" onclick="nextSlide()" title="Siguiente (Flecha Derecha &rarr; o Espacio)">
+        Sig &rarr;
+      </button>
+      <button class="icon-action-btn" onclick="openCurrentInNewTab()" title="Abrir diapositiva sola en nueva pestaña">
+        ↗
+      </button>
+      <button class="icon-action-btn" onclick="toggleFullscreen()" title="Pantalla Completa (F)">
+        ⛶
+      </button>
+    </div>
+
+  </header>
+
+  <!-- Visor de Diapositiva -->
+  <iframe id="slide-frame" class="slide-viewport" src="scope-canvas-slide.html" title="Diapositiva Activa"></iframe>
+
+  <script>
+    const slides = [
+      { name: "Scope Canvas", file: "scope-canvas-slide.html", tag: "scope-canvas" },
+      { name: "Storytelling", file: "storytelling-slide.html", tag: "storytelling" },
+      { name: "Benchmarking", file: "benchmarking-slide.html", tag: "benchmarking" },
+      { name: "Wireframes", file: "wireframes-slide.html", tag: "wireframes" },
+      { name: "Workflows", file: "workflows-slide.html", tag: "workflows" },
+      { name: "Matriz de Riesgos", file: "riesgos-slide.html", tag: "riesgos" },
+      { name: "User Story Map", file: "user-story-map-slide.html", tag: "usm" }
+    ];
+
+    let currentIndex = 0;
+    const frame = document.getElementById("slide-frame");
+    const counter = document.getElementById("slide-counter");
+    const buttons = document.querySelectorAll(".slide-btn");
+
+    function goToSlide(index) {
+      if (index < 0 || index >= slides.length) return;
+      currentIndex = index;
+      
+      // Actualizar iframe
+      frame.src = slides[currentIndex].file;
+
+      // Actualizar contador y botones
+      counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+      buttons.forEach((btn, i) => {
+        btn.classList.toggle("active", i === currentIndex);
+      });
+
+      // Actualizar hash en URL
+      window.location.hash = slides[currentIndex].tag;
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) goToSlide(currentIndex - 1);
+    }
+
+    function nextSlide() {
+      if (currentIndex < slides.length - 1) goToSlide(currentIndex + 1);
+    }
+
+    function openCurrentInNewTab() {
+      window.open(slides[currentIndex].file, "_blank");
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Navegación por teclado (Flechas y Espacio)
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" || e.key === "PageDown" || (e.key === " " && !e.target.matches("input, textarea"))) {
+        nextSlide();
+      } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+        prevSlide();
+      } else if (e.key === "f" || e.key === "F") {
+        toggleFullscreen();
+      }
+    });
+
+    // Leer hash inicial si existe
+    window.addEventListener("DOMContentLoaded", () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash) {
+        const foundIndex = slides.findIndex(s => s.tag === hash);
+        if (foundIndex !== -1) {
+          goToSlide(foundIndex);
+          return;
+        }
+      }
+      goToSlide(0);
+    });
+  </script>
+
+</body>
+</html>

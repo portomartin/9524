@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Storytelling - Plataforma de Intercambio de Aprendizajes</title>
+  <link rel="stylesheet" href="slides-theme.css">
+  <style>
+    /* Estilos específicos de Storytelling */
+    .story-section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .story-section-title::before {
+      content: "";
+      width: 4px;
+      height: 16px;
+      background: #dc2626;
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    /* Grillas de 2 filas: 4 arriba (contexto/problema), 3 abajo (resolución/éxito) */
+    .story-row-1 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .story-row-2 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    /* Tarjeta de Viñeta */
+    .vignette-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border-top: 4px solid #64748b;
+    }
+    .vignette-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+    }
+    .vignette-card.step-problem { border-top-color: #ef4444; }
+    .vignette-card.step-idea { border-top-color: #f59e0b; }
+    .vignette-card.step-deal { border-top-color: #0284c7; }
+    .vignette-card.step-session { border-top-color: #6366f1; }
+    .vignette-card.step-reciprocity { border-top-color: #0d9488; }
+    .vignette-card.step-success { 
+      border-top-color: #00b074; 
+      background: #f0fdf4;
+    }
+
+    /* Contenedor de la Ilustración */
+    .vignette-img-box {
+      width: 100%;
+      height: 165px;
+      background: #f8fafc;
+      overflow: hidden;
+      position: relative;
+      cursor: zoom-in;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .story-row-2 .vignette-img-box {
+      height: 185px; /* Un poco más alta para las 3 tarjetas inferiores */
+    }
+    .vignette-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+    .vignette-img-box:hover img {
+      transform: scale(1.04);
+    }
+    .vignette-zoom-hint {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      background: rgba(15, 23, 42, 0.75);
+      color: #ffffff;
+      font-size: 8.5px;
+      font-family: var(--font-body);
+      padding: 2px 6px;
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+    .vignette-img-box:hover .vignette-zoom-hint {
+      opacity: 1;
+    }
+
+    /* Cuerpo de la Tarjeta */
+    .vignette-body {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .vignette-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .vignette-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #f1f5f9;
+      color: #475569;
+    }
+    .vignette-card.step-problem .vignette-badge { background: #fee2e2; color: #b91c1c; }
+    .vignette-card.step-idea .vignette-badge { background: #fef3c7; color: #b45309; }
+    .vignette-card.step-deal .vignette-badge { background: #e0f2fe; color: #0369a1; }
+    .vignette-card.step-success .vignette-badge { background: #dcfce7; color: #15803d; }
+
+    .vignette-time {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 600;
+      color: #94a3b8;
+    }
+
+    .vignette-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      line-height: 1.25;
+      letter-spacing: -0.2px;
+    }
+    .vignette-desc {
+      font-family: var(--font-body);
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      margin-bottom: 10px;
+      flex: 1;
+    }
+
+    /* Caja de Voz del Orador (Defense Speech) */
+    .speech-box {
+      font-family: var(--font-body);
+      font-size: 10.5px;
+      font-style: italic;
+      color: #0f172a;
+      background: #f8fafc;
+      border-left: 3px solid #cbd5e1;
+      padding: 7px 9px;
+      border-radius: 0 4px 4px 0;
+      line-height: 1.4;
+    }
+    .vignette-card.step-success .speech-box {
+      background: #ffffff;
+      border-left-color: #00b074;
+      color: #065f46;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-wrapper">
+    
+    <!-- Cabecera Principal -->
+    <div class="header-bar">
+      <div>
+        <h1 class="header-title">Storytelling</h1>
+        <p class="header-subtitle">
+          De la Frustración Analógica al Intercambio Colaborativo &bull; 7 Momentos Clave &bull; TC017 - FIUBA
+        </p>
+      </div>
+      <div class="header-tag tag-red">HISTORIA EN 7 MOMENTOS</div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- FILA 1: CONTEXTO, PROBLEMA Y DESCUBRIMIENTO -->
+    <!-- ========================================== -->
+    <div class="story-section-title">Fase 1: El Desafío y el Descubrimiento de la Solución</div>
+    <div class="story-row-1">
+
+      <!-- 1. Contexto -->
+      <div class="vignette-card">
+        <div class="vignette-img-box" onclick="openLightbox('img/storytelling/scene-1-contexto.png', '1. El Contexto Cotidiano — Talentos Aislados')">
+          <img src="img/storytelling/scene-1-contexto.png" alt="Viñeta 1: Contexto Cotidiano">
+          <span class="vignette-zoom-hint">🔍 Ampliar</span>
+        </div>
+        <div class="vignette-body">
+          <div class="vignette-header">
+            <span class="vignette-badge">1 &bull; Contexto</span>
+            <span class="vignette-time">⏱️ 20s</span>
+          </div>
+          <h3 class="vignette-title">Saberes Aislados</h3>
+          <p class="vignette-desc">
+            <strong>Martín</strong> programa webs pero necesita hablar inglés para conseguir trabajo remoto. <strong>Sofía</strong> domina inglés pero necesita su web profesional. Saberes complementarios pero sin presupuesto.
+          </p>
+          <div class="speech-box">
+            "Dos personas con conocimientos valiosos y ganas de superarse, pero bloqueadas por el dinero."
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. El Dolor Analógico -->
+      <div class="vignette-card step-problem">
+        <div class="vignette-img-box" onclick="openLightbox('img/storytelling/scene-2-problema.png', '2. El Dolor y la Barrera — El Abismo Monetario y Grupos de Facebook')">
+          <img src="img/storytelling/scene-2-problema.png" alt="Viñeta 2: El Dolor y la Barrera">
+          <span class="vignette-zoom-hint">🔍 Ampliar</span>
+        </div>
+        <div class="vignette-body">
+          <div class="vignette-header">
+            <span class="vignette-badge">2 &bull; El Dolor</span>
+            <span class="vignette-time">⏱️ 20s</span>
+          </div>
+          <h3 class="vignette-title">La Barrera Monetaria</h3>
+          <p class="vignette-desc">
+            Las academias cobran tarifas prohibitivas en dólares ($15-25 USD/h). Los grupos de Facebook terminan en carteles ignorados, mensajes sin respuesta, cancelaciones a último momento y desconfianza.
+          </p>
+          <div class="speech-box">
+            "Contratar tutores cuesta dinero que no tienen, y el trueque informal genera frustración y ausentismo."
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. La Idea Disruptiva -->
+      <div class="vignette-card step-idea">
+        <div class="vignette-img-box" onclick="openLightbox('img/storytelling/scene-3-idea.png', '3. La Revelación — La Idea de Trueque de Tiempo')">
+          <img src="img/storytelling/scene-3-idea.png" alt="Viñeta 3: El Descubrimiento">
+          <span class="vignette-zoom-hint">🔍 Ampliar</span>
+        </div>
+        <div class="vignette-body">
+          <div class="vignette-header">
+            <span class="vignette-badge">3 &bull; La Idea</span>
+            <span class="vignette-time">⏱️ 15s</span>
+          </div>
+          <h3 class="vignette-title">La Revelación P2P</h3>
+          <p class="vignette-desc">
+            Surge la pregunta clave: <em>¿Por qué pagar en dinero lo que podemos retribuir enseñando lo que sabemos?</em> Descubren <strong>Lerna</strong>: intercambio formativo donde la moneda es el tiempo (1h = 1 crédito).
+          </p>
+          <div class="speech-box">
+            "¿Por qué pagar en dinero si podemos intercambiar valor dedicando horas formativas?"
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. El Acuerdo Seguro -->
+      <div class="vignette-card step-deal">
+        <div class="vignette-img-box" onclick="openLightbox('img/storytelling/scene-4-acuerdo.png', '4. El Acuerdo Seguro — Custodia Preventiva (Freeze)')">
+          <img src="img/storytelling/scene-4-acuerdo.png" alt="Viñeta 4: El Acuerdo">
+          <span class="vignette-zoom-hint">🔍 Ampliar</span>
+        </div>
+        <div class="vignette-body">
+          <div class="vignette-header">
+            <span class="vignette-badge">4 &bull; El Acuerdo</span>
+            <span class="vignette-time">⏱️ 20s</span>
+          </div>
+          <h3 class="vignette-title">Custodia Preventiva</h3>
+          <p class="vignette-desc">
+            El motor de compatibilidad detecta la coincidencia temática y horaria. Sofía solicita clase a Martín: los créditos quedan en <strong>custodia (freeze)</strong>, garantizando compromiso mutuo sin ausentismo.
+          </p>
+          <div class="speech-box">
+            "Pactan turno; los créditos en custodia garantizan que ambas partes se comprometan sin cancelaciones."
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- FILA 2: LOS ENCUENTROS Y LA RESOLUCIÓN    -->
+    <!-- ========================================== -->
+    <div class="story-section-title">Fase 2: La Experiencia, la Reciprocidad y el Desenlace Feliz</div>
+    <div class="story-row-2">
+
+      <!-- 5. Primera Clase -->
+      <div class="vignette-card step-session">
+        <div class="vignette-img-box" onclick="openLightbox('img/storytelling/scene-5-primera-clase.png', '5. El Encuentro — Martín enseña Desarrollo Web a Sofía')">
+          <img src="img/storytelling/scene-5-primera-clase.png" alt="Viñeta 5: Primera Clase">
+          <span class="vignette-zoom-hint">🔍 Ampliar</span>
+        </div>
+        <div class="vignette-body">
+          <div class="vignette-header">
+            <span class="vignette-badge" style="background:#e0e7ff; color:#4338ca;">5 &bull; Primera Clase</span>
+            <span class="vignette-time">⏱️ 20s</span>
+          </div>
+          <h3 class="vignette-title">Martín Enseña Desarrollo Web</h3>
+          <p class="vignette-desc">
+            Llega el jueves y se conectan puntuales por videollamada. Martín guía a Sofía paso a paso en la maquetación de su sitio web profesional. La sesión fluye con calidez y paciencia. Sofía confirma la finalización del servicio con un clic.
+          </p>
+          <div class="speech-box">
+            "La clase fluye persona a persona. Sofía aprende y confirma la finalización del encuentro."
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Reciprocidad -->
+      <div class="vignette-card step-reciprocity">
+        <div class="vignette-img-box" onclick="openLightbox('img/storytelling/scene-6-reciprocidad.png', '6. La Reciprocidad en Acción — Sofía entrena el Inglés de Martín')">
+          <img src="img/storytelling/scene-6-reciprocidad.png" alt="Viñeta 6: Reciprocidad">
+          <span class="vignette-zoom-hint">🔍 Ampliar</span>
+        </div>
+        <div class="vignette-body">
+          <div class="vignette-header">
+            <span class="vignette-badge" style="background:#ccfbf1; color:#0f766e;">6 &bull; Reciprocidad</span>
+            <span class="vignette-time">⏱️ 20s</span>
+          </div>
+          <h3 class="vignette-title">Sofía Enseña Inglés Técnico</h3>
+          <p class="vignette-desc">
+            Con los créditos acreditados en su balance, Martín le solicita clase a Sofía. Ella lidera una práctica intensiva de conversación en inglés para sus entrevistas laborales. El valor circula de forma equitativa y recíproca.
+          </p>
+          <div class="speech-box">
+            "Días después, se cumple la reciprocidad: Sofía entrena el inglés de Martín para su trabajo."
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Misión Cumplida -->
+      <div class="vignette-card step-success">
+        <div class="vignette-img-box" onclick="openLightbox('img/storytelling/scene-7-mision-cumplida.png', '7. ¡Misión Cumplida! — Ambos Crecieron sin Gastar Dinero')">
+          <img src="img/storytelling/scene-7-mision-cumplida.png" alt="Viñeta 7: Misión Cumplida">
+          <span class="vignette-zoom-hint">🔍 Ampliar</span>
+        </div>
+        <div class="vignette-body">
+          <div class="vignette-header">
+            <span class="vignette-badge">7 &bull; Desenlace Feliz</span>
+            <span class="vignette-time">⏱️ 15s</span>
+          </div>
+          <h3 class="vignette-title" style="color:#065f46;">¡Misión Cumplida!</h3>
+          <p class="vignette-desc" style="color:#065f46;">
+            Sofía publicó su web profesional y Martín aprobó su entrevista en inglés. Ambos se calificaron mutuamente con <strong>5 estrellas</strong>. Adquirieron habilidades vitales, generaron reputación comunitaria y ninguno gastó un solo peso.
+          </p>
+          <div class="speech-box">
+            "Ambos crecieron profesionalmente, generaron comunidad y el conocimiento circuló libremente."
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Pie / Marca -->
+    <div class="watermark">
+      <div class="watermark-left">
+        <span class="watermark-box" style="background:#dc2626;"></span>
+        <span>PROYECTO WBS &bull; STORYTELLING LERNA (7 MOMENTOS CLAVE)</span>
+      </div>
+      <div class="watermark-sub">
+        TC017 - Gestión del Desarrollo de Sistemas Informáticos - FIUBA
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox(event)">
+    <div class="lightbox-container" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()" title="Cerrar (Esc)">✕</button>
+      <img id="lightbox-img" class="lightbox-img" src="" alt="Ilustración ampliada">
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <script>
+    function openLightbox(src, caption) {
+      const modal = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      const cap = document.getElementById('lightbox-caption');
+      img.src = src;
+      cap.textContent = caption || 'Ilustración del Storytelling';
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightbox');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+</body>
+</html>

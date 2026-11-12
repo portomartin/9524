@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>User Story Map - Plataforma de Intercambio de Aprendizajes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #f0f2f5;
+      padding: 30px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .slide-wrapper {
+      background: #ffffff;
+      width: 1560px;
+      padding: 45px 50px 55px 50px;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.07);
+      border-radius: 8px;
+      position: relative;
+    }
+
+    /* Cabecera Principal */
+    .header-bar {
+      margin-bottom: 25px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .header-title {
+      font-size: 56px;
+      font-weight: 400;
+      color: #1e293b;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+    }
+    .header-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 6px;
+    }
+    .header-tag {
+      background: #ecfdf5;
+      color: #047857;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Tablero USM */
+    .usm-board {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    /* Fila 1: Backbone / Actividades del Viaje de Usuario (7 columnas) */
+    .backbone-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+    }
+    .backbone-card {
+      background: #1e293b;
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 12px 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .backbone-step {
+      font-size: 10px;
+      font-weight: 700;
+      color: #94a3b8;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .backbone-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.2px;
+    }
+
+    /* Swimlanes de Releases */
+    .swimlane {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .swimlane-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .swimlane-badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .badge-mvp {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+    }
+    .badge-r2 {
+      background: #e0e7ff;
+      color: #4338ca;
+      border: 1px solid #a5b4fc;
+    }
+    .swimlane-line {
+      flex: 1;
+      height: 1px;
+      background: #cbd5e1;
+    }
+
+    /* Grilla de Post-its por Swimlane (7 columnas) */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+    .col-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Post-it Card */
+    .postit {
+      border-radius: 6px;
+      padding: 12px 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+      font-family: 'Inter', sans-serif;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      cursor: default;
+      position: relative;
+    }
+    .postit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+    }
+    .postit-mvp {
+      background: #fef9c3; /* Amarillo post-it tradicional */
+      border: 1px solid #fde047;
+      color: #713f12;
+    }
+    .postit-r2 {
+      background: #f1f5f9; /* Gris azulado para Release 2 */
+      border: 1px solid #cbd5e1;
+      color: #334155;
+    }
+
+    .postit-id {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .postit-wbs {
+      font-size: 8.5px;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 3px;
+      background: rgba(0,0,0,0.06);
+    }
+    .postit-text {
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    /* Línea de Corte Destacada */
+    .slice-divider {
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .slice-tag {
+      background: #dc2626;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 6px rgba(220, 38, 38, 0.25);
+      white-space: nowrap;
+    }
+    .slice-dashes {
+      flex: 1;
+      border-top: 2px dashed #dc2626;
+    }
+
+    /* Footer / Watermark */
+    .watermark {
+      margin-top: 25px;
+      padding-top: 18px;
+      border-top: 1px solid #f1f5f9;
+      font-size: 13px;
+      color: #777;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .watermark-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .watermark-box {
+      width: 12px;
+      height: 12px;
+      background: #047857;
+      display: inline-block;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-wrapper">
+    
+    <!-- Cabecera Principal -->
+    <div class="header-bar">
+      <div>
+        <h1 class="header-title">User Story Map (USM)</h1>
+        <p class="header-subtitle">
+          Backbone de Actividades, Flujo de Usuario y Línea de Corte del MVP &bull; TC017 - FIUBA
+        </p>
+      </div>
+      <div class="header-tag">JEFF PATTON USER STORY MAPPING</div>
+    </div>
+
+    <!-- Tablero USM -->
+    <div class="usm-board">
+
+      <!-- ========================================== -->
+      <!-- BACKBONE: 7 ACTIVIDADES DEL VIAJE DE USUARIO -->
+      <!-- ========================================== -->
+      <div class="backbone-row">
+        
+        <div class="backbone-card">
+          <div class="backbone-step">Actividad 1</div>
+          <div class="backbone-title">Gestión de Cuenta</div>
+        </div>
+
+        <div class="backbone-card">
+          <div class="backbone-step">Actividad 2</div>
+          <div class="backbone-title">Perfil y Saberes</div>
+        </div>
+
+        <div class="backbone-card">
+          <div class="backbone-step">Actividad 3</div>
+          <div class="backbone-title">Búsqueda y Filtros</div>
+        </div>
+
+        <div class="backbone-card">
+          <div class="backbone-step">Actividad 4</div>
+          <div class="backbone-title">Solicitud y Agenda</div>
+        </div>
+
+        <div class="backbone-card">
+          <div class="backbone-step">Actividad 5</div>
+          <div class="backbone-title">Sesión y Freeze</div>
+        </div>
+
+        <div class="backbone-card">
+          <div class="backbone-step">Actividad 6</div>
+          <div class="backbone-title">Calificación y Rating</div>
+        </div>
+
+        <div class="backbone-card">
+          <div class="backbone-step">Actividad 7</div>
+          <div class="backbone-title">Moderación</div>
+        </div>
+
+      </div>
+
+      <!-- ========================================== -->
+      <!-- SWIMLANE 1: MVP V3 (WALKING SKELETON)      -->
+      <!-- ========================================== -->
+      <div class="swimlane">
+        <div class="swimlane-header">
+          <span class="swimlane-badge badge-mvp">Release 1 &bull; MVP V3 (Coloquio / Producción en Vivo)</span>
+          <div class="swimlane-line"></div>
+        </div>
+
+        <div class="cards-grid">
+          
+          <!-- Col 1: Cuenta -->
+          <div class="col-stack">
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-01</span><span class="postit-wbs">WBS 2.1.1</span></div>
+              <div class="postit-text">Registro de usuario (+20 créditos iniciales de cortesía).</div>
+            </div>
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-02</span><span class="postit-wbs">WBS 2.1.2</span></div>
+              <div class="postit-text">Inicio y cierre de sesión seguro (JWT).</div>
+            </div>
+          </div>
+
+          <!-- Col 2: Perfil -->
+          <div class="col-stack">
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-03</span><span class="postit-wbs">WBS 2.1.4</span></div>
+              <div class="postit-text">Consulta de perfil, avatar y balance de créditos.</div>
+            </div>
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-04</span><span class="postit-wbs">WBS 2.2.1</span></div>
+              <div class="postit-text">Publicar clase con modalidad, cupo, duración y costo.</div>
+            </div>
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-06</span><span class="postit-wbs">WBS 2.1.8</span></div>
+              <div class="postit-text">Disponibilidad semanal (días y franjas horarias).</div>
+            </div>
+          </div>
+
+          <!-- Col 3: Búsqueda -->
+          <div class="col-stack">
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-07</span><span class="postit-wbs">WBS 2.3.1</span></div>
+              <div class="postit-text">Buscador en vivo por palabra clave en título.</div>
+            </div>
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-08</span><span class="postit-wbs">WBS 2.3.2</span></div>
+              <div class="postit-text">Filtros por categoría, nivel, modalidad y slider de créditos.</div>
+            </div>
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-09</span><span class="postit-wbs">WBS 2.3.4</span></div>
+              <div class="postit-text">Matching recíproco directo entre pares.</div>
+            </div>
+          </div>
+
+          <!-- Col 4: Solicitud y Agenda -->
+          <div class="col-stack">
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-10</span><span class="postit-wbs">WBS 2.4.1</span></div>
+              <div class="postit-text">Enviar solicitud fijando fecha y franja horaria.</div>
+            </div>
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-11</span><span class="postit-wbs">WBS 2.4.3</span></div>
+              <div class="postit-text">Docente acepta o rechaza solicitud de clase.</div>
+            </div>
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-12</span><span class="postit-wbs">WBS 2.4.5</span></div>
+              <div class="postit-text">Agenda sincronizada (Clases que doy / tomo) con link a Meet.</div>
+            </div>
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-13</span><span class="postit-wbs">WBS 2.4.8</span></div>
+              <div class="postit-text">Cancelación previa de sesión acordada (>24h).</div>
+            </div>
+          </div>
+
+          <!-- Col 5: Freeze y Créditos -->
+          <div class="col-stack">
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-14</span><span class="postit-wbs">WBS 2.5.1</span></div>
+              <div class="postit-text">Billetera: saldo disponible vs saldo en custodia.</div>
+            </div>
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-15</span><span class="postit-wbs">WBS 2.5.3</span></div>
+              <div class="postit-text">Custodia preventiva (freeze) al reservar.</div>
+            </div>
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-16</span><span class="postit-wbs">WBS 2.5.5</span></div>
+              <div class="postit-text">Confirmación de sesión completada.</div>
+            </div>
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-17</span><span class="postit-wbs">WBS 2.5.6</span></div>
+              <div class="postit-text">Liberación y transferencia automática de créditos.</div>
+            </div>
+          </div>
+
+          <!-- Col 6: Rating -->
+          <div class="col-stack">
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-18</span><span class="postit-wbs">WBS 2.7.1</span></div>
+              <div class="postit-text">Calificar sesión con 1 a 5 estrellas y reseña.</div>
+            </div>
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-19</span><span class="postit-wbs">WBS 2.7.2</span></div>
+              <div class="postit-text">Reputación docente promedio visible en ficha.</div>
+            </div>
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-20</span><span class="postit-wbs">WBS 2.7.4</span></div>
+              <div class="postit-text">Validación anti-duplicados de calificaciones.</div>
+            </div>
+          </div>
+
+          <!-- Col 7: Moderación -->
+          <div class="col-stack">
+            <div class="postit postit-mvp">
+              <div class="postit-id"><span>US-21</span><span class="postit-wbs">WBS 3.1.2</span></div>
+              <div class="postit-text">Filtro de seguridad contra lenguaje inapropiado.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- LÍNEA DE CORTE DEL MVP                     -->
+      <!-- ========================================== -->
+      <div class="slice-divider">
+        <span class="slice-tag">&bull;&bull;&bull; LÍNEA DE CORTE MVP V3 (ALCANCE FORMAL DEFENSA FIUBA) &bull;&bull;&bull;</span>
+        <div class="slice-dashes"></div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- SWIMLANE 2: RELEASE 2 (INCREMENTOS FUTUROS) -->
+      <!-- ========================================== -->
+      <div class="swimlane">
+        <div class="swimlane-header">
+          <span class="swimlane-badge badge-r2">Release 2 &bull; Incrementos Post-MVP</span>
+          <div class="swimlane-line"></div>
+        </div>
+
+        <div class="cards-grid">
+          
+          <!-- Col 1 -->
+          <div class="col-stack">
+            <div class="postit postit-r2">
+              <div class="postit-id"><span>US-23</span><span class="postit-wbs">WBS 2.1.3</span></div>
+              <div class="postit-text">Recuperación de contraseña por correo electrónico.</div>
+            </div>
+          </div>
+
+          <!-- Col 2 -->
+          <div class="col-stack">
+            <div class="postit postit-r2">
+              <div class="postit-id"><span>US-05</span><span class="postit-wbs">WBS 2.2.4</span></div>
+              <div class="postit-text">Publicación de necesidades de aprendizaje inversas.</div>
+            </div>
+          </div>
+
+          <!-- Col 3 -->
+          <div class="col-stack">
+            <div class="postit postit-r2">
+              <div class="postit-id"><span>US-28</span><span class="postit-wbs">WBS 2.3.7</span></div>
+              <div class="postit-text">Filtro algorítmico de cruce automático de horarios libres.</div>
+            </div>
+          </div>
+
+          <!-- Col 4 -->
+          <div class="col-stack">
+            <div class="postit postit-r2" style="background:#f8fafc; border-style:dashed;">
+              <div class="postit-text" style="color:#94a3b8; font-style:italic;">(Flujo cubierto al 100% en MVP)</div>
+            </div>
+          </div>
+
+          <!-- Col 5 -->
+          <div class="col-stack">
+            <div class="postit postit-r2">
+              <div class="postit-id"><span>US-31</span><span class="postit-wbs">WBS 2.5.8</span></div>
+              <div class="postit-text">Penalización y restitución ante inasistencia sin aviso.</div>
+            </div>
+          </div>
+
+          <!-- Col 6 -->
+          <div class="col-stack">
+            <div class="postit postit-r2" style="background:#f8fafc; border-style:dashed;">
+              <div class="postit-text" style="color:#94a3b8; font-style:italic;">(Flujo cubierto al 100% en MVP)</div>
+            </div>
+          </div>
+
+          <!-- Col 7 -->
+          <div class="col-stack">
+            <div class="postit postit-r2">
+              <div class="postit-id"><span>US-22</span><span class="postit-wbs">WBS 3.2.1</span></div>
+              <div class="postit-text">Bandeja administrativa para denuncias comunitarias.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Pie / Marca -->
+    <div class="watermark">
+      <div class="watermark-left">
+        <span class="watermark-box"></span>
+        <span>PROYECTO WBS &bull; USER STORY MAP LERNA</span>
+      </div>
+      <div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #94a3b8;">
+        TC017 - Gestión del Desarrollo de Sistemas Informáticos - FIUBA
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

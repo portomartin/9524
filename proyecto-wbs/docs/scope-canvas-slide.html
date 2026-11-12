@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Scope Canvas - Plataforma de Intercambio de Aprendizajes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #f0f2f5;
+      padding: 30px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .slide-wrapper {
+      background: #ffffff;
+      width: 1560px;
+      padding: 45px 55px 55px 55px;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.07);
+      border-radius: 8px;
+      position: relative;
+    }
+
+    /* Cabecera Principal */
+    .header-bar {
+      margin-bottom: 25px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .header-title {
+      font-size: 56px;
+      font-weight: 400;
+      color: #1e293b;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+    }
+    .header-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 6px;
+    }
+    .header-tag {
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Contenedor del Canvas */
+    .canvas-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Grilla Superior de 5 Columnas */
+    .top-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.25fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .canvas-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+    .card-user {
+      border-top: 4px solid #3b82f6; /* Azul Usuarios */
+    }
+    .card-purpose {
+      border: 2px solid #00b074;
+      background: #f0fdf4; /* Verde Propósito Central */
+      box-shadow: 0 6px 20px rgba(0, 176, 116, 0.08);
+    }
+    .card-biz {
+      border-top: 4px solid #f59e0b; /* Ámbar Negocio */
+    }
+
+    .card-header {
+      margin-bottom: 12px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 8px;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1e293b;
+      letter-spacing: -0.3px;
+    }
+    .card-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .card-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #334155;
+      line-height: 1.45;
+      flex: 1;
+    }
+    .card-body p {
+      margin-bottom: 8px;
+    }
+    .card-body ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 10px 0;
+    }
+    .card-body li {
+      position: relative;
+      padding-left: 14px;
+      margin-bottom: 6px;
+      font-size: 11.5px;
+    }
+    .card-body li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #64748b;
+      font-weight: bold;
+    }
+    .card-body strong {
+      color: #0f172a;
+    }
+
+    /* Bloque central de Propósito */
+    .purpose-quote {
+      font-size: 14px;
+      font-weight: 500;
+      color: #065f46;
+      line-height: 1.55;
+      text-align: center;
+      padding: 12px 6px;
+      font-style: italic;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Grilla Inferior (Acciones vs Métricas) */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 16px;
+    }
+    .card-actions {
+      border-top: 4px solid #6366f1; /* Índigo */
+    }
+    .card-metrics {
+      border-top: 4px solid #10b981; /* Esmeralda */
+    }
+
+    .actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+    .action-subcol h5 {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 6px;
+      border-bottom: 1px dashed #cbd5e1;
+      padding-bottom: 4px;
+    }
+
+    .metrics-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .metric-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 10px;
+    }
+    .metric-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: #00b074;
+      margin-bottom: 2px;
+    }
+    .metric-lbl {
+      font-size: 11px;
+      color: #475569;
+      line-height: 1.3;
+    }
+
+    /* Footer / Watermark */
+    .watermark {
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid #f1f5f9;
+      font-size: 13px;
+      color: #777;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .watermark-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .watermark-box {
+      width: 12px;
+      height: 12px;
+      background: #0369a1;
+      display: inline-block;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-wrapper">
+    
+    <!-- Cabecera Principal -->
+    <div class="header-bar">
+      <div>
+        <h1 class="header-title">Scope Canvas</h1>
+        <p class="header-subtitle">
+          Definición del Alcance de la Iniciativa &bull; Plataforma Lerna &bull; TC017 - FIUBA
+        </p>
+      </div>
+      <div class="header-tag">ALCANCE Y PROPÓSITO</div>
+    </div>
+
+    <!-- Contenedor del Canvas -->
+    <div class="canvas-container">
+
+      <!-- ========================================== -->
+      <!-- FILA SUPERIOR: USUARIOS | PROPÓSITO | NEGOCIO -->
+      <!-- ========================================== -->
+      <div class="top-grid">
+
+        <!-- 1. Necesidades (Usuarios) -->
+        <div class="canvas-card card-user">
+          <div class="card-header">
+            <h3 class="card-title">Necesidades</h3>
+            <p class="card-subtitle">¿Qué les duele a los usuarios?</p>
+          </div>
+          <div class="card-body">
+            <p><strong>Aprendiz:</strong></p>
+            <ul>
+              <li>Acceso vedado a clases particulares por costos en dinero.</li>
+              <li>Falta de cumplimiento en turnos pactados.</li>
+            </ul>
+            <p><strong>Docente Par:</strong></p>
+            <ul>
+              <li>Deseo de transmitir conocimientos valiosos.</li>
+              <li>Temor a dedicar horas sin retribución justa.</li>
+            </ul>
+            <p><strong>Usuario Recíproco:</strong></p>
+            <ul>
+              <li>Dificultad para coordinar trueque sincrónico y seguro.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2. Motivadores (Usuarios) -->
+        <div class="canvas-card card-user">
+          <div class="card-header">
+            <h3 class="card-title">Motivadores</h3>
+            <p class="card-subtitle">¿Qué mejora les entregamos?</p>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><strong>Cero barrera monetaria:</strong> La plataforma funciona exclusivamente con créditos de tiempo (1h = 1 crédito).</li>
+              <li><strong>Custodia preventiva (freeze):**</strong> Los créditos se congelan al pactar el turno, evitando cancelaciones sin costo.</li>
+              <li><strong>Matching inteligente:</strong> Detección de coincidencia temática y franjas horarias recíprocas.</li>
+              <li><strong>Rol unificado USER:</strong> Una sola cuenta permite enseñar y aprender libremente.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. Propósito Central (Bisagra) -->
+        <div class="canvas-card card-purpose">
+          <div class="card-header" style="text-align: center; border-bottom: 1px solid #bbf7d0;">
+            <h3 class="card-title" style="color: #065f46; font-size: 18px;">Propósito</h3>
+            <p class="card-subtitle" style="color: #047857;">¿Qué hace que esto valga la pena?</p>
+          </div>
+          <div class="card-body" style="display:flex; flex-direction:column; justify-content:center;">
+            <div class="purpose-quote">
+              "Democratizar el acceso al conocimiento práctico y personalizado, creando una comunidad colaborativa donde cualquier persona pueda aprender y superarse enseñando lo que sabe, sin que el dinero sea un impedimento."
+            </div>
+            <div style="margin-top:10px; background:#ffffff; border-radius:6px; padding:8px; border:1px solid #bbf7d0; text-align:center; font-size:11px; color:#065f46;">
+              ✨ <strong>1 Hora Enseño = 1 Hora Aprendo</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Impacto (Negocio - Largo Plazo) -->
+        <div class="canvas-card card-biz">
+          <div class="card-header">
+            <h3 class="card-title">Impacto</h3>
+            <p class="card-subtitle">Metas y efectos no deseados</p>
+          </div>
+          <div class="card-body">
+            <p><strong>Metas de Largo Plazo:</strong></p>
+            <ul>
+              <li>Red comunitaria autosustentable entre pares.</li>
+              <li>Reconversión ágil de jóvenes y profesionales.</li>
+              <li>Descentralización del saber técnico.</li>
+            </ul>
+            <p><strong>Efectos NO Esperados (Riesgos):</strong></p>
+            <ul>
+              <li><em>Mercado negro:</em> Venta de créditos por dinero.</li>
+              <li><em>Cuentas ociosas:</em> Acumulación de saldo inactivo.</li>
+              <li><em>Sesiones ficticias:</em> Transferencias fraudulentas.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 5. Objetivos (Negocio - Corto Plazo / MVP) -->
+        <div class="canvas-card card-biz">
+          <div class="card-header">
+            <h3 class="card-title">Objetivos</h3>
+            <p class="card-subtitle">Metas del MVP para Coloquio</p>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><strong>MVP funcional desplegado:</strong> Sistema 100% operativo en hosting público para la fecha de examen.</li>
+              <li><strong>Circuito completo verificado:</strong> Registro, catálogo, freeze, confirmación de clase y reputación mutua.</li>
+              <li><strong>Demo interactiva en vivo:</strong> Demostración con 2 computadoras interactuando (Docente y Alumno).</li>
+              <li><strong>Satisfacción UX:</strong> Calificación de usabilidad promedio &ge; 4.5★ en pruebas con usuarios.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ========================================== -->
+      <!-- FILA INFERIOR: ACCIONES Y MÉTRICAS         -->
+      <!-- ========================================== -->
+      <div class="bottom-grid">
+
+        <!-- Acciones de los Usuarios -->
+        <div class="canvas-card card-actions">
+          <div class="card-header">
+            <h3 class="card-title">Acciones de los Usuarios</h3>
+            <p class="card-subtitle">¿Qué esperamos que hagan en la plataforma?</p>
+          </div>
+          <div class="card-body">
+            <div class="actions-grid">
+              
+              <div class="action-subcol">
+                <h5>Aprendiz</h5>
+                <ul>
+                  <li>Explorar catálogo con filtros avanzados.</li>
+                  <li>Enviar solicitud reteniendo créditos en freeze.</li>
+                  <li>Asistir al encuentro y confirmar finalización.</li>
+                </ul>
+              </div>
+
+              <div class="action-subcol">
+                <h5>Docente Par</h5>
+                <ul>
+                  <li>Publicar clases con días y franjas horarias.</li>
+                  <li>Aceptar solicitudes y acceder al Meet.</li>
+                  <li>Recibir la acreditación automática de saldo.</li>
+                </ul>
+              </div>
+
+              <div class="action-subcol">
+                <h5>Ambos Roles</h5>
+                <ul>
+                  <li>Calificar de 1 a 5★ con reseña pública.</li>
+                  <li>Pactar turnos coordinados en la Agenda.</li>
+                  <li>Denunciar conductas inapropiadas si aplica.</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Métricas de Éxito del Negocio -->
+        <div class="canvas-card card-metrics">
+          <div class="card-header">
+            <h3 class="card-title">Métricas de Éxito</h3>
+            <p class="card-subtitle">Indicadores cuantificables de cumplimiento</p>
+          </div>
+          <div class="card-body">
+            <div class="metrics-list">
+              
+              <div class="metric-item">
+                <div class="metric-val">&ge; 85%</div>
+                <div class="metric-lbl"><strong>Efectividad:</strong> Sesiones completadas vs pactadas (baja cancelación).</div>
+              </div>
+
+              <div class="metric-item">
+                <div class="metric-val">&ge; 60%</div>
+                <div class="metric-lbl"><strong>Reciprocidad:</strong> Usuarios que enseñan y aprenden activamente.</div>
+              </div>
+
+              <div class="metric-item">
+                <div class="metric-val">&ge; 4.2 ★</div>
+                <div class="metric-lbl"><strong>Satisfacción:</strong> Calificación promedio en reseñas comunitarias.</div>
+              </div>
+
+              <div class="metric-item">
+                <div class="metric-val">&lt; 24 hs</div>
+                <div class="metric-lbl"><strong>Tiempo de Match:</strong> Tiempo promedio en coordinar un intercambio.</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Pie / Marca -->
+    <div class="watermark">
+      <div class="watermark-left">
+        <span class="watermark-box"></span>
+        <span>PROYECTO WBS &bull; SCOPE CANVAS LERNA</span>
+      </div>
+      <div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #94a3b8;">
+        TC017 - Gestión del Desarrollo de Sistemas Informáticos - FIUBA
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
