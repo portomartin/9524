@@ -2,13 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Estructura de Desglose del Trabajo (WBS) - Lerna (TC017 FIUBA)</title>
+  <title>Estructura de Desglose del Trabajo (WBS) - Lerna (Jira WBSO Consolidado)</title>
   <link rel="stylesheet" href="slides-theme.css">
   <style>
     body { font-size: 1rem; }
 
-    /* Barra de Leyenda de Niveles Jerárquicos */
-    .wbs-legend-bar {
+    /* Barra Superior de Resumen Oficial */
+    .wbs-header-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -20,39 +20,38 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.02);
     }
 
-    .legend-items {
+    .wbs-meta-badges {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.25rem;
       font-family: var(--font-body);
       font-size: 0.75rem;
     }
 
-    .legend-pill {
+    .meta-badge {
       display: flex;
       align-items: center;
       gap: 6px;
-      font-weight: 600;
       color: #475569;
+      font-weight: 600;
     }
 
-    .dot-n0 { width: 10px; height: 10px; border-radius: 2px; background: #1e293b; }
-    .dot-n1 { width: 10px; height: 10px; border-radius: 2px; background: #00b074; }
-    .dot-n2 { width: 10px; height: 10px; border-radius: 2px; background: #0284c7; }
-    .dot-n3 { width: 10px; height: 10px; border-radius: 2px; background: #f59e0b; }
-    .dot-n4 { width: 10px; height: 10px; border-radius: 2px; background: #64748b; }
+    .dot-n1 { width: 10px; height: 10px; border-radius: 2px; background: #6366f1; }
+    .dot-n2 { width: 10px; height: 10px; border-radius: 2px; background: #00b074; }
+    .dot-n3 { width: 10px; height: 10px; border-radius: 2px; background: #0284c7; }
 
-    .rule-100 {
+    .origin-badge {
       font-family: var(--font-body);
       font-size: 0.719rem;
-      color: #15803d;
-      background: #dcfce7;
+      color: #0369a1;
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
       padding: 3px 10px;
       border-radius: 12px;
       font-weight: 700;
     }
 
-    /* Grilla de 4 Macro-Entregables (Nivel 1) */
+    /* Grilla de los 4 Módulos Nivel 1 */
     .wbs-grid-4 {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -71,10 +70,10 @@
       border-top: 5px solid #64748b;
     }
 
-    .wbs-col-1 { border-top-color: #6366f1; }
-    .wbs-col-2 { border-top-color: #00b074; }
-    .wbs-col-3 { border-top-color: #f59e0b; }
-    .wbs-col-4 { border-top-color: #0284c7; }
+    .col-mod-1 { border-top-color: #6366f1; }
+    .col-mod-2 { border-top-color: #00b074; }
+    .col-mod-3 { border-top-color: #f59e0b; }
+    .col-mod-4 { border-top-color: #0284c7; }
 
     .wbs-col-header {
       margin-bottom: 0.875rem;
@@ -93,10 +92,10 @@
       margin-bottom: 4px;
     }
 
-    .wbs-col-1 .wbs-col-badge { background: #e0e7ff; color: #4338ca; }
-    .wbs-col-2 .wbs-col-badge { background: #dcfce7; color: #15803d; }
-    .wbs-col-3 .wbs-col-badge { background: #fef3c7; color: #b45309; }
-    .wbs-col-4 .wbs-col-badge { background: #e0f2fe; color: #0369a1; }
+    .col-mod-1 .wbs-col-badge { background: #e0e7ff; color: #4338ca; }
+    .col-mod-2 .wbs-col-badge { background: #dcfce7; color: #15803d; }
+    .col-mod-3 .wbs-col-badge { background: #fef3c7; color: #b45309; }
+    .col-mod-4 .wbs-col-badge { background: #e0f2fe; color: #0369a1; }
 
     .wbs-col-title {
       font-size: 1rem;
@@ -105,102 +104,77 @@
       letter-spacing: -0.3px;
     }
 
-    /* Lista Vertical de Sub-Entregables (Nivel 2) */
-    .wbs-n2-container {
+    /* Contenedor de Componentes Nivel 2 */
+    .n2-container {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.625rem;
       flex: 1;
     }
 
-    /* Tarjeta Nivel 2 */
-    .wbs-n2-card {
+    /* Caja Nivel 2 */
+    .n2-box {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 8px;
-      padding: 0.625rem 0.75rem;
+      padding: 0.5rem 0.625rem;
       display: flex;
       flex-direction: column;
-      gap: 0.375rem;
+      gap: 0.25rem;
     }
 
-    .n2-title {
-      font-size: 0.781rem;
-      font-weight: 700;
-      color: #1e293b;
+    .n2-header {
       display: flex;
       align-items: center;
       gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #1e293b;
     }
 
-    .n2-code {
+    .n2-tag {
       font-family: monospace;
-      font-size: 0.688rem;
-      color: #0369a1;
-      background: #e0f2fe;
+      font-size: 0.656rem;
+      color: #ffffff;
+      background: #1e293b;
       padding: 1px 5px;
       border-radius: 3px;
     }
 
-    /* Lista Nivel 3 (Paquetes de Trabajo) */
-    .wbs-n3-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.375rem;
-      margin-top: 2px;
+    .col-mod-1 .n2-tag { background: #6366f1; }
+    .col-mod-2 .n2-tag { background: #00b074; }
+    .col-mod-3 .n2-tag { background: #f59e0b; }
+    .col-mod-4 .n2-tag { background: #0284c7; }
+
+    /* Lista Nivel 3 (Paquetes de Trabajo Jira) */
+    .n3-list {
+      list-style: none;
+      font-family: var(--font-body);
+      font-size: 0.656rem;
+      color: #475569;
+      line-height: 1.4;
+      padding-left: 4px;
     }
 
-    .wbs-n3-item {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-left: 3px solid #00b074;
-      border-radius: 4px;
-      padding: 0.375rem 0.5rem;
-    }
-
-    .n3-title {
-      font-size: 0.719rem;
-      font-weight: 700;
-      color: #334155;
-      display: flex;
-      align-items: center;
-      gap: 4px;
+    .n3-list li {
+      position: relative;
+      padding-left: 10px;
       margin-bottom: 2px;
+    }
+
+    .n3-list li::before {
+      content: "›";
+      position: absolute;
+      left: 0;
+      color: #94a3b8;
+      font-weight: 700;
     }
 
     .n3-code {
       font-family: monospace;
-      font-size: 0.625rem;
-      color: #059669;
-    }
-
-    /* Lista Nivel 4 (Tareas / Actividades Atómicas) */
-    .wbs-n4-list {
-      list-style: none;
-      font-family: var(--font-body);
-      font-size: 0.656rem;
+      font-weight: 700;
       color: #64748b;
-      line-height: 1.35;
-      padding-left: 10px;
-    }
-
-    .wbs-n4-list li {
-      position: relative;
-      margin-bottom: 1px;
-    }
-
-    .wbs-n4-list li::before {
-      content: "›";
-      position: absolute;
-      left: -8px;
-      color: #94a3b8;
-      font-weight: 900;
-    }
-
-    .n4-code {
-      font-family: monospace;
-      font-size: 0.594rem;
-      color: #94a3b8;
+      margin-right: 2px;
     }
   </style>
 </head>
@@ -213,267 +187,254 @@
         <h1 class="header-title">Estructura de Desglose del Trabajo</h1>
       </div>
       <div class="header-tag tag-blue">
-        4.4.1 WBS JIRA (4 NIVELES)
+        4.3.9 WBS OFICIAL (JIRA WBSO)
       </div>
     </div>
 
-    <!-- Barra de Leyenda de Jerarquía Formal (Nivel 0 al Nivel 4) -->
-    <div class="wbs-legend-bar">
-      <div class="legend-items">
-        <span style="font-weight: 700; color: #1e293b;">Jerarquía Oficial:</span>
-        <div class="legend-pill"><span class="dot-n0"></span> N0: Proyecto (Lerna)</div>
-        <div class="legend-pill"><span class="dot-n1"></span> N1: Macro-Entregables (4)</div>
-        <div class="legend-pill"><span class="dot-n2"></span> N2: Subsistemas / Componentes</div>
-        <div class="legend-pill"><span class="dot-n3"></span> N3: Paquetes de Trabajo (WP)</div>
-        <div class="legend-pill"><span class="dot-n4"></span> N4: Historias & Tareas Atómicas</div>
+    <!-- Barra de Metadatos y Origen Jira WBSO -->
+    <div class="wbs-header-bar">
+      <div class="wbs-meta-badges">
+        <span style="font-weight: 700; color: #1e293b;">Niveles:</span>
+        <div class="meta-badge"><span class="dot-n1"></span> Nivel 1: Módulos Principales (4)</div>
+        <div class="meta-badge"><span class="dot-n2"></span> Nivel 2: Componentes Funcionales (16)</div>
+        <div class="meta-badge"><span class="dot-n3"></span> Nivel 3: Paquetes de Trabajo Jira WBSO</div>
       </div>
-      <div class="rule-100">
-        ✓ 100% Alcance MVP V3 Consolidado
+      <div class="origin-badge">
+        Fuente: wbs-derivada-jira.md (Regla del 100%)
       </div>
     </div>
 
-    <!-- Grilla de 4 Macro-Entregables Nivel 1 con Desglose N2, N3 y N4 -->
+    <!-- Grilla de los 4 Módulos Canónicos de Jira WBSO -->
     <div class="wbs-grid-4">
 
-      <!-- ==================== COLUMNA 1: PRODUCTO Y DISEÑO ==================== -->
-      <div class="wbs-col wbs-col-1">
+      <!-- ==================== 1. PRODUCTO Y DISEÑO ==================== -->
+      <div class="wbs-col col-mod-1">
         <div class="wbs-col-header">
           <span class="wbs-col-badge">Nivel 1 • Módulo 1</span>
-          <h2 class="wbs-col-title">1. Producto & Diseño</h2>
+          <h2 class="wbs-col-title">1. Producto y diseño</h2>
         </div>
 
-        <div class="wbs-n2-container">
-          <!-- N2: 1.1 Planificación -->
-          <div class="wbs-n2-card">
-            <div class="n2-title">
-              <span class="n2-code">1.1</span> Planificación MVP
+        <div class="n2-container">
+          <!-- 1.1 Planificación y definición MVP -->
+          <div class="n2-box">
+            <div class="n2-header">
+              <span class="n2-tag">1.1</span> Planificación y definición MVP
             </div>
-            <div class="wbs-n3-list">
-              <div class="wbs-n3-item" style="border-left-color: #6366f1;">
-                <div class="n3-title">
-                  <span class="n3-code">1.1.1</span> Requisitos & Alcance
-                </div>
-                <ul class="wbs-n4-list">
-                  <li><span class="n4-code">1.1.1.1</span> Redacción especificación MVP V3</li>
-                  <li><span class="n4-code">1.1.1.2</span> Scope Canvas canónico de 9 cajas</li>
-                  <li><span class="n4-code">1.1.1.3</span> Política de contenidos permitidos</li>
-                </ul>
-              </div>
-
-              <div class="wbs-n3-item" style="border-left-color: #6366f1;">
-                <div class="n3-title">
-                  <span class="n3-code">1.1.2</span> Plan de Trabajo Ágil
-                </div>
-                <ul class="wbs-n4-list">
-                  <li><span class="n4-code">1.1.2.1</span> WBS derivada y estructurada</li>
-                  <li><span class="n4-code">1.1.2.2</span> User Story Map (Patton)</li>
-                  <li><span class="n4-code">1.1.2.3</span> Configuración proyecto Jira WBSO</li>
-                </ul>
-              </div>
-            </div>
+            <ul class="n3-list">
+              <li><span class="n3-code">1.1.1</span> Redacción especificación MVP V3</li>
+              <li><span class="n3-code">1.1.2</span> Elaboración de la WBS</li>
+              <li><span class="n3-code">1.1.3</span> Elaboración User Story Map</li>
+              <li><span class="n3-code">1.1.4</span> Elaboración del Product Backlog</li>
+              <li><span class="n3-code">1.1.5</span> Carga y configuración tablero Jira</li>
+              <li><span class="n3-code">1.1.6</span> Política contenidos permitidos</li>
+              <li><span class="n3-code">1.1.7</span> Casos de uso</li>
+            </ul>
           </div>
 
-          <!-- N2: 1.2 UX y Despliegue -->
-          <div class="wbs-n2-card">
-            <div class="n2-title">
-              <span class="n2-code">1.2</span> UX & Despliegue
+          <!-- 1.2 Gestión, despliegue e integración -->
+          <div class="n2-box">
+            <div class="n2-header">
+              <span class="n2-tag">1.2</span> Gestión, despliegue e integración
             </div>
-            <div class="wbs-n3-list">
-              <div class="wbs-n3-item" style="border-left-color: #6366f1;">
-                <div class="n3-title">
-                  <span class="n3-code">1.2.1</span> Prototipado & Flujos
-                </div>
-                <ul class="wbs-n4-list">
-                  <li><span class="n4-code">1.2.1.1</span> 6 wireframes móviles clave</li>
-                  <li><span class="n4-code">1.2.1.2</span> 4 workflows end-to-end vectoriales</li>
-                </ul>
-              </div>
-
-              <div class="wbs-n3-item" style="border-left-color: #6366f1;">
-                <div class="n3-title">
-                  <span class="n3-code">1.2.2</span> DevOps & CI/CD
-                </div>
-                <ul class="wbs-n4-list">
-                  <li><span class="n4-code">1.2.2.1</span> Despliegue cloud SPA frontend</li>
-                  <li><span class="n4-code">1.2.2.2</span> Despliegue API FastAPI en Render</li>
-                </ul>
-              </div>
-            </div>
+            <ul class="n3-list">
+              <li><span class="n3-code">1.2.1</span> Liderazgo del proyecto</li>
+              <li><span class="n3-code">1.2.2</span> Selección hosting y deploy frontend</li>
+              <li><span class="n3-code">1.2.3</span> Selección hosting y deploy backend</li>
+              <li><span class="n3-code">1.2.4</span> Integración CI/CD y código fuente</li>
+            </ul>
           </div>
         </div>
       </div>
 
-      <!-- ==================== COLUMNA 2: FUNCIONALIDAD CORE ==================== -->
-      <div class="wbs-col wbs-col-2">
+      <!-- ==================== 2. FUNCIONALIDAD DE LA PLATAFORMA ==================== -->
+      <div class="wbs-col col-mod-2">
         <div class="wbs-col-header">
           <span class="wbs-col-badge">Nivel 1 • Módulo 2</span>
-          <h2 class="wbs-col-title">2. Funcionalidad Core</h2>
+          <h2 class="wbs-col-title">2. Funcionalidad plataforma</h2>
         </div>
 
-        <div class="wbs-n2-container">
-          <!-- N2: 2.1 Usuarios & Auth -->
-          <div class="wbs-n2-card">
-            <div class="n2-title">
-              <span class="n2-code">2.1</span> Usuarios & Perfil
+        <div class="n2-container">
+          <!-- 2.1 Usuarios -->
+          <div class="n2-box">
+            <div class="n2-header">
+              <span class="n2-tag">2.1</span> Sistema de usuarios
             </div>
-            <div class="wbs-n3-list">
-              <div class="wbs-n3-item">
-                <div class="n3-title">
-                  <span class="n3-code">2.1.1</span> Cuenta y Rol Único
-                </div>
-                <ul class="wbs-n4-list">
-                  <li><span class="n4-code">2.1.1.1</span> Registro con saldo bienvenida</li>
-                  <li><span class="n4-code">2.1.1.2</span> Auth JWT con Bcrypt</li>
-                  <li><span class="n4-code">2.1.1.3</span> Perfil único con balance libre/freeze</li>
-                </ul>
-              </div>
-            </div>
+            <ul class="n3-list">
+              <li><span class="n3-code">2.1.1-2</span> Registro, Login y Logout JWT</li>
+              <li><span class="n3-code">2.1.4</span> Perfil de usuario con saldo</li>
+              <li><span class="n3-code">2.1.5-6</span> Qué puede enseñar y aprender</li>
+              <li><span class="n3-code">2.1.9</span> Configuración disponibilidad horaria</li>
+            </ul>
           </div>
 
-          <!-- N2: 2.2 Publicaciones & Buscador -->
-          <div class="wbs-n2-card">
-            <div class="n2-title">
-              <span class="n2-code">2.2</span> Publicaciones & Search
+          <!-- 2.2 Publicaciones -->
+          <div class="n2-box">
+            <div class="n2-header">
+              <span class="n2-tag">2.2</span> Sistema de publicaciones
             </div>
-            <div class="wbs-n3-list">
-              <div class="wbs-n3-item">
-                <div class="n3-title">
-                  <span class="n3-code">2.2.1</span> Catálogo & Matching
-                </div>
-                <ul class="wbs-n4-list">
-                  <li><span class="n4-code">2.2.1.1</span> Formulario enseñar/aprender</li>
-                  <li><span class="n4-code">2.2.1.2</span> Buscador ILIKE por temática/nivel</li>
-                  <li><span class="n4-code">2.2.1.3</span> Detección de cruce recíproco A&harr;B</li>
-                </ul>
-              </div>
-            </div>
+            <ul class="n3-list">
+              <li><span class="n3-code">2.2.1</span> Formulario y catálogo categorías</li>
+              <li><span class="n3-code">2.2.4-7</span> Nivel, modalidad, horas y créditos</li>
+              <li><span class="n3-code">2.2.8</span> Gestión y validación de contenido</li>
+            </ul>
           </div>
 
-          <!-- N2: 2.3 Sesiones & Créditos -->
-          <div class="wbs-n2-card">
-            <div class="n2-title">
-              <span class="n2-code">2.3</span> Sesiones & Escrow
+          <!-- 2.3 Búsqueda & Compatibilidad -->
+          <div class="n2-box">
+            <div class="n2-header">
+              <span class="n2-tag">2.3</span> Búsqueda y compatibilidad
             </div>
-            <div class="wbs-n3-list">
-              <div class="wbs-n3-item">
-                <div class="n3-title">
-                  <span class="n3-code">2.3.1</span> Transacciones & Custodia
-                </div>
-                <ul class="wbs-n4-list">
-                  <li><span class="n4-code">2.3.1.1</span> Solicitud de clase y estados P/A/C/X</li>
-                  <li><span class="n4-code">2.3.1.2</span> Custodia preventiva (freeze escrow)</li>
-                  <li><span class="n4-code">2.3.1.3</span> Liberación atómica post-sesión</li>
-                  <li><span class="n4-code">2.3.1.4</span> Calificación mutua 1-5 estrellas</li>
-                </ul>
-              </div>
+            <ul class="n3-list">
+              <li><span class="n3-code">2.3.1-2</span> Buscador con filtros temáticos</li>
+              <li><span class="n3-code">2.3.5</span> Motor de compatibilidad por reglas</li>
+              <li><span class="n3-code">2.3.7</span> Detección intercambios recíprocos</li>
+            </ul>
+          </div>
+
+          <!-- 2.4 Solicitudes & Sesiones -->
+          <div class="n2-box">
+            <div class="n2-header">
+              <span class="n2-tag">2.4</span> Solicitudes y sesiones
             </div>
+            <ul class="n3-list">
+              <li><span class="n3-code">2.4.1-4</span> Solicitudes y estados P/A/C/X</li>
+              <li><span class="n3-code">2.4.5</span> Agenda y control superposición</li>
+              <li><span class="n3-code">2.4.8</span> Confirmación de sesión completada</li>
+            </ul>
+          </div>
+
+          <!-- 2.5 Créditos virtuales -->
+          <div class="n2-box">
+            <div class="n2-header">
+              <span class="n2-tag">2.5</span> Créditos virtuales
+            </div>
+            <ul class="n3-list">
+              <li><span class="n3-code">2.5.2</span> Asignación inicial de bienvenida</li>
+              <li><span class="n3-code">2.5.3</span> Reserva de créditos (custodia freeze)</li>
+              <li><span class="n3-code">2.5.4</span> Transferencia y devolución segura</li>
+            </ul>
+          </div>
+
+          <!-- 2.7 Calificaciones -->
+          <div class="n2-box">
+            <div class="n2-header">
+              <span class="n2-tag">2.7</span> Calificaciones y reputación
+            </div>
+            <ul class="n3-list">
+              <li><span class="n3-code">2.7.2</span> Puntuación de 1 a 5 estrellas</li>
+              <li><span class="n3-code">2.7.4</span> Calificación promedio y reputación</li>
+              <li><span class="n3-code">2.7.6</span> Control de calificaciones únicas</li>
+            </ul>
           </div>
         </div>
       </div>
 
-      <!-- ==================== COLUMNA 3: SEGURIDAD Y MODERACIÓN ==================== -->
-      <div class="wbs-col wbs-col-3">
+      <!-- ==================== 3. SEGURIDAD Y ADMINISTRACIÓN ==================== -->
+      <div class="wbs-col col-mod-3">
         <div class="wbs-col-header">
           <span class="wbs-col-badge">Nivel 1 • Módulo 3</span>
-          <h2 class="wbs-col-title">3. Seguridad & Moderación</h2>
+          <h2 class="wbs-col-title">3. Seguridad y administración</h2>
         </div>
 
-        <div class="wbs-n2-container">
-          <!-- N2: 3.1 Filtros y Moderación -->
-          <div class="wbs-n2-card">
-            <div class="n2-title">
-              <span class="n2-code">3.1</span> Filtro de Contenidos
+        <div class="n2-container">
+          <!-- 3.1 Seguridad y moderación -->
+          <div class="n2-box">
+            <div class="n2-header">
+              <span class="n2-tag">3.1</span> Seguridad y moderación
             </div>
-            <div class="wbs-n3-list">
-              <div class="wbs-n3-item" style="border-left-color: #f59e0b;">
-                <div class="n3-title">
-                  <span class="n3-code">3.1.1</span> Moderación Automática
-                </div>
-                <ul class="wbs-n4-list">
-                  <li><span class="n4-code">3.1.1.1</span> Filtro de palabras prohibidas</li>
-                  <li><span class="n4-code">3.1.1.2</span> Sanitización de inputs contra XSS</li>
-                  <li><span class="n4-code">3.1.1.3</span> Validación categorías permitidas</li>
-                </ul>
-              </div>
-
-              <div class="wbs-n3-item" style="border-left-color: #f59e0b;">
-                <div class="n3-title">
-                  <span class="n3-code">3.1.2</span> Denuncias de la Comunidad
-                </div>
-                <ul class="wbs-n4-list">
-                  <li><span class="n4-code">3.1.2.1</span> Botón reportar en publicaciones</li>
-                  <li><span class="n4-code">3.1.2.2</span> Flag de suspensión preventiva</li>
-                </ul>
-              </div>
-            </div>
+            <ul class="n3-list">
+              <li><span class="n3-code">3.1.1</span> Categorías de aprendizaje permitidas</li>
+              <li><span class="n3-code">3.1.2</span> Lista de palabras prohibidas</li>
+              <li><span class="n3-code">3.1.3</span> Filtro de publicaciones</li>
+              <li><span class="n3-code">3.1.4</span> Sistema y registro de denuncias</li>
+              <li><span class="n3-code">3.1.6</span> Protección de datos personales</li>
+              <li><span class="n3-code">3.1.7</span> Control de acceso y permisos</li>
+              <li><span class="n3-code">3.1.8</span> Términos y condiciones</li>
+            </ul>
           </div>
 
-          <!-- N2: 3.2 Administración -->
-          <div class="wbs-n2-card">
-            <div class="n2-title">
-              <span class="n2-code">3.2</span> Panel de Control
+          <!-- 3.2 Panel de administración -->
+          <div class="n2-box">
+            <div class="n2-header">
+              <span class="n2-tag">3.2</span> Panel de administración
             </div>
-            <div class="wbs-n3-list">
-              <div class="wbs-n3-item" style="border-left-color: #f59e0b;">
-                <div class="n3-title">
-                  <span class="n3-code">3.2.1</span> Gestión de Auditoría
-                </div>
-                <ul class="wbs-n4-list">
-                  <li><span class="n4-code">3.2.1.1</span> Baja manual de publicaciones</li>
-                  <li><span class="n4-code">3.2.1.2</span> Suspensión y reactivación de cuentas</li>
-                  <li><span class="n4-code">3.2.1.3</span> Log de transacciones y créditos</li>
-                </ul>
-              </div>
-            </div>
+            <ul class="n3-list">
+              <li><span class="n3-code">3.2.1</span> Gestión de usuarios</li>
+              <li><span class="n3-code">3.2.2</span> Gestión de publicaciones</li>
+              <li><span class="n3-code">3.2.3</span> Gestión de denuncias comunitarias</li>
+              <li><span class="n3-code">3.2.4</span> Gestión de cuentas suspendidas</li>
+              <li><span class="n3-code">3.2.5</span> Gestión de categorías temáticas</li>
+              <li><span class="n3-code">3.2.7</span> Registro de decisiones admin</li>
+            </ul>
           </div>
         </div>
       </div>
 
-      <!-- ==================== COLUMNA 4: ENTREGA Y GESTIÓN ==================== -->
-      <div class="wbs-col wbs-col-4">
+      <!-- ==================== 4. ENTREGA Y GESTIÓN ==================== -->
+      <div class="wbs-col col-mod-4">
         <div class="wbs-col-header">
           <span class="wbs-col-badge">Nivel 1 • Módulo 4</span>
-          <h2 class="wbs-col-title">4. Entrega & Gestión</h2>
+          <h2 class="wbs-col-title">4. Entrega</h2>
         </div>
 
-        <div class="wbs-n2-container">
-          <!-- N2: 4.1 Testing & QA -->
-          <div class="wbs-n2-card">
-            <div class="n2-title">
-              <span class="n2-code">4.1</span> Testing & Calidad
+        <div class="n2-container">
+          <!-- 4.1 Paquete de pruebas -->
+          <div class="n2-box">
+            <div class="n2-header">
+              <span class="n2-tag">4.1</span> Paquete de pruebas
             </div>
-            <div class="wbs-n3-list">
-              <div class="wbs-n3-item" style="border-left-color: #0284c7;">
-                <div class="n3-title">
-                  <span class="n3-code">4.1.1</span> Pruebas Automatizadas
-                </div>
-                <ul class="wbs-n4-list">
-                  <li><span class="n4-code">4.1.1.1</span> Tests unitarios de servicios</li>
-                  <li><span class="n4-code">4.1.1.2</span> Pruebas atómicas de escrow/freeze</li>
-                  <li><span class="n4-code">4.1.1.3</span> Validación de integridad SQLite/Postgres</li>
-                </ul>
-              </div>
-            </div>
+            <ul class="n3-list">
+              <li><span class="n3-code">4.1.1</span> Pruebas funcionales</li>
+              <li><span class="n3-code">4.1.2</span> Pruebas de integración</li>
+              <li><span class="n3-code">4.1.3</span> Pruebas de seguridad</li>
+              <li><span class="n3-code">4.1.4</span> Pruebas de compatibilidad</li>
+              <li><span class="n3-code">4.1.6</span> Pruebas de aceptación</li>
+            </ul>
           </div>
 
-          <!-- N2: 4.2 Documentación & Defensa -->
-          <div class="wbs-n2-card">
-            <div class="n2-title">
-              <span class="n2-code">4.2</span> Coloquio & Cátedra
+          <!-- 4.2 Demo -->
+          <div class="n2-box">
+            <div class="n2-header">
+              <span class="n2-tag">4.2</span> Demo
             </div>
-            <div class="wbs-n3-list">
-              <div class="wbs-n3-item" style="border-left-color: #0284c7;">
-                <div class="n3-title">
-                  <span class="n3-code">4.2.1</span> Suite Interactiva TC017
-                </div>
-                <ul class="wbs-n4-list">
-                  <li><span class="n4-code">4.2.1.1</span> 13 diapositivas HTML responsivas</li>
-                  <li><span class="n4-code">4.2.1.2</span> Matriz de riesgos 5x5 heatmap</li>
-                  <li><span class="n4-code">4.2.1.3</span> Reporte Planning Poker y velocidad</li>
-                  <li><span class="n4-code">4.2.1.4</span> Demo y retrospectiva del equipo</li>
-                </ul>
-              </div>
+            <ul class="n3-list">
+              <li><span class="n3-code">4.2.7</span> Presentación y demo del MVP</li>
+              <li><span class="n3-code">4.2.8</span> Reportes de Git y repositorio</li>
+              <li><span class="n3-code">4.2.9</span> Preparar 2 computadoras demo</li>
+              <li><span class="n3-code">4.2.10</span> Replay reserva y cancelación</li>
+            </ul>
+          </div>
+
+          <!-- 4.3 Documentación de entrega -->
+          <div class="n2-box">
+            <div class="n2-header">
+              <span class="n2-tag">4.3</span> Documentación
             </div>
+            <ul class="n3-list">
+              <li><span class="n3-code">4.3.1</span> Narrativa de la iniciativa</li>
+              <li><span class="n3-code">4.3.2</span> Diagrama causa y efecto</li>
+              <li><span class="n3-code">4.3.3</span> Storytelling de la iniciativa</li>
+              <li><span class="n3-code">4.3.4</span> Scope Canvas canónico</li>
+              <li><span class="n3-code">4.3.5</span> User Research y empatía</li>
+              <li><span class="n3-code">4.3.6</span> Benchmarking competitivo</li>
+              <li><span class="n3-code">4.3.7</span> Diseño UX y wireframes</li>
+              <li><span class="n3-code">4.3.8</span> Workflows de la aplicación</li>
+              <li><span class="n3-code">4.3.9</span> WBS de la iniciativa</li>
+              <li><span class="n3-code">4.3.10</span> User Story Map</li>
+              <li><span class="n3-code">4.3.14</span> Reporte de estimaciones</li>
+              <li><span class="n3-code">4.3.15</span> Matriz de riesgos</li>
+              <li><span class="n3-code">4.3.16</span> Diagrama de arquitectura</li>
+            </ul>
+          </div>
+
+          <!-- 4.4 Retrospectiva -->
+          <div class="n2-box">
+            <div class="n2-header">
+              <span class="n2-tag">4.4</span> Retrospectiva
+            </div>
+            <ul class="n3-list">
+              <li><span class="n3-code">4.4.1</span> Retrospectiva del equipo</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -487,7 +448,7 @@
         <span>FIUBA • GESTIÓN DEL DESARROLLO DE SISTEMAS INFORMÁTICOS (TC017)</span>
       </div>
       <div class="watermark-sub">
-        Lerna — Plataforma de Intercambio de Aprendizajes • MVP V3
+        Lerna — Plataforma de Intercambio de Aprendizajes • Jira WBSO
       </div>
     </div>
   </div>
