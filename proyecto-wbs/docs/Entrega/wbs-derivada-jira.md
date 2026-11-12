@@ -1,12 +1,58 @@
 # Estructura de desglose del trabajo (WBS)
 
+**Entregable WBS:** 4.3.9 Confeccionar la WBS (Work Breakdown Structure)  
 **Proyecto:** Plataforma de intercambio de aprendizajes  
 **Origen:** estructura vigente del proyecto Jira WBSO  
-**Fecha de derivación:** 2026-11-11
+**Fecha de derivación:** 2026-11-11  
+**Marco teórico:** WBS orientada a entregables (*Gestión del Desarrollo de Sistemas Informáticos - FIUBA*)  
 
-Esta WBS presenta una vista documental limpia del trabajo. Los elementos técnicos duplicados por capa se consolidan en un único paquete funcional; no se incluyen claves Jira, tipos de issue, estados ni responsables.
+---
 
-## Estructura
+## 1. Marco Conceptual (según la cátedra)
+
+* **Definición:** Herramienta jerárquica que descompone la totalidad del alcance del proyecto en entregables más pequeños, independientes y estimables (regla del 100%).
+* **Criterio de partición:** **Basada en entregables y resultados finales**, consolidando los desarrollos técnicos de backend y frontend en paquetes funcionales únicos orientados al valor del producto.
+* **Niveles de jerarquía:**
+  - **Nivel 0:** Proyecto global (*Plataforma de Intercambio de Aprendizajes*).
+  - **Nivel 1:** Módulos principales / Macro-entregables (1. Producto y diseño, 2. Funcionalidad de la plataforma, 3. Seguridad y administración, 4. Entrega y gestión).
+  - **Nivel 2:** Componentes funcionales e hitos.
+  - **Nivel 3:** Paquetes de trabajo (Work Packages) e historias de usuario estimables.
+
+---
+
+## 2. Diagrama Jerárquico de la WBS (Vista de Módulos)
+
+```mermaid
+graph TD
+    P["0. Plataforma de Intercambio de Aprendizajes"] --> M1["1. Producto y diseño"]
+    P --> M2["2. Funcionalidad de la plataforma"]
+    P --> M3["3. Seguridad y administración"]
+    P --> M4["4. Entrega y gestión"]
+
+    M1 --> M11["1.1 Planificación y definición MVP"]
+    M1 --> M12["1.2 Gestión, despliegue e integración"]
+
+    M2 --> M21["2.1 Sistema de usuarios"]
+    M2 --> M22["2.2 Sistema de publicaciones"]
+    M2 --> M23["2.3 Búsqueda y compatibilidad"]
+    M2 --> M24["2.4 Solicitudes y sesiones"]
+    M2 --> M25["2.5 Créditos virtuales"]
+    M2 --> M26["2.6 Sistema de historial"]
+    M2 --> M27["2.7 Calificaciones y reputación"]
+    M2 --> M28["2.8 Sistema de notificaciones"]
+
+    M3 --> M31["3.1 Seguridad y moderación"]
+    M3 --> M32["3.2 Panel de administración"]
+
+    M4 --> M41["4.1 Paquete de pruebas"]
+    M4 --> M42["4.2 Demo y presentación"]
+    M4 --> M43["4.3 Documentación de entrega"]
+    M4 --> M44["4.4 Retrospectiva"]
+```
+
+---
+
+## 3. Desglose Completo de Paquetes de Trabajo (Jira WBSO Consolidado)
 
 - **1 Producto y diseño**
   - **1.1 Planificación y definición del MVP**
