@@ -5,154 +5,365 @@
   <title>Defensa Oral - Suite de Presentación Lerna (TC017 FIUBA)</title>
   <link rel="stylesheet" href="slides-theme.css">
   <style>
-    html { font-size: 16px; }
-    body {
-      font-size: 1rem;
-      padding: 0;
+    * {
+      box-sizing: border-box;
       margin: 0;
-      background: #0f172a;
+      padding: 0;
+    }
+
+    body {
+      background: #0b1120;
       overflow: hidden;
       height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: row; /* Layout horizontal: Side Panel a la izquierda + Viewport a la derecha */
+      font-family: var(--font-title);
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       SIDE PANEL IZQUIERDO (COLAPSIBLE)
+       ========================================================================== */
+    .side-panel {
+      width: 290px;
+      height: 100vh;
+      background: #0f172a;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       flex-direction: column;
-    }
-
-    /* Barra Superior de Control de la Presentación */
-    .presenter-bar {
-      height: 68px;
-      background: rgba(15, 23, 42, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 24px;
-      z-index: 100;
       flex-shrink: 0;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease;
+      z-index: 100;
+      position: relative;
     }
 
-    .brand-section {
+    .side-panel.collapsed {
+      width: 68px;
+    }
+
+    /* Cabecera del Panel */
+    .panel-header {
+      padding: 1.25rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
     }
-    .brand-logo {
-      font-size: 1.312rem;
-      font-weight: 700;
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .brand-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #00b074, #059669);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.125rem;
       color: #ffffff;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0, 176, 116, 0.35);
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      transition: opacity 0.2s ease;
+    }
+
+    .side-panel.collapsed .brand-meta {
+      opacity: 0;
+      pointer-events: none;
+      display: none;
+    }
+
+    .brand-name {
+      font-size: 1.125rem;
+      font-weight: 700;
       letter-spacing: -0.5px;
-    }
-    .brand-pill {
-      font-size: 0.812rem;
-      padding: 4px 12px;
-      font-weight: 700;
-      color: #00b074;
-      background: rgba(0, 176, 116, 0.15);
-      border: 1px solid rgba(0, 176, 116, 0.3);
-      padding: 3px 10px;
-      border-radius: 12px;
-      letter-spacing: 0.5px;
+      color: #ffffff;
     }
 
-    /* Píldoras de Diapositiva */
-    .slides-nav {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-    }
-    .slide-btn {
-      background: rgba(255, 255, 255, 0.08);
-      color: #94a3b8;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 8px 16px;
+    .brand-sub {
       font-family: var(--font-body);
-      font-size: 0.875rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .slide-btn:hover {
-      background: rgba(255, 255, 255, 0.16);
-      color: #ffffff;
-    }
-    .slide-btn.active {
-      background: #00b074;
-      color: #ffffff;
-      font-weight: 700;
-      border-color: #00b074;
-      box-shadow: 0 0 16px rgba(0, 176, 116, 0.4);
-    }
-    .slide-btn-num {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      line-height: 20px;
-      background: rgba(0, 0, 0, 0.25);
-      border-radius: 50%;
-      text-align: center;
       font-size: 0.688rem;
-      font-weight: 700;
+      color: #00b074;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
-    /* Controles de Navegación */
-    .controls-section {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .nav-arrow-btn {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #ffffff;
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
-    .nav-arrow-btn:hover {
-      background: rgba(255, 255, 255, 0.25);
-    }
-    .slide-counter {
-      font-family: var(--font-body);
-      font-size: 0.938rem;
+    .toggle-panel-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       color: #94a3b8;
-      font-weight: 600;
-      min-width: 65px;
-      text-align: center;
-    }
-    .icon-action-btn {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #94a3b8;
-      width: 38px;
-      height: 38px;
-      border-radius: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 0.875rem;
       transition: all 0.2s ease;
     }
-    .icon-action-btn:hover {
+
+    .toggle-panel-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
       color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.3);
     }
 
-    /* Viewport del Slide (Iframe a pantalla completa) */
-    .slide-viewport {
+    /* Lista de Navegación de Diapositivas */
+    .panel-nav {
       flex: 1;
+      overflow-y: auto;
+      padding: 1rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      padding: 0.75rem 0.875rem;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: #94a3b8;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      overflow: hidden;
       width: 100%;
-      height: calc(100vh - 68px);
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #f1f5f9;
+    }
+
+    .nav-item.active {
+      background: rgba(0, 176, 116, 0.15);
+      border-color: rgba(0, 176, 116, 0.4);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .nav-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      color: #cbd5e1;
+    }
+
+    .nav-item.active .nav-num {
+      background: #00b074;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(0, 176, 116, 0.5);
+    }
+
+    .nav-label {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .side-panel.collapsed .nav-label {
+      display: none;
+    }
+
+    .side-panel.collapsed .nav-item {
+      justify-content: center;
+      padding: 0.75rem 0;
+    }
+
+    /* Footer del Panel: Controles de Zoom de Texto & Pantalla Completa */
+    .panel-footer {
+      padding: 1rem 0.875rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(15, 23, 42, 0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .scale-control-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .scale-label {
+      font-family: var(--font-body);
+      font-size: 0.688rem;
+      color: #94a3b8;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .side-panel.collapsed .scale-label {
+      display: none;
+    }
+
+    .scale-btns {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+
+    .scale-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border-radius: 4px;
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.812rem;
+      font-weight: 700;
+      transition: background 0.2s ease;
+    }
+
+    .scale-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .scale-val {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #00b074;
+      min-width: 32px;
+      text-align: center;
+    }
+
+    .side-panel.collapsed .scale-control-box {
+      flex-direction: column;
+      gap: 4px;
+      padding: 6px 2px;
+    }
+
+    .panel-quick-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .action-btn {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 0.5rem;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.375rem;
+      transition: all 0.2s ease;
+    }
+
+    .action-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+    }
+
+    .side-panel.collapsed .action-btn span {
+      display: none;
+    }
+
+    /* ==========================================================================
+       VIEWPORT DERECHO (SLIDE CANVAS)
+       ========================================================================== */
+    .viewport-container {
+      flex: 1;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #f0f2f5;
+      position: relative;
+    }
+
+    /* Barra Superior Delgada de Navegación Rápida */
+    .top-floating-bar {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      z-index: 10;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 2rem;
+      padding: 0.375rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .top-counter {
+      font-family: var(--font-body);
+      font-size: 0.812rem;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    .top-arrow-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #ffffff;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      transition: background 0.2s ease;
+    }
+
+    .top-arrow-btn:hover {
+      background: #00b074;
+    }
+
+    /* Iframe del Slide */
+    .slide-iframe {
+      width: 100%;
+      height: 100%;
       border: none;
       background: #f0f2f5;
     }
@@ -160,64 +371,92 @@
 </head>
 <body>
 
-  <!-- Barra Superior del Presentador -->
-  <header class="presenter-bar">
-    
-    <!-- Identidad -->
-    <div class="brand-section">
-      <span class="brand-logo">LERNA</span>
-      <span class="brand-pill">COLOQUIO TC017 &bull; FIUBA</span>
+  <!-- ==================== SIDE PANEL IZQUIERDO ==================== -->
+  <aside id="side-panel" class="side-panel">
+    <!-- Header -->
+    <div class="panel-header">
+      <div class="brand-group">
+        <div class="brand-badge">L</div>
+        <div class="brand-meta">
+          <span class="brand-name">LERNA</span>
+          <span class="brand-sub">Coloquio TC017 • FIUBA</span>
+        </div>
+      </div>
+      <button class="toggle-panel-btn" onclick="toggleSidePanel()" title="Colapsar / Expandir Panel (B)">
+        ☰
+      </button>
     </div>
 
-    <!-- Menú de Diapositivas (8 Entregables) -->
-    <nav class="slides-nav">
-      <button class="slide-btn active" onclick="goToSlide(0)">
-        <span class="slide-btn-num">1</span> Scope Canvas
+    <!-- Navegación por Diapositivas -->
+    <nav class="panel-nav">
+      <button class="nav-item active" onclick="goToSlide(0)">
+        <span class="nav-num">1</span>
+        <span class="nav-label">Scope Canvas</span>
       </button>
-      <button class="slide-btn" onclick="goToSlide(1)">
-        <span class="slide-btn-num">2</span> Storytelling
+      <button class="nav-item" onclick="goToSlide(1)">
+        <span class="nav-num">2</span>
+        <span class="nav-label">Storytelling</span>
       </button>
-      <button class="slide-btn" onclick="goToSlide(2)">
-        <span class="slide-btn-num">3</span> User Research
+      <button class="nav-item" onclick="goToSlide(2)">
+        <span class="nav-num">3</span>
+        <span class="nav-label">User Research</span>
       </button>
-      <button class="slide-btn" onclick="goToSlide(3)">
-        <span class="slide-btn-num">4</span> Benchmarking
+      <button class="nav-item" onclick="goToSlide(3)">
+        <span class="nav-num">4</span>
+        <span class="nav-label">Benchmarking</span>
       </button>
-      <button class="slide-btn" onclick="goToSlide(4)">
-        <span class="slide-btn-num">5</span> Wireframes
+      <button class="nav-item" onclick="goToSlide(4)">
+        <span class="nav-num">5</span>
+        <span class="nav-label">UX Wireframes</span>
       </button>
-      <button class="slide-btn" onclick="goToSlide(5)">
-        <span class="slide-btn-num">6</span> Workflows
+      <button class="nav-item" onclick="goToSlide(5)">
+        <span class="nav-num">6</span>
+        <span class="nav-label">Workflows</span>
       </button>
-      <button class="slide-btn" onclick="goToSlide(6)">
-        <span class="slide-btn-num">7</span> Riesgos
+      <button class="nav-item" onclick="goToSlide(6)">
+        <span class="nav-num">7</span>
+        <span class="nav-label">Matriz de Riesgos</span>
       </button>
-      <button class="slide-btn" onclick="goToSlide(7)">
-        <span class="slide-btn-num">8</span> User Story Map
+      <button class="nav-item" onclick="goToSlide(7)">
+        <span class="nav-num">8</span>
+        <span class="nav-label">User Story Map</span>
       </button>
     </nav>
 
-    <!-- Controles & Teclado -->
-    <div class="controls-section">
-      <button class="nav-arrow-btn" onclick="prevSlide()" title="Anterior (Flecha Izquierda &larr;)">
-        &larr; Ant
-      </button>
-      <span id="slide-counter" class="slide-counter">1 / 8</span>
-      <button class="nav-arrow-btn" onclick="nextSlide()" title="Siguiente (Flecha Derecha &rarr; o Espacio)">
-        Sig &rarr;
-      </button>
-      <button class="icon-action-btn" onclick="openCurrentInNewTab()" title="Abrir diapositiva sola en nueva pestaña">
-        ↗
-      </button>
-      <button class="icon-action-btn" onclick="toggleFullscreen()" title="Pantalla Completa (F)">
-        ⛶
-      </button>
+    <!-- Footer del Panel: Control de Tamaño de Letra Rem & Acciones -->
+    <div class="panel-footer">
+      <div class="scale-control-box">
+        <span class="scale-label">Tamaño Fuente</span>
+        <div class="scale-btns">
+          <button class="scale-btn" onclick="changeGlobalScale(-1)" title="Achicar letra">A-</button>
+          <span id="scale-val" class="scale-val">16px</span>
+          <button class="scale-btn" onclick="changeGlobalScale(1)" title="Agrandar letra">A+</button>
+        </div>
+      </div>
+
+      <div class="panel-quick-actions">
+        <button class="action-btn" onclick="openCurrentInNewTab()" title="Abrir diapositiva sola">
+          ↗ <span>Pestaña</span>
+        </button>
+        <button class="action-btn" onclick="toggleFullscreen()" title="Pantalla Completa (F)">
+          ⛶ <span>Full (F)</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== VIEWPORT DERECHO ==================== -->
+  <main class="viewport-container">
+    <!-- Píldora Flotante con Contador y Flechas -->
+    <div class="top-floating-bar">
+      <button class="top-arrow-btn" onclick="prevSlide()" title="Anterior (&larr;)">&larr;</button>
+      <span id="top-counter" class="top-counter">1 / 8</span>
+      <button class="top-arrow-btn" onclick="nextSlide()" title="Siguiente (&rarr; o Espacio)">&rarr;</button>
     </div>
 
-  </header>
-
-  <!-- Visor de Diapositiva -->
-  <iframe id="slide-frame" class="slide-viewport" src="scope-canvas-slide.html" title="Diapositiva Activa"></iframe>
+    <!-- Iframe con el Slide Activo -->
+    <iframe id="slide-frame" class="slide-iframe" src="scope-canvas-slide.html" title="Diapositiva Activa"></iframe>
+  </main>
 
   <script>
     const slides = [
@@ -232,33 +471,78 @@
     ];
 
     let currentIndex = 0;
-    const frame = document.getElementById("slide-frame");
-    const counter = document.getElementById("slide-counter");
-    const buttons = document.querySelectorAll(".slide-btn");
+    let currentScale = 16; // Base 16px = 1rem
 
+    const frame = document.getElementById("slide-frame");
+    const topCounter = document.getElementById("top-counter");
+    const navItems = document.querySelectorAll(".nav-item");
+    const sidePanel = document.getElementById("side-panel");
+    const scaleVal = document.getElementById("scale-val");
+
+    // Ir a diapositiva por índice
     function goToSlide(index) {
       if (index < 0 || index >= slides.length) return;
       currentIndex = index;
-      
+
       // Actualizar iframe
       frame.src = slides[currentIndex].file;
 
-      // Actualizar contador y botones
-      counter.textContent = `${currentIndex + 1} / ${slides.length}`;
-      buttons.forEach((btn, i) => {
-        btn.classList.toggle("active", i === currentIndex);
+      // Actualizar contador y menú activo
+      topCounter.textContent = `${currentIndex + 1} / ${slides.length}`;
+      navItems.forEach((item, i) => {
+        item.classList.toggle("active", i === currentIndex);
       });
 
       // Actualizar hash en URL
       window.location.hash = slides[currentIndex].tag;
+
+      // Al cargar el iframe, inyectarle la escala tipográfica actual
+      frame.onload = function() {
+        applyScaleToIframe();
+      };
     }
 
     function prevSlide() {
-      if (currentIndex > 0) goToSlide(currentIndex - 1);
+      if (currentIndex > 0) {
+        goToSlide(currentIndex - 1);
+      } else {
+        goToSlide(slides.length - 1);
+      }
     }
 
     function nextSlide() {
-      if (currentIndex < slides.length - 1) goToSlide(currentIndex + 1);
+      if (currentIndex < slides.length - 1) {
+        goToSlide(currentIndex + 1);
+      } else {
+        goToSlide(0);
+      }
+    }
+
+    // Toggle Side Panel
+    function toggleSidePanel() {
+      sidePanel.classList.toggle("collapsed");
+    }
+
+    // Zoom Tipográfico Rem Global (Afecta tanto al Panel como al Iframe activo)
+    function changeGlobalScale(delta) {
+      currentScale += delta;
+      if (currentScale < 12) currentScale = 12;
+      if (currentScale > 24) currentScale = 24;
+
+      scaleVal.textContent = currentScale + "px";
+      document.documentElement.style.fontSize = currentScale + "px";
+      applyScaleToIframe();
+    }
+
+    function applyScaleToIframe() {
+      try {
+        const doc = frame.contentDocument || frame.contentWindow.document;
+        if (doc && doc.documentElement) {
+          doc.documentElement.style.fontSize = currentScale + "px";
+        }
+      } catch (e) {
+        console.warn("No se pudo inyectar escala al iframe:", e);
+      }
     }
 
     function openCurrentInNewTab() {
@@ -267,36 +551,53 @@
 
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(err => console.log(err));
+        document.documentElement.requestFullscreen().catch(err => {
+          alert(`Error al activar pantalla completa: ${err.message}`);
+        });
       } else {
         document.exitFullscreen();
       }
     }
 
-    // Navegación por teclado (Flechas y Espacio)
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight" || e.key === "PageDown" || (e.key === " " && !e.target.matches("input, textarea"))) {
+    // Atajos de teclado
+    window.addEventListener("keydown", (e) => {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+
+      if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
+        e.preventDefault();
         nextSlide();
       } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+        e.preventDefault();
         prevSlide();
       } else if (e.key === "f" || e.key === "F") {
+        e.preventDefault();
         toggleFullscreen();
+      } else if (e.key === "b" || e.key === "B") {
+        e.preventDefault();
+        toggleSidePanel();
+      } else if (e.key >= "1" && e.key <= "8") {
+        goToSlide(parseInt(e.key) - 1);
+      } else if (e.key === "+" || e.key === "=") {
+        e.preventDefault();
+        changeGlobalScale(1);
+      } else if (e.key === "-" || e.key === "_") {
+        e.preventDefault();
+        changeGlobalScale(-1);
       }
     });
 
-    // Leer hash inicial si existe
+    // Carga inicial por hash
     window.addEventListener("DOMContentLoaded", () => {
       const hash = window.location.hash.replace("#", "");
       if (hash) {
-        const foundIndex = slides.findIndex(s => s.tag === hash);
-        if (foundIndex !== -1) {
-          goToSlide(foundIndex);
+        const found = slides.findIndex(s => s.tag === hash);
+        if (found !== -1) {
+          goToSlide(found);
           return;
         }
       }
       goToSlide(0);
     });
   </script>
-
 </body>
 </html>
