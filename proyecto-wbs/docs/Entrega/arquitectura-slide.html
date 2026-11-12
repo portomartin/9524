@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Arquitectura Técnica de Software - Lerna (TC017 FIUBA)</title>
+  <link rel="stylesheet" href="slides-theme.css">
+  <style>
+    body { font-size: 1rem; }
+
+    /* Layout: 3 Bloques Horizontales (C1 Contexto, C2 Contenedores & C3 Capas Backend) */
+    .arch-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    /* Columna Izquierda: Principios Arquitectónicos y Persistencia Dual */
+    .arch-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .arch-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.25rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .arch-principles-card {
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.08);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .arch-card-title {
+      font-size: 0.938rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .principle-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .principle-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: rgba(0, 176, 116, 0.2);
+      color: #00b074;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .principle-title {
+      font-size: 0.812rem;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    .principle-sub {
+      font-family: var(--font-body);
+      font-size: 0.719rem;
+      color: #94a3b8;
+      line-height: 1.35;
+    }
+
+    /* Persistencia Dual Box */
+    .dual-db-box {
+      border-top: 4px solid #0284c7;
+      background: #f0f9ff;
+    }
+
+    .dual-db-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.625rem;
+      margin-top: 0.5rem;
+    }
+
+    .db-mini-card {
+      background: #ffffff;
+      border: 1px solid #bae6fd;
+      border-radius: 6px;
+      padding: 0.5rem 0.625rem;
+      font-family: var(--font-body);
+      font-size: 0.719rem;
+    }
+
+    .db-title {
+      font-weight: 700;
+      color: #0369a1;
+      font-size: 0.75rem;
+      margin-bottom: 2px;
+    }
+
+    /* Columna Derecha: Diagrama C3 de Capas del Backend */
+    .layers-container {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .layer-row {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      position: relative;
+    }
+
+    .layer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .layer-name {
+      font-size: 0.812rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .layer-tech {
+      font-family: var(--font-body);
+      font-size: 0.688rem;
+      color: #64748b;
+      background: #f1f5f9;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .layer-chips-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+    }
+
+    .layer-chip {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 0.4rem 0.6rem;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      color: #1e293b;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .chip-code {
+      font-family: monospace;
+      font-size: 0.688rem;
+      color: #64748b;
+    }
+
+    /* Colores por Capa */
+    .layer-client { background: #f8fafc; border-left: 4px solid #64748b; }
+    .layer-client .layer-name { color: #334155; }
+
+    .layer-routers { background: #fdf4ff; border-left: 4px solid #c026d3; }
+    .layer-routers .layer-name { color: #a21caf; }
+
+    .layer-services { background: #eff6ff; border-left: 4px solid #2563eb; }
+    .layer-services .layer-name { color: #1d4ed8; }
+
+    .layer-repos { background: #ecfdf5; border-left: 4px solid #059669; }
+    .layer-repos .layer-name { color: #047857; }
+
+    .layer-models { background: #fffbeb; border-left: 4px solid #d97706; }
+    .layer-models .layer-name { color: #b45309; }
+
+    .layer-arrow {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.75rem;
+      margin: -4px 0;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-wrapper">
+    <!-- Cabecera Principal -->
+    <div class="header-bar">
+      <div>
+        <h1 class="header-title">Arquitectura Técnica de Software</h1>
+      </div>
+      <div class="header-tag tag-green">
+        4.4.9 ARQUITECTURA TÉCNICA
+      </div>
+    </div>
+
+    <!-- Layout Principal -->
+    <div class="arch-layout">
+      <!-- Columna Izquierda: Principios & Persistencia Dual -->
+      <div class="arch-sidebar">
+        <!-- Principios de Diseño -->
+        <div class="arch-card arch-principles-card">
+          <div>
+            <div class="arch-card-title" style="color: #ffffff;">
+              <span>🏛️</span> Principios Arquitectónicos
+            </div>
+
+            <div class="principle-item">
+              <div class="principle-icon">1</div>
+              <div>
+                <div class="principle-title">Rol Único (`USER`)</div>
+                <div class="principle-sub">Entidad transversal: una misma persona enseña y aprende sin dualidad de tablas.</div>
+              </div>
+            </div>
+
+            <div class="principle-item">
+              <div class="principle-icon">2</div>
+              <div>
+                <div class="principle-title">Transacciones Atómicas (Freeze)</div>
+                <div class="principle-sub">Custodia temporal de créditos con reversión automática ante cancelación.</div>
+              </div>
+            </div>
+
+            <div class="principle-item">
+              <div class="principle-icon">3</div>
+              <div>
+                <div class="principle-title">Arquitectura en 4 Capas</div>
+                <div class="principle-sub">Separación estricta: Routers &rarr; Services &rarr; Repositories &rarr; Models.</div>
+              </div>
+            </div>
+
+            <div class="principle-item">
+              <div class="principle-icon">4</div>
+              <div>
+                <div class="principle-title">API First (Contratos JSON)</div>
+                <div class="principle-sub">Especificación OpenAPI / Swagger tipada con Pydantic y JWT Bearer tokens.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Persistencia Dual -->
+        <div class="arch-card dual-db-box">
+          <div class="arch-card-title" style="color: #0369a1;">
+            <span>💾</span> Persistencia Dual Transparente
+          </div>
+          <p style="font-family: var(--font-body); font-size: 0.719rem; color: #475569; line-height: 1.35;">
+            El motor SQLModel se adapta automáticamente al entorno mediante la variable <code>DATABASE_URL</code>:
+          </p>
+          <div class="dual-db-grid">
+            <div class="db-mini-card">
+              <div class="db-title">SQLite Local</div>
+              <div><code>local_dev.db</code> rápido, multihilo, sin dependencias externas.</div>
+            </div>
+            <div class="db-mini-card">
+              <div class="db-title">PostgreSQL Cloud</div>
+              <div>Instancia administrada en Render / Supabase para producción.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Capas del Backend (C3 Component Model) -->
+      <div class="layers-container">
+        <!-- Capa 0: Cliente Web (SPA) -->
+        <div class="layer-row layer-client">
+          <div class="layer-header">
+            <span class="layer-name">🌐 Frontend Web Client (SPA Desktop)</span>
+            <span class="layer-tech">Vue.js / Tailwind CSS / Vanilla JS</span>
+          </div>
+          <div class="layer-chips-grid">
+            <div class="layer-chip">
+              <strong>Catálogo & Filtros</strong>
+              <span class="chip-code">Buscador ILIKE, badges</span>
+            </div>
+            <div class="layer-chip">
+              <strong>Dashboard de Usuario</strong>
+              <span class="chip-code">Balance, clases, reputación</span>
+            </div>
+            <div class="layer-chip">
+              <strong>Modal de Reserva</strong>
+              <span class="chip-code">Selector fecha/hora, Meet</span>
+            </div>
+            <div class="layer-chip">
+              <strong>Cliente HTTP</strong>
+              <span class="chip-code">Fetch API + Bearer JWT</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="layer-arrow">&darr; Petición HTTP / JSON (Headers + JWT Bearer) &darr;</div>
+
+        <!-- Capa 1: Routers -->
+        <div class="layer-row layer-routers">
+          <div class="layer-header">
+            <span class="layer-name">1. Capa de Routers / Controladores</span>
+            <span class="layer-tech">FastAPI (app/routers/)</span>
+          </div>
+          <div class="layer-chips-grid">
+            <div class="layer-chip">
+              <strong>auth_router</strong>
+              <span class="chip-code">/api/v1/auth</span>
+            </div>
+            <div class="layer-chip">
+              <strong>users_router</strong>
+              <span class="chip-code">/api/v1/users</span>
+            </div>
+            <div class="layer-chip">
+              <strong>publications_router</strong>
+              <span class="chip-code">/api/v1/publications</span>
+            </div>
+            <div class="layer-chip">
+              <strong>sessions_router</strong>
+              <span class="chip-code">/api/v1/sessions</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="layer-arrow">&darr; Invocación de casos de uso y DTOs de entrada &darr;</div>
+
+        <!-- Capa 2: Servicios -->
+        <div class="layer-row layer-services">
+          <div class="layer-header">
+            <span class="layer-name">2. Capa de Servicios / Lógica de Negocio</span>
+            <span class="layer-tech">Pydantic & Domain (app/services/)</span>
+          </div>
+          <div class="layer-chips-grid">
+            <div class="layer-chip">
+              <strong>AuthService</strong>
+              <span class="chip-code">Bcrypt, generación JWT</span>
+            </div>
+            <div class="layer-chip">
+              <strong>CreditService</strong>
+              <span class="chip-code">Custodia (freeze), débito</span>
+            </div>
+            <div class="layer-chip">
+              <strong>MatchingService</strong>
+              <span class="chip-code">Cruce recíproco A &harr; B</span>
+            </div>
+            <div class="layer-chip">
+              <strong>SessionService</strong>
+              <span class="chip-code">Agenda y validación horario</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="layer-arrow">&darr; Consultas transaccionales y aislamiento de persistencia &darr;</div>
+
+        <!-- Capa 3: Repositorios -->
+        <div class="layer-row layer-repos">
+          <div class="layer-header">
+            <span class="layer-name">3. Capa de Repositorios / Acceso a Datos</span>
+            <span class="layer-tech">SQLModel Session (app/repositories/)</span>
+          </div>
+          <div class="layer-chips-grid">
+            <div class="layer-chip">
+              <strong>UserRepository</strong>
+              <span class="chip-code">Query usuario, balance</span>
+            </div>
+            <div class="layer-chip">
+              <strong>PubRepository</strong>
+              <span class="chip-code">Filtros SQL dinámicos</span>
+            </div>
+            <div class="layer-chip">
+              <strong>SessionRepository</strong>
+              <span class="chip-code">Bloqueos de franjas</span>
+            </div>
+            <div class="layer-chip">
+              <strong>ReviewRepository</strong>
+              <span class="chip-code">Agregación de rating</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="layer-arrow">&darr; Mapeo Objeto-Relacional (ORM) &darr;</div>
+
+        <!-- Capa 4: Modelos -->
+        <div class="layer-row layer-models">
+          <div class="layer-header">
+            <span class="layer-name">4. Capa de Modelos de Datos & Entidades</span>
+            <span class="layer-tech">SQLModel Entities (app/models/)</span>
+          </div>
+          <div class="layer-chips-grid">
+            <div class="layer-chip">
+              <strong>User</strong>
+              <span class="chip-code">id, email, password_hash</span>
+            </div>
+            <div class="layer-chip">
+              <strong>Publication</strong>
+              <span class="chip-code">type, title, category, level</span>
+            </div>
+            <div class="layer-chip">
+              <strong>Session</strong>
+              <span class="chip-code">status: P/A/C/X, escrow</span>
+            </div>
+            <div class="layer-chip">
+              <strong>Review</strong>
+              <span class="chip-code">rating 1-5, comment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pie Institucional de Slide -->
+    <div class="watermark">
+      <div class="watermark-left">
+        <span class="watermark-box"></span>
+        <span>FIUBA • GESTIÓN DEL DESARROLLO DE SISTEMAS INFORMÁTICOS (TC017)</span>
+      </div>
+      <div class="watermark-sub">
+        Lerna — Plataforma de Intercambio de Aprendizajes • MVP V3
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

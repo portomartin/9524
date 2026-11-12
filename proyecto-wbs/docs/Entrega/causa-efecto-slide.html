@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Diagrama Causa y Efecto (Ishikawa) - Lerna (TC017 FIUBA)</title>
+  <link rel="stylesheet" href="slides-theme.css">
+  <style>
+    body { font-size: 1rem; }
+
+    /* Layout: Diagrama Espina de Pescado SVG + 4 Fichas de Causas Raíz */
+    .cause-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Diagrama Visual de Espina de Pescado */
+    .ishikawa-container {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.25rem 1.75rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      position: relative;
+    }
+
+    .ishikawa-svg-box {
+      width: 100%;
+      height: 270px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Grilla de las 4 Categorías Estándar FIUBA (Gente, Ambiente, Métodos, Material/Equipo) */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .cat-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1rem 1.125rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      border-top: 4px solid #64748b;
+    }
+
+    .cat-gente { border-top-color: #ef4444; background: #fffafb; }
+    .cat-ambiente { border-top-color: #f59e0b; background: #fffdf7; }
+    .cat-metodos { border-top-color: #0284c7; background: #f0f9ff; }
+    .cat-equipo { border-top-color: #00b074; background: #f0fdf4; }
+
+    .cat-title {
+      font-size: 0.938rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cat-causes {
+      list-style: none;
+      font-family: var(--font-body);
+      font-size: 0.781rem;
+      color: #475569;
+      line-height: 1.45;
+      margin-bottom: 0.75rem;
+      flex: 1;
+    }
+
+    .cat-causes li {
+      position: relative;
+      padding-left: 12px;
+      margin-bottom: 4px;
+    }
+
+    .cat-causes li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #94a3b8;
+      font-weight: 900;
+    }
+
+    .cat-solution-badge {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 0.5rem 0.625rem;
+      font-family: var(--font-body);
+      font-size: 0.719rem;
+      line-height: 1.35;
+    }
+
+    .badge-sol-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.656rem;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .cat-gente .badge-sol-label { color: #dc2626; }
+    .cat-ambiente .badge-sol-label { color: #d97706; }
+    .cat-metodos .badge-sol-label { color: #0284c7; }
+    .cat-equipo .badge-sol-label { color: #059669; }
+  </style>
+</head>
+<body>
+
+  <div class="slide-wrapper">
+    <!-- Cabecera Principal -->
+    <div class="header-bar">
+      <div>
+        <h1 class="header-title">Causa y Efecto: Ishikawa</h1>
+      </div>
+      <div class="header-tag tag-red">
+        4.2.2 ANÁLISIS DEL PROBLEMA
+      </div>
+    </div>
+
+    <div class="cause-layout">
+      <!-- Diagrama SVG de la Espina de Pescado -->
+      <div class="ishikawa-container">
+        <div class="ishikawa-svg-box">
+          <svg viewBox="0 0 1380 240" width="100%" height="100%">
+            <!-- Espina Dorsal Central -->
+            <line x1="80" y1="120" x2="1040" y2="120" stroke="#1e293b" stroke-width="4" stroke-linecap="round"/>
+            <polygon points="1040,110 1065,120 1040,130" fill="#1e293b"/>
+
+            <!-- Espinas Superiores (Inclinadas 45°) -->
+            <!-- 1. GENTE (Roja) -->
+            <line x1="260" y1="25" x2="355" y2="120" stroke="#ef4444" stroke-width="3"/>
+            <circle cx="260" cy="25" r="5" fill="#ef4444"/>
+            <text x="250" y="16" font-family="Montserrat" font-size="14" font-weight="700" fill="#dc2626" text-anchor="middle">GENTE / PERSONAS</text>
+            <text x="180" y="55" font-family="Inter" font-size="11" fill="#475569">Desconfianza mutua</text>
+            <text x="210" y="85" font-family="Inter" font-size="11" fill="#475569">Falta de seriedad informal</text>
+
+            <!-- 2. AMBIENTE (Ámbar) -->
+            <line x1="680" y1="25" x2="775" y2="120" stroke="#f59e0b" stroke-width="3"/>
+            <circle cx="680" cy="25" r="5" fill="#f59e0b"/>
+            <text x="670" y="16" font-family="Montserrat" font-size="14" font-weight="700" fill="#d97706" text-anchor="middle">AMBIENTE / CONTEXTO</text>
+            <text x="590" y="55" font-family="Inter" font-size="11" fill="#475569">Tarifas en USD inaccesibles</text>
+            <text x="620" y="85" font-family="Inter" font-size="11" fill="#475569">Oferta dispersa en redes</text>
+
+            <!-- Espinas Inferiores (Inclinadas 45°) -->
+            <!-- 3. MÉTODOS (Azul) -->
+            <line x1="355" y1="120" x2="260" y2="215" stroke="#0284c7" stroke-width="3"/>
+            <circle cx="260" cy="215" r="5" fill="#0284c7"/>
+            <text x="250" y="235" font-family="Montserrat" font-size="14" font-weight="700" fill="#0369a1" text-anchor="middle">MÉTODOS / PROCESOS</text>
+            <text x="175" y="185" font-family="Inter" font-size="11" fill="#475569">Coordinación por WhatsApp</text>
+            <text x="205" y="155" font-family="Inter" font-size="11" fill="#475569">Cancelaciones a deshora</text>
+
+            <!-- 4. MATERIAL / EQUIPO (Verde) -->
+            <line x1="775" y1="120" x2="680" y2="215" stroke="#00b074" stroke-width="3"/>
+            <circle cx="680" cy="215" r="5" fill="#00b074"/>
+            <text x="670" y="235" font-family="Montserrat" font-size="14" font-weight="700" fill="#059669" text-anchor="middle">MATERIAL / EQUIPO</text>
+            <text x="590" y="185" font-family="Inter" font-size="11" fill="#475569">Sin plataforma centralizada</text>
+            <text x="620" y="155" font-family="Inter" font-size="11" fill="#475569">Sin custodia de créditos</text>
+
+            <!-- Caja Cabeza del Pescado (Problema Central) -->
+            <rect x="1075" y="65" width="285" height="110" rx="10" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+            <text x="1217" y="94" font-family="Montserrat" font-size="11" font-weight="700" fill="#f87171" text-anchor="middle" letter-spacing="1">EFECTO / PROBLEMA CENTRAL</text>
+            <text x="1217" y="122" font-family="Inter" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Inequidad y dificultad</text>
+            <text x="1217" y="142" font-family="Inter" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">en el acceso al aprendizaje</text>
+            <text x="1217" y="160" font-family="Inter" font-size="11" fill="#94a3b8" text-anchor="middle">personalizado entre pares</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 4 Tarjetas de Causas Raíz y Neutralización -->
+      <div class="categories-grid">
+        <!-- 1. Gente -->
+        <div class="cat-card cat-gente">
+          <div class="cat-title">👥 Gente / Personas</div>
+          <ul class="cat-causes">
+            <li>Miedo a enseñar sin recibir retribución.</li>
+            <li>Falta de seriedad en acuerdos verbales.</li>
+            <li>Asimetría en la valoración del tiempo.</li>
+          </ul>
+          <div class="cat-solution-badge">
+            <span class="badge-sol-label">Neutralización Lerna:</span>
+            Reputación verificada con scoring de 1 a 5 estrellas y perfiles transparentes.
+          </div>
+        </div>
+
+        <!-- 2. Ambiente -->
+        <div class="cat-card cat-ambiente">
+          <div class="cat-title">🌍 Ambiente / Contexto</div>
+          <ul class="cat-causes">
+            <li>Aranceles prohibitivos en dólares o pesos.</li>
+            <li>Ofertas aisladas en grupos informales.</li>
+            <li>Falta de espacios dedicados al intercambio.</li>
+          </ul>
+          <div class="cat-solution-badge">
+            <span class="badge-sol-label">Neutralización Lerna:</span>
+            Economía solidaria donde 1 hora = 1 crédito virtual libre de intermediarios.
+          </div>
+        </div>
+
+        <!-- 3. Métodos -->
+        <div class="cat-card cat-metodos">
+          <div class="cat-title">📋 Métodos / Procedimientos</div>
+          <ul class="cat-causes">
+            <li>Coordinación manual caótica por chat.</li>
+            <li>Cancelaciones imprevistas sin costo.</li>
+            <li>Ausencia de reglas para trueque diferido.</li>
+          </ul>
+          <div class="cat-solution-badge">
+            <span class="badge-sol-label">Neutralización Lerna:</span>
+            Custodia temporal de créditos (escrow) y agendamiento directo con link a Meet.
+          </div>
+        </div>
+
+        <!-- 4. Material / Equipo -->
+        <div class="cat-card cat-equipo">
+          <div class="cat-title">💻 Material / Equipo</div>
+          <ul class="cat-causes">
+            <li>Inexistencia de un catálogo P2P unificado.</li>
+            <li>Falta de billetera de créditos transaccional.</li>
+            <li>Sin motor de detección de reciprocidad.</li>
+          </ul>
+          <div class="cat-solution-badge">
+            <span class="badge-sol-label">Neutralización Lerna:</span>
+            Plataforma web SPA con algoritmo de matching recíproco y SQLite/PostgreSQL.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pie Institucional de Slide -->
+    <div class="watermark">
+      <div class="watermark-left">
+        <span class="watermark-box"></span>
+        <span>FIUBA • GESTIÓN DEL DESARROLLO DE SISTEMAS INFORMÁTICOS (TC017)</span>
+      </div>
+      <div class="watermark-sub">
+        Lerna — Plataforma de Intercambio de Aprendizajes • MVP V3
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

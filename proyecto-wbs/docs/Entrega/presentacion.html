@@ -388,38 +388,58 @@
     </div>
 
     <!-- Navegación por Diapositivas -->
-    <nav class="panel-nav">
+        <nav class="panel-nav">
       <button class="nav-item active" onclick="goToSlide(0)">
         <span class="nav-num">1</span>
-        <span class="nav-label">Scope Canvas</span>
+        <span class="nav-label">Portada / Narrativa</span>
       </button>
       <button class="nav-item" onclick="goToSlide(1)">
         <span class="nav-num">2</span>
-        <span class="nav-label">Storytelling</span>
+        <span class="nav-label">Causa y Efecto</span>
       </button>
       <button class="nav-item" onclick="goToSlide(2)">
         <span class="nav-num">3</span>
-        <span class="nav-label">User Research</span>
+        <span class="nav-label">Storytelling</span>
       </button>
       <button class="nav-item" onclick="goToSlide(3)">
         <span class="nav-num">4</span>
-        <span class="nav-label">Benchmarking</span>
+        <span class="nav-label">Scope Canvas</span>
       </button>
       <button class="nav-item" onclick="goToSlide(4)">
         <span class="nav-num">5</span>
-        <span class="nav-label">UX Wireframes</span>
+        <span class="nav-label">User Research</span>
       </button>
       <button class="nav-item" onclick="goToSlide(5)">
         <span class="nav-num">6</span>
-        <span class="nav-label">Workflows</span>
+        <span class="nav-label">Benchmarking</span>
       </button>
       <button class="nav-item" onclick="goToSlide(6)">
         <span class="nav-num">7</span>
-        <span class="nav-label">Matriz de Riesgos</span>
+        <span class="nav-label">UX Wireframes</span>
       </button>
       <button class="nav-item" onclick="goToSlide(7)">
         <span class="nav-num">8</span>
+        <span class="nav-label">Workflows</span>
+      </button>
+      <button class="nav-item" onclick="goToSlide(8)">
+        <span class="nav-num">9</span>
+        <span class="nav-label">WBS del Proyecto</span>
+      </button>
+      <button class="nav-item" onclick="goToSlide(9)">
+        <span class="nav-num">10</span>
         <span class="nav-label">User Story Map</span>
+      </button>
+      <button class="nav-item" onclick="goToSlide(10)">
+        <span class="nav-num">11</span>
+        <span class="nav-label">Estimaciones Ágiles</span>
+      </button>
+      <button class="nav-item" onclick="goToSlide(11)">
+        <span class="nav-num">12</span>
+        <span class="nav-label">Matriz de Riesgos</span>
+      </button>
+      <button class="nav-item" onclick="goToSlide(12)">
+        <span class="nav-num">13</span>
+        <span class="nav-label">Arquitectura Técnica</span>
       </button>
     </nav>
 
@@ -450,25 +470,82 @@
     <!-- Píldora Flotante con Contador y Flechas -->
     <div class="top-floating-bar">
       <button class="top-arrow-btn" onclick="prevSlide()" title="Anterior (&larr;)">&larr;</button>
-      <span id="top-counter" class="top-counter">1 / 8</span>
+      <span id="top-counter" class="top-counter">1 / 13</span>
       <button class="top-arrow-btn" onclick="nextSlide()" title="Siguiente (&rarr; o Espacio)">&rarr;</button>
     </div>
 
     <!-- Iframe con el Slide Activo -->
-    <iframe id="slide-frame" class="slide-iframe" src="scope-canvas-slide.html" title="Diapositiva Activa"></iframe>
+    <iframe id="slide-frame" class="slide-iframe" src="narrativa-slide.html" title="Diapositiva Activa"></iframe>
   </main>
 
   <script>
-    const slides = [
-      { name: "Scope Canvas", file: "scope-canvas-slide.html", tag: "scope-canvas" },
-      { name: "Storytelling", file: "storytelling-slide.html", tag: "storytelling" },
-      { name: "User Research", file: "user-research-slide.html", tag: "user-research" },
-      { name: "Benchmarking", file: "benchmarking-slide.html", tag: "benchmarking" },
-      { name: "Wireframes", file: "wireframes-slide.html", tag: "wireframes" },
-      { name: "Workflows", file: "workflows-slide.html", tag: "workflows" },
-      { name: "Matriz de Riesgos", file: "riesgos-slide.html", tag: "riesgos" },
-      { name: "User Story Map", file: "user-story-map-slide.html", tag: "usm" }
-    ];
+        const slides = [
+      {
+            "name": "Portada / Narrativa",
+            "file": "narrativa-slide.html",
+            "tag": "narrativa"
+      },
+      {
+            "name": "Causa y Efecto",
+            "file": "causa-efecto-slide.html",
+            "tag": "causa-efecto"
+      },
+      {
+            "name": "Storytelling",
+            "file": "storytelling-slide.html",
+            "tag": "storytelling"
+      },
+      {
+            "name": "Scope Canvas",
+            "file": "scope-canvas-slide.html",
+            "tag": "scope-canvas"
+      },
+      {
+            "name": "User Research",
+            "file": "user-research-slide.html",
+            "tag": "user-research"
+      },
+      {
+            "name": "Benchmarking",
+            "file": "benchmarking-slide.html",
+            "tag": "benchmarking"
+      },
+      {
+            "name": "UX Wireframes",
+            "file": "wireframes-slide.html",
+            "tag": "wireframes"
+      },
+      {
+            "name": "Workflows",
+            "file": "workflows-slide.html",
+            "tag": "workflows"
+      },
+      {
+            "name": "WBS del Proyecto",
+            "file": "wbs-slide.html",
+            "tag": "wbs"
+      },
+      {
+            "name": "User Story Map",
+            "file": "user-story-map-slide.html",
+            "tag": "usm"
+      },
+      {
+            "name": "Estimaciones \u00c1giles",
+            "file": "estimaciones-slide.html",
+            "tag": "estimaciones"
+      },
+      {
+            "name": "Matriz de Riesgos",
+            "file": "riesgos-slide.html",
+            "tag": "riesgos"
+      },
+      {
+            "name": "Arquitectura T\u00e9cnica",
+            "file": "arquitectura-slide.html",
+            "tag": "arquitectura"
+      }
+];
 
     let currentIndex = 0;
     let currentScale = 16; // Base 16px = 1rem

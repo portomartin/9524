@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Narrativa de la Iniciativa - Lerna (TC017 FIUBA)</title>
+  <link rel="stylesheet" href="slides-theme.css">
+  <style>
+    body { font-size: 1rem; }
+
+    /* Layout en 2 Columnas Desiguales: Izquierda Resumen Ejecutivo | Derecha Template Oficial FIUBA */
+    .narrative-grid {
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    /* Columna Izquierda: Tarjeta de Propósito y Pilares */
+    .hero-card {
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0, 176, 116, 0.2);
+      color: #00b074;
+      border: 1px solid rgba(0, 176, 116, 0.4);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    .hero-desc {
+      font-family: var(--font-body);
+      font-size: 0.938rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .pillars-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.25rem;
+    }
+
+    .pillar-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .pillar-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: rgba(0, 176, 116, 0.15);
+      color: #00b074;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .pillar-text-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    .pillar-text-sub {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      color: #94a3b8;
+      line-height: 1.4;
+    }
+
+    /* Columna Derecha: Template Canónico FIUBA de Definición del Problema */
+    .template-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.75rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .template-box {
+      border-radius: 8px;
+      padding: 1.125rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      position: relative;
+    }
+
+    .box-problem {
+      background: #fef2f2;
+      border-left: 4px solid #ef4444;
+    }
+    .box-affects {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+    }
+    .box-impact {
+      background: #f8fafc;
+      border-left: 4px solid #64748b;
+    }
+    .box-solution {
+      background: #f0fdf4;
+      border-left: 4px solid #00b074;
+    }
+
+    .box-header {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .box-problem .box-header { color: #b91c1c; }
+    .box-affects .box-header { color: #b45309; }
+    .box-impact .box-header { color: #475569; }
+    .box-solution .box-header { color: #15803d; }
+
+    .box-content {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: #1e293b;
+    }
+
+    /* Grid de Soluciones dentro del Box Solution */
+    .solution-highlights {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .sol-item {
+      background: #ffffff;
+      border: 1px solid #bbf7d0;
+      border-radius: 6px;
+      padding: 0.625rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .sol-title {
+      font-size: 0.812rem;
+      font-weight: 700;
+      color: #15803d;
+    }
+    .sol-desc {
+      font-family: var(--font-body);
+      font-size: 0.719rem;
+      color: #334155;
+      line-height: 1.35;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-wrapper">
+    <!-- Cabecera Principal -->
+    <div class="header-bar">
+      <div>
+        <h1 class="header-title">Narrativa de la Iniciativa</h1>
+      </div>
+      <div class="header-tag tag-blue">
+        4.2.1 NARRATIVA OFICIAL
+      </div>
+    </div>
+
+    <!-- Contenido en 2 Columnas -->
+    <div class="narrative-grid">
+      <!-- Columna Izquierda: Visión Ejecutiva -->
+      <div class="hero-card">
+        <div>
+          <span class="hero-badge">Propuesta de Valor</span>
+          <h2 class="hero-title">Democratizar el saber mediante el trueque de tiempo</h2>
+          <p class="hero-desc">
+            Lerna es una plataforma web peer-to-peer donde el conocimiento es la moneda de cambio. Permite a las personas enseñar lo que dominan y aprender lo que necesitan en un marco seguro, sin dinero de por medio.
+          </p>
+        </div>
+
+        <div class="pillars-list">
+          <div class="pillar-item">
+            <div class="pillar-icon">⏱️</div>
+            <div>
+              <div class="pillar-text-title">1 Hora = 1 Crédito Virtual</div>
+              <div class="pillar-text-sub">Economía solidaria sin intermediarios financieros ni tarifas dolarizadas.</div>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon">👤</div>
+            <div>
+              <div class="pillar-text-title">Rol Único Transparente (`USER`)</div>
+              <div class="pillar-text-sub">Una misma persona enseña y aprende sin cambiar de perfil ni cuenta.</div>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-icon">🔒</div>
+            <div>
+              <div class="pillar-text-title">Custodia Preventiva (Escrow)</div>
+              <div class="pillar-text-sub">El crédito se retiene al aceptar y se transfiere solo tras la clase realizada.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Template Oficial FIUBA de Definición del Problema -->
+      <div class="template-card">
+        <!-- 1. El Problema de -->
+        <div class="template-box box-problem">
+          <div class="box-header">1. El problema de...</div>
+          <div class="box-content">
+            La <strong>imposibilidad de acceder a tutorías individuales y aprendizajes personalizados</strong> debido a barreras económicas de precios prohibitivos, falta de confianza y ausencia de canales formales de intercambio recíproco.
+          </div>
+        </div>
+
+        <!-- 2. Afecta a -->
+        <div class="template-box box-affects">
+          <div class="box-header">2. Afecta a...</div>
+          <div class="box-content">
+            Estudiantes universitarios, profesionales junior, autodidactas y personas con vocación pedagógica que desean capacitarse continuamente pero disponen de un presupuesto mensual limitado o devaluado.
+          </div>
+        </div>
+
+        <!-- 3. El resultado del cual -->
+        <div class="template-box box-impact">
+          <div class="box-header">3. Cuyo impacto y consecuencias son...</div>
+          <div class="box-content">
+            Frustración personal, abandono de cursos en video impersonales, pérdida de tiempo en redes sociales informales con alta tasa de cancelaciones y <strong>subutilización del talento y saberes</strong> presentes en la comunidad.
+          </div>
+        </div>
+
+        <!-- 4. La Solución y Beneficios -->
+        <div class="template-box box-solution">
+          <div class="box-header">4. Los beneficios de una solución exitosa son...</div>
+          <div class="solution-highlights">
+            <div class="sol-item">
+              <span class="sol-title">🌱 Cero Barreras Monetarias</span>
+              <span class="sol-desc">Aprender sin desembolsar dinero en efectivo; la única inversión requerida es el propio tiempo pedagógico.</span>
+            </div>
+            <div class="sol-item">
+              <span class="sol-title">🤝 Confianza y Reputación</span>
+              <span class="sol-desc">Calificaciones mutuas (1-5 estrellas) y comentarios transparentes post-sesión verificada.</span>
+            </div>
+            <div class="sol-item">
+              <span class="sol-title">🛡️ Garantía Transaccional</span>
+              <span class="sol-desc">Custodia preventiva de créditos que anula estafas y cancelaciones informales sin compensación.</span>
+            </div>
+            <div class="sol-item">
+              <span class="sol-title">🎯 Algoritmo de Matching</span>
+              <span class="sol-desc">Detección de reciprocidad automática entre personas que buscan lo que la otra sabe enseñar.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pie Institucional de Slide -->
+    <div class="watermark">
+      <div class="watermark-left">
+        <span class="watermark-box"></span>
+        <span>FIUBA • GESTIÓN DEL DESARROLLO DE SISTEMAS INFORMÁTICOS (TC017)</span>
+      </div>
+      <div class="watermark-sub">
+        Lerna — Plataforma de Intercambio de Aprendizajes • MVP V3
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
