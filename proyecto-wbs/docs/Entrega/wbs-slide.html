@@ -7,11 +7,56 @@
   <style>
     body { font-size: 1rem; }
 
-    /* Layout: 4 Columnas para los 4 Macro-Entregables (Regla del 100%) */
-    .wbs-grid {
+    /* Barra de Leyenda de Niveles Jerárquicos */
+    .wbs-legend-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 0.625rem 1.25rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .legend-items {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+    }
+
+    .legend-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .dot-n0 { width: 10px; height: 10px; border-radius: 2px; background: #1e293b; }
+    .dot-n1 { width: 10px; height: 10px; border-radius: 2px; background: #00b074; }
+    .dot-n2 { width: 10px; height: 10px; border-radius: 2px; background: #0284c7; }
+    .dot-n3 { width: 10px; height: 10px; border-radius: 2px; background: #f59e0b; }
+    .dot-n4 { width: 10px; height: 10px; border-radius: 2px; background: #64748b; }
+
+    .rule-100 {
+      font-family: var(--font-body);
+      font-size: 0.719rem;
+      color: #15803d;
+      background: #dcfce7;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+
+    /* Grilla de 4 Macro-Entregables (Nivel 1) */
+    .wbs-grid-4 {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem;
+      gap: 1.125rem;
       align-items: stretch;
     }
 
@@ -19,7 +64,7 @@
       background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 1.25rem 1rem;
+      padding: 1.125rem 0.875rem;
       box-shadow: 0 4px 16px rgba(0,0,0,0.03);
       display: flex;
       flex-direction: column;
@@ -32,13 +77,13 @@
     .wbs-col-4 { border-top-color: #0284c7; }
 
     .wbs-col-header {
-      margin-bottom: 1rem;
-      padding-bottom: 0.75rem;
+      margin-bottom: 0.875rem;
+      padding-bottom: 0.625rem;
       border-bottom: 1px solid #f1f5f9;
     }
 
     .wbs-col-badge {
-      font-size: 0.688rem;
+      font-size: 0.656rem;
       font-weight: 700;
       letter-spacing: 0.8px;
       text-transform: uppercase;
@@ -54,56 +99,108 @@
     .wbs-col-4 .wbs-col-badge { background: #e0f2fe; color: #0369a1; }
 
     .wbs-col-title {
-      font-size: 1.062rem;
+      font-size: 1rem;
       font-weight: 700;
       color: #1e293b;
       letter-spacing: -0.3px;
     }
 
-    .wbs-packages-list {
+    /* Lista Vertical de Sub-Entregables (Nivel 2) */
+    .wbs-n2-container {
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
       flex: 1;
     }
 
-    .wbs-package-box {
+    /* Tarjeta Nivel 2 */
+    .wbs-n2-card {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 8px;
       padding: 0.625rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
     }
 
-    .wbs-pkg-title {
-      font-size: 0.812rem;
+    .n2-title {
+      font-size: 0.781rem;
       font-weight: 700;
       color: #1e293b;
-      margin-bottom: 4px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .wbs-pkg-items {
-      list-style: none;
-      font-family: var(--font-body);
-      font-size: 0.719rem;
-      color: #475569;
-      line-height: 1.4;
+    .n2-code {
+      font-family: monospace;
+      font-size: 0.688rem;
+      color: #0369a1;
+      background: #e0f2fe;
+      padding: 1px 5px;
+      border-radius: 3px;
     }
 
-    .wbs-pkg-items li {
-      position: relative;
-      padding-left: 10px;
+    /* Lista Nivel 3 (Paquetes de Trabajo) */
+    .wbs-n3-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      margin-top: 2px;
+    }
+
+    .wbs-n3-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-left: 3px solid #00b074;
+      border-radius: 4px;
+      padding: 0.375rem 0.5rem;
+    }
+
+    .n3-title {
+      font-size: 0.719rem;
+      font-weight: 700;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 4px;
       margin-bottom: 2px;
     }
 
-    .wbs-pkg-items li::before {
+    .n3-code {
+      font-family: monospace;
+      font-size: 0.625rem;
+      color: #059669;
+    }
+
+    /* Lista Nivel 4 (Tareas / Actividades Atómicas) */
+    .wbs-n4-list {
+      list-style: none;
+      font-family: var(--font-body);
+      font-size: 0.656rem;
+      color: #64748b;
+      line-height: 1.35;
+      padding-left: 10px;
+    }
+
+    .wbs-n4-list li {
+      position: relative;
+      margin-bottom: 1px;
+    }
+
+    .wbs-n4-list li::before {
       content: "›";
       position: absolute;
-      left: 0;
+      left: -8px;
       color: #94a3b8;
-      font-weight: 700;
+      font-weight: 900;
+    }
+
+    .n4-code {
+      font-family: monospace;
+      font-size: 0.594rem;
+      color: #94a3b8;
     }
   </style>
 </head>
@@ -116,135 +213,271 @@
         <h1 class="header-title">Estructura de Desglose del Trabajo</h1>
       </div>
       <div class="header-tag tag-blue">
-        4.4.1 WBS JIRA
+        4.4.1 WBS JIRA (4 NIVELES)
       </div>
     </div>
 
-    <!-- Grilla de 4 Macro-Entregables (Regla del 100%) -->
-    <div class="wbs-grid">
-      <!-- Columna 1: Producto y Diseño -->
+    <!-- Barra de Leyenda de Jerarquía Formal (Nivel 0 al Nivel 4) -->
+    <div class="wbs-legend-bar">
+      <div class="legend-items">
+        <span style="font-weight: 700; color: #1e293b;">Jerarquía Oficial:</span>
+        <div class="legend-pill"><span class="dot-n0"></span> N0: Proyecto (Lerna)</div>
+        <div class="legend-pill"><span class="dot-n1"></span> N1: Macro-Entregables (4)</div>
+        <div class="legend-pill"><span class="dot-n2"></span> N2: Subsistemas / Componentes</div>
+        <div class="legend-pill"><span class="dot-n3"></span> N3: Paquetes de Trabajo (WP)</div>
+        <div class="legend-pill"><span class="dot-n4"></span> N4: Historias & Tareas Atómicas</div>
+      </div>
+      <div class="rule-100">
+        ✓ 100% Alcance MVP V3 Consolidado
+      </div>
+    </div>
+
+    <!-- Grilla de 4 Macro-Entregables Nivel 1 con Desglose N2, N3 y N4 -->
+    <div class="wbs-grid-4">
+
+      <!-- ==================== COLUMNA 1: PRODUCTO Y DISEÑO ==================== -->
       <div class="wbs-col wbs-col-1">
         <div class="wbs-col-header">
           <span class="wbs-col-badge">Nivel 1 • Módulo 1</span>
           <h2 class="wbs-col-title">1. Producto & Diseño</h2>
         </div>
 
-        <div class="wbs-packages-list">
-          <div class="wbs-package-box">
-            <div class="wbs-pkg-title">1.1 Definición del MVP</div>
-            <ul class="wbs-pkg-items">
-              <li>1.1.1 Especificación MVP V3</li>
-              <li>1.1.2 Scope Canvas & Causa-Efecto</li>
-              <li>1.1.3 User Story Map & Backlog</li>
-              <li>1.1.4 Política de contenidos</li>
-            </ul>
+        <div class="wbs-n2-container">
+          <!-- N2: 1.1 Planificación -->
+          <div class="wbs-n2-card">
+            <div class="n2-title">
+              <span class="n2-code">1.1</span> Planificación MVP
+            </div>
+            <div class="wbs-n3-list">
+              <div class="wbs-n3-item" style="border-left-color: #6366f1;">
+                <div class="n3-title">
+                  <span class="n3-code">1.1.1</span> Requisitos & Alcance
+                </div>
+                <ul class="wbs-n4-list">
+                  <li><span class="n4-code">1.1.1.1</span> Redacción especificación MVP V3</li>
+                  <li><span class="n4-code">1.1.1.2</span> Scope Canvas canónico de 9 cajas</li>
+                  <li><span class="n4-code">1.1.1.3</span> Política de contenidos permitidos</li>
+                </ul>
+              </div>
+
+              <div class="wbs-n3-item" style="border-left-color: #6366f1;">
+                <div class="n3-title">
+                  <span class="n3-code">1.1.2</span> Plan de Trabajo Ágil
+                </div>
+                <ul class="wbs-n4-list">
+                  <li><span class="n4-code">1.1.2.1</span> WBS derivada y estructurada</li>
+                  <li><span class="n4-code">1.1.2.2</span> User Story Map (Patton)</li>
+                  <li><span class="n4-code">1.1.2.3</span> Configuración proyecto Jira WBSO</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
-          <div class="wbs-package-box">
-            <div class="wbs-pkg-title">1.2 UX & Despliegue</div>
-            <ul class="wbs-pkg-items">
-              <li>1.2.1 Wireframes y prototipos</li>
-              <li>1.2.2 Workflows de la app</li>
-              <li>1.2.3 CI/CD & Despliegue en la nube</li>
-              <li>1.2.4 Configuración hosting dual</li>
-            </ul>
+          <!-- N2: 1.2 UX y Despliegue -->
+          <div class="wbs-n2-card">
+            <div class="n2-title">
+              <span class="n2-code">1.2</span> UX & Despliegue
+            </div>
+            <div class="wbs-n3-list">
+              <div class="wbs-n3-item" style="border-left-color: #6366f1;">
+                <div class="n3-title">
+                  <span class="n3-code">1.2.1</span> Prototipado & Flujos
+                </div>
+                <ul class="wbs-n4-list">
+                  <li><span class="n4-code">1.2.1.1</span> 6 wireframes móviles clave</li>
+                  <li><span class="n4-code">1.2.1.2</span> 4 workflows end-to-end vectoriales</li>
+                </ul>
+              </div>
+
+              <div class="wbs-n3-item" style="border-left-color: #6366f1;">
+                <div class="n3-title">
+                  <span class="n3-code">1.2.2</span> DevOps & CI/CD
+                </div>
+                <ul class="wbs-n4-list">
+                  <li><span class="n4-code">1.2.2.1</span> Despliegue cloud SPA frontend</li>
+                  <li><span class="n4-code">1.2.2.2</span> Despliegue API FastAPI en Render</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Columna 2: Funcionalidad de la Plataforma (Core) -->
+      <!-- ==================== COLUMNA 2: FUNCIONALIDAD CORE ==================== -->
       <div class="wbs-col wbs-col-2">
         <div class="wbs-col-header">
           <span class="wbs-col-badge">Nivel 1 • Módulo 2</span>
           <h2 class="wbs-col-title">2. Funcionalidad Core</h2>
         </div>
 
-        <div class="wbs-packages-list">
-          <div class="wbs-package-box">
-            <div class="wbs-pkg-title">2.1 Usuarios & Auth</div>
-            <ul class="wbs-pkg-items">
-              <li>2.1.1 Registro & Login JWT</li>
-              <li>2.1.2 Perfil único con balance</li>
-              <li>2.1.3 Configuración de franjas</li>
-            </ul>
+        <div class="wbs-n2-container">
+          <!-- N2: 2.1 Usuarios & Auth -->
+          <div class="wbs-n2-card">
+            <div class="n2-title">
+              <span class="n2-code">2.1</span> Usuarios & Perfil
+            </div>
+            <div class="wbs-n3-list">
+              <div class="wbs-n3-item">
+                <div class="n3-title">
+                  <span class="n3-code">2.1.1</span> Cuenta y Rol Único
+                </div>
+                <ul class="wbs-n4-list">
+                  <li><span class="n4-code">2.1.1.1</span> Registro con saldo bienvenida</li>
+                  <li><span class="n4-code">2.1.1.2</span> Auth JWT con Bcrypt</li>
+                  <li><span class="n4-code">2.1.1.3</span> Perfil único con balance libre/freeze</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
-          <div class="wbs-package-box">
-            <div class="wbs-pkg-title">2.2 Publicaciones & Buscador</div>
-            <ul class="wbs-pkg-items">
-              <li>2.2.1 CRUD de enseñanza/aprendizaje</li>
-              <li>2.2.2 Filtro ILIKE por temática</li>
-              <li>2.2.3 Detección de coincidencia recíproca</li>
-            </ul>
+          <!-- N2: 2.2 Publicaciones & Buscador -->
+          <div class="wbs-n2-card">
+            <div class="n2-title">
+              <span class="n2-code">2.2</span> Publicaciones & Search
+            </div>
+            <div class="wbs-n3-list">
+              <div class="wbs-n3-item">
+                <div class="n3-title">
+                  <span class="n3-code">2.2.1</span> Catálogo & Matching
+                </div>
+                <ul class="wbs-n4-list">
+                  <li><span class="n4-code">2.2.1.1</span> Formulario enseñar/aprender</li>
+                  <li><span class="n4-code">2.2.1.2</span> Buscador ILIKE por temática/nivel</li>
+                  <li><span class="n4-code">2.2.1.3</span> Detección de cruce recíproco A&harr;B</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
-          <div class="wbs-package-box">
-            <div class="wbs-pkg-title">2.3 Sesiones & Créditos</div>
-            <ul class="wbs-pkg-items">
-              <li>2.3.1 Solicitud y estados P/A/C/X</li>
-              <li>2.3.2 Custodia temporal (freeze escrow)</li>
-              <li>2.3.3 Calificaciones 1-5 estrellas</li>
-            </ul>
+          <!-- N2: 2.3 Sesiones & Créditos -->
+          <div class="wbs-n2-card">
+            <div class="n2-title">
+              <span class="n2-code">2.3</span> Sesiones & Escrow
+            </div>
+            <div class="wbs-n3-list">
+              <div class="wbs-n3-item">
+                <div class="n3-title">
+                  <span class="n3-code">2.3.1</span> Transacciones & Custodia
+                </div>
+                <ul class="wbs-n4-list">
+                  <li><span class="n4-code">2.3.1.1</span> Solicitud de clase y estados P/A/C/X</li>
+                  <li><span class="n4-code">2.3.1.2</span> Custodia preventiva (freeze escrow)</li>
+                  <li><span class="n4-code">2.3.1.3</span> Liberación atómica post-sesión</li>
+                  <li><span class="n4-code">2.3.1.4</span> Calificación mutua 1-5 estrellas</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Columna 3: Seguridad & Moderación -->
+      <!-- ==================== COLUMNA 3: SEGURIDAD Y MODERACIÓN ==================== -->
       <div class="wbs-col wbs-col-3">
         <div class="wbs-col-header">
           <span class="wbs-col-badge">Nivel 1 • Módulo 3</span>
           <h2 class="wbs-col-title">3. Seguridad & Moderación</h2>
         </div>
 
-        <div class="wbs-packages-list">
-          <div class="wbs-package-box">
-            <div class="wbs-pkg-title">3.1 Control de Contenidos</div>
-            <ul class="wbs-pkg-items">
-              <li>3.1.1 Filtro de palabras prohibidas</li>
-              <li>3.1.2 Denuncias en publicaciones</li>
-              <li>3.1.3 Sanitización XSS / CORS</li>
-            </ul>
+        <div class="wbs-n2-container">
+          <!-- N2: 3.1 Filtros y Moderación -->
+          <div class="wbs-n2-card">
+            <div class="n2-title">
+              <span class="n2-code">3.1</span> Filtro de Contenidos
+            </div>
+            <div class="wbs-n3-list">
+              <div class="wbs-n3-item" style="border-left-color: #f59e0b;">
+                <div class="n3-title">
+                  <span class="n3-code">3.1.1</span> Moderación Automática
+                </div>
+                <ul class="wbs-n4-list">
+                  <li><span class="n4-code">3.1.1.1</span> Filtro de palabras prohibidas</li>
+                  <li><span class="n4-code">3.1.1.2</span> Sanitización de inputs contra XSS</li>
+                  <li><span class="n4-code">3.1.1.3</span> Validación categorías permitidas</li>
+                </ul>
+              </div>
+
+              <div class="wbs-n3-item" style="border-left-color: #f59e0b;">
+                <div class="n3-title">
+                  <span class="n3-code">3.1.2</span> Denuncias de la Comunidad
+                </div>
+                <ul class="wbs-n4-list">
+                  <li><span class="n4-code">3.1.2.1</span> Botón reportar en publicaciones</li>
+                  <li><span class="n4-code">3.1.2.2</span> Flag de suspensión preventiva</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
-          <div class="wbs-package-box">
-            <div class="wbs-pkg-title">3.2 Administración</div>
-            <ul class="wbs-pkg-items">
-              <li>3.2.1 Dashboard de moderación</li>
-              <li>3.2.2 Baja preventiva de ofertas</li>
-              <li>3.2.3 Logs de auditoría transaccional</li>
-            </ul>
+          <!-- N2: 3.2 Administración -->
+          <div class="wbs-n2-card">
+            <div class="n2-title">
+              <span class="n2-code">3.2</span> Panel de Control
+            </div>
+            <div class="wbs-n3-list">
+              <div class="wbs-n3-item" style="border-left-color: #f59e0b;">
+                <div class="n3-title">
+                  <span class="n3-code">3.2.1</span> Gestión de Auditoría
+                </div>
+                <ul class="wbs-n4-list">
+                  <li><span class="n4-code">3.2.1.1</span> Baja manual de publicaciones</li>
+                  <li><span class="n4-code">3.2.1.2</span> Suspensión y reactivación de cuentas</li>
+                  <li><span class="n4-code">3.2.1.3</span> Log de transacciones y créditos</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Columna 4: Entrega & Gestión -->
+      <!-- ==================== COLUMNA 4: ENTREGA Y GESTIÓN ==================== -->
       <div class="wbs-col wbs-col-4">
         <div class="wbs-col-header">
           <span class="wbs-col-badge">Nivel 1 • Módulo 4</span>
           <h2 class="wbs-col-title">4. Entrega & Gestión</h2>
         </div>
 
-        <div class="wbs-packages-list">
-          <div class="wbs-package-box">
-            <div class="wbs-pkg-title">4.1 Testing & QA</div>
-            <ul class="wbs-pkg-items">
-              <li>4.1.1 Pruebas unitarias de servicios</li>
-              <li>4.1.2 Tests transaccionales de freeze</li>
-              <li>4.1.3 Pruebas end-to-end de flujos</li>
-            </ul>
+        <div class="wbs-n2-container">
+          <!-- N2: 4.1 Testing & QA -->
+          <div class="wbs-n2-card">
+            <div class="n2-title">
+              <span class="n2-code">4.1</span> Testing & Calidad
+            </div>
+            <div class="wbs-n3-list">
+              <div class="wbs-n3-item" style="border-left-color: #0284c7;">
+                <div class="n3-title">
+                  <span class="n3-code">4.1.1</span> Pruebas Automatizadas
+                </div>
+                <ul class="wbs-n4-list">
+                  <li><span class="n4-code">4.1.1.1</span> Tests unitarios de servicios</li>
+                  <li><span class="n4-code">4.1.1.2</span> Pruebas atómicas de escrow/freeze</li>
+                  <li><span class="n4-code">4.1.1.3</span> Validación de integridad SQLite/Postgres</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
-          <div class="wbs-package-box">
-            <div class="wbs-pkg-title">4.2 Coloquio & Cátedra</div>
-            <ul class="wbs-pkg-items">
-              <li>4.2.1 Suite de diapositivas interactivas</li>
-              <li>4.2.2 Informe final y matriz de riesgos</li>
-              <li>4.2.3 Demo en vivo de la aplicación</li>
-              <li>4.2.4 Retrospectiva del equipo</li>
-            </ul>
+          <!-- N2: 4.2 Documentación & Defensa -->
+          <div class="wbs-n2-card">
+            <div class="n2-title">
+              <span class="n2-code">4.2</span> Coloquio & Cátedra
+            </div>
+            <div class="wbs-n3-list">
+              <div class="wbs-n3-item" style="border-left-color: #0284c7;">
+                <div class="n3-title">
+                  <span class="n3-code">4.2.1</span> Suite Interactiva TC017
+                </div>
+                <ul class="wbs-n4-list">
+                  <li><span class="n4-code">4.2.1.1</span> 13 diapositivas HTML responsivas</li>
+                  <li><span class="n4-code">4.2.1.2</span> Matriz de riesgos 5x5 heatmap</li>
+                  <li><span class="n4-code">4.2.1.3</span> Reporte Planning Poker y velocidad</li>
+                  <li><span class="n4-code">4.2.1.4</span> Demo y retrospectiva del equipo</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
 
     <!-- Pie Institucional de Slide -->
