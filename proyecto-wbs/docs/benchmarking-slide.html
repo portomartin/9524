@@ -2,12 +2,15 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="slides-theme.css">
   <title>Benchmarking - Plataforma de Intercambio de Aprendizajes</title>
   <style>
+    html { font-size: 16px; }
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
+      font-size: 1rem;
       background-color: #f0f2f5;
       padding: 35px 20px;
       display: flex;
@@ -34,7 +37,7 @@
       align-items: flex-end;
     }
     .header-title {
-      font-size: 60px;
+      font-size: 3.75rem;
       font-weight: 400;
       color: #1e293b;
       letter-spacing: -1.5px;
@@ -42,7 +45,7 @@
     }
     .header-subtitle {
       font-family: 'Inter', sans-serif;
-      font-size: 16px;
+      font-size: 1rem;
       color: #64748b;
       margin-top: 6px;
     }
@@ -50,7 +53,7 @@
       background: #fee2e2;
       color: #b91c1c;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 0.875rem;
       padding: 7px 16px;
       border-radius: 20px;
       letter-spacing: 0.5px;
@@ -78,18 +81,18 @@
       margin-bottom: 10px;
     }
     .criteria-icon {
-      font-size: 24px;
+      font-size: 1.5rem;
       line-height: 1;
     }
     .criteria-name {
-      font-size: 19px;
+      font-size: 1.188rem;
       font-weight: 700;
       color: #b91c1c;
       letter-spacing: -0.3px;
     }
     .criteria-type {
       font-family: 'Inter', sans-serif;
-      font-size: 11px;
+      font-size: 0.688rem;
       font-weight: 600;
       color: #64748b;
       text-transform: uppercase;
@@ -98,14 +101,14 @@
     }
     .criteria-desc {
       font-family: 'Inter', sans-serif;
-      font-size: 13.5px;
+      font-size: 0.844rem;
       color: #475569;
       line-height: 1.45;
       margin-bottom: 10px;
     }
     .criteria-scale {
       font-family: 'Inter', sans-serif;
-      font-size: 11px;
+      font-size: 0.688rem;
       color: #1e293b;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
@@ -119,7 +122,7 @@
       margin-bottom: 45px;
     }
     .section-title {
-      font-size: 24px;
+      font-size: 1.5rem;
       font-weight: 600;
       color: #1e293b;
       margin-bottom: 16px;
@@ -152,7 +155,7 @@
     .scoring-table th {
       background: #f8fafc;
       padding: 16px 12px;
-      font-size: 14.5px;
+      font-size: 0.906rem;
       font-weight: 700;
       color: #334155;
       border-bottom: 2px solid #e2e8f0;
@@ -171,7 +174,7 @@
       width: 16%;
     }
     .scoring-table th .th-icon {
-      font-size: 18px;
+      font-size: 1.125rem;
       display: block;
       margin-bottom: 4px;
       color: #b91c1c;
@@ -179,7 +182,7 @@
 
     .scoring-table td {
       padding: 16px 12px;
-      font-size: 14px;
+      font-size: 0.875rem;
       color: #475569;
       border-bottom: 1px solid #f1f5f9;
       border-right: 1px solid #f8fafc;
@@ -192,7 +195,7 @@
     }
     .scoring-table td:last-child {
       border-right: none;
-      font-size: 18px;
+      font-size: 1.125rem;
       font-weight: 800;
     }
     .scoring-table tr:hover td {
@@ -212,7 +215,7 @@
       display: inline-block;
       padding: 4px 12px;
       border-radius: 20px;
-      font-size: 16px;
+      font-size: 1rem;
       font-weight: 700;
     }
     .score-green {
@@ -272,7 +275,7 @@
       right: 5px;
       background: rgba(15, 23, 42, 0.78);
       color: #ffffff;
-      font-size: 8.5px;
+      font-size: 0.531rem;
       font-family: 'Inter', sans-serif;
       padding: 2px 6px;
       border-radius: 4px;
@@ -334,7 +337,7 @@
     .lightbox-caption {
       margin-top: 14px;
       font-family: 'Montserrat', sans-serif;
-      font-size: 15px;
+      font-size: 0.938rem;
       font-weight: 500;
       color: #ffffff;
       letter-spacing: 0.3px;
@@ -352,7 +355,7 @@
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      font-size: 18px;
+      font-size: 1.125rem;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -371,12 +374,12 @@
       margin-bottom: 10px;
     }
     .comp-name {
-      font-size: 15px;
+      font-size: 0.938rem;
       font-weight: 700;
       color: #1e293b;
     }
     .comp-score-pill {
-      font-size: 11px;
+      font-size: 0.688rem;
       font-weight: 700;
       padding: 3px 8px;
       border-radius: 12px;
@@ -391,7 +394,7 @@
     }
     .comp-features li {
       font-family: 'Inter', sans-serif;
-      font-size: 11px;
+      font-size: 0.688rem;
       color: #475569;
       line-height: 1.4;
       margin-bottom: 6px;
@@ -418,7 +421,7 @@
       margin-top: 40px;
       padding-top: 20px;
       border-top: 1px solid #f1f5f9;
-      font-size: 13px;
+      font-size: 0.812rem;
       color: #777;
       font-weight: 600;
       letter-spacing: 1.5px;
@@ -696,7 +699,7 @@
         <span class="watermark-box"></span>
         <span>PROYECTO WBS &bull; BENCHMARKING COMPETITIVO LERNA</span>
       </div>
-      <div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #94a3b8;">
+      <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #94a3b8;">
         TC017 - Gestión del Desarrollo de Sistemas Informáticos - FIUBA
       </div>
     </div>

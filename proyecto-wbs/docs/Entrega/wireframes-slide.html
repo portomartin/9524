@@ -2,12 +2,15 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="slides-theme.css">
   <title>Wireframes - Plataforma de Intercambio de Aprendizajes</title>
   <style>
+    html { font-size: 16px; }
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
+      font-size: 1rem;
       background-color: #f0f2f5;
       padding: 30px 15px;
       display: flex;
@@ -31,7 +34,7 @@
       padding-bottom: 18px;
     }
     .header-title {
-      font-size: 60px;
+      font-size: 3.75rem;
       font-weight: 400;
       color: #1e293b;
       letter-spacing: -1.5px;
@@ -39,7 +42,7 @@
     }
     .header-subtitle {
       font-family: 'Inter', sans-serif;
-      font-size: 16px;
+      font-size: 1rem;
       color: #94a3b8;
       margin-top: 6px;
     }
@@ -59,7 +62,7 @@
     }
 
     .screen-title {
-      font-size: 16px;
+      font-size: 1rem;
       font-weight: 600;
       color: #8b1d2c; /* Tono borravino / morado idéntico a la cátedra */
       text-align: center;
@@ -129,13 +132,13 @@
       margin-bottom: 8px;
     }
     .app-logo {
-      font-size: 11px;
+      font-size: 0.688rem;
       font-weight: 700;
       color: #0f172a;
       letter-spacing: -0.5px;
     }
     .app-badge {
-      font-size: 9px;
+      font-size: 0.562rem;
       background: #e2e8f0;
       padding: 2px 6px;
       border-radius: 10px;
@@ -203,12 +206,12 @@
       text-align: center;
     }
     .wf-badge-num {
-      font-size: 10px;
+      font-size: 0.625rem;
       font-weight: 700;
       color: #00b074;
     }
     .wf-badge-lbl {
-      font-size: 7px;
+      font-size: 0.438rem;
       color: #94a3b8;
     }
 
@@ -246,7 +249,7 @@
     .wf-btn {
       background: #00b074;
       color: #fff;
-      font-size: 8px;
+      font-size: 0.5rem;
       font-weight: 600;
       text-align: center;
       padding: 4px 6px;
@@ -257,7 +260,7 @@
       background: transparent;
       border: 1px solid #00b074;
       color: #00b074;
-      font-size: 8px;
+      font-size: 0.5rem;
       font-weight: 600;
       text-align: center;
       padding: 3px 6px;
@@ -287,7 +290,7 @@
       text-align: left;
     }
     .features-title {
-      font-size: 13px;
+      font-size: 0.812rem;
       font-weight: 700;
       color: #1e293b;
       margin-bottom: 8px;
@@ -298,7 +301,7 @@
       margin: 0;
     }
     .features-list li {
-      font-size: 11.5px;
+      font-size: 0.719rem;
       color: #475569;
       line-height: 1.45;
       margin-bottom: 6px;
@@ -318,7 +321,7 @@
       margin-top: 45px;
       padding-top: 20px;
       border-top: 1px solid #f1f5f9;
-      font-size: 13px;
+      font-size: 0.812rem;
       color: #777;
       font-weight: 600;
       letter-spacing: 1.5px;
@@ -393,7 +396,7 @@
             </div>
 
             <!-- Título sección recomendados -->
-            <div style="font-size:9px; font-weight:700; color:#334155; margin-bottom:5px;">Recomendado para ti</div>
+            <div style="font-size: 0.562rem; font-weight:700; color:#334155; margin-bottom:5px;">Recomendado para ti</div>
 
             <!-- Card 1 -->
             <div class="wf-card">
@@ -401,7 +404,7 @@
               <div class="wf-card-info">
                 <div class="wf-line-title" style="width:80%;"></div>
                 <div class="wf-line-sub" style="width:60%;"></div>
-                <div style="font-size:8px; color:#00b074; font-weight:600; margin-top:3px;">3 CR &bull; 120 min</div>
+                <div style="font-size: 0.5rem; color:#00b074; font-weight:600; margin-top:3px;">3 CR &bull; 120 min</div>
               </div>
             </div>
 
@@ -411,7 +414,7 @@
               <div class="wf-card-info">
                 <div class="wf-line-title" style="width:75%;"></div>
                 <div class="wf-line-sub" style="width:50%;"></div>
-                <div style="font-size:8px; color:#00b074; font-weight:600; margin-top:3px;">1 CR &bull; 60 min</div>
+                <div style="font-size: 0.5rem; color:#00b074; font-weight:600; margin-top:3px;">1 CR &bull; 60 min</div>
               </div>
             </div>
 
@@ -451,15 +454,15 @@
 
             <!-- Search input -->
             <div class="wf-input">
-              <div style="font-size:10px; color:#94a3b8; margin-right:4px;">🔍</div>
+              <div style="font-size: 0.625rem; color:#94a3b8; margin-right:4px;">🔍</div>
               <div class="wf-input-text"></div>
             </div>
 
             <!-- Pills de categoría -->
             <div style="display:flex; gap:4px; margin-bottom:8px; overflow:hidden;">
-              <div style="background:#00b074; color:#fff; font-size:7.5px; padding:2px 6px; border-radius:10px;">Todas</div>
-              <div style="background:#e2e8f0; color:#475569; font-size:7.5px; padding:2px 6px; border-radius:10px;">Cocina</div>
-              <div style="background:#e2e8f0; color:#475569; font-size:7.5px; padding:2px 6px; border-radius:10px;">Música</div>
+              <div style="background:#00b074; color:#fff; font-size: 0.469rem; padding:2px 6px; border-radius:10px;">Todas</div>
+              <div style="background:#e2e8f0; color:#475569; font-size: 0.469rem; padding:2px 6px; border-radius:10px;">Cocina</div>
+              <div style="background:#e2e8f0; color:#475569; font-size: 0.469rem; padding:2px 6px; border-radius:10px;">Música</div>
             </div>
 
             <!-- Card Resultado 1 -->
@@ -467,10 +470,10 @@
               <div class="wf-thumb"></div>
               <div class="wf-card-info">
                 <div class="wf-line-title" style="width:85%;"></div>
-                <div style="font-size:7.5px; color:#64748b;">Elena R. &bull; Presencial</div>
+                <div style="font-size: 0.469rem; color:#64748b;">Elena R. &bull; Presencial</div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
-                  <span style="font-size:8px; color:#00b074; font-weight:700;">3 CR</span>
-                  <span class="wf-btn-outline" style="padding:1px 5px; font-size:7px;">Ver</span>
+                  <span style="font-size: 0.5rem; color:#00b074; font-weight:700;">3 CR</span>
+                  <span class="wf-btn-outline" style="padding:1px 5px; font-size: 0.438rem;">Ver</span>
                 </div>
               </div>
             </div>
@@ -480,10 +483,10 @@
               <div class="wf-thumb"></div>
               <div class="wf-card-info">
                 <div class="wf-line-title" style="width:70%;"></div>
-                <div style="font-size:7.5px; color:#64748b;">Juan P. &bull; Virtual</div>
+                <div style="font-size: 0.469rem; color:#64748b;">Juan P. &bull; Virtual</div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
-                  <span style="font-size:8px; color:#00b074; font-weight:700;">1 CR</span>
-                  <span class="wf-btn-outline" style="padding:1px 5px; font-size:7px;">Ver</span>
+                  <span style="font-size: 0.5rem; color:#00b074; font-weight:700;">1 CR</span>
+                  <span class="wf-btn-outline" style="padding:1px 5px; font-size: 0.438rem;">Ver</span>
                 </div>
               </div>
             </div>
@@ -493,10 +496,10 @@
               <div class="wf-thumb"></div>
               <div class="wf-card-info">
                 <div class="wf-line-title" style="width:80%;"></div>
-                <div style="font-size:7.5px; color:#64748b;">Carlos M. &bull; Virtual</div>
+                <div style="font-size: 0.469rem; color:#64748b;">Carlos M. &bull; Virtual</div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
-                  <span style="font-size:8px; color:#00b074; font-weight:700;">2 CR</span>
-                  <span class="wf-btn-outline" style="padding:1px 5px; font-size:7px;">Ver</span>
+                  <span style="font-size: 0.5rem; color:#00b074; font-weight:700;">2 CR</span>
+                  <span class="wf-btn-outline" style="padding:1px 5px; font-size: 0.438rem;">Ver</span>
                 </div>
               </div>
             </div>
@@ -530,7 +533,7 @@
           <div class="notch"></div>
           <div class="screen-content">
             <div class="app-topbar">
-              <span style="font-size:10px; color:#475569;">&larr; Volver</span>
+              <span style="font-size: 0.625rem; color:#475569;">&larr; Volver</span>
               <span class="app-badge">3 CR</span>
             </div>
 
@@ -541,8 +544,8 @@
 
             <!-- Chips -->
             <div style="display:flex; gap:4px; margin-bottom:6px;">
-              <span style="background:#fee2e2; color:#b91c1c; font-size:7px; padding:2px 5px; border-radius:4px; font-weight:600;">Cocina</span>
-              <span style="background:#e0f2fe; color:#0369a1; font-size:7px; padding:2px 5px; border-radius:4px; font-weight:600;">Presencial</span>
+              <span style="background:#fee2e2; color:#b91c1c; font-size: 0.438rem; padding:2px 5px; border-radius:4px; font-weight:600;">Cocina</span>
+              <span style="background:#e0f2fe; color:#0369a1; font-size: 0.438rem; padding:2px 5px; border-radius:4px; font-weight:600;">Presencial</span>
             </div>
 
             <div class="wf-line-title" style="width:90%; height:9px;"></div>
@@ -551,15 +554,15 @@
 
             <!-- Docente card -->
             <div style="background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:6px; display:flex; align-items:center; gap:6px; margin-bottom:8px;">
-              <div style="width:22px; height:22px; background:#00b074; border-radius:50%; color:#fff; font-size:8px; display:flex; align-items:center; justify-content:center; font-weight:700;">ER</div>
+              <div style="width:22px; height:22px; background:#00b074; border-radius:50%; color:#fff; font-size: 0.5rem; display:flex; align-items:center; justify-content:center; font-weight:700;">ER</div>
               <div>
-                <div style="font-size:8px; font-weight:700; color:#1e293b;">Elena Rostova</div>
-                <div style="font-size:7px; color:#64748b;">★ 4.9 &bull; 18 clases dictadas</div>
+                <div style="font-size: 0.5rem; font-weight:700; color:#1e293b;">Elena Rostova</div>
+                <div style="font-size: 0.438rem; color:#64748b;">★ 4.9 &bull; 18 clases dictadas</div>
               </div>
             </div>
 
             <!-- Botón Sticky Acción -->
-            <div class="wf-btn" style="padding:6px; font-size:8.5px; border-radius:12px;">
+            <div class="wf-btn" style="padding:6px; font-size: 0.531rem; border-radius:12px;">
               Solicitar Clase &bull; 3 Créditos
             </div>
 
@@ -593,39 +596,39 @@
           <div class="screen-content">
             <div class="app-topbar">
               <span class="app-logo">Mis Clases</span>
-              <span style="background:#00b074; color:#fff; font-size:8px; padding:2px 6px; border-radius:10px; font-weight:700;">+ Nueva</span>
+              <span style="background:#00b074; color:#fff; font-size: 0.5rem; padding:2px 6px; border-radius:10px; font-weight:700;">+ Nueva</span>
             </div>
 
             <!-- Card Publicación 1 (Activa) -->
             <div style="background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:7px; margin-bottom:8px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                <span style="font-size:7.5px; color:#00b074; font-weight:700;">● ACTIVA</span>
-                <span style="font-size:7.5px; color:#64748b;">Virtual</span>
+                <span style="font-size: 0.469rem; color:#00b074; font-weight:700;">● ACTIVA</span>
+                <span style="font-size: 0.469rem; color:#64748b;">Virtual</span>
               </div>
               <div class="wf-line-title" style="width:85%;"></div>
-              <div style="font-size:7.5px; color:#64748b; margin-bottom:5px;">Tecnología &bull; 2 CR por sesión</div>
+              <div style="font-size: 0.469rem; color:#64748b; margin-bottom:5px;">Tecnología &bull; 2 CR por sesión</div>
               <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e2e8f0; padding-top:4px;">
-                <span style="font-size:7px; color:#94a3b8;">5 solicitudes</span>
-                <span style="font-size:7px; color:#0369a1; font-weight:600;">Editar</span>
+                <span style="font-size: 0.438rem; color:#94a3b8;">5 solicitudes</span>
+                <span style="font-size: 0.438rem; color:#0369a1; font-weight:600;">Editar</span>
               </div>
             </div>
 
             <!-- Card Publicación 2 (Pausada) -->
             <div style="background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:7px; margin-bottom:8px; opacity:0.75;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                <span style="font-size:7.5px; color:#94a3b8; font-weight:700;">○ PAUSADA</span>
-                <span style="font-size:7.5px; color:#64748b;">Presencial</span>
+                <span style="font-size: 0.469rem; color:#94a3b8; font-weight:700;">○ PAUSADA</span>
+                <span style="font-size: 0.469rem; color:#64748b;">Presencial</span>
               </div>
               <div class="wf-line-title" style="width:70%;"></div>
-              <div style="font-size:7.5px; color:#64748b; margin-bottom:5px;">Diseño UX &bull; 1 CR</div>
+              <div style="font-size: 0.469rem; color:#64748b; margin-bottom:5px;">Diseño UX &bull; 1 CR</div>
               <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e2e8f0; padding-top:4px;">
-                <span style="font-size:7px; color:#94a3b8;">Sin cupos</span>
-                <span style="font-size:7px; color:#0369a1; font-weight:600;">Activar</span>
+                <span style="font-size: 0.438rem; color:#94a3b8;">Sin cupos</span>
+                <span style="font-size: 0.438rem; color:#0369a1; font-weight:600;">Activar</span>
               </div>
             </div>
 
             <!-- Floating Action Hint -->
-            <div style="border:1px dashed #cbd5e1; border-radius:6px; padding:10px; text-align:center; color:#64748b; font-size:7.5px;">
+            <div style="border:1px dashed #cbd5e1; border-radius:6px; padding:10px; text-align:center; color:#64748b; font-size: 0.469rem;">
               + Crear propuesta para enseñar
             </div>
 
@@ -664,35 +667,35 @@
 
             <!-- Tab Switcher -->
             <div style="display:flex; background:#e2e8f0; border-radius:6px; padding:2px; margin-bottom:8px;">
-              <div style="flex:1; background:#fff; font-size:7.5px; text-align:center; padding:3px; border-radius:4px; font-weight:700; color:#1e293b;">Recibidas (2)</div>
-              <div style="flex:1; font-size:7.5px; text-align:center; padding:3px; color:#64748b;">Enviadas (1)</div>
+              <div style="flex:1; background:#fff; font-size: 0.469rem; text-align:center; padding:3px; border-radius:4px; font-weight:700; color:#1e293b;">Recibidas (2)</div>
+              <div style="flex:1; font-size: 0.469rem; text-align:center; padding:3px; color:#64748b;">Enviadas (1)</div>
             </div>
 
             <!-- Solicitud Card 1 -->
             <div style="background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:7px; margin-bottom:8px;">
               <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
-                <span style="font-size:8px; font-weight:700; color:#1e293b;">Martín Gómez</span>
-                <span style="font-size:7px; color:#df6e5d; font-weight:600;">+2 CR</span>
+                <span style="font-size: 0.5rem; font-weight:700; color:#1e293b;">Martín Gómez</span>
+                <span style="font-size: 0.438rem; color:#df6e5d; font-weight:600;">+2 CR</span>
               </div>
-              <div style="font-size:7.5px; color:#64748b; margin-bottom:3px;">Clase: Python Inicial</div>
-              <div style="font-size:7px; color:#94a3b8; margin-bottom:6px;">📅 Mar 18 Nov &bull; 18:30 hs</div>
+              <div style="font-size: 0.469rem; color:#64748b; margin-bottom:3px;">Clase: Python Inicial</div>
+              <div style="font-size: 0.438rem; color:#94a3b8; margin-bottom:6px;">📅 Mar 18 Nov &bull; 18:30 hs</div>
               <div style="display:flex; gap:4px;">
                 <div class="wf-btn" style="flex:1; padding:3px 0;">Aceptar</div>
-                <div style="flex:1; background:#f1f5f9; color:#64748b; font-size:8px; font-weight:600; text-align:center; padding:3px 0; border-radius:10px;">Rechazar</div>
+                <div style="flex:1; background:#f1f5f9; color:#64748b; font-size: 0.5rem; font-weight:600; text-align:center; padding:3px 0; border-radius:10px;">Rechazar</div>
               </div>
             </div>
 
             <!-- Solicitud Card 2 -->
             <div style="background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:7px; margin-bottom:8px;">
               <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
-                <span style="font-size:8px; font-weight:700; color:#1e293b;">Lucía Silva</span>
-                <span style="font-size:7px; color:#df6e5d; font-weight:600;">+1 CR</span>
+                <span style="font-size: 0.5rem; font-weight:700; color:#1e293b;">Lucía Silva</span>
+                <span style="font-size: 0.438rem; color:#df6e5d; font-weight:600;">+1 CR</span>
               </div>
-              <div style="font-size:7.5px; color:#64748b; margin-bottom:3px;">Clase: Guitarra Acústica</div>
-              <div style="font-size:7px; color:#94a3b8; margin-bottom:6px;">📅 Jue 20 Nov &bull; 19:00 hs</div>
+              <div style="font-size: 0.469rem; color:#64748b; margin-bottom:3px;">Clase: Guitarra Acústica</div>
+              <div style="font-size: 0.438rem; color:#94a3b8; margin-bottom:6px;">📅 Jue 20 Nov &bull; 19:00 hs</div>
               <div style="display:flex; gap:4px;">
                 <div class="wf-btn" style="flex:1; padding:3px 0;">Aceptar</div>
-                <div style="flex:1; background:#f1f5f9; color:#64748b; font-size:8px; font-weight:600; text-align:center; padding:3px 0; border-radius:10px;">Rechazar</div>
+                <div style="flex:1; background:#f1f5f9; color:#64748b; font-size: 0.5rem; font-weight:600; text-align:center; padding:3px 0; border-radius:10px;">Rechazar</div>
               </div>
             </div>
 
@@ -730,32 +733,32 @@
             </div>
 
             <!-- Mini Calendario Grid -->
-            <div style="display:grid; grid-template-columns:repeat(7, 1fr); gap:2px; margin-bottom:8px; text-align:center; font-size:7px;">
+            <div style="display:grid; grid-template-columns:repeat(7, 1fr); gap:2px; margin-bottom:8px; text-align:center; font-size: 0.438rem;">
               <span style="color:#94a3b8;">L</span><span style="color:#94a3b8;">M</span><span style="color:#94a3b8;">M</span><span style="color:#94a3b8;">J</span><span style="color:#94a3b8;">V</span><span style="color:#94a3b8;">S</span><span style="color:#94a3b8;">D</span>
               <span>16</span><span style="background:#00b074; color:#fff; border-radius:50%; font-weight:700;">17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
             </div>
 
-            <div style="font-size:8px; font-weight:700; color:#334155; margin-bottom:5px;">Próximas Sesiones</div>
+            <div style="font-size: 0.5rem; font-weight:700; color:#334155; margin-bottom:5px;">Próximas Sesiones</div>
 
             <!-- Sesión 1: Docente -->
             <div style="background:#fff; border-left:3px solid #00b074; border:1px solid #e2e8f0; border-radius:6px; padding:6px; margin-bottom:6px;">
               <div style="display:flex; justify-content:space-between;">
-                <span style="font-size:7px; color:#00b074; font-weight:700;">DOY CLASE</span>
-                <span style="font-size:7px; color:#64748b;">18:00 hs</span>
+                <span style="font-size: 0.438rem; color:#00b074; font-weight:700;">DOY CLASE</span>
+                <span style="font-size: 0.438rem; color:#64748b;">18:00 hs</span>
               </div>
-              <div style="font-size:8px; font-weight:700; color:#1e293b;">Python para Datos</div>
-              <div style="font-size:7px; color:#64748b; margin-bottom:4px;">Con: Martín G. &bull; Meet</div>
-              <div class="wf-btn" style="padding:2px 0; font-size:7px;">Ingresar a Videollamada</div>
+              <div style="font-size: 0.5rem; font-weight:700; color:#1e293b;">Python para Datos</div>
+              <div style="font-size: 0.438rem; color:#64748b; margin-bottom:4px;">Con: Martín G. &bull; Meet</div>
+              <div class="wf-btn" style="padding:2px 0; font-size: 0.438rem;">Ingresar a Videollamada</div>
             </div>
 
             <!-- Sesión 2: Aprendiz -->
             <div style="background:#fff; border-left:3px solid #df6e5d; border:1px solid #e2e8f0; border-radius:6px; padding:6px; margin-bottom:6px;">
               <div style="display:flex; justify-content:space-between;">
-                <span style="font-size:7px; color:#df6e5d; font-weight:700;">TOMO CLASE</span>
-                <span style="font-size:7px; color:#64748b;">Mañana</span>
+                <span style="font-size: 0.438rem; color:#df6e5d; font-weight:700;">TOMO CLASE</span>
+                <span style="font-size: 0.438rem; color:#64748b;">Mañana</span>
               </div>
-              <div style="font-size:8px; font-weight:700; color:#1e293b;">Pan de Masa Madre</div>
-              <div style="font-size:7px; color:#64748b;">Con: Elena R. &bull; Presencial</div>
+              <div style="font-size: 0.5rem; font-weight:700; color:#1e293b;">Pan de Masa Madre</div>
+              <div style="font-size: 0.438rem; color:#64748b;">Con: Elena R. &bull; Presencial</div>
             </div>
 
             <div class="bottom-nav">
@@ -785,7 +788,7 @@
         <span class="watermark-box"></span>
         <span>PROYECTO WBS &bull; LERNA USER INTERFACE (UI) WIREFRAMES</span>
       </div>
-      <div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #94a3b8;">
+      <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #94a3b8;">
         TC017 - Gestión del Desarrollo de Sistemas Informáticos - FIUBA
       </div>
     </div>
