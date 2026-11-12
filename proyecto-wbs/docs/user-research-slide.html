@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>User Research - Perfiles Persona y Mapas de Empatía (Lerna)</title>
+  <link rel="stylesheet" href="slides-theme.css">
+  <style>
+    html { font-size: 16px; }
+    body {
+      font-size: 1rem;
+    }
+
+    /* Selector de Persona (Tabs superiores para Lucía / Mateo) */
+    .persona-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .switcher-btn {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 2rem;
+      padding: 0.625rem 1.5rem;
+      font-family: var(--font-title);
+      font-size: 0.938rem;
+      font-weight: 700;
+      color: #64748b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      transition: all 0.2s ease;
+    }
+    .switcher-btn:hover {
+      background: #f1f5f9;
+      color: #1e293b;
+      border-color: #cbd5e1;
+    }
+    .switcher-btn.active {
+      background: #00b074;
+      color: #ffffff;
+      border-color: #00b074;
+      box-shadow: 0 4px 14px rgba(0, 176, 116, 0.3);
+    }
+    .switcher-avatar {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+
+    /* Layout Principal: 2 Columnas (Columna Izquierda: Perfil Persona | Columna Derecha: Mapa de Empatía) */
+    .research-layout {
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    /* Panel de Persona (Estilo Ficha Cátedra Pág 17 y 22) */
+    .persona-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+    }
+    .persona-header {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: #ffffff;
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      position: relative;
+    }
+    .persona-photo-box {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      border: 3px solid #00b074;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .persona-photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .persona-archetype-badge {
+      display: inline-block;
+      font-size: 0.688rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      background: #dcfce7;
+      color: #15803d;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+    }
+    .persona-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+    .persona-role {
+      font-family: var(--font-body);
+      font-size: 0.812rem;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+
+    .persona-quote {
+      background: #f8fafc;
+      border-left: 4px solid #00b074;
+      padding: 0.875rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.844rem;
+      font-style: italic;
+      color: #334155;
+      line-height: 1.45;
+    }
+
+    .persona-body {
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      flex: 1;
+    }
+    .persona-info-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      font-family: var(--font-body);
+      font-size: 0.812rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .info-label {
+      font-weight: 700;
+      color: #64748b;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .info-val {
+      color: #1e293b;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .persona-section-title {
+      font-size: 0.812rem;
+      font-weight: 700;
+      color: #1e293b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .persona-bullets {
+      list-style: none;
+      font-family: var(--font-body);
+      font-size: 0.812rem;
+      color: #475569;
+      line-height: 1.45;
+    }
+    .persona-bullets li {
+      position: relative;
+      padding-left: 14px;
+      margin-bottom: 4px;
+    }
+    .persona-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #00b074;
+      font-weight: 900;
+    }
+
+    /* Panel del Mapa de Empatía (Formato Canónico Pág 19 y 23 de Cátedra) */
+    .empathy-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* Grilla de los 4 Cuadrantes Superiores */
+    .empathy-grid-4 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 1rem;
+    }
+    .empathy-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.125rem 1.25rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      position: relative;
+      border-top: 4px solid #64748b;
+    }
+    .card-think { border-top-color: #ea580c; background: #fffaf5; }
+    .card-see { border-top-color: #0284c7; background: #f0f9ff; }
+    .card-hear { border-top-color: #d97706; background: #fffdf0; }
+    .card-say-do { border-top-color: #4f46e5; background: #f5f3ff; }
+
+    .empathy-card-title {
+      font-size: 0.938rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .empathy-card-sub {
+      font-family: var(--font-body);
+      font-size: 0.719rem;
+      color: #64748b;
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+    .empathy-card ul {
+      list-style: none;
+      font-family: var(--font-body);
+      font-size: 0.812rem;
+      color: #334155;
+      line-height: 1.45;
+    }
+    .empathy-card ul li {
+      position: relative;
+      padding-left: 14px;
+      margin-bottom: 5px;
+    }
+    .empathy-card ul li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #94a3b8;
+    }
+
+    /* 2 Bloques Inferiores: Frustraciones (-) vs Motivaciones (+) */
+    .empathy-bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .empathy-pain-card {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-top: 4px solid #ef4444;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+    }
+    .empathy-gain-card {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-top: 4px solid #00b074;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+    }
+    .empathy-bar-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .pain-title { color: #b91c1c; }
+    .gain-title { color: #15803d; }
+    
+    .empathy-bottom-row ul {
+      list-style: none;
+      font-family: var(--font-body);
+      font-size: 0.812rem;
+      line-height: 1.4;
+    }
+    .empathy-pain-card ul { color: #991b1b; }
+    .empathy-gain-card ul { color: #166534; }
+    .empathy-bottom-row ul li {
+      position: relative;
+      padding-left: 14px;
+      margin-bottom: 4px;
+    }
+    .empathy-pain-card ul li::before { content: "✕"; position: absolute; left: 0; color: #ef4444; font-size: 0.688rem; }
+    .empathy-gain-card ul li::before { content: "✓"; position: absolute; left: 0; color: #00b074; font-size: 0.688rem; font-weight: 700; }
+
+    /* Estado oculto/visible de tabs */
+    .persona-tab-content {
+      display: none;
+    }
+    .persona-tab-content.active {
+      display: grid;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-wrapper">
+    <!-- Cabecera Principal de Slide -->
+    <div class="header-bar">
+      <div>
+        <h1 class="header-title">User Research: Perfiles & Empatía</h1>
+        <p class="header-subtitle">
+          Design Thinking (FIUBA TC017) — Investigación generativa, arquetipos de Jung y mapa de empatía canónico de 6 cuadrantes
+        </p>
+      </div>
+      <div class="header-tag tag-green">
+        4.3.1 USER RESEARCH
+      </div>
+    </div>
+
+    <!-- Switcher de Perfiles -->
+    <div class="persona-switcher">
+      <button class="switcher-btn active" onclick="switchPersona('lucia')">
+        <span class="switcher-avatar">🎵</span>
+        Perfil 1: Lucía Mendez ("La Creadora" — Música & Docente)
+      </button>
+      <button class="switcher-btn" onclick="switchPersona('mateo')">
+        <span class="switcher-avatar">💻</span>
+        Perfil 2: Mateo Rossi ("El Sabio / Explorador" — Backend Dev)
+      </button>
+    </div>
+
+    <!-- ==================== TAB 1: LUCIA ==================== -->
+    <div id="tab-lucia" class="research-layout persona-tab-content active">
+      <!-- Columna Izquierda: Ficha de User Persona -->
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="persona-photo-box">
+            <img src="img/storytelling/scene-1-contexto.png" alt="Lucía">
+          </div>
+          <div>
+            <span class="persona-archetype-badge">Arquetipo: La Creadora</span>
+            <div class="persona-name">Lucía Mendez</div>
+            <div class="persona-role">26 años • Lic. en Música • Profesora de Piano</div>
+          </div>
+        </div>
+
+        <div class="persona-quote">
+          "Tengo mucho para compartir y mucho por aprender; el dinero no debería ser el muro que nos impida crecer profesionalmente."
+        </div>
+
+        <div class="persona-body">
+          <div class="persona-info-row">
+            <div>
+              <div class="info-label">Educación</div>
+              <div class="info-val">Universitaria (UNA)</div>
+            </div>
+            <div>
+              <div class="info-label">Ubicación</div>
+              <div class="info-val">Palermo, CABA</div>
+            </div>
+            <div>
+              <div class="info-label">Dispositivos</div>
+              <div class="info-val">MacBook Air, iPhone</div>
+            </div>
+            <div>
+              <div class="info-label">Nivel Digital</div>
+              <div class="info-val">Intermedio / Web</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="persona-section-title">🎯 Metas & Objetivos</div>
+            <ul class="persona-bullets">
+              <li>Aprender programación (Python / Frontend) para crear proyectos interactivos.</li>
+              <li>Monetizar su tiempo de piano sin pagar comisiones abusivas (25%–33%).</li>
+              <li>Integrarse a una comunidad donde enseñar y aprender tengan el mismo valor.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="persona-section-title">⚙️ Hábitos & Rutinas</div>
+            <ul class="persona-bullets">
+              <li>Practica piano 2 horas diarias y prepara partituras personalizadas.</li>
+              <li>Estudia programación autodidacta por las noches con videos y Notion.</li>
+              <li>Coordina clases y videollamadas con alumnos de forma remota.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Mapa de Empatía Canónico -->
+      <div class="empathy-panel">
+        <div class="empathy-grid-4">
+          <!-- ¿Qué piensa y siente? -->
+          <div class="empathy-card card-think">
+            <div class="empathy-card-title">🧠 ¿Qué piensa y siente?</div>
+            <div class="empathy-card-sub">Intereses reales, preocupaciones y aspiraciones profundas</div>
+            <ul>
+              <li>"El piano transforma personas, pero cuesta encontrar alumnos constantes."</li>
+              <li>Incertidumbre laboral si no adquiere habilidades técnicas y digitales.</li>
+              <li>Entusiasmo por la economía colaborativa: 1 hora de su tiempo = 1 crédito justo.</li>
+              <li>Le agobia el costo en dólares de cursos online y academias privadas.</li>
+            </ul>
+          </div>
+
+          <!-- ¿Qué ve? -->
+          <div class="empathy-card card-see">
+            <div class="empathy-card-title">👀 ¿Qué ve?</div>
+            <div class="empathy-card-sub">Entorno social, ofertas de mercado y competidores</div>
+            <ul>
+              <li>Colegas vendiendo clases informales por Instagram a tarifas devaluadas.</li>
+              <li>Plataformas como Preply/Superprof cobrando comisiones del 25% al 33%.</li>
+              <li>Oferta masiva de tutoriales en video grabados sin feedback humano en vivo.</li>
+              <li>Amigos de otras disciplinas con ganas de enseñar y aprender mutuamente.</li>
+            </ul>
+          </div>
+
+          <!-- ¿Qué escucha? -->
+          <div class="empathy-card card-hear">
+            <div class="empathy-card-title">👂 ¿Qué escucha?</div>
+            <div class="empathy-card-sub">Lo que dicen amigos, colegas y referentes del sector</div>
+            <ul>
+              <li>"El sector tech tiene trabajo remoto flexible, animate a programar."</li>
+              <li>"En los conservatorios te cobran fortunas y enseñan teoría obsoleta."</li>
+              <li>Podcasts y canales de YouTube promoviendo economías circulares y trueque.</li>
+              <li>Quejas de conocidos por suscripciones mensuales que cobran sin usar.</li>
+            </ul>
+          </div>
+
+          <!-- ¿Qué dice y hace? -->
+          <div class="empathy-card card-say-do">
+            <div class="empathy-card-title">🗣️ ¿Qué dice y hace?</div>
+            <div class="empathy-card-sub">Comportamiento observable, actitud pública y acciones</div>
+            <ul>
+              <li>Enseña con paciencia adaptando el repertorio musical a cada estudiante.</li>
+              <li>Publica en redes buscando mentores de código pero nadie le responde de forma constante.</li>
+              <li>Dedica 3 horas semanales a resolver ejercicios de lógica en su laptop.</li>
+              <li>Cumple estrictamente con sus horarios de clase y valora la puntualidad.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Fila Inferior: Dolores (-) vs Ganancias (+) -->
+        <div class="empathy-bottom-row">
+          <div class="empathy-pain-card">
+            <div class="empathy-bar-title pain-title">⚠️ Frustraciones & Dolores (Pains)</div>
+            <ul>
+              <li>Tarifas en dólares de academias online inaccesibles con la devaluación local.</li>
+              <li>Cancelaciones de alumnos a último momento sin aviso ni compensación.</li>
+              <li>Sentimiento de soledad y atasco al estudiar código sin un mentor que revise sus errores.</li>
+            </ul>
+          </div>
+
+          <div class="empathy-gain-card">
+            <div class="empathy-bar-title gain-title">🚀 Motivaciones & Expectativas (Gains)</div>
+            <ul>
+              <li>Aprender Python/Frontend a su ritmo con alguien paciente y experimentado.</li>
+              <li>Garantía de custodia de créditos (escrow): cero riesgo de perder su tiempo.</li>
+              <li>Ver el progreso de sus alumnos y recibir reseñas públicas 5 estrellas en su perfil.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 2: MATEO ==================== -->
+    <div id="tab-mateo" class="research-layout persona-tab-content">
+      <!-- Columna Izquierda: Ficha de User Persona -->
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="persona-photo-box">
+            <img src="img/storytelling/scene-1-contexto.png" alt="Mateo" style="object-position: right;">
+          </div>
+          <div>
+            <span class="persona-archetype-badge" style="background: #e0f2fe; color: #0369a1;">Arquetipo: El Sabio / Explorador</span>
+            <div class="persona-name">Mateo Rossi</div>
+            <div class="persona-role">24 años • Ing. Informática • Backend Developer Jr</div>
+          </div>
+        </div>
+
+        <div class="persona-quote">
+          "Aprender algo nuevo me resetea la cabeza; quiero enseñar lo que sé y dominar el piano sin vueltas ni cobros ocultos."
+        </div>
+
+        <div class="persona-body">
+          <div class="persona-info-row">
+            <div>
+              <div class="info-label">Educación</div>
+              <div class="info-val">Universitaria en curso</div>
+            </div>
+            <div>
+              <div class="info-label">Ubicación</div>
+              <div class="info-val">San Isidro, GBA</div>
+            </div>
+            <div>
+              <div class="info-label">Dispositivos</div>
+              <div class="info-val">PC Dual Screen, MIDI</div>
+            </div>
+            <div>
+              <div class="info-label">Nivel Digital</div>
+              <div class="info-val">Avanzado / Dev</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="persona-section-title">🎯 Metas & Objetivos</div>
+            <ul class="persona-bullets">
+              <li>Aprender a tocar piano desde cero con técnica postural correcta.</li>
+              <li>Enseñar lógica de programación para afianzar sus dotes pedagógicas.</li>
+              <li>Pactar clases particulares de 60 minutos con un flujo ágil y confiable.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="persona-section-title">⚙️ Hábitos & Rutinas</div>
+            <ul class="persona-bullets">
+              <li>Trabaja 8 horas diarias de home-office programando en Python y SQL.</li>
+              <li>Practica ejercicios de piano en su teclado eléctrico 30 min por la noche.</li>
+              <li>Participa activamente en foros open-source y comunidades de software.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Mapa de Empatía Canónico -->
+      <div class="empathy-panel">
+        <div class="empathy-grid-4">
+          <!-- ¿Qué piensa y siente? -->
+          <div class="empathy-card card-think">
+            <div class="empathy-card-title">🧠 ¿Qué piensa y siente?</div>
+            <div class="empathy-card-sub">Intereses reales, preocupaciones y aspiraciones profundas</div>
+            <ul>
+              <li>"Programar es mi trabajo, pero tocar el piano es mi desconexión mental y terapia."</li>
+              <li>Orgullo de dominar backend y deseo genuino de transmitirlo a principiantes.</li>
+              <li>Pereza total de coordinar transferencias bancarias o pagar suscripciones en dólares.</li>
+              <li>Preocupación por adoptar malos hábitos de digitación por no tener un docente al lado.</li>
+            </ul>
+          </div>
+
+          <!-- ¿Qué ve? -->
+          <div class="empathy-card card-see">
+            <div class="empathy-card-title">👀 ¿Qué ve?</div>
+            <div class="empathy-card-sub">Entorno social, ofertas de mercado y competidores</div>
+            <ul>
+              <li>Apps como Simply Piano o Flowkey que parecen videojuegos y no enseñan técnica real.</li>
+              <li>Anuncios de profesores particulares que exigen comprar paquetes de 4 clases adelantadas.</li>
+              <li>Un ecosistema de software libre donde la colaboración desinteresada crea valor enorme.</li>
+              <li>Su teclado eléctrico acumulando polvo en su cuarto por no tener un rumbo claro.</li>
+            </ul>
+          </div>
+
+          <!-- ¿Qué escucha? -->
+          <div class="empathy-card card-hear">
+            <div class="empathy-card-title">👂 ¿Qué escucha?</div>
+            <div class="empathy-card-sub">Lo que dicen amigos, colegas y referentes del sector</div>
+            <ul>
+              <li>Colegas de trabajo recomiendan actividades analógicas para evitar el burnout.</li>
+              <li>En Twitter y foros lee quejas sobre plataformas con comisiones ocultas del 30%.</li>
+              <li>"Enseñar a otros es la mejor forma de volverse un desarrollador Senior."</li>
+              <li>Comentarios sobre la dificultad de cuadrar horarios con profesores tradicionales.</li>
+            </ul>
+          </div>
+
+          <!-- ¿Qué dice y hace? -->
+          <div class="empathy-card card-say-do">
+            <div class="empathy-card-title">🗣️ ¿Qué dice y hace?</div>
+            <div class="empathy-card-sub">Comportamiento observable, actitud pública y acciones</div>
+            <ul>
+              <li>Resuelve consultas de código en StackOverflow y ayuda a juniors en Discord.</li>
+              <li>Intenta sacar canciones de oído pero se traba en los acordes complejos.</li>
+              <li>Es sumamente puntual, metódico y estructurado con sus tiempos libres.</li>
+              <li>Descarta cualquier sitio web que no tenga reglas transparentes y seguras.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Fila Inferior: Dolores (-) vs Ganancias (+) -->
+        <div class="empathy-bottom-row">
+          <div class="empathy-pain-card">
+            <div class="empathy-bar-title pain-title">⚠️ Frustraciones & Dolores (Pains)</div>
+            <ul>
+              <li>Costos de $15.000 a $25.000 ARS por hora que desequilibran su presupuesto mensual.</li>
+              <li>Plataformas con interfaces lentas, llenas de publicidad o cobros de tarjeta bloqueados.</li>
+              <li>Profesores particulares impuntuales o que cancelan sin previo aviso.</li>
+            </ul>
+          </div>
+
+          <div class="empathy-gain-card">
+            <div class="empathy-bar-title gain-title">🚀 Motivaciones & Expectativas (Gains)</div>
+            <ul>
+              <li>Tocar fluidamente sus bandas sonoras y canciones favoritas sin dolor de muñeca.</li>
+              <li>Sentir que su conocimiento de programación vale y puede intercambiarlo 1 a 1 de igual a igual.</li>
+              <li>Plataforma limpia, sin fricción burocrática, con custodia de créditos y enlace a Meet integrado.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pie Institucional de Slide -->
+    <div class="watermark">
+      <div class="watermark-left">
+        <span class="watermark-box"></span>
+        <span>FIUBA • GESTIÓN DEL DESARROLLO DE SISTEMAS INFORMÁTICOS (TC017)</span>
+      </div>
+      <div class="watermark-sub">
+        Lerna — Plataforma de Intercambio de Aprendizajes • MVP V3
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchPersona(type) {
+      const buttons = document.querySelectorAll('.switcher-btn');
+      const contents = document.querySelectorAll('.persona-tab-content');
+
+      buttons.forEach(b => b.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
+
+      if (type === 'lucia') {
+        buttons[0].classList.add('active');
+        document.getElementById('tab-lucia').classList.add('active');
+      } else {
+        buttons[1].classList.add('active');
+        document.getElementById('tab-mateo').classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
