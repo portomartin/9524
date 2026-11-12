@@ -444,24 +444,11 @@
     </nav>
 
     <!-- Footer del Panel: Control de Tamaño de Letra Rem & Acciones -->
+        <!-- Footer del Panel: Solo acción de abrir diapositiva en pestaña -->
     <div class="panel-footer">
-      <div class="scale-control-box">
-        <span class="scale-label">Tamaño Fuente</span>
-        <div class="scale-btns">
-          <button class="scale-btn" onclick="changeGlobalScale(-1)" title="Achicar letra">A-</button>
-          <span id="scale-val" class="scale-val">16px</span>
-          <button class="scale-btn" onclick="changeGlobalScale(1)" title="Agrandar letra">A+</button>
-        </div>
-      </div>
-
-      <div class="panel-quick-actions">
-        <button class="action-btn" onclick="openCurrentInNewTab()" title="Abrir diapositiva sola">
-          ↗ <span>Pestaña</span>
-        </button>
-        <button class="action-btn" onclick="toggleFullscreen()" title="Pantalla Completa (F)">
-          ⛶ <span>Full (F)</span>
-        </button>
-      </div>
+      <button class="action-btn" onclick="openCurrentInNewTab()" title="Abrir diapositiva sola en nueva pestaña">
+        ↗ <span>Pestaña</span>
+      </button>
     </div>
   </aside>
 
