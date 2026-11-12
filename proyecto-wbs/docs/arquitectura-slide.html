@@ -7,10 +7,10 @@
   <style>
     body { font-size: 1rem; }
 
-    /* Layout Principal: Columna Izquierda (Infra & Persistencia) | Columna Derecha (Arquitectura en 4 Capas Real) */
+    /* Layout Principal: Columna Izquierda (Persistencia & Entorno) | Columna Derecha (Capas Reales Backend) */
     .arch-layout {
       display: grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: 340px 1fr;
       gap: 1.5rem;
       align-items: stretch;
     }
@@ -19,7 +19,7 @@
     .arch-sidebar {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.25rem;
     }
 
     .arch-card {
@@ -28,16 +28,6 @@
       border-radius: 12px;
       padding: 1.25rem;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    }
-
-    .arch-principles-card {
-      background: linear-gradient(145deg, #1e293b, #0f172a);
-      color: #ffffff;
-      border: 1px solid rgba(255,255,255,0.08);
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
 
     .arch-card-title {
@@ -50,40 +40,6 @@
       gap: 0.5rem;
     }
 
-    .principle-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.625rem;
-      margin-bottom: 0.625rem;
-    }
-
-    .principle-icon {
-      width: 24px;
-      height: 24px;
-      border-radius: 6px;
-      background: rgba(0, 176, 116, 0.2);
-      color: #00b074;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .principle-title {
-      font-size: 0.812rem;
-      font-weight: 700;
-      color: #f1f5f9;
-    }
-
-    .principle-sub {
-      font-family: var(--font-body);
-      font-size: 0.719rem;
-      color: #94a3b8;
-      line-height: 1.35;
-    }
-
     /* Persistencia Dual Box */
     .dual-db-box {
       border-top: 4px solid #0284c7;
@@ -92,28 +48,75 @@
 
     .dual-db-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 0.625rem;
-      margin-top: 0.5rem;
+      margin-top: 0.75rem;
     }
 
     .db-mini-card {
       background: #ffffff;
       border: 1px solid #bae6fd;
-      border-radius: 6px;
-      padding: 0.5rem 0.625rem;
+      border-radius: 8px;
+      padding: 0.75rem 0.875rem;
       font-family: var(--font-body);
-      font-size: 0.688rem;
+      font-size: 0.75rem;
     }
 
     .db-title {
       font-weight: 700;
       color: #0369a1;
-      font-size: 0.75rem;
-      margin-bottom: 2px;
+      font-size: 0.812rem;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    /* Columna Derecha: Capas Reales del Código Backend */
+    /* Tarjeta de Seguridad y Middleware */
+    .security-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-top: 4px solid #00b074;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .sec-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+    }
+
+    .sec-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .sec-title {
+      font-size: 0.812rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .sec-sub {
+      font-family: var(--font-body);
+      font-size: 0.719rem;
+      color: #64748b;
+      line-height: 1.35;
+    }
+
+    /* Columna Derecha: Capas Reales del Código Backend FastAPI */
     .layers-container {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -227,65 +230,63 @@
 
     <!-- Layout Principal -->
     <div class="arch-layout">
-      <!-- Columna Izquierda: Principios, Ciclo de Vida y Persistencia Dual -->
+      <!-- Columna Izquierda: Persistencia Dual y Seguridad Transaccional -->
       <div class="arch-sidebar">
-        <!-- Principios de Diseño -->
-        <div class="arch-card arch-principles-card">
-          <div>
-            <div class="arch-card-title" style="color: #ffffff;">
-              <span>🏛️</span> Principios Arquitectónicos
-            </div>
-
-            <div class="principle-item">
-              <div class="principle-icon">1</div>
-              <div>
-                <div class="principle-title">Rol Único (`User`)</div>
-                <div class="principle-sub">Entidad transversal: publica <code>Offer</code> y registra <code>Need</code> sin cambio de rol.</div>
-              </div>
-            </div>
-
-            <div class="principle-item">
-              <div class="principle-icon">2</div>
-              <div>
-                <div class="principle-title">Custodia Preventiva (Freeze)</div>
-                <div class="principle-sub">Créditos bloqueados en reserva mediante transacciones atómicas seguras.</div>
-              </div>
-            </div>
-
-            <div class="principle-item">
-              <div class="principle-icon">3</div>
-              <div>
-                <div class="principle-title">Lifespan & Seeding</div>
-                <div class="principle-sub">Inicialización asíncrona con <code>seed_database()</code> automática al iniciar.</div>
-              </div>
-            </div>
-
-            <div class="principle-item">
-              <div class="principle-icon">4</div>
-              <div>
-                <div class="principle-title">API REST con Pydantic</div>
-                <div class="principle-sub">Documentación viva Swagger/OpenAPI en <code>/docs</code> y autenticación JWT.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- Persistencia Dual Real -->
         <div class="arch-card dual-db-box">
           <div class="arch-card-title" style="color: #0369a1;">
             <span>💾</span> Persistencia Dual Transparente
           </div>
-          <p style="font-family: var(--font-body); font-size: 0.688rem; color: #475569; line-height: 1.35;">
-            Controlada por <code>SETTINGS_DATABASE_URL</code> con inyección <code>get_session()</code>:
+          <p style="font-family: var(--font-body); font-size: 0.719rem; color: #475569; line-height: 1.4;">
+            Controlada por <code>SETTINGS_DATABASE_URL</code> con inyección de dependencias <code>get_session()</code> en cada endpoint:
           </p>
           <div class="dual-db-grid">
             <div class="db-mini-card">
-              <div class="db-title">SQLite Local</div>
-              <div><code>app.db</code> con <code>check_same_thread=False</code> multihilo.</div>
+              <div class="db-title">📁 SQLite Local</div>
+              <div><code>app.db</code> con <code>check_same_thread=False</code> multihilo para desarrollo y tests.</div>
             </div>
             <div class="db-mini-card">
-              <div class="db-title">PostgreSQL Cloud</div>
-              <div>Instancia administrada en Render / Supabase para producción.</div>
+              <div class="db-title">☁️ PostgreSQL Cloud</div>
+              <div>Instancia administrada en Render / Supabase para producción y concurrencia.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seguridad y Ciclo de Vida -->
+        <div class="arch-card security-card">
+          <div class="arch-card-title" style="color: #15803d;">
+            <span>🛡️</span> Seguridad & Ciclo de Vida
+          </div>
+
+          <div class="sec-item">
+            <div class="sec-icon">⚡</div>
+            <div>
+              <div class="sec-title">Lifespan & Seeding Automático</div>
+              <div class="sec-sub">Al arrancar el servidor ejecuta <code>seed_database()</code> garantizando tablas y datos consistentes.</div>
+            </div>
+          </div>
+
+          <div class="sec-item">
+            <div class="sec-icon">🔑</div>
+            <div>
+              <div class="sec-title">Autenticación JWT Bearer</div>
+              <div class="sec-sub">Tokens firmados con Bcrypt, expiración temporal y resolución de usuario en sesión.</div>
+            </div>
+          </div>
+
+          <div class="sec-item">
+            <div class="sec-icon">🔒</div>
+            <div>
+              <div class="sec-title">Custodia Preventiva (Freeze)</div>
+              <div class="sec-sub">Transacciones atómicas que bloquean créditos durante la reserva sin fuga de saldo.</div>
+            </div>
+          </div>
+
+          <div class="sec-item">
+            <div class="sec-icon">🌐</div>
+            <div>
+              <div class="sec-title">CORS & Idempotencia</div>
+              <div class="sec-sub">Middleware con soporte para puertos locales (5171-5173) y cabecera <code>Idempotency-Key</code>.</div>
             </div>
           </div>
         </div>
