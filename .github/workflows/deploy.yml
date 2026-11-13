@@ -39,6 +39,16 @@ jobs:
         env:
           VITE_API_BASE_URL: https://nine524-api-unificado.onrender.com
 
+      - name: Include defense presentation
+        working-directory: ${{ github.workspace }}
+        run: |
+          source_dir=proyecto-wbs/docs
+          target_dir=proyecto-sdd/frontend/v7/dist/defensa
+          mkdir -p "$target_dir/img/benchmarking" "$target_dir/img/storytelling"
+          cp "$source_dir/index.html" "$source_dir/slides-theme.css" "$source_dir/"*-slide.html "$target_dir/"
+          cp "$source_dir/img/benchmarking/"*-preview.png "$target_dir/img/benchmarking/"
+          cp "$source_dir/img/storytelling/"scene-*.png "$target_dir/img/storytelling/"
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
