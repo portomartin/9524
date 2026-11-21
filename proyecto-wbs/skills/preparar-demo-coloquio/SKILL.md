@@ -85,9 +85,11 @@ Para no dejar las solicitudes de los alumnos del público abiertas y dar un cier
    - **Contenido Humorístico con Folclore FIUBA:**
      - **Sesiones completadas (~80%):** Liberan créditos y dejan reviews hilarantes (ej.: *"Me explicó autovalores con analogías de milanesas, aprobé el parcial 10/10"*, *"El mate virtual estaba un poco frío pero el código compiló de una"*, *"Casi lloro en Sistemas Operativos pero me salvó la cursada"*).
      - **Sesiones canceladas (~20%):** Devuelven créditos con motivos simpáticos (*"Cancelada: Me quedé dormido en el 152 llegando a Paseo Colón"*, *"Cancelada: Cayó el campus 5 min antes"*).
-   - **Decisión de Arquitectura y FinOps (Pool pre-generado vs LLM en vivo):**
+   - **Decisión de Arquitectura y FinOps (Pool pre-generado con IA vs LLM en vivo):**
      - La IA en tiempo real (Gemini Flash con token PAU) se concentra exclusivamente en las dos reglas de negocio centrales: **moderación ética** y **estimador de créditos**.
-     - Para las reviews y cancelaciones masivas del fast-forward, se utiliza un pool pre-generado de folclore FIUBA. Esto garantiza **latencia cero (30 ms por paso)**, elimina el riesgo de rate limits de API en vivo y mantiene el contador de costo real en centavos de dólar (\$0.00018 USD) como prueba irrefutable de sustentabilidad operativa.
+     - Para las reviews y cancelaciones masivas del fast-forward, se utiliza una base o tabla pre-poblada (`demo_feedback_pool` o dataset JSON en el seeder): **50+ reseñas realistas, estrellitas y motivos de cancelación generados previamente con IA offline**.
+     - Durante la demo, el endpoint simplemente toma un registro al azar de ese pool e inserta el rating en 2 milisegundos.
+     - **Beneficios:** Garantiza **latencia cero (30 ms por paso)**, elimina el riesgo de rate limits o fallas de red en vivo, y mantiene el contador de costo en dólares (\$0.00018 USD) reflejando fielmente el costo marginal de las operaciones de negocio reales.
 3. **El impacto multi-dispositivo en el aula:** Cada 2 segundos cae una tarjeta en el proyector y, en simultáneo, le suena la notificación al alumno correspondiente en su propio teléfono. El aula vive el paso del tiempo coordinado y entretenido.
 
 ### D. Puesta en Escena Visual en el Proyector (Split-Screen Coordinado)
