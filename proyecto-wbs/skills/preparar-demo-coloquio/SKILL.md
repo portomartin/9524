@@ -104,10 +104,12 @@ Para maximizar el impacto visual mientras los alumnos interactúan, el proyector
 │  [Mateo / Lucía en acción]    │ 🔒 Créditos en Escrow (Custodia): 9 cr.   │
 │                               │ 📚 Sesiones pactadas: 5                   │
 │  • Intento de curso prohibido │ 🛡️ Filtros de IA aplicados: 1 (Bloqueado) │
-│    (Popup de rechazo IA)      │ 💰 Consumo IA (Gemini PAU): $0.00018 USD  │
-│  • Estimador de créditos      │    (1.340 tokens acumulados / 2 calls)    │
-│  • Solicitud con 1 clic       │────────────────────────────────────────────│
-│  • Notificación recibida      │ 📜 Feed de Actividad en Tiempo Real:       │
+│    (Popup de rechazo IA)      │ 💰 Desglose FinOps IA (Gemini PAU):        │
+│  • Estimador de créditos      │   • Core (Moderación + Créditos): $0.00018 │
+│  • Solicitud con 1 clic       │   • Simulación (Reviews en vivo): $0.00028 │
+│  • Notificación recibida      │   • Total Consumido: $0.00046 USD          │
+│                               │────────────────────────────────────────────│
+│                               │ 📜 Feed de Actividad en Tiempo Real:       │
 │                               │ • [21:05] User_42 solicitó Álgebra II      │
 │                               │ • [21:06] Lucía aceptó Piano (-2 cr. lock) │
 │                               │ • [21:07] IA bloqueó publicación #59       │
