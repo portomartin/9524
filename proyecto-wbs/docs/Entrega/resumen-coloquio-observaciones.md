@@ -65,11 +65,13 @@ Con lo visto ayer, tenemos todo para que nuestra presentación sea de las mejore
    * Mientras tanto, los presentadores (**Mateo y Lucía**) ejecutan en el celular el **ciclo transaccional completo**: solicitud pactada, confirmación de clase dictada, liberación automática de créditos a Lucía y calificación mutua 5 estrellas.
 3. **Seeding Robusto (Efecto MediTrace vs GameMatch):**
    * Que el catálogo no arranque vacío ni con datos genéricos: materias de la facultad, descripciones creíbles y valoraciones previas para dar sensación de producto maduro.
-4. **Demostración de Inteligencia Artificial Aplicada (Efecto Diferenciador Tecnológico):**
+4. **Demostración de Inteligencia Artificial Aplicada y FinOps (Efecto Diferenciador):**
    * **Filtro ético y moderación de contenido en tiempo real:** Intento de publicar una clase prohibida (ej. vulneración de exámenes o contenido ilícito/no académico). La IA la rechaza en el acto exponiendo la política infringida.
    * **Estimador inteligente de créditos:** Al redactar la propuesta legítima de piano, la IA evalúa complejidad, nivel y duración para sugerir el valor justo en créditos.
+   * **Control de Costos Reales (FinOps con Token PAU):** Mostrar en la tarjeta del Panel Admin el consumo exacto: ~1.340 tokens acumulados = **$0,00018 USD**. Demuestra a la cátedra que con 1 dólar se pueden moderar y cotizar más de 5.000 materias, probando viabilidad económica.
 5. **El Clímax Divertido: "Efecto Máquina del Tiempo / Fast-Forward 7 días (Backend-Driven)":**
    * En vez de una animación artificial solo en el proyector, el avance se orquesta con el backend llamando a `POST /demo/fast-forward-step` cada 2 segundos.
+   * **Por qué no usar LLM en vivo para las reviews:** Para no agregar latencia (esperar 3s por llamada de red a Gemini), evitar riesgos de rate limits y mantener el costo de IA acotado a las funciones de negocio, las reviews se toman de un pool pre-generado de folclore FIUBA.
    * **Mutación real paso a paso:** Cada 2 segundos el backend completa o cancela una sesión, transfiere créditos y guarda una **reseña cómica con folclore de FIUBA** en la base de datos.
    * **Reacción en cadena en el aula:** En el proyector van cayendo las tarjetas al feed y, en paralelo, a cada compañero le suena la notificación en su propio teléfono en vivo.
    * Reviews memorables (ej.: *"Explicó autovalores con analogías de milanesas, aprobé con 10"*, *"El mate virtual estaba frío pero el código compiló"*) y cancelaciones cómicas (*"Me dormí en el 152 llegando a Paseo Colón"*).

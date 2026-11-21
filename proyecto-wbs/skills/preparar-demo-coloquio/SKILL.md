@@ -85,6 +85,9 @@ Para no dejar las solicitudes de los alumnos del público abiertas y dar un cier
    - **Contenido Humorístico con Folclore FIUBA:**
      - **Sesiones completadas (~80%):** Liberan créditos y dejan reviews hilarantes (ej.: *"Me explicó autovalores con analogías de milanesas, aprobé el parcial 10/10"*, *"El mate virtual estaba un poco frío pero el código compiló de una"*, *"Casi lloro en Sistemas Operativos pero me salvó la cursada"*).
      - **Sesiones canceladas (~20%):** Devuelven créditos con motivos simpáticos (*"Cancelada: Me quedé dormido en el 152 llegando a Paseo Colón"*, *"Cancelada: Cayó el campus 5 min antes"*).
+   - **Decisión de Arquitectura y FinOps (Pool pre-generado vs LLM en vivo):**
+     - La IA en tiempo real (Gemini Flash con token PAU) se concentra exclusivamente en las dos reglas de negocio centrales: **moderación ética** y **estimador de créditos**.
+     - Para las reviews y cancelaciones masivas del fast-forward, se utiliza un pool pre-generado de folclore FIUBA. Esto garantiza **latencia cero (30 ms por paso)**, elimina el riesgo de rate limits de API en vivo y mantiene el contador de costo real en centavos de dólar (\$0.00018 USD) como prueba irrefutable de sustentabilidad operativa.
 3. **El impacto multi-dispositivo en el aula:** Cada 2 segundos cae una tarjeta en el proyector y, en simultáneo, le suena la notificación al alumno correspondiente en su propio teléfono. El aula vive el paso del tiempo coordinado y entretenido.
 
 ### D. Puesta en Escena Visual en el Proyector (Split-Screen Coordinado)
@@ -99,10 +102,12 @@ Para maximizar el impacto visual mientras los alumnos interactúan, el proyector
 │  [Mateo / Lucía en acción]    │ 🔒 Créditos en Escrow (Custodia): 9 cr.   │
 │                               │ 📚 Sesiones pactadas: 5                   │
 │  • Intento de curso prohibido │ 🛡️ Filtros de IA aplicados: 1 (Bloqueado) │
-│    (Popup de rechazo IA)      │────────────────────────────────────────────│
-│  • Estimador de créditos      │ 📜 Feed de Actividad en Tiempo Real:       │
-│  • Solicitud con 1 clic       │ • [21:05] User_42 solicitó Álgebra II      │
-│  • Notificación recibida      │ • [21:06] Lucía aceptó Piano (-2 cr. lock) │
+│    (Popup de rechazo IA)      │ 💰 Consumo IA (Gemini PAU): $0.00018 USD  │
+│  • Estimador de créditos      │    (1.340 tokens acumulados / 2 calls)    │
+│  • Solicitud con 1 clic       │────────────────────────────────────────────│
+│  • Notificación recibida      │ 📜 Feed de Actividad en Tiempo Real:       │
+│                               │ • [21:05] User_42 solicitó Álgebra II      │
+│                               │ • [21:06] Lucía aceptó Piano (-2 cr. lock) │
 │                               │ • [21:07] IA bloqueó publicación #59       │
 └───────────────────────────────┴────────────────────────────────────────────┘
 ```
