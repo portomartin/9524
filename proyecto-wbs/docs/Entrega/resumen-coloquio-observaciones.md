@@ -68,7 +68,7 @@ Con lo visto ayer, tenemos todo para que nuestra presentación sea de las mejore
 4. **Demostración de Inteligencia Artificial Aplicada y FinOps (Efecto Diferenciador):**
    * **Filtro ético y moderación de contenido en tiempo real:** Intento de publicar una clase prohibida (ej. vulneración de exámenes o contenido ilícito/no académico). La IA la rechaza en el acto exponiendo la política infringida.
    * **Estimador inteligente de créditos:** Al redactar la propuesta legítima de piano, la IA evalúa complejidad, nivel y duración para sugerir el valor justo en créditos.
-   * **Control de Costos Reales y Desglose FinOps (Token PAU):** La tarjeta del Panel Admin discrimina:
+   * **Control de Costos Reales y Desglose FinOps (Token pago propio):** La tarjeta del Panel Admin discrimina:
      - **Operación Core de Producción (Moderación + Estimación):** ~1.340 tokens = **$0,00018 USD**.
      - **Simulación Acelerada de la Demo (Reviews con IA en vivo):** ~2.100 tokens = **$0,00028 USD**.
      - **Costo Total Acumulado:** **$0,00046 USD** (menos de media milésima de dólar).
