@@ -64,7 +64,12 @@ Con lo visto ayer, tenemos todo para que nuestra presentación sea de las mejore
 4. **Demostración de Inteligencia Artificial Aplicada (Efecto Diferenciador Tecnológico):**
    * **Filtro ético y moderación de contenido en tiempo real:** Intento de publicar una clase prohibida (ej. vulneración de exámenes o contenido ilícito/no académico). La IA la rechaza en el acto exponiendo la política infringida.
    * **Estimador inteligente de créditos:** Al redactar la propuesta legítima de piano, la IA evalúa complejidad, nivel y duración para sugerir el valor justo en créditos.
-5. **Guion Cerrado de 20 minutos (Distribución para el Coloquio):**
+5. **El Clímax Divertido: "Efecto Máquina del Tiempo / Fast-Forward 7 días":**
+   * En vez de esperar que la clase cargue calificaciones a mano (lo cual cortaría el ritmo), agregamos un botón en el Panel de Administrador / Demo: *"⏩ Simular paso de 7 días"*.
+   * **Sin tocar el reloj del servidor:** El backend procesa las solicitudes generadas por el público en vivo.
+   * **Resolución masiva:** La mayoría se completa, libera los créditos a los "profesores" del aula y genera **reseñas cómicas con folclore de FIUBA** (ej.: *"Explicó autovalores con analogías de milanesas, aprobé con 10"*, *"El mate virtual estaba frío pero gran profe"*). Otras se cancelan con excusas cómicas (*"Me quedé dormido en el 152 llegando a Paseo Colón"*).
+   * Los alumnos ven actualizarse sus celulares en vivo con su reputación, estrellitas y saldo final. Cierra la demo con risas y aplausos.
+6. **Guion Cerrado de 20 minutos (Distribución para el Coloquio):**
    * 4-5 min: Introducción con las 7 viñetas del Storytelling.
-   * 16-17 min: Demo en vivo (QR interactivo $\to$ IA Moderación $\to$ IA Estimador $\to$ Match en el aula $\to$ Ciclo completo Mateo/Lucía $\to$ Auditoría Admin).
+   * 16-17 min: Demo en vivo (QR interactivo $\to$ IA Moderación $\to$ IA Estimador $\to$ Match en el aula $\to$ Ciclo completo Mateo/Lucía $\to$ Fast-Forward con reviews graciosas $\to$ Auditoría Admin).
    * 8-10 min: Preguntas de la cátedra. Cero improvisación.

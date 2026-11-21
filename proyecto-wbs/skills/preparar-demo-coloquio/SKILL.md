@@ -73,6 +73,16 @@ Para generar el mismo impacto que las demos mejor calificadas sin complicar los 
     2. **Estimador IA:** Publicación de curso legítimo con cálculo automático de créditos.
     3. **Cierre de clase:** Finalización de la sesión pactada, liberación atómica de créditos y calificación mutua de 5 estrellas reflejada en el Panel Admin.
 
+### C. El Clímax Humorístico: "Efecto Máquina del Tiempo" (⏩ Fast-Forward 7 días)
+Para no dejar las solicitudes de los alumnos del público abiertas y dar un cierre con humor que despierte risas y aplausos:
+1. **Botón en Panel Admin/Demo:** *"⏩ Simular paso de 7 días (Time-Travel Demo)"*.
+2. **Cómo se resuelve técnicamente (sin tocar el reloj del sistema):**
+   - El reloj del servidor se mantiene intacto (para no romper certificados SSL ni tokens JWT).
+   - El endpoint simplemente procesa en lote las sesiones creadas por los invitados del QR:
+     - **Sesiones completadas (~80%):** Pasan a `completada`, liberan créditos a los docentes y generan **reseñas cómicas con jerga FIUBA** (ej.: *"Me explicó punteros en C sin que me dé un ataque de pánico, 10/10"*, *"El mate virtual estaba un poco frío pero aprobé el parcial"*).
+     - **Sesiones canceladas (~20%):** Se devuelven los créditos al alumno con motivos graciosos (*"Cancelada: Me quedé dormido en el 152 llegando a Paseo Colón"*, *"Cancelada: Cayó el campus 5 min antes"*).
+3. **El impacto en el aula:** Cada persona mira su celular y ve que su perfil ahora tiene reputación, créditos ganados o devueltos, y comentarios divertidos de sus "alumnos".
+
 ---
 
 ## 4. Guion Recomendado para la Demo de Lerna (Distribución 30 Minutos)
@@ -94,7 +104,8 @@ Para generar el mismo impacto que las demos mejor calificadas sin complicar los 
                  • Min 14: [CICLO COMPLETO EN ESCENARIO] Mateo solicita la clase a Lucía; Lucía acepta
                    y se genera el enlace de la sesión.
                  • Min 17: Confirmación de clase dictada y liberación atómica de créditos a Lucía.
-                 • Min 19: Calificación mutua 5 estrellas y actualización inmediata de reputación.
+                 • Min 19: [MÁQUINA DEL TIEMPO / FAST-FORWARD] Clic en "Avanzar 7 días": se completan
+                   las clases del público, se liberan créditos y aparecen reviews hilarantes en sus teléfonos.
                  • Min 21: Vista del Panel de Auditoría / Admin con el log transaccional y bloqueos.
 
 [22:00 - 30:00]  BLOQUE 3: Cierre & Preguntas de la Cátedra (8 min)
