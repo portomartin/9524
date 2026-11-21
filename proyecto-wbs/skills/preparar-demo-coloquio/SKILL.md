@@ -83,6 +83,30 @@ Para no dejar las solicitudes de los alumnos del público abiertas y dar un cier
      - **Sesiones canceladas (~20%):** Se devuelven los créditos al alumno con motivos graciosos (*"Cancelada: Me quedé dormido en el 152 llegando a Paseo Colón"*, *"Cancelada: Cayó el campus 5 min antes"*).
 3. **El impacto en el aula:** Cada persona mira su celular y ve que su perfil ahora tiene reputación, créditos ganados o devueltos, y comentarios divertidos de sus "alumnos".
 
+### D. Puesta en Escena Visual en el Proyector (Split-Screen Coordinado)
+Para maximizar el impacto visual mientras los alumnos interactúan, el proyector proyecta una **pantalla dividida (Split-Screen 50/50 o 40/60)**:
+
+```
+┌───────────────────────────────┬────────────────────────────────────────────┐
+│      📱 CELULAR EN VIVO        │       💻 PANEL ADMINISTRADOR / MONITOR     │
+│   (Espejado / Formato Móvil)  │          (Torre de Control Lerna)          │
+├───────────────────────────────┼────────────────────────────────────────────┤
+│                               │ 🟢 Usuarios Activos: 18 (14 base + 4 QR)  │
+│  [Mateo / Lucía en acción]    │ 🔒 Créditos en Escrow (Custodia): 9 cr.   │
+│                               │ 📚 Sesiones pactadas: 5                   │
+│  • Intento de curso prohibido │ 🛡️ Filtros de IA aplicados: 1 (Bloqueado) │
+│    (Popup de rechazo IA)      │────────────────────────────────────────────│
+│  • Estimador de créditos      │ 📜 Feed de Actividad en Tiempo Real:       │
+│  • Solicitud con 1 clic       │ • [21:05] User_42 solicitó Álgebra II      │
+│  • Notificación recibida      │ • [21:06] Lucía aceptó Piano (-2 cr. lock) │
+│                               │ • [21:07] IA bloqueó publicación #59       │
+└───────────────────────────────┴────────────────────────────────────────────┘
+```
+
+* **Lado Izquierdo (Móvil del Presentador):** Sirve de guía narrativa para mostrar la experiencia de usuario final, las interacciones táctiles y las respuestas en vivo de la IA.
+  *(Setup recomendado: ventana de navegador en modo responsive/móvil F12 o espejo de smartphone con `scrcpy` vía USB con latencia cero).*
+* **Lado Derecho (Panel Administrador / Torre de Control):** Muestra el pulso concurrente del sistema. Cuando alguien en el aula solicita una materia desde su celular con el QR, el proyector muestra instantáneamente cómo sube el contador de *Créditos en Escrow* y aparece la línea en el Feed transaccional. Demuestra consistencia, auditoría y que el sistema está 100% vivo.
+
 ---
 
 ## 4. Guion Recomendado para la Demo de Lerna (Distribución 30 Minutos)

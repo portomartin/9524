@@ -57,8 +57,12 @@ Con lo visto ayer, tenemos todo para que nuestra presentación sea de las mejore
    * **Sugerencia Proactiva de Match:** En lugar de buscar a ciegas, la app le muestra: *"🎯 ¡Encontramos a tu profesor ideal! [Compañero] te puede enseñar [Materia Deseada]. Tocá acá para pedirle turno con tus créditos de regalo"*.
    * **Agenda Express ("Turno Disponible Ahora"):** Para no enredar a la clase con calendarios complejos, las materias nacen con turno inmediato a un clic.
    * **El público juega al Match:** Al tocar la sugerencia, la solicitud viaja en el acto, los créditos quedan en Escrow y el compañero sentado al lado recibe la notificación en vivo en su teléfono.
-2. **Demo a Dos / Tres Pantallas Coordinadas (Efecto Barrio Ahorro):**
-   * Mientras la clase experimenta el match, los presentadores en el escenario (**Mateo y Lucía**) ejecutan el **ciclo transaccional completo**: solicitud pactada, confirmación de clase dictada, liberación automática de créditos a Lucía y calificación mutua 5 estrellas reflejada en tiempo real en el Panel de Auditoría/Admin.
+2. **Puesta en Escena en Proyector: Split-Screen (Celular en Vivo + Panel Admin):**
+   * El proyector se divide en dos:
+     - **Lado izquierdo (Móvil del presentador):** Muestra el recorrido del usuario, la interfaz táctil, las selfies y los momentos de IA (moderación y estimación).
+     - **Lado derecho (Panel Administrador / Torre de Control):** Muestra en vivo los contadores de usuarios activos del QR, créditos retenidos en Escrow y el feed de auditoría en tiempo real.
+   * Cuando un compañero en el aula solicita una materia desde su celular, la cátedra ve al instante cómo impacta en el panel general: demuestra que el sistema está 100% vivo y distribuido.
+   * Mientras tanto, los presentadores (**Mateo y Lucía**) ejecutan en el celular el **ciclo transaccional completo**: solicitud pactada, confirmación de clase dictada, liberación automática de créditos a Lucía y calificación mutua 5 estrellas.
 3. **Seeding Robusto (Efecto MediTrace vs GameMatch):**
    * Que el catálogo no arranque vacío ni con datos genéricos: materias de la facultad, descripciones creíbles y valoraciones previas para dar sensación de producto maduro.
 4. **Demostración de Inteligencia Artificial Aplicada (Efecto Diferenciador Tecnológico):**
