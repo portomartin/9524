@@ -78,3 +78,7 @@ Con lo visto ayer, tenemos todo para que nuestra presentación sea de las mejore
    * 4-5 min: Introducción con las 7 viñetas del Storytelling.
    * 16-17 min: Demo en vivo (QR interactivo $\to$ IA Moderación $\to$ IA Estimador $\to$ Match en el aula $\to$ Ciclo completo Mateo/Lucía $\to$ Fast-Forward con reviews graciosas $\to$ Auditoría Admin).
    * 8-10 min: Preguntas de la cátedra. Cero improvisación.
+7. **Estrategia de Infraestructura y Red (Render Free vs Túnel Cloudflare):**
+   * **Plan A (Render):** Requiere "despertar" el contenedor 10 minutos antes (para evitar la hibernación de 60-90s) y configurar el polling de los 30 móviles en 5 segundos para no ahogar el CPU gratuito de 0.1.
+   * **Plan B (Túnel Cloudflare desde Notebook — Blindaje Total):** Ejecutar `uvicorn` local y exponerlo con `cloudflared tunnel --url http://localhost:8000`.
+   * **Ventaja del túnel:** Los alumnos usan **su propio 4G/5G** para acceder a la URL pública HTTPS segura; no necesitan estar en el Wi-Fi de la notebook ni compartir contraseñas. Vuela con toda la potencia de la máquina y sin cold starts.

@@ -143,8 +143,33 @@ Para maximizar el impacto visual mientras los alumnos interactúan, el proyector
 
 ---
 
-## 5. Checklist Técnico Previo a la Defensa
-- [ ] Backend FastAPI corriendo en servidor cloud con SSL (o túnel ngrok/Cloudflare estable).
+## 5. Estrategia de Infraestructura y Red (Render vs Túnel Cloudflare)
+
+Para garantizar que los ~30 alumnos concurrentes no saturen el servidor ni sufran demoras:
+
+### Plan A: Render Cloud (Backend en la nube)
+* **Precaución 1 (Cold Start):** En el plan gratuito, Render hiberna tras 15 minutos sin visitas. Despertar el contenedor 10 minutos antes de la exposición para evitar esperas de 60-90 segundos al escanear el QR.
+* **Precaución 2 (Cadencia de Polling):** Configurar el polling de notificaciones de los móviles del público a **5-6 segundos** (o solo por acción), reservando el polling rápido (cada 2 segundos) exclusivamente para la pantalla del Administrador en la laptop.
+* **Base de datos:** Utilizar PostgreSQL (Render Postgres o Supabase) para soportar escrituras concurrentes sin riesgo de bloqueos de archivo.
+
+### Plan B: Túnel Local Cloudflare / Ngrok (Máxima potencia y blindaje total)
+Si el Wi-Fi de la facultad o el plan gratuito de Render presentan latencia:
+* **Ejecución local:** Correr el backend en la propia laptop (`uvicorn app.main:app --port 8000`).
+* **Comando del túnel (gratuito, sin registro y con SSL automático):**
+  ```bash
+  cloudflared tunnel --url http://localhost:8000
+  ```
+* **Ventajas clave:**
+  1. **Independiente de la red local:** Los alumnos se conectan desde sus teléfonos usando **sus propios datos móviles 4G/5G**; no necesitan estar en el Wi-Fi de la notebook ni compartir contraseñas.
+  2. **Rendimiento nativo:** Utiliza el 100% de la CPU y memoria RAM de la laptop (sin límites de 512MB ni 0.1 CPU).
+  3. **Cero Cold Starts:** Respuesta instantánea garantizada al escanear el QR.
+
+---
+
+## 6. Checklist Técnico Previo a la Defensa
+- [ ] Backend FastAPI verificado:
+  - [ ] **Opción Nube:** Despierto y caliente en Render con PostgreSQL.
+  - [ ] **Opción Túnel (Plan B listo):** Binario `cloudflared` descargado y probado (`cloudflared tunnel --url http://localhost:8000`).
 - [ ] Frontend desplegado accesible por URL pública (Vercel/Netlify/Render).
 - [ ] Base de datos poblada con el seeder mock (`seed_mock.py`): catálogo con materias FIUBA, fotos y valoraciones.
 - [ ] Endpoint / flujo de Onboarding Express por QR probado (`/demo/join` con pool rotativo de materias FIUBA y selfie opcional).
