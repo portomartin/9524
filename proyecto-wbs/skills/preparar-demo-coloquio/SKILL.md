@@ -76,12 +76,16 @@ Para generar el mismo impacto que las demos mejor calificadas sin complicar los 
 ### C. El Clímax Humorístico: "Efecto Máquina del Tiempo" (⏩ Fast-Forward 7 días)
 Para no dejar las solicitudes de los alumnos del público abiertas y dar un cierre con humor que despierte risas y aplausos:
 1. **Botón en Panel Admin/Demo:** *"⏩ Simular paso de 7 días (Time-Travel Demo)"*.
-2. **Cómo se resuelve técnicamente (sin tocar el reloj del sistema):**
-   - El reloj del servidor se mantiene intacto (para no romper certificados SSL ni tokens JWT).
-   - El endpoint simplemente procesa en lote las sesiones creadas por los invitados del QR:
-     - **Sesiones completadas (~80%):** Pasan a `completada`, liberan créditos a los docentes y generan **reseñas cómicas con jerga FIUBA** (ej.: *"Me explicó punteros en C sin que me dé un ataque de pánico, 10/10"*, *"El mate virtual estaba un poco frío pero aprobé el parcial"*).
-     - **Sesiones canceladas (~20%):** Se devuelven los créditos al alumno con motivos graciosos (*"Cancelada: Me quedé dormido en el 152 llegando a Paseo Colón"*, *"Cancelada: Cayó el campus 5 min antes"*).
-3. **El impacto en el aula:** Cada persona mira su celular y ve que su perfil ahora tiene reputación, créditos ganados o devueltos, y comentarios divertidos de sus "alumnos".
+2. **Arquitectura de la Cadencia (Backend-Driven Paso a Paso):**
+   - **Por qué en el Backend:** Si fuera una animación superficial del frontend, en el proyector se vería lento pero en el celular de un alumno todo aparecería resuelto de golpe en el segundo 0. Manejar la cadencia con el backend asegura que la base de datos mute de verdad cada 2 segundos.
+   - **Mecánica Técnica (`POST /demo/fast-forward-step`):**
+     - El frontend llama a `POST /demo/fast-forward-step` cada ~2 segundos en un bucle secuencial.
+     - Cada petición es ultra liviana (30 ms, sin riesgo de timeout en Render/Cloud).
+     - El backend toma la siguiente sesión pendiente, ejecuta la transición atómica (`completada` o `cancelada`), libera o devuelve créditos y persiste en la tabla `ratings` una reseña cómica.
+   - **Contenido Humorístico con Folclore FIUBA:**
+     - **Sesiones completadas (~80%):** Liberan créditos y dejan reviews hilarantes (ej.: *"Me explicó autovalores con analogías de milanesas, aprobé el parcial 10/10"*, *"El mate virtual estaba un poco frío pero el código compiló de una"*, *"Casi lloro en Sistemas Operativos pero me salvó la cursada"*).
+     - **Sesiones canceladas (~20%):** Devuelven créditos con motivos simpáticos (*"Cancelada: Me quedé dormido en el 152 llegando a Paseo Colón"*, *"Cancelada: Cayó el campus 5 min antes"*).
+3. **El impacto multi-dispositivo en el aula:** Cada 2 segundos cae una tarjeta en el proyector y, en simultáneo, le suena la notificación al alumno correspondiente en su propio teléfono. El aula vive el paso del tiempo coordinado y entretenido.
 
 ### D. Puesta en Escena Visual en el Proyector (Split-Screen Coordinado)
 Para maximizar el impacto visual mientras los alumnos interactúan, el proyector proyecta una **pantalla dividida (Split-Screen 50/50 o 40/60)**:
