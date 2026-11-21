@@ -46,7 +46,36 @@ Este skill recopila las **observaciones de campo reales** tomadas durante las pr
 
 ---
 
-## 3. Guion Recomendado para la Demo de Lerna (Distribución 30 Minutos)
+## 3. Dinámica de Participación de la Clase (Onboarding Express por QR)
+
+Para generar el mismo impacto que las demos mejor calificadas sin complicar los tiempos ni forzar coordinaciones de calendario largas:
+
+### A. Mecánica Express para el Público (1 solo clic)
+1. **Escaneo del QR:** Docentes y alumnos escanean el QR desde el proyector y aterrizan en el modo bienvenida express (`/demo/join`).
+2. **Identidad instantánea:**
+   - **Alias automático y simpático:** Ej. *"Ingeniero Curioso #14"*, *"Recursante Optimista"*, *"Estudiante Paseo Colón"*.
+   - **Avatar por defecto con opción Selfie:** Un botón rápido *"📸 Sacarse selfie"* que usa la cámara del celular. Quien se saca la foto aparece con su cara real en el catálogo.
+3. **Billetera cargada:** Se le acreditan automáticamente **3 créditos virtuales** de bienvenida.
+4. **Materia FIUBA asignada para enseñar:** De un pool rotativo sin repetir (*Álgebra II*, *Análisis Matemático II*, *Algoritmos III*, *Sistemas Operativos*, *Física II*, *Bases de Datos*, etc.), el sistema le publica su clase automáticamente con disponibilidad inmediata (*"Disponible Ahora / Turno Demo"*).
+5. **Materia FIUBA que DESEA APRENDER (Match Cruzado en 1 toque):**
+   - El sistema le asigna también una materia que quiere aprender (`desired_skills`), encadenada deliberadamente con la que enseña otro compañero registrado por QR.
+   - **Sugerencia Proactiva en Pantalla:** En cuanto entra, ve un banner destacado:
+     *🎯 "¡Encontramos quién te puede enseñar! [Alias Compañero] ofrece [Materia deseada]. Tocá acá para solicitarle clase con tus créditos de bienvenida"*.
+   - Esto evita que la clase se pierda buscando en el catálogo y desata solicitudes cruzadas instantáneas.
+
+### B. Separación de Roles en la Puesta en Escena
+* **Público / Docentes (Experiencia Match en Vivo):**
+  - Entran, exploran las materias que les tocaron a sus compañeros, tocan **"Solicitar intercambio"** (1 solo clic gracias al turno express) y ven cómo **sus créditos quedan en custodia (Escrow)**.
+  - El compañero receptor ve la notificación en vivo en su celular y toca **"Aceptar"** $\to$ ¡Match en vivo en el aula!
+* **Presentadores Mateo y Lucía (Ciclo Transaccional Completo + IA):**
+  - Muestran en el proyector el ciclo completo:
+    1. **Moderación IA:** Intento de publicar contenido prohibido y rechazo instantáneo.
+    2. **Estimador IA:** Publicación de curso legítimo con cálculo automático de créditos.
+    3. **Cierre de clase:** Finalización de la sesión pactada, liberación atómica de créditos y calificación mutua de 5 estrellas reflejada en el Panel Admin.
+
+---
+
+## 4. Guion Recomendado para la Demo de Lerna (Distribución 30 Minutos)
 
 ```
 [00:00 - 05:00]  BLOQUE 1: Storytelling & Contexto (5 min)
@@ -54,13 +83,19 @@ Este skill recopila las **observaciones de campo reales** tomadas durante las pr
                  • Dolor real: barrera económica, 1 hora = 1 crédito, custodia de créditos.
 
 [05:00 - 22:00]  BLOQUE 2: Demo en Vivo Coordinada (17 min)
-                 • Min 05: Proyección de QR para que la cátedra/alumnos entren como invitados.
-                 • Min 07: Mateo (Smartphone 1) busca clase de piano y solicita turno.
-                 • Min 10: Bloqueo atómico de créditos (Escrow) visible en el balance.
-                 • Min 12: Lucía (Smartphone 2 / Laptop) recibe solicitud, acepta y genera Meet.
-                 • Min 15: Confirmación de clase, liberación de créditos a Lucía.
-                 • Min 18: Calificación mutua 5 estrellas y actualización de reputación.
-                 • Min 20: Vista del Panel de Auditoría / Admin mostrando el log transaccional.
+                 • Min 05: [QR INTERACTIVO] Proyección de QR. La clase escanea, se asigna alias/selfie,
+                   recibe 3 créditos y su materia FIUBA para enseñar.
+                 • Min 07: [MOMENTO IA 1 - Moderación] Intento de publicación de curso prohibido
+                   (ej: "Hackeo de exámenes FIUBA"). La IA rechaza en vivo con la política infringida.
+                 • Min 09: [MOMENTO IA 2 - Estimador de Créditos] Publicación de curso legítimo de Piano.
+                   La IA analiza temario, duración y nivel técnico, sugiriendo la tasa justa de créditos.
+                 • Min 11: [MATCH DE LA CLASE] Los alumnos en el aula se solicitan clases entre sí;
+                   notificaciones en tiempo real y bloqueo atómico de créditos en Escrow.
+                 • Min 14: [CICLO COMPLETO EN ESCENARIO] Mateo solicita la clase a Lucía; Lucía acepta
+                   y se genera el enlace de la sesión.
+                 • Min 17: Confirmación de clase dictada y liberación atómica de créditos a Lucía.
+                 • Min 19: Calificación mutua 5 estrellas y actualización inmediata de reputación.
+                 • Min 21: Vista del Panel de Auditoría / Admin con el log transaccional y bloqueos.
 
 [22:00 - 30:00]  BLOQUE 3: Cierre & Preguntas de la Cátedra (8 min)
                  • Responder con seguridad basándose en la WBS, la arquitectura FastAPI/SQLModel
@@ -69,10 +104,14 @@ Este skill recopila las **observaciones de campo reales** tomadas durante las pr
 
 ---
 
-## 4. Checklist Técnico Previo a la Defensa
+## 5. Checklist Técnico Previo a la Defensa
 - [ ] Backend FastAPI corriendo en servidor cloud con SSL (o túnel ngrok/Cloudflare estable).
 - [ ] Frontend desplegado accesible por URL pública (Vercel/Netlify/Render).
-- [ ] Base de datos poblada con el seeder mock (`seed_mock.py`): usuarios con fotos, ofertas variadas y calificaciones previas.
-- [ ] Código QR generado que apunte directamente a la URL del catálogo de Lerna.
+- [ ] Base de datos poblada con el seeder mock (`seed_mock.py`): catálogo con materias FIUBA, fotos y valoraciones.
+- [ ] Endpoint / flujo de Onboarding Express por QR probado (`/demo/join` con pool rotativo de materias FIUBA y selfie opcional).
+- [ ] Código QR generado que apunte directamente a la URL del onboarding express de demo.
 - [ ] 2 computadoras o 2 teléfonos listos y logueados con las cuentas de demo (Mateo y Lucía).
 - [ ] Hub de diapositivas abierto en pestaña secundaria: `proyecto-wbs/docs/Entrega/presentacion.html`.
+- [ ] Endpoint / servicio de IA verificado:
+  - [ ] Prompt/regla de moderación con respuesta inmediata para el curso prohibido de prueba.
+  - [ ] Estimador de créditos respondiendo con cálculo sugerido según duración y dificultad.

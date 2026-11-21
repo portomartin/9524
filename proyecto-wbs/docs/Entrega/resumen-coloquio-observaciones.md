@@ -51,16 +51,20 @@ Buenas chicos, les paso en limpio un desglose detallado de lo que se vio en las 
 
 Con lo visto ayer, tenemos todo para que nuestra presentación sea de las mejores si aplicamos estas ideas:
 
-1. **Idea de Alto Impacto: Código QR para la Clase / Docentes**
-   * Podemos proyectar un QR al inicio de la demo para que Alejandro, Mauro, Pilar o los compañeros escaneen e ingresen al catálogo desplegado.
-   * Con solo darles 1 crédito de bienvenida, pueden buscar una materia, ver nuestras publicaciones o solicitar un intercambio en vivo mientras nosotros mostramos la pantalla docente/admin. Es fácil de orquestar y suma muchísimo puntaje.
+1. **Idea de Alto Impacto: Código QR + Onboarding Express con Materias FIUBA y Selfie:**
+   * Proyectar un QR al inicio de la demo para que la cátedra y compañeros escaneen con sus celulares.
+   * **Entrada sin fricción (1 clic):** Se les asigna un alias simpático (*"Ingeniero Curioso #14"*, *"Estudiante Paseo Colón"*), avatar por defecto con opción de **sacarse una selfie rápida** con la cámara, **3 créditos de bienvenida**, **1 materia para enseñar** y **1 materia que desea aprender** encadenada con otro alumno del aula.
+   * **Sugerencia Proactiva de Match:** En lugar de buscar a ciegas, la app le muestra: *"🎯 ¡Encontramos a tu profesor ideal! [Compañero] te puede enseñar [Materia Deseada]. Tocá acá para pedirle turno con tus créditos de regalo"*.
+   * **Agenda Express ("Turno Disponible Ahora"):** Para no enredar a la clase con calendarios complejos, las materias nacen con turno inmediato a un clic.
+   * **El público juega al Match:** Al tocar la sugerencia, la solicitud viaja en el acto, los créditos quedan en Escrow y el compañero sentado al lado recibe la notificación en vivo en su teléfono.
 2. **Demo a Dos / Tres Pantallas Coordinadas (Efecto Barrio Ahorro):**
-   * Una pantalla/celular para **Mateo** (busca clase de piano, solicita y se le congelan los créditos en escrow).
-   * Otra pantalla para **Lucía** (recibe la notificación, acepta la sesión, genera el link de Meet y confirma la clase).
-   * Liberación de créditos en vivo y calificación de 5 estrellas con actualización instantánea de la reputación.
+   * Mientras la clase experimenta el match, los presentadores en el escenario (**Mateo y Lucía**) ejecutan el **ciclo transaccional completo**: solicitud pactada, confirmación de clase dictada, liberación automática de créditos a Lucía y calificación mutua 5 estrellas reflejada en tiempo real en el Panel de Auditoría/Admin.
 3. **Seeding Robusto (Efecto MediTrace vs GameMatch):**
-   * Que el catálogo no arranque vacío ni con "datos de prueba genéricos". Nuestro dataset con perfiles, materias reales, valoraciones previas y fotos de portadas le da apariencia de producto terminado y en producción.
-4. **Guion Cerrado de 20 minutos:**
-   * 4 min: Introducción con las 7 viñetas del Storytelling.
-   * 16 min: Demo en vivo (flujo alumno $\to$ profesor $\to$ escrow $\to$ calificación $\to$ panel admin).
-   * 10 min: Preguntas de la cátedra. Cero improvisación.
+   * Que el catálogo no arranque vacío ni con datos genéricos: materias de la facultad, descripciones creíbles y valoraciones previas para dar sensación de producto maduro.
+4. **Demostración de Inteligencia Artificial Aplicada (Efecto Diferenciador Tecnológico):**
+   * **Filtro ético y moderación de contenido en tiempo real:** Intento de publicar una clase prohibida (ej. vulneración de exámenes o contenido ilícito/no académico). La IA la rechaza en el acto exponiendo la política infringida.
+   * **Estimador inteligente de créditos:** Al redactar la propuesta legítima de piano, la IA evalúa complejidad, nivel y duración para sugerir el valor justo en créditos.
+5. **Guion Cerrado de 20 minutos (Distribución para el Coloquio):**
+   * 4-5 min: Introducción con las 7 viñetas del Storytelling.
+   * 16-17 min: Demo en vivo (QR interactivo $\to$ IA Moderación $\to$ IA Estimador $\to$ Match en el aula $\to$ Ciclo completo Mateo/Lucía $\to$ Auditoría Admin).
+   * 8-10 min: Preguntas de la cátedra. Cero improvisación.
